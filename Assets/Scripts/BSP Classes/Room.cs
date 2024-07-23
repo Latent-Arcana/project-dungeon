@@ -1,3 +1,95 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:9d2ab7d9a44d0ac5d6c992b3191b367b7b27592ff01747e12b797b7fa2a0943e
-size 1811
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using static BSPGeneration;
+
+[System.Serializable]
+public class Room : MonoBehaviour
+{
+
+    private int _x, _y, _width, _height, _originX, _originY, _roomId;
+
+    GameObject _roomObject;
+
+    public Partition partition;
+
+    RoomType _roomType;
+
+    public int x
+    {
+        get { return _x; }
+        set { _x = value; }
+    }
+
+    public int y
+    {
+        get { return _y; }
+        set { _y = value; }
+    }
+
+    public int width
+    {
+        get { return _width; }
+        set { _width = value; }
+    }
+
+    public int height
+    {
+        get { return _height; }
+        set { _height = value; }
+    }
+
+    public int originX
+    {
+        get { return _originX; }
+        set { _originX = value; }
+    }
+
+    public int originY
+    {
+        get { return _originY; }
+        set { _originY = value; }
+    }
+
+    public int roomId
+    {
+        get { return _roomId; }
+        set { _roomId = value; }
+    }
+
+    public GameObject roomObject
+    {
+        get { return _roomObject; }
+        set { _roomObject = value; }
+    }
+
+    public RoomType roomType
+    {
+        get { return _roomType; }
+        set { _roomType = value; }
+    }
+
+
+    public void SetupRoom(int x, int y, int width, int height, int originX, int originY, int roomId, ref Partition partitionIn)
+    {
+        _x = x;
+        _y = y;
+        _width = width;
+        _height = height;
+        _originX = originX;
+        _originY = originY;
+        _roomId = roomId;
+
+        partition = partitionIn;
+
+        //GameObject roomObj = new GameObject("Room_" +  roomId);
+
+        //_roomObject = roomObj;
+
+        _roomType = RoomType.Unassigned;
+    }
+
+
+
+
+}

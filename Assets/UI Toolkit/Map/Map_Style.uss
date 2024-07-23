@@ -1,3 +1,3 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:9d3e1222bee4dceca81ef2866431c9572b9908a660a9760146fda84b72df292c
-size 50
+.containerHiddenDefault {
+    display: none;
+}

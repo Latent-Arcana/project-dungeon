@@ -1,3 +1,28 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:417ebf6a37ab998d4917796686495a1028a3e088b2ebb416bdf05b5a8f91ce2a
-size 576
+.menu-button {
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.menu-container-main {
+    -unity-background-image-tint-color: rgb(27, 79, 99);
+    background-image: none;
+}
+
+.menu-container-pause {
+    -unity-background-image-tint-color: rgb(164, 109, 109);
+    width: 70%;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    height: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.options-container {
+    flex-grow: 1;
+    display: flex;
+    width: 80%;
+    align-items: stretch;
+    align-self: center;
+}

@@ -1,3 +1,75 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:5e2727515b26994b0376ff5fe1ff36d54c769f22a1a71129dade51bc6e1156db
-size 1437
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.UIElements;
+using static DungeonNarrator;
+
+public class PlayerStats : MonoBehaviour
+{
+
+    public static PlayerStats Player_Stats { get; private set; }
+
+
+    //private int _HP_MAX = 10;
+    public int _HP = 10;
+    public int _SPD = 2;
+    public int _AGI = 1;
+
+
+    //public int HP
+    //{
+    //    get { return _HP; }
+    //    set { _HP = value; }
+    //}
+
+    //public int SPD
+    //{
+    //    get { return _SPD; }
+    //    set { _SPD = value; }
+    //}
+    //public int AGI
+    //{
+    //    get { return _AGI; }
+    //    set { _AGI = value; }
+    //}
+
+
+
+    private UIDocument narrator_doc;
+
+    private TextElement healthText;
+
+
+    private void Awake()
+    {
+        if (Player_Stats != null && Player_Stats != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Player_Stats = this;
+        }
+
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        healthText = narrator_doc.rootVisualElement.Q("HealthText") as TextElement;
+
+    }
+
+    public void SetHealth (int health){
+        _HP = health;
+        healthText.text = "HP: " + health.ToString();
+    }
+
+    public int GetCurrentHealth(){
+        return _HP;
+    }
+
+    //TODO: Do the rest of the stats
+
+}

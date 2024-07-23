@@ -1,3 +1,17 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:780fa77aac63637c6e1abec46ad57ad19aa13aaf77bdb1b8be561bef89e80fe2
-size 2099
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/MenuStyleSheet.uss?fileID=7433441132597879392&amp;guid=8622666c0c77f81419510e23e5912e27&amp;type=3#MenuStyleSheet" />
+    <ui:VisualElement name="Container" class="menu-container-main" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/dungeon-floor.png?fileID=21300000&amp;guid=fbeb65c950ade98478953810c4543e94&amp;type=3#dungeon-floor&quot;); display: flex;">
+        <ui:Label tabindex="-1" text="Main Menu" parse-escape-sequences="true" display-tooltip-when-elided="true" name="MainMenuTitle" style="display: flex;" />
+        <ui:VisualElement name="MainContainer" style="flex-grow: 1; display: flex;">
+            <ui:Button text="Play" parse-escape-sequences="true" display-tooltip-when-elided="true" name="PlayButton" class="menu-button" />
+            <ui:Button text="Options" parse-escape-sequences="true" display-tooltip-when-elided="true" name="OptionsButton" class="menu-button" />
+            <ui:Button text="Quit" parse-escape-sequences="true" display-tooltip-when-elided="true" name="QuitButton" class="menu-button" />
+        </ui:VisualElement>
+        <ui:VisualElement name="OptionsContainer" class="options-container" style="flex-grow: 1; display: flex;">
+            <ui:Label tabindex="-1" text="Volume" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+            <ui:Slider label="Music" high-value="1" low-value="0.0001" name="VolumeMusicSlider" />
+            <ui:Slider label="Effects" high-value="1" low-value="0.0001" name="VolumeSoundEffectsSlider" />
+            <ui:Button text="Back" parse-escape-sequences="true" display-tooltip-when-elided="true" name="BackButton" class="menu-button" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

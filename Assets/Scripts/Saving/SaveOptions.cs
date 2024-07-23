@@ -1,3 +1,24 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:ad7efdce24266bdc77f6abcaeb4dc8083c9065e989f8c0dbbc34d4d0d711fd45
-size 730
+using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+
+[System.Serializable]
+public class SaveOptions
+{
+// This structure exists to pass into the binary/json serializer for save data
+    public float musicVolume;
+    public float soundEffectVolume;
+
+    //constructor used to load from file into a SaveOptions game object
+    public SaveOptions(SaveOptions options){
+        musicVolume = options.musicVolume;
+        soundEffectVolume = options.soundEffectVolume;
+    }
+
+    //constructor used to initialize the SaveOptions game object otherwise
+    public SaveOptions (float mVolume, float sfxVolume){
+        musicVolume = mVolume;
+        soundEffectVolume = sfxVolume;
+    }
+
+}

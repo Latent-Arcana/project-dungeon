@@ -1,3 +1,11 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:a4ab3d5b94c77dc0a0190eead4f0ecf3a4f39862e8526a4e2a63baefdfe7caac
-size 206
+.narrator-text {
+    color: rgb(195, 195, 195);
+    font-size: 32px;
+}
+
+.narrator-stat-text {
+    color: rgb(195, 155, 155);
+    margin-right: 10px;
+    margin-left: 10px;
+    font-size: 36px;
+}

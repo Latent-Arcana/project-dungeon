@@ -1,3 +1,11 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:fbd58a3cb9a308634eca36bb4cb0f2e0f6fb6d8f0271d679bb1f2c302f1ae57b
-size 1201
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/Map/Map_Style.uss?fileID=7433441132597879392&amp;guid=f3eaeb5b7bebc5c49b89f60ad0ea1b91&amp;type=3#Map_Style" />
+    <ui:VisualElement name="Container" class="containerHiddenDefault" style="flex-grow: 1; flex-direction: row; display: flex;">
+        <ui:VisualElement name="ViewContainer" style="flex-grow: 1; width: 75%;" />
+        <ui:VisualElement name="ButtonContainer" style="flex-grow: 1; width: 25%;">
+            <ui:Button text="Safe" parse-escape-sequences="true" display-tooltip-when-elided="true" name="MapMarkerSafe" />
+            <ui:Button text="Lore" parse-escape-sequences="true" display-tooltip-when-elided="true" name="MapMarkerLore" />
+            <ui:Button text="Danger" parse-escape-sequences="true" display-tooltip-when-elided="true" name="MapMarkerDanger" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
