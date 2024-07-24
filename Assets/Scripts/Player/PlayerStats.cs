@@ -17,25 +17,6 @@ public class PlayerStats : MonoBehaviour
     public int _AGI = 1;
 
 
-    //public int HP
-    //{
-    //    get { return _HP; }
-    //    set { _HP = value; }
-    //}
-
-    //public int SPD
-    //{
-    //    get { return _SPD; }
-    //    set { _SPD = value; }
-    //}
-    //public int AGI
-    //{
-    //    get { return _AGI; }
-    //    set { _AGI = value; }
-    //}
-
-
-
     private UIDocument narrator_doc;
 
     private TextElement healthText;
@@ -57,13 +38,13 @@ public class PlayerStats : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        healthText = narrator_doc.rootVisualElement.Q("HealthText") as TextElement;
+       //healthText = narrator_doc.rootVisualElement.Q("HealthText") as TextElement;
 
     }
 
     public void SetHealth (int health){
-        _HP = health;
-        healthText.text = "HP: " + health.ToString();
+        //_HP = health;
+        //healthText.text = "HP: " + health.ToString();
     }
 
     public int GetCurrentHealth(){
