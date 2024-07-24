@@ -45,7 +45,6 @@ public class EnemyBehavior : MonoBehaviour
         public int playerDamageDealt;
     }
 
-
     BehaviorState behaviorState;
 
     public enum BehaviorState
@@ -63,14 +62,6 @@ public class EnemyBehavior : MonoBehaviour
     // 3: Vector3 leftPosition;
 
     Vector3[] borderPositions = new Vector3[4];
-
-   
-    // TODO:
-    /*
-     * Movement leashing
-     * Add fleeing and chasing
-     * Add attacking and damage
-    */
 
 
     public virtual void Awake()
@@ -261,7 +252,6 @@ public class EnemyBehavior : MonoBehaviour
 
         return directionToTarget;
     }
-
 
     public IEnumerator IncomingDamageFlash()
     {
