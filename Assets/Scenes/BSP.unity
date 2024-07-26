@@ -157,8 +157,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mapWidth: 50
   mapHeight: 50
-  roomMinimumWidth: 10
-  roomMinimumHeight: 10
+  roomMinimumWidth: 7
+  roomMinimumHeight: 7
   mapOffset: 500
   gameplayFloorTile: {fileID: 11400000, guid: c7e7b50579513c3489df3f15195548fc, type: 2}
   gameplayFloorHallwayTile: {fileID: 11400000, guid: 244bdada7fa122c41b5a969f6df34692, type: 2}

@@ -272,6 +272,8 @@ public class EnemyBehavior : MonoBehaviour
         int _enemyDamageDealt = UnityEngine.Random.Range(1, 5);
         int _playerDamageDealt = UnityEngine.Random.Range(1, 5);
 
+        Die();
+
         //if(SPD > Player_Stats.SPD)
         //{
         //    Player_Stats.HP -= _enemyDamageDealt;
