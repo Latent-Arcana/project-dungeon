@@ -13,7 +13,7 @@ public class Room : MonoBehaviour
 
     public Partition partition;
 
-    RoomType _roomType;
+    Enums.RoomType _roomType;
 
     public int x
     {
@@ -63,7 +63,7 @@ public class Room : MonoBehaviour
         set { _roomObject = value; }
     }
 
-    public RoomType roomType
+    public Enums.RoomType roomType
     {
         get { return _roomType; }
         set { _roomType = value; }
@@ -86,10 +86,7 @@ public class Room : MonoBehaviour
 
         //_roomObject = roomObj;
 
-        _roomType = RoomType.Unassigned;
+        _roomType = Enums.RoomType.Unassigned;
     }
-
-
-
 
 }

@@ -203,7 +203,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -293510981
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: cc9877e896246c84ea10bdb5b57b172c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -300,3 +300,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27f2efc974b0f68408cc972cc6190a0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerStats: {fileID: 11400000, guid: 49cdfbab4b8796a41af4e48e5ee7d3d5, type: 2}
+  room: 0
+  id: 0
+  playerInRoom: 0
+  originPoint: {x: 0, y: 0}
+  attackSprite: {fileID: 0}

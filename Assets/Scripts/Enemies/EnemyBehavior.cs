@@ -21,6 +21,8 @@ public class EnemyBehavior : MonoBehaviour
 
     protected string type;
 
+    public PlayerStatsManager playerStats;
+
 
     protected InputController input;
     protected DungeonNarrator dungeonNarrator;
@@ -45,7 +47,6 @@ public class EnemyBehavior : MonoBehaviour
         public int playerDamageDealt;
     }
 
-
     BehaviorState behaviorState;
 
     public enum BehaviorState
@@ -63,14 +64,6 @@ public class EnemyBehavior : MonoBehaviour
     // 3: Vector3 leftPosition;
 
     Vector3[] borderPositions = new Vector3[4];
-
-   
-    // TODO:
-    /*
-     * Movement leashing
-     * Add fleeing and chasing
-     * Add attacking and damage
-    */
 
 
     public virtual void Awake()
@@ -262,7 +255,6 @@ public class EnemyBehavior : MonoBehaviour
         return directionToTarget;
     }
 
-
     public IEnumerator IncomingDamageFlash()
     {
         gameObject.GetComponent<SpriteRenderer>().color = UnityEngine.Color.black;
@@ -279,6 +271,8 @@ public class EnemyBehavior : MonoBehaviour
 
         int _enemyDamageDealt = UnityEngine.Random.Range(1, 5);
         int _playerDamageDealt = UnityEngine.Random.Range(1, 5);
+
+        Die();
 
         //if(SPD > Player_Stats.SPD)
         //{
