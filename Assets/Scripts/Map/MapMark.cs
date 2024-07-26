@@ -10,7 +10,7 @@ public class MapMark : MonoBehaviour
     private ScoreController scoreController;
 
     [SerializeField]
-    public BSPGeneration.RoomType roomType;
+    public Enums.RoomType roomType;
 
     void Awake()
     {

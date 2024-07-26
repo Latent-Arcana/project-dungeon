@@ -102,7 +102,7 @@ public class ScoreController : MonoBehaviour
             }
 
             //no pin in room, but room doesn't actually have a type (null == null)
-            else if (room1.roomType == BSPGeneration.RoomType.Unassigned)
+            else if (room1.roomType == Enums.RoomType.Unassigned)
             {
                 Numerator++;
                 Denominator++;

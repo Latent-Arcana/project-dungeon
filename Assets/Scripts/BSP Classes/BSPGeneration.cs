@@ -11,7 +11,6 @@ using UnityEngine.Rendering;
 using UnityEngine.Tilemaps;
 using UnityEngine.UIElements;
 using static PlayerMovement;
-using static BSPGeneration;
 
 public class BSPGeneration : MonoBehaviour
 {
@@ -79,8 +78,6 @@ public class BSPGeneration : MonoBehaviour
         // Get Dungeon Setup
         Danger_Generator = gameObject.GetComponent<DangerGeneration>();
         Lore_Generator = gameObject.GetComponent<LoreGeneration>();
-        // Get Enemy Generator
-        dangerGenerator = gameObject.GetComponent<DangerGeneration>();
 
         // Get the player so we can place them at the correct location
         player = GameObject.Find("Player");
@@ -190,18 +187,12 @@ public class BSPGeneration : MonoBehaviour
             }
         }
 
-    }
-
-
-        }
-
         CreateCorridors(dungeon);
 
         // now we can place our player at the start of the dungeon.
         // FOR NOW WE ARE PICKING THE FIRST ROOM IN THE LIST, ARBITRARILY
 
         player.transform.position = new Vector3Int(allRooms[0].GetComponent<Room>().originX, allRooms[0].GetComponent<Room>().originY, 0);
-
 
     }
 
