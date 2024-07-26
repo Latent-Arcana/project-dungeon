@@ -11,12 +11,9 @@ using UnityEngine.Rendering;
 using UnityEngine.Tilemaps;
 using UnityEngine.UIElements;
 using static BSPGeneration;
-using static PlayerMovement;
 
 public class BSPGeneration : MonoBehaviour
 {
-    // TODO: REMOVE THIS TEST TEXT
-    // SOME TEST TEXT TO SHOW THAT LFS IS WORKING
 
     [Header("Dungeon Parameters")]
     public int mapWidth;
@@ -72,6 +69,8 @@ public class BSPGeneration : MonoBehaviour
 
     public float[][] distances;
 
+    public GameObject player;
+
     public DangerGeneration dangerGenerator;
 
     public Partition dungeon;
@@ -86,6 +85,8 @@ public class BSPGeneration : MonoBehaviour
         // Get Enemy Generator
         dangerGenerator = gameObject.GetComponent<DangerGeneration>();
 
+        // Get the player so we can place them at the correct location
+        player = GameObject.Find("Player");
 
         // let's make the entire background walls
         for (int i = -25; i < 75; ++i)
@@ -94,7 +95,7 @@ public class BSPGeneration : MonoBehaviour
             {
                 mainTilemap.SetTile(new Vector3Int(i, j, 0), gameplayWallTile);
 
-                mainTilemap.SetTile(new Vector3Int(i-mapOffset, j-mapOffset, 0), mapOutsideTile);
+                mainTilemap.SetTile(new Vector3Int(i - mapOffset, j - mapOffset, 0), mapOutsideTile);
             }
         }
 
@@ -182,7 +183,7 @@ public class BSPGeneration : MonoBehaviour
         // now we can place our player at the start of the dungeon.
         // FOR NOW WE ARE PICKING THE FIRST ROOM IN THE LIST, ARBITRARILY
 
-        Player_Movement.gameObject.transform.position = new Vector3Int(allRooms[0].GetComponent<Room>().originX, allRooms[0].GetComponent<Room>().originY, 0);
+        player.transform.position = new Vector3Int(allRooms[0].GetComponent<Room>().originX, allRooms[0].GetComponent<Room>().originY, 0);
 
 
     }
@@ -577,8 +578,8 @@ public class BSPGeneration : MonoBehaviour
                     mainTilemap.SetTileFlags(start, TileFlags.None);
                     mainTilemap.SetTile(start, gameplayFloorHallwayTile);
 
-                    mainTilemap.SetTileFlags(start + new Vector3Int(-mapOffset,-mapOffset,0), TileFlags.None);
-                    mainTilemap.SetTile(start + new Vector3Int(-mapOffset,-mapOffset,0), mapFloorAndWallTile);
+                    mainTilemap.SetTileFlags(start + new Vector3Int(-mapOffset, -mapOffset, 0), TileFlags.None);
+                    mainTilemap.SetTile(start + new Vector3Int(-mapOffset, -mapOffset, 0), mapFloorAndWallTile);
 
                 }
             }
@@ -605,8 +606,8 @@ public class BSPGeneration : MonoBehaviour
                     mainTilemap.SetTileFlags(start, TileFlags.None);
                     mainTilemap.SetTile(start, gameplayFloorHallwayTile);
 
-                    mainTilemap.SetTileFlags(start + new Vector3Int(-mapOffset,-mapOffset,0), TileFlags.None);
-                    mainTilemap.SetTile(start + new Vector3Int(-mapOffset,-mapOffset,0), mapFloorAndWallTile);
+                    mainTilemap.SetTileFlags(start + new Vector3Int(-mapOffset, -mapOffset, 0), TileFlags.None);
+                    mainTilemap.SetTile(start + new Vector3Int(-mapOffset, -mapOffset, 0), mapFloorAndWallTile);
                 }
             }
         }
@@ -646,8 +647,8 @@ public class BSPGeneration : MonoBehaviour
 
 
 
-                    mainTilemap.SetTileFlags(start + new Vector3Int(-mapOffset,-mapOffset,0), TileFlags.None);
-                    mainTilemap.SetTile(start + new Vector3Int(-mapOffset,-mapOffset,0), mapFloorAndWallTile);
+                    mainTilemap.SetTileFlags(start + new Vector3Int(-mapOffset, -mapOffset, 0), TileFlags.None);
+                    mainTilemap.SetTile(start + new Vector3Int(-mapOffset, -mapOffset, 0), mapFloorAndWallTile);
                 }
             }
         }
@@ -672,8 +673,8 @@ public class BSPGeneration : MonoBehaviour
                     mainTilemap.SetTileFlags(start, TileFlags.None);
                     mainTilemap.SetTile(start, gameplayFloorHallwayTile);
 
-                    mainTilemap.SetTileFlags(start + new Vector3Int(-mapOffset,-mapOffset,0), TileFlags.None);
-                    mainTilemap.SetTile(start + new Vector3Int(-mapOffset,-mapOffset,0), mapFloorAndWallTile);
+                    mainTilemap.SetTileFlags(start + new Vector3Int(-mapOffset, -mapOffset, 0), TileFlags.None);
+                    mainTilemap.SetTile(start + new Vector3Int(-mapOffset, -mapOffset, 0), mapFloorAndWallTile);
                 }
             }
         }
@@ -694,8 +695,8 @@ public class BSPGeneration : MonoBehaviour
                 mainTilemap.SetTileFlags(position, TileFlags.None);
                 mainTilemap.SetTile(position, gameplayFloorTile);
 
-                mainTilemap.SetTileFlags(position + new Vector3Int(-mapOffset,-mapOffset,0), TileFlags.None);
-                mainTilemap.SetTile(position + new Vector3Int(-mapOffset,-mapOffset,0), mapFloorAndWallTile);
+                mainTilemap.SetTileFlags(position + new Vector3Int(-mapOffset, -mapOffset, 0), TileFlags.None);
+                mainTilemap.SetTile(position + new Vector3Int(-mapOffset, -mapOffset, 0), mapFloorAndWallTile);
 
             }
         }
@@ -768,19 +769,21 @@ public class BSPGeneration : MonoBehaviour
                 float centerY = (startY + endY) / 2;
                 Vector3 center = new Vector3(centerX, centerY, 0);
 
-                //move game object (gameplay)
+
+                //Map Object
+                roomObjMap.transform.position = center - new Vector3Int(mapOffset, mapOffset, 0);
+                roomObjMap.transform.localScale = size;
+                BoxCollider roomCollMap = roomObjMap.AddComponent<BoxCollider>();
+                roomCollMap.isTrigger = true;
+
+
+                //Gameplay Object
                 roomObjGameplay.transform.position = center;
                 roomObjGameplay.transform.localScale = size;
 
-                //move game object (map)
-                roomObjMap.transform.position = center - new Vector3Int(-500, -500, 0);
-                roomObjMap.transform.localScale = size;
-
-                //Gameplay Object Components
                 BoxCollider2D roomColl = roomObjGameplay.AddComponent<BoxCollider2D>();
                 roomColl.isTrigger = true;
                 roomObjGameplay.AddComponent<RoomFogController>();
-
 
                 GameObject fogBoxRoom = Instantiate(fogGameplayPrefab, new Vector3Int(rngX, rngY, 0), Quaternion.identity);
                 fogBoxRoom.transform.localScale = new Vector3Int(rngWidth, rngHeight, 0);
@@ -788,11 +791,9 @@ public class BSPGeneration : MonoBehaviour
                 fogBoxRoom.transform.SetParent(roomObjGameplay.transform);
                 fogBoxRoom.name = "Room Fogbox";
 
-                //Map Object Components
-                //TODO: add the collider/trigger that will be used by the map pins to calculate final score
-
                 //tags
                 roomObjGameplay.tag = "room";
+                roomObjMap.tag = "room";
 
                 //Add Room script to parent game object
                 Room roomComponent = roomObj.AddComponent<Room>();
