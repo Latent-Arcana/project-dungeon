@@ -300,9 +300,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27f2efc974b0f68408cc972cc6190a0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerStats: {fileID: 11400000, guid: 49cdfbab4b8796a41af4e48e5ee7d3d5, type: 2}
   room: 0
   id: 0
   playerInRoom: 0
   originPoint: {x: 0, y: 0}
   attackSprite: {fileID: 0}
-  playerStats: {fileID: 11400000, guid: 49cdfbab4b8796a41af4e48e5ee7d3d5, type: 2}

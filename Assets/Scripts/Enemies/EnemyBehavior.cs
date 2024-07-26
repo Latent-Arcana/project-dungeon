@@ -21,6 +21,8 @@ public class EnemyBehavior : MonoBehaviour
 
     protected string type;
 
+    public PlayerStatsManager playerStats;
+
 
     protected InputController input;
     protected DungeonNarrator dungeonNarrator;

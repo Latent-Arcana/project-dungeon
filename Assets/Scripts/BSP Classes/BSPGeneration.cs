@@ -10,14 +10,10 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Tilemaps;
 using UnityEngine.UIElements;
-using static BSPGeneration;
 using static PlayerMovement;
 
 public class BSPGeneration : MonoBehaviour
 {
-    // TODO: REMOVE THIS TEST TEXT
-    // SOME TEST TEXT TO SHOW THAT LFS IS WORKING
-
     [Header("Dungeon Parameters")]
     public int mapWidth;
     public int mapHeight;
@@ -48,22 +44,15 @@ public class BSPGeneration : MonoBehaviour
     [SerializeField]
     private GameObject fogGameplayPrefab;
 
+    public event EventHandler<BSPArgs> OnBSPFinished;
 
-
-    enum PartitionType
+     public class BSPArgs : EventArgs
     {
-        TopBottom,
-        LeftRight,
-        Random
+       public List<GameObject> rooms;
     }
 
-    public enum RoomType
-    {
-        Lore,
-        Safe,
-        Danger,
-        Unassigned
-    }
+    
+    
     [Header("Other Stuff")]
     public Tilemap mainTilemap;
     //public Tilemap mapTilemap;
@@ -72,10 +61,10 @@ public class BSPGeneration : MonoBehaviour
 
     public float[][] distances;
 
-    public DangerGeneration dangerGenerator;
+    public DangerGeneration Danger_Generator;
+    public LoreGeneration Lore_Generator;
 
     public Partition dungeon;
-
 
     void Awake()
     {
@@ -83,9 +72,9 @@ public class BSPGeneration : MonoBehaviour
         mainTilemap = GameObject.Find("Main Tilemap").GetComponent<Tilemap>();
         //mapTilemap = GameObject.Find("Map Tilemap").GetComponent<Tilemap>();
 
-        // Get Enemy Generator
-        dangerGenerator = gameObject.GetComponent<DangerGeneration>();
-
+        // Get Dungeon Setup
+        Danger_Generator = gameObject.GetComponent<DangerGeneration>();
+        Lore_Generator = gameObject.GetComponent<LoreGeneration>();
 
         // let's make the entire background walls
         for (int i = -25; i < 75; ++i)
@@ -135,46 +124,6 @@ public class BSPGeneration : MonoBehaviour
 
             }
 
-
-            // Set Types
-            // Safe Room - 20 %
-            // 1 subtype
-
-            // Lore Room - 40 %
-            // 2 subtypes (Unassigned 25% and Interactive 75%)
-
-            // Danger Room - 40 %
-            // 4 subtypes
-
-
-            int rand = UnityEngine.Random.Range(0, 100);
-
-            if (rand < 20) // Safe
-            {
-                room1.roomType = RoomType.Safe;
-            }
-            else if (rand < 60) // Lore
-            {
-                if (rand > 30)
-                {
-                    room1.roomType = RoomType.Lore;
-                }
-
-                // otherwise, room stays as Unassigned (initialized that way)
-
-            }
-            else // Danger
-            {
-                if (i > 0)
-                {
-                    // Debug.Log("Room " + allRooms[i].roomId + " is a danger room defined at: (" + allRooms[i].x + ", " + allRooms[i].y + ")");
-                    room1.roomType = RoomType.Danger;
-                    // Place Enemies
-                    dangerGenerator.GenerateEnemies(allRooms[i]);
-                }
-            }
-
-
         }
 
         CreateCorridors(dungeon);
@@ -184,16 +133,55 @@ public class BSPGeneration : MonoBehaviour
 
         Player_Movement.gameObject.transform.position = new Vector3Int(allRooms[0].GetComponent<Room>().originX, allRooms[0].GetComponent<Room>().originY, 0);
 
+        // Time to set up the dungeon
+         // Set Types
+            // Safe Room - 20 %
+
+            // Lore Room - 40 %
+            // 2 subtypes (Unassigned 25% and Interactive 75%)
+
+            // Danger Room - 40 %
+            // 4 subtypes
+
+
+        // for every room, let's tag it and populate it!
+        for(int i = 0; i < allRooms.Count; ++i){
+
+            Room room = allRooms[i].GetComponent<Room>();
+
+            int rand = UnityEngine.Random.Range(0, 100);
+
+            if (rand < 20) // Safe
+            {
+                room.roomType = Enums.RoomType.Safe;
+            }
+
+            else if (rand < 60) // Lore
+            {
+                if (rand > 30)
+                {
+                    room.roomType = Enums.RoomType.Lore;
+
+                    Lore_Generator.GenerateLore(allRooms[i]);
+                }
+
+                // otherwise, room stays as Unassigned (initialized that way)
+
+            }
+
+            else // Danger
+            {
+                if (i > 0)
+                {
+                    // Debug.Log("Room " + allRooms[i].roomId + " is a danger room defined at: (" + allRooms[i].x + ", " + allRooms[i].y + ")");
+                    room.roomType = Enums.RoomType.Danger;
+                    // Place Enemies
+                    Danger_Generator.GenerateEnemies(allRooms[i]);
+                }
+            }
+        }
 
     }
-
-    //private void OnDrawGizmos()
-    //{
-    //    foreach (Room room in allRooms)
-    //    {
-    //        Gizmos.DrawCube(room.roomObject.transform.position, room.roomObject.transform.localScale);
-    //    }
-    //}
 
     void BSP(Partition part)
     {
@@ -202,19 +190,19 @@ public class BSPGeneration : MonoBehaviour
         //the new room is too long
         if (part.width / part.height >= 2)
         {
-            splitRooms = Split(part, PartitionType.LeftRight);
+            splitRooms = Split(part, Enums.PartitionType.LeftRight);
         }
 
         //the new room is too tall
         else if (part.height / part.width >= 2)
         {
-            splitRooms = Split(part, PartitionType.TopBottom);
+            splitRooms = Split(part, Enums.PartitionType.TopBottom);
         }
 
         //normal random split
         else
         {
-            splitRooms = Split(part, PartitionType.Random);
+            splitRooms = Split(part, Enums.PartitionType.Random);
         }
 
         // keep in mind left and right child is just a naming convention for the children nodes in our binary tree
@@ -235,9 +223,9 @@ public class BSPGeneration : MonoBehaviour
 
     }
 
-    Tuple<Partition, Partition> Split(Partition partition, PartitionType type)
+    Tuple<Partition, Partition> Split(Partition partition, Enums.PartitionType type)
     {
-        if (type == PartitionType.TopBottom)
+        if (type == Enums.PartitionType.TopBottom)
         {
             int rngOffset = partition.height / 2;
 
@@ -251,7 +239,7 @@ public class BSPGeneration : MonoBehaviour
             return splitRooms;
         }
 
-        else if (type == PartitionType.LeftRight)
+        else if (type == Enums.PartitionType.LeftRight)
         {
             int rngOffset = partition.width / 2;
 
