@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ScoreController : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class ScoreController : MonoBehaviour
 
     private List<GameObject> allRooms;
 
+    private GameStats gameStats;
+
     //private Dictionary<int, GameObject> currentScores;
 
     private Dictionary<int, GameObject> currentMarks = new();
@@ -21,6 +24,7 @@ public class ScoreController : MonoBehaviour
     void Awake()
     {
         allRooms = GameObject.Find("DungeonGenerator").GetComponent<BSPGeneration>().allRooms;
+        gameStats = GameObject.Find("GameStats").GetComponent<GameStats>();
     }
 
 
@@ -36,7 +40,7 @@ public class ScoreController : MonoBehaviour
         if (currentMarks.ContainsKey(RoomId))
         {
 
-            Debug.Log("SetRoomMark: Removing existing mark for room" + RoomId );
+            Debug.Log("SetRoomMark: Removing existing mark for room" + RoomId);
 
             //remove from dictionary (inverse)
             currentMarksInverse.Remove(marker);
@@ -48,7 +52,7 @@ public class ScoreController : MonoBehaviour
             currentMarks.Remove(RoomId);
         }
 
-        Debug.Log("SetRoomMark: Adding mark for room" + RoomId );
+        Debug.Log("SetRoomMark: Adding mark for room" + RoomId);
 
         //add new mark to the dictionary(x2)
         currentMarks.Add(RoomId, marker);
@@ -63,7 +67,7 @@ public class ScoreController : MonoBehaviour
     {
         int removeFromRoom = currentMarksInverse[marker];
 
-        Debug.Log("RemoveRoomMark: Removing existing mark for room" + removeFromRoom );
+        Debug.Log("RemoveRoomMark: Removing existing mark for room" + removeFromRoom);
 
         //remove it from the dictionary(x2)
         currentMarks.Remove(removeFromRoom);
@@ -116,5 +120,32 @@ public class ScoreController : MonoBehaviour
         }
 
         Debug.Log($"Current Score: {Numerator}/{Denominator}");
+    }
+
+    /// <summary>
+    /// Called on Death. 
+    /// Sets the score in the GameStats object (DontDestroy) which is passed to the "Game Over" scene
+    /// </summary>
+    public void SetFinalScore()
+    {
+        //Score current round
+        ScoreRound();
+
+        //pass the stats to the object that won't be destroyed
+        gameStats.SetScore(Numerator, Denominator);
+
+        //call game over scene
+        SceneManager.LoadScene("GameOver");
+    }
+
+    /// <summary>
+    /// TODO: DELETE THIS. ONLY FOR TESTING. PUT THIS IN PLAYER DEATH
+    /// </summary>
+    void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.Keypad9) )
+            {
+                SetFinalScore();
+            }
     }
 }

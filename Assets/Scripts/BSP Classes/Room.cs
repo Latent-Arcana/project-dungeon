@@ -12,7 +12,8 @@ public class Room : MonoBehaviour
     GameObject _roomObject;
 
     public Partition partition;
-
+ 
+    [SerializeField]
     Enums.RoomType _roomType;
 
     public int x

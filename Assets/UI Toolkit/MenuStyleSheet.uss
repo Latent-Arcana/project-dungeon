@@ -4,8 +4,8 @@
 }
 
 .menu-container-main {
-    -unity-background-image-tint-color: rgb(27, 79, 99);
-    background-image: none;
+    -unity-background-image-tint-color: rgb(19, 19, 19);
+    background-image: url("project://database/Assets/Sprites/Rooms/Walls_Testing/dungeon-floor.png?fileID=2800000&guid=fbeb65c950ade98478953810c4543e94&type=3#dungeon-floor");
 }
 
 .menu-container-pause {
@@ -25,4 +25,20 @@
     width: 80%;
     align-items: stretch;
     align-self: center;
+}
+
+.menu-container-gameover {
+    -unity-background-image-tint-color: rgb(0, 0, 0);
+}
+
+.text-title-gameover {
+    color: rgb(255, 255, 255);
+    -unity-text-align: upper-center;
+    font-size: 32px;
+}
+
+.text-body-gameover {
+    color: rgb(255, 255, 255);
+    -unity-text-align: upper-left;
+    font-size: 16px;
 }
