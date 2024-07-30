@@ -12,15 +12,6 @@ public class GameStats : MonoBehaviour
     private int RoomsVisited;
 
     /// <summary>
-    /// When changing from the Game Over scene to the main menu or a new game, reset the numerator and denominator back to 0 (since they aren't destroyed on scene change)
-    /// </summary>
-    public void ResetGameStats()
-    {
-        Numerator = 0;
-        Denominator = 0;
-    }
-
-    /// <summary>
     /// Sets the final game score to be displayed on the Game Over screen
     /// </summary>
     /// <param name="numerator">Total number of correct room tags</param>
