@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.Windows;
-using static PlayerMovement;
 
 public class MapController : MonoBehaviour
 {
@@ -20,30 +19,36 @@ public class MapController : MonoBehaviour
 
     private List<GameObject> allRooms;
 
+    PlayerMovement playerMovement;
+
 
 
     void Awake()
     {
-        allRooms = GameObject.Find("DungeonGenerator").GetComponent<BSPGeneration>().allRooms;
-
         //This way we can hide the room's partition/fogbox by roomId, instead of searching for the game object by name
-        fogBoxes = new GameObject[allRooms.Count];
 
+        playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
+
+    }
+
+    void Start(){
+        allRooms = GameObject.Find("DungeonGenerator").GetComponent<BSPGeneration>().allRooms;
+        fogBoxes = new GameObject[allRooms.Count];
         FogOfWar();
+
     }
 
 
     private void OnEnable()
     {
         //subscribe MapController to the PlayerMovement script's OnRoomEnter event
-
-        Player_Movement.OnRoomEnter += Event_OnRoomEnter;
+        playerMovement.OnRoomEnter += Event_OnRoomEnter;
 
     }
 
     private void OnDisable()
     {
-        Player_Movement.OnRoomEnter -= Event_OnRoomEnter;
+        playerMovement.OnRoomEnter -= Event_OnRoomEnter;
     }
 
     void FogOfWar()

@@ -19,4 +19,12 @@ public static class Enums
         Random
     }
 
+    public enum LoreRoomSubType {
+        
+        Default = 1,
+        Treasure = 2,
+        Library = 3,
+        Dining = 4
+    }
+
 }

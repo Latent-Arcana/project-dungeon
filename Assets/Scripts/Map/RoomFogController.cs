@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using static PlayerMovement;
 
 //Attached to the gameobject that holds the collider(s) for room and hallway
 public class RoomFogController : MonoBehaviour
@@ -12,28 +11,39 @@ public class RoomFogController : MonoBehaviour
     public int roomId = -1;
 
     public GameObject fogSpriteObject;
+    public PlayerMovement playerMovement;
 
     void Start()
     {
         roomId = this.gameObject.GetComponentInParent<Room>().roomId;
         fogSpriteObject = this.gameObject.transform.GetChild(0).gameObject;
+        playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
     }
 
     private void OnEnable()
     {
-        Player_Movement.OnRoomEnter += RoomFog_OnRoomEnter;
+
+      if(playerMovement == null){
+
+        playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
+
+      }
+
+      playerMovement.OnRoomEnter += RoomFog_OnRoomEnter;
 
     }
 
     private void OnDisable()
     {
-        Player_Movement.OnRoomEnter -= RoomFog_OnRoomEnter;
+       playerMovement.OnRoomEnter -= RoomFog_OnRoomEnter;
     }
 
     private void RoomFog_OnRoomEnter(object sender, PlayerMovement.InputArgs e)
     {
-
-
+        if(fogSpriteObject == null){
+            fogSpriteObject = this.gameObject.transform.GetChild(0).gameObject;
+        }
+        
         if (e.type == "enter" && e.roomId == roomId)
         {
             //collided with me

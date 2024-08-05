@@ -10,9 +10,6 @@ using static DungeonNarrator;
 public class PlayerMovement : MonoBehaviour
 {
 
-    public static PlayerMovement Player_Movement { get; private set; }
-
-
     public GameObject player;
 
     public PlayerCameraBehavior playerCameraBehavior;
@@ -35,16 +32,6 @@ public class PlayerMovement : MonoBehaviour
 
     void Awake()
     {
-        if(Player_Movement != null && Player_Movement != this)
-        {
-            Destroy(this);
-        }
-        else
-        {
-            Player_Movement = this;
-        }
-
-
         player = gameObject;
 
         playerCameraBehavior = GameObject.Find("Main Camera").GetComponent<PlayerCameraBehavior>();

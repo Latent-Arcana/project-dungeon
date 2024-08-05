@@ -23,6 +23,7 @@ public class EnemyBehavior : MonoBehaviour
 
     public PlayerStatsManager playerStats;
 
+    public PlayerMovement playerMovement;
 
     protected InputController input;
     protected DungeonNarrator dungeonNarrator;
@@ -75,20 +76,22 @@ public class EnemyBehavior : MonoBehaviour
 
         behaviorState = BehaviorState.Idle;
 
+        playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
+
     }
 
 
     public virtual void OnEnable()
     {
-        Player_Movement.OnPlayerMoved += Input_OnPlayerMoved;
-        Player_Movement.OnRoomEnter += PlayerMovement_OnRoomEnter;
+        playerMovement.OnPlayerMoved += Input_OnPlayerMoved;
+        playerMovement.OnRoomEnter += PlayerMovement_OnRoomEnter;
     }
 
    
     public virtual void OnDisable()
     {
-        Player_Movement.OnPlayerMoved -= Input_OnPlayerMoved;
-        Player_Movement.OnRoomEnter -= PlayerMovement_OnRoomEnter;
+        playerMovement.OnPlayerMoved -= Input_OnPlayerMoved;
+        playerMovement.OnRoomEnter -= PlayerMovement_OnRoomEnter;
 
     }
 
