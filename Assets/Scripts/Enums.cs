@@ -21,10 +21,8 @@ public static class Enums
 
     public enum LoreRoomSubType {
         
-        Default = 1,
-        Treasure = 2,
-        Library = 3,
-        Dining = 4
+        Library = 0,
+        Treasure = 1
     }
 
     public enum ObjectType {
