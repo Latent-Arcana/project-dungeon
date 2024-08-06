@@ -24,7 +24,12 @@ public class ScoreController : MonoBehaviour
     void Awake()
     {
         allRooms = GameObject.Find("DungeonGenerator").GetComponent<BSPGeneration>().allRooms;
+    }
+
+    void Start()
+    {
         gameStats = GameObject.Find("GameStats").GetComponent<GameStats>();
+
     }
 
 
@@ -143,9 +148,9 @@ public class ScoreController : MonoBehaviour
     /// </summary>
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Keypad9) )
-            {
-                SetFinalScore();
-            }
+        if (Input.GetKeyUp(KeyCode.Keypad9))
+        {
+            SetFinalScore();
+        }
     }
 }

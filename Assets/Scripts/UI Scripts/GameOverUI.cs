@@ -64,13 +64,13 @@ public class GameOverUI : MonoBehaviour
 
     public void ReturnToMenu()
     {
-        Destroy(gameStats);
+        gameStats.NewGame();
         SceneManager.LoadScene("Main Menu");
     }
 
     public void StartNewGame()
     {
-        Destroy(gameStats);
+        gameStats.NewGame();
         SceneManager.LoadScene("BSP");
     }
 }
