@@ -30,6 +30,11 @@ public class GameStats : MonoBehaviour
         RoomsVisited = roomsVisited;
     }
 
+    public void NewGame(){
+        SetScore(0,0);
+        SetRoomsVisited(0);
+    }
+
     /// <summary>
     /// Increments the total number of rooms viisted by 1. To be displayed on the Game Over screen.
     /// </summary>
