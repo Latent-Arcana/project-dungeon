@@ -8,6 +8,7 @@ TagManager:
   - room
   - enemy
   - hallway
+  - object
   layers:
   - Default
   - TransparentFX
@@ -15,7 +16,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - ObjectPlacementLayer
   - 
   - 
   - 

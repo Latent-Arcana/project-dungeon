@@ -50,25 +50,39 @@ public class LoreGeneration : MonoBehaviour
             int attempt = 0;
             int numCreated = 0;
 
-            PlacementRule placement = GetPlacementRuleByObject(roomObjectBehavior);
+            Vector3Int position = new Vector3Int(UnityEngine.Random.Range(room.x, room.x + room.width), UnityEngine.Random.Range(room.y, room.y + room.height), 0);
 
-            while (attempt <= 50 && numCreated < roomObjectBehavior.MaximumNumberAllowed)
-            {
+            GameObject testObject = Instantiate(roomObject, position, Quaternion.identity);
 
-                Vector3Int position = new Vector3Int(UnityEngine.Random.Range(room.x, room.x + room.width), UnityEngine.Random.Range(room.y, room.y + room.height), 0);
+            Collider2D collider = testObject.transform.GetChild(0).GetComponent<Collider2D>();
 
-                if (placement.CanPlaceObject(tilemap, room, placedObjects, position, roomObjectBehavior.IsWallSpawn))
-                {
+            LayerMask layer = LayerMask.NameToLayer("ObjectPlacementLayer");
 
-                    Instantiate(roomObject, position, Quaternion.identity);
-                    placedObjects.Add(position, true);
-                    numCreated++;
-                }
-
-                else{
-                    ++attempt;
-                }
+            if(collider.IsTouchingLayers(layer)){
+                Debug.Log("These two objects are touching");
             }
+
+
+            // PlacementRule placement = GetPlacementRuleByObject(roomObjectBehavior);
+
+            // while (attempt <= 50 && numCreated < roomObjectBehavior.MaximumNumberAllowed)
+            // {
+
+            //     Vector3Int position = new Vector3Int(UnityEngine.Random.Range(room.x, room.x + room.width), UnityEngine.Random.Range(room.y, room.y + room.height), 0);
+
+            //     if (placement.CanPlaceObject(tilemap, room, placedObjects, position, roomObjectBehavior.IsWallSpawn))
+            //     {
+
+            //         Instantiate(roomObject, position, Quaternion.identity);
+            //         // Place two entries for something 2x1
+            //         placedObjects.Add(position, true);
+            //         numCreated++;
+            //     }
+
+            //     else{
+            //         ++attempt;
+            //     }
+            // }
         }
 
 
