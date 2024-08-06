@@ -27,4 +27,11 @@ public static class Enums
         Dining = 4
     }
 
+    public enum ObjectType {
+        Simple,
+        Wide,
+        Tall,
+        Large
+    }
+
 }

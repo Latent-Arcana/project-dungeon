@@ -171,4 +171,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7c4da0c753237447b438532cbb18857, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loreObject: {fileID: 11400000, guid: 59b5ae2e8795d454ca52504f91f32852, type: 2}

@@ -6,11 +6,29 @@ using UnityEngine.Tilemaps;
 
 public interface IPlaceable
 {
-   public Enums.LoreRoomSubType GetSubType();
-   public int GetWidth();
+   Enums.LoreRoomSubType SubType
+   {
+      get;
+   }
 
-   public int GetHeight();
+   Enums.ObjectType ObjectType{
+      get;
+   }
 
-   public bool IsWallSpawn();
-   
+   int Width
+   {
+      get;
+   }
+
+   int Height{
+      get;
+   }
+
+   int MaximumNumberAllowed{
+      get;
+   }
+
+   bool IsWallSpawn{
+      get;
+   }
 }
