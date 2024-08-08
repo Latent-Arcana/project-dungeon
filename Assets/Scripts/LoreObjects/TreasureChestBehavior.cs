@@ -8,7 +8,7 @@ public class TreasureChestBehavior : LoreObjectBehavior
 {
     public override Enums.LoreRoomSubType SubType => Enums.LoreRoomSubType.Treasure;
 
-    public override Enums.ObjectType ObjectType => Enums.ObjectType.Simple;
+    public override Enums.PlacementType PlacementType => Enums.PlacementType.Floor;
 
     public override int Width => 1;
 

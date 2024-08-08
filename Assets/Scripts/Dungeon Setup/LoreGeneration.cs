@@ -32,7 +32,7 @@ public class LoreGeneration : MonoBehaviour
         // The factory randomly chooses
 
         PopulateRoom(GetRandomRoomType(), room);
-        
+
 
     }
 
@@ -47,20 +47,19 @@ public class LoreGeneration : MonoBehaviour
         {
             LoreObjectBehavior roomObjectBehavior = roomObject.GetComponent<LoreObjectBehavior>();
 
-            int attempt = 0;
-            int numCreated = 0;
-
             Vector3Int position = new Vector3Int(UnityEngine.Random.Range(room.x, room.x + room.width), UnityEngine.Random.Range(room.y, room.y + room.height), 0);
 
-            GameObject testObject = Instantiate(roomObject, position, Quaternion.identity);
+            PlacementRule placementRule = GetPlacementRuleByObject(roomObjectBehavior);
 
-            Collider2D collider = testObject.transform.GetChild(0).GetComponent<Collider2D>();
+            if(placementRule.CanPlaceObject(tilemap, position, roomObjectBehavior.Width)){
 
-            LayerMask layer = LayerMask.NameToLayer("ObjectPlacementLayer");
+                GameObject testObject = Instantiate(roomObject, position, Quaternion.identity);
 
-            if(collider.IsTouchingLayers(layer)){
-                Debug.Log("These two objects are touching");
+                StartCoroutine(Check(testObject, room));
             }
+
+
+            
 
 
             // PlacementRule placement = GetPlacementRuleByObject(roomObjectBehavior);
@@ -88,25 +87,45 @@ public class LoreGeneration : MonoBehaviour
 
     }
 
+
+    IEnumerator Check(GameObject testObject, Room room)
+    {
+        Collider2D collider = testObject.transform.GetChild(0).GetComponent<Collider2D>();
+
+        LayerMask mask = 1 << LayerMask.NameToLayer("ObjectPlacementLayer");
+
+        yield return new WaitForFixedUpdate();
+
+        if(collider.IsTouchingLayers(mask)){
+
+            Destroy(testObject);
+        }
+        else{
+            testObject.transform.parent = room.gameObject.transform.GetChild(1).transform;
+        }
+
+    }
+
     private PlacementRule GetPlacementRuleByObject(LoreObjectBehavior loreObject)
     {
 
-        switch (loreObject.ObjectType)
+        switch (loreObject.PlacementType)
         {
 
-            case Enums.ObjectType.Simple:
-                return new SimplePlacementRule();
+            case Enums.PlacementType.Floor:
+                return new FloorPlacementRule();
 
-            case Enums.ObjectType.Wide:
-                return new WidePlacementRule();
+            case Enums.PlacementType.UpperWall:
+                return new UpperWallPlacementRule();
 
             default:
-                return new SimplePlacementRule();
+                return new FloorPlacementRule();
 
         }
     }
 
-    private Enums.LoreRoomSubType GetRandomRoomType(){
+    private Enums.LoreRoomSubType GetRandomRoomType()
+    {
 
         int rand = UnityEngine.Random.Range(0, Enum.GetNames(typeof(Enums.LoreRoomSubType)).Length);
 
@@ -115,5 +134,3 @@ public class LoreGeneration : MonoBehaviour
         return loreRoomType;
     }
 }
-
-

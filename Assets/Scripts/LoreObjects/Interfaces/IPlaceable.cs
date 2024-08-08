@@ -11,7 +11,7 @@ public interface IPlaceable
       get;
    }
 
-   Enums.ObjectType ObjectType{
+   Enums.PlacementType PlacementType{
       get;
    }
 

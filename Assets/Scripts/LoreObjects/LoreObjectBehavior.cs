@@ -13,7 +13,7 @@ public abstract class LoreObjectBehavior : MonoBehaviour, IInteractable, IPlacea
         get;
     }
 
-    public abstract ObjectType ObjectType{
+    public abstract PlacementType PlacementType{
         get;
     }
 

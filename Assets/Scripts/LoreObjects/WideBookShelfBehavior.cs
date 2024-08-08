@@ -4,7 +4,7 @@ public class WideBookShelfBehavior : LoreObjectBehavior
 {
     public override Enums.LoreRoomSubType SubType => Enums.LoreRoomSubType.Library;
 
-    public override Enums.ObjectType ObjectType => Enums.ObjectType.Wide;
+    public override Enums.PlacementType PlacementType => Enums.PlacementType.UpperWall;
 
     public override int Width => 2;
 

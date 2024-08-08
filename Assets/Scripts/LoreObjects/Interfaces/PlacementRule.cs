@@ -1,82 +1,85 @@
 using System.Collections.Generic;
+using System.Numerics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public abstract class PlacementRule {
-    public abstract bool CanPlaceObject(Tilemap tilemap, Room room, Dictionary<Vector3Int, bool> placedObjects, Vector3Int position, bool isWallSpawn);
-    public abstract void PlaceObject(Tilemap tilemap, Room room, Dictionary<Vector3Int, bool> placedObjects, Vector3Int position);
+    public abstract bool CanPlaceObject(Tilemap tilemap, Vector3Int position, int width);
 
-    public bool PointIsOpenFloor(Tilemap tilemap, Dictionary<Vector3Int, bool> placedObjects, Vector3Int position){
-        return tilemap.GetTile(position).name == "dungeon-floor" && !placedObjects.ContainsKey(position);
+    public bool PointIsOpenFloor(Tilemap tilemap, Vector3Int position){
+        return tilemap.GetTile(position).name == "dungeon-floor";
     }
 
-    public bool PointIsWall(Tilemap tilemap, Dictionary<Vector3Int, bool> placedObjects, Vector3Int position){
+    public bool PointIsWall(Tilemap tilemap, Vector3Int position){
         return tilemap.GetTile(position).name == "wall-rule";
     }
 }
 
+public class UpperWallPlacementRule : PlacementRule {
 
-// 1x1 objects
-public class SimplePlacementRule : PlacementRule
-{
-    public override bool CanPlaceObject(Tilemap tilemap, Room room, Dictionary<Vector3Int, bool> placedObjects, Vector3Int position, bool isWallSpawn)
-    {
-        bool _base = PointIsOpenFloor(tilemap, placedObjects, position);
+/// <summary>
+/// Check if we can place the object, in this case on an upper wall.
+/// </summary>
+/// <param name="tilemap"> The game's main tilemap. </param>
+/// <param name="position"> The position we're trying to place something at.</param>
+/// <param name="width"> The width of the object we're placing. </param>
+/// <returns> A boolean telling us if we can place the object here (in this case we're checking to see if it's an upper wall.</returns>
+/// <remarks> We aren't currently handling the case where we have tall objects that go on the upper wall. Will that ever be an issue?</remarks>
+    public override bool CanPlaceObject(Tilemap tilemap, Vector3Int position, int width){
 
-        bool _right = PointIsOpenFloor(tilemap, placedObjects, position + Vector3Int.right);
-        bool _left = PointIsOpenFloor(tilemap, placedObjects, position + Vector3Int.left);
-        bool _down = PointIsOpenFloor(tilemap, placedObjects, position + Vector3Int.down);
+        bool upperPointsAreWall = true;
 
-        bool _up = false;
+        bool placementPointsAreFloor = true;
 
-        if(isWallSpawn){
-            _up = PointIsWall(tilemap, placedObjects, position + Vector3Int.up);
+
+        // We have to check every single point above the object to see if it's a wall
+        for(int i = 0; i < width; ++i){
+            
+            Vector3Int upperOffset = new Vector3Int(i, 1, 0);
+            Vector3Int widthOffset = new Vector3Int(i, 0, 0);
+
+            if(!PointIsWall(tilemap, position + upperOffset)){
+                upperPointsAreWall = false;
+            }
+
+            if(!PointIsOpenFloor(tilemap, position + widthOffset)){
+                placementPointsAreFloor = false;
+            }
         }
-        else{
-            _up = PointIsOpenFloor(tilemap, placedObjects, position + Vector3Int.up);
+
+        // now we need to check the tiles to our left and right to make sure we aren't blocking a hallway
+
+        Vector3Int left = Vector3Int.left + position;
+        Vector3Int leftDown = new Vector3Int(position.x - 1, position.y - 1, 0);
+
+
+        Vector3Int right = new Vector3Int(position.x + width, position.y, 0);
+        Vector3Int rightDown = new Vector3Int(position.x + width, position.y - 1, 0);
+
+        bool blockingHallway = false;
+        
+        if(PointIsOpenFloor(tilemap, left) && !PointIsOpenFloor(tilemap, leftDown)){
+            
+            blockingHallway = true;
         }
 
-        return _base && _right && _left && _down && _up;
+        if(PointIsOpenFloor(tilemap, right) && !PointIsOpenFloor(tilemap, rightDown)){
+            blockingHallway = true;
+        }
 
+
+        return upperPointsAreWall && placementPointsAreFloor && !blockingHallway;
     }
 
-    public override void PlaceObject(Tilemap tilemap, Room room, Dictionary<Vector3Int, bool> placedObjects, Vector3Int position)
-    {
-        throw new System.NotImplementedException();
-    }
 }
 
-// 2x1 objects
-public class WidePlacementRule : PlacementRule {
+internal class FloorPlacementRule : PlacementRule
+{
 
-    public override bool CanPlaceObject(Tilemap tilemap, Room room, Dictionary<Vector3Int, bool> placedObjects, Vector3Int position, bool isWallSpawn)
-    {
-        bool _base_left = PointIsOpenFloor(tilemap, placedObjects, position);
-        bool _base_right = PointIsOpenFloor(tilemap, placedObjects, position + Vector3Int.right);
-
-        bool _right = PointIsOpenFloor(tilemap, placedObjects, position + Vector3Int.right + Vector3Int.right); // 2 to the right instead of 1
-        bool _left = PointIsOpenFloor(tilemap, placedObjects, position + Vector3Int.left);
-        bool _down = PointIsOpenFloor(tilemap, placedObjects, position + Vector3Int.down);
-        bool _down_diag = PointIsOpenFloor(tilemap, placedObjects, position + Vector3Int.down + Vector3Int.right); // 1 over and 1 down
-
-        bool _up = false;
-        bool _up_diag = false;
-
-        if(isWallSpawn){
-            _up = PointIsWall(tilemap, placedObjects, position + Vector3Int.up);
-            _up_diag = PointIsWall(tilemap, placedObjects, position + Vector3Int.up + Vector3Int.right);
-        }
-        else{
-            _up = PointIsOpenFloor(tilemap, placedObjects, position + Vector3Int.up);
-            _up_diag = PointIsOpenFloor(tilemap, placedObjects, position + Vector3Int.up + Vector3Int.right);
-        }
-
-        return _base_left && _base_right && _right && _left && _down && _up && _down_diag && _up_diag;
+    //TODO: FINISH
+    public override bool CanPlaceObject(Tilemap tilemap, Vector3Int position, int width){
+        return true;
     }
 
-    public override void PlaceObject(Tilemap tilemap, Room room, Dictionary<Vector3Int, bool> placedObjects, Vector3Int position)
-    {
-        throw new System.NotImplementedException();
-    }
 }

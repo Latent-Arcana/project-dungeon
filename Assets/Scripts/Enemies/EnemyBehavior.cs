@@ -323,8 +323,11 @@ public class EnemyBehavior : MonoBehaviour
 
     public Collider2D CheckPosition(Vector3 checkPosition)
     {
+
+        LayerMask mask = ~(1 << LayerMask.NameToLayer("ObjectPlacementLayer")); // we want to ignore the placement layer that we used for creating objects  in each scene
+
         // Check at the origin point of the location we're checking (the center)
-        Collider2D collision = Physics2D.OverlapCircle(checkPosition + new Vector3(0.5f, 0.5f, 0), 0.25f);
+        Collider2D collision = Physics2D.OverlapCircle(checkPosition + new Vector3(0.5f, 0.5f, 0), 0.25f, mask);
 
         return collision;
     }
@@ -332,6 +335,7 @@ public class EnemyBehavior : MonoBehaviour
     public virtual void MoveEnemy(Vector2 direction)
     {
         Vector3 potentialPosition = (Vector2)gameObject.transform.position + direction;
+        
 
         Collider2D checkCollision = CheckPosition(potentialPosition);
 

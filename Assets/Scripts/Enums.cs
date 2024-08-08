@@ -25,11 +25,10 @@ public static class Enums
         Treasure = 1
     }
 
-    public enum ObjectType {
-        Simple,
-        Wide,
-        Tall,
-        Large
+    public enum PlacementType {
+        Floor,
+        UpperWall,
+        SideWall
     }
 
 }

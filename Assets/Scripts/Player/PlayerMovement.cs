@@ -85,7 +85,9 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector2 checkPosition = (Vector2)player.transform.position + new Vector2(0.5f, 0.5f) + new Vector2(direction.x, direction.y);
 
-        Collider2D collision = Physics2D.OverlapCircle(checkPosition, 0.1f);
+        LayerMask mask = ~(1 << LayerMask.NameToLayer("ObjectPlacementLayer")); // we want to ignore the placement layer that we used for creating objects  in each scene
+
+        Collider2D collision = Physics2D.OverlapCircle(checkPosition, 0.1f, mask);
 
         Vector3 previousPosition = player.transform.position;
 
