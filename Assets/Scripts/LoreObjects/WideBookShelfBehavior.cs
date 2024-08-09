@@ -9,8 +9,6 @@ public class WideBookShelfBehavior : LoreObjectBehavior
     public override int Width => 2;
 
     public override int Height => 1;
-
-    public override bool IsWallSpawn => true;
     public override int MaximumNumberAllowed => 4;
 
 

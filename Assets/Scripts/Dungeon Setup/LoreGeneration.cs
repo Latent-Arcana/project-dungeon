@@ -47,16 +47,22 @@ public class LoreGeneration : MonoBehaviour
         {
             LoreObjectBehavior roomObjectBehavior = roomObject.GetComponent<LoreObjectBehavior>();
 
-            Vector3Int position = new Vector3Int(UnityEngine.Random.Range(room.x, room.x + room.width), UnityEngine.Random.Range(room.y, room.y + room.height), 0);
-
             PlacementRule placementRule = GetPlacementRuleByObject(roomObjectBehavior);
 
-            if(placementRule.CanPlaceObject(tilemap, position, roomObjectBehavior.Width)){
 
-                GameObject testObject = Instantiate(roomObject, position, Quaternion.identity);
+            for(int i = 0; i < 100; ++i){
 
-                StartCoroutine(Check(testObject, room));
+                Vector3Int position = placementRule.GetPointInRoom(room);
+
+                if(placementRule.CanPlaceObject(tilemap, position, roomObjectBehavior.Width)){
+
+                    GameObject testObject = Instantiate(roomObject, position, Quaternion.identity);
+
+                    StartCoroutine(Check(testObject, room));
+                }
             }
+
+           
 
 
             

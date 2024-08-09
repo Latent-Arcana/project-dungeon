@@ -10,8 +10,6 @@ public class CandleBehavior : LoreObjectBehavior
 
     public override int Height => 1;
 
-    public override bool IsWallSpawn => false;
-
     public override int MaximumNumberAllowed => 5;
 
     public override GameObject Interact()

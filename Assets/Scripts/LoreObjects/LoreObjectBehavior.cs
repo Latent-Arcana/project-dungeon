@@ -25,10 +25,6 @@ public abstract class LoreObjectBehavior : MonoBehaviour, IInteractable, IPlacea
         get;
     }
 
-    public abstract bool IsWallSpawn{
-        get;
-    }
-
     public abstract int MaximumNumberAllowed{
         get;
     }

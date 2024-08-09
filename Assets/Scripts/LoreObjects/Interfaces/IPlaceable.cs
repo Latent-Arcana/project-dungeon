@@ -28,7 +28,4 @@ public interface IPlaceable
       get;
    }
 
-   bool IsWallSpawn{
-      get;
-   }
 }

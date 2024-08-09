@@ -14,8 +14,6 @@ public class TreasureChestBehavior : LoreObjectBehavior
 
     public override int Height => 1;
 
-    public override bool IsWallSpawn => false;
-
     public override int MaximumNumberAllowed => 1;
 
     public override GameObject Interact()
