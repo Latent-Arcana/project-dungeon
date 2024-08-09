@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public abstract class PlacementRule {
-    public abstract bool CanPlaceObject(Tilemap tilemap, Vector3Int position, int width);
+    public abstract bool CanPlaceObject(Tilemap tilemap, Vector3Int position, int width, int height);
 
     public abstract Vector3Int GetPointInRoom(Room room);
 
@@ -28,7 +28,7 @@ public class UpperWallPlacementRule : PlacementRule {
     /// <param name="width"> The width of the object we're placing. </param>
     /// <returns> A boolean telling us if we can place the object here (in this case we're checking to see if it's an upper wall.</returns>
     /// <remarks> We aren't currently handling the case where we have tall objects that go on the upper wall. Will that ever be an issue?</remarks>
-    public override bool CanPlaceObject(Tilemap tilemap, Vector3Int position, int width){
+    public override bool CanPlaceObject(Tilemap tilemap, Vector3Int position, int width, int height){
 
         bool upperPointsAreWall = true;
 
@@ -83,11 +83,11 @@ public class UpperWallPlacementRule : PlacementRule {
     }
 }
 
-internal class FloorPlacementRule : PlacementRule
+public class FloorPlacementRule : PlacementRule
 {
 
     //TODO: FINISH
-    public override bool CanPlaceObject(Tilemap tilemap, Vector3Int position, int width){
+    public override bool CanPlaceObject(Tilemap tilemap, Vector3Int position, int width, int height){
         
 
         bool placementPointsAreFloor = true;
@@ -114,4 +114,51 @@ internal class FloorPlacementRule : PlacementRule
         return position;
     }
 
+}
+
+public class SideWallPlacementRule : PlacementRule{
+
+
+    public override bool CanPlaceObject(Tilemap tilemap, Vector3Int position, int width, int height)
+    {
+
+        bool leftSideIsWall = true;
+        bool rightSideIsWall = true;
+
+        for(int i = 0; i < height; ++i){
+
+            Vector3Int heightOffset = new Vector3Int(0, i, 0);
+
+            if(!PointIsWall(tilemap, position + Vector3Int.left + heightOffset)){
+                leftSideIsWall = false;
+            }
+
+            if(!PointIsWall(tilemap, position + Vector3Int.right + heightOffset)){
+                rightSideIsWall = false;
+            }
+        }
+
+        if(!leftSideIsWall && !rightSideIsWall){
+            return false;
+        }
+
+        // now we know that the left side is a wall
+        else if(leftSideIsWall){
+
+        }
+
+        // now we know tha that the right side is a wall
+        else{
+
+        }
+
+        return false;
+    }
+
+    public override Vector3Int GetPointInRoom(Room room)
+    {
+        Vector3Int position = new Vector3Int(UnityEngine.Random.Range(room.x, room.x + room.width), UnityEngine.Random.Range(room.y, room.y + room.height), 0);
+
+        return position;
+    }
 }

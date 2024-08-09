@@ -61,12 +61,12 @@ public class LoreGeneration : MonoBehaviour
         int attempt = 0;
         int numCreated = 0;
 
-        while (attempt < 500 && numCreated < roomObjectBehavior.MaximumNumberAllowed)
+        while (attempt < 100 && numCreated < roomObjectBehavior.MaximumNumberAllowed)
         {
 
             Vector3Int position = placementRule.GetPointInRoom(room);
 
-            if (placementRule.CanPlaceObject(tilemap, position, roomObjectBehavior.Width))
+            if (placementRule.CanPlaceObject(tilemap, position, roomObjectBehavior.Width, roomObjectBehavior.Height))
             {
 
                 GameObject testObject = Instantiate(roomObject, position, Quaternion.identity);
@@ -94,7 +94,6 @@ public class LoreGeneration : MonoBehaviour
             attempt++;
 
         }
-
     }
 
     private PlacementRule GetPlacementRuleByObject(LoreObjectBehavior loreObject)
