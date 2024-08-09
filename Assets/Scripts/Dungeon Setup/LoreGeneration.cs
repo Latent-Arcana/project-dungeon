@@ -45,69 +45,54 @@ public class LoreGeneration : MonoBehaviour
 
         foreach (GameObject roomObject in roomObjects)
         {
-            LoreObjectBehavior roomObjectBehavior = roomObject.GetComponent<LoreObjectBehavior>();
-
-            PlacementRule placementRule = GetPlacementRuleByObject(roomObjectBehavior);
-
-
-            for(int i = 0; i < 100; ++i){
-
-                Vector3Int position = placementRule.GetPointInRoom(room);
-
-                if(placementRule.CanPlaceObject(tilemap, position, roomObjectBehavior.Width)){
-
-                    GameObject testObject = Instantiate(roomObject, position, Quaternion.identity);
-
-                    StartCoroutine(Check(testObject, room));
-                }
-            }
-
-           
-
-
-            
-
-
-            // PlacementRule placement = GetPlacementRuleByObject(roomObjectBehavior);
-
-            // while (attempt <= 50 && numCreated < roomObjectBehavior.MaximumNumberAllowed)
-            // {
-
-            //     Vector3Int position = new Vector3Int(UnityEngine.Random.Range(room.x, room.x + room.width), UnityEngine.Random.Range(room.y, room.y + room.height), 0);
-
-            //     if (placement.CanPlaceObject(tilemap, room, placedObjects, position, roomObjectBehavior.IsWallSpawn))
-            //     {
-
-            //         Instantiate(roomObject, position, Quaternion.identity);
-            //         // Place two entries for something 2x1
-            //         placedObjects.Add(position, true);
-            //         numCreated++;
-            //     }
-
-            //     else{
-            //         ++attempt;
-            //     }
-            // }
+            StartCoroutine(DoPlacementCheck(roomObject, room));
         }
 
 
     }
 
 
-    IEnumerator Check(GameObject testObject, Room room)
+    IEnumerator DoPlacementCheck(GameObject roomObject, Room room)
     {
-        Collider2D collider = testObject.transform.GetChild(0).GetComponent<Collider2D>();
+        LoreObjectBehavior roomObjectBehavior = roomObject.GetComponent<LoreObjectBehavior>();
 
-        LayerMask mask = 1 << LayerMask.NameToLayer("ObjectPlacementLayer");
+        PlacementRule placementRule = GetPlacementRuleByObject(roomObjectBehavior);
 
-        yield return new WaitForFixedUpdate();
+        int attempt = 0;
+        int numCreated = 0;
 
-        if(collider.IsTouchingLayers(mask)){
+        while (attempt < 500 && numCreated < roomObjectBehavior.MaximumNumberAllowed)
+        {
 
-            Destroy(testObject);
-        }
-        else{
-            testObject.transform.parent = room.gameObject.transform.GetChild(1).transform;
+            Vector3Int position = placementRule.GetPointInRoom(room);
+
+            if (placementRule.CanPlaceObject(tilemap, position, roomObjectBehavior.Width))
+            {
+
+                GameObject testObject = Instantiate(roomObject, position, Quaternion.identity);
+
+                Collider2D collider = testObject.transform.GetChild(0).GetComponent<Collider2D>();
+
+                LayerMask mask = 1 << LayerMask.NameToLayer("ObjectPlacementLayer");
+
+                yield return new WaitForFixedUpdate();
+
+                if (collider.IsTouchingLayers(mask))
+                {
+                    Destroy(testObject);
+                }
+
+                else
+                {
+                    testObject.transform.parent = room.gameObject.transform.GetChild(1).transform;
+                    ++numCreated;
+                }
+
+
+            }
+
+            attempt++;
+
         }
 
     }

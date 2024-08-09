@@ -155,12 +155,14 @@ public class BSPGeneration : MonoBehaviour
 
 
         // for every room, let's tag it and populate it!
-        for (int i = 0; i < allRooms.Count; ++i)
+        // First room should be unassigned though so we start at 1
+        for (int i = 1; i < allRooms.Count; ++i)
         {
 
             Room room = allRooms[i].GetComponent<Room>();
 
             int rand = UnityEngine.Random.Range(0, 100);
+
 
             if (rand < 20) // Safe
             {

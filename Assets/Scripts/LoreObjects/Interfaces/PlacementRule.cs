@@ -72,7 +72,6 @@ public class UpperWallPlacementRule : PlacementRule {
             blockingHallway = true;
         }
 
-
         return upperPointsAreWall && placementPointsAreFloor && !blockingHallway;
     }
 
