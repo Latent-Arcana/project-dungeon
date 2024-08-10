@@ -19,7 +19,7 @@ public static class Enums
         Random
     }
 
-    public enum LoreRoomSubType {
+    public enum RoomSubType {
         
         Library = 0,
         Treasure = 1

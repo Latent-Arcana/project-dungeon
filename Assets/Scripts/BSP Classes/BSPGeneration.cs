@@ -64,7 +64,7 @@ public class BSPGeneration : MonoBehaviour
     public GameObject player;
 
     public DangerGeneration Danger_Generator;
-    public LoreGeneration Lore_Generator;
+    public ObjectGeneration Object_Generator;
 
     public Partition dungeon;
 
@@ -76,7 +76,7 @@ public class BSPGeneration : MonoBehaviour
 
         // Get Dungeon Setup
         Danger_Generator = gameObject.GetComponent<DangerGeneration>();
-        Lore_Generator = gameObject.GetComponent<LoreGeneration>();
+        Object_Generator = gameObject.GetComponent<ObjectGeneration>();
 
         // Get the player so we can place them at the correct location
         player = GameObject.Find("Player");
@@ -174,8 +174,6 @@ public class BSPGeneration : MonoBehaviour
                 if (rand > 30)
                 {
                     room.roomType = Enums.RoomType.Lore;
-
-                    Lore_Generator.GenerateLore(allRooms[i]);
                 }
 
                 // otherwise, room stays as Unassigned (initialized that way)
@@ -193,6 +191,8 @@ public class BSPGeneration : MonoBehaviour
                 }
             }
         }
+
+        Object_Generator.GenerateObjectPlacements(allRooms);
 
         CreateCorridors(dungeon);
 

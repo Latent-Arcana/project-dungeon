@@ -1,8 +1,11 @@
 using UnityEngine;
+using System.Collections.Generic;
 
-public class WideBookShelfBehavior : LoreObjectBehavior
+public class WideBookShelfBehavior : ObjectBehavior
 {
-    public override Enums.LoreRoomSubType SubType => Enums.LoreRoomSubType.Library;
+    public override List<Enums.RoomType> RoomTypes => new List<Enums.RoomType> {Enums.RoomType.Lore};
+
+    public override List<Enums.RoomSubType> RoomSubTypes => new List<Enums.RoomSubType> {Enums.RoomSubType.Library};
 
     public override Enums.PlacementType PlacementType => Enums.PlacementType.UpperWall;
 

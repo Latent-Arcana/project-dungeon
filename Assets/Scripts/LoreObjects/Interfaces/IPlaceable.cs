@@ -6,8 +6,12 @@ using UnityEngine.Tilemaps;
 
 public interface IPlaceable
 {
-   Enums.LoreRoomSubType SubType
+   List<Enums.RoomType> RoomTypes
    {
+      get;
+   }
+
+   List<Enums.RoomSubType> RoomSubTypes{
       get;
    }
 

@@ -1,10 +1,12 @@
 using UnityEngine;
+using System.Collections.Generic;
 
-public class DebrisSmallBehavior : LoreObjectBehavior
+public class DebrisSmallBehavior : ObjectBehavior
 {
-    public override Enums.LoreRoomSubType SubType => Enums.LoreRoomSubType.Library;
+    public override List<Enums.RoomType> RoomTypes => new List<Enums.RoomType> {Enums.RoomType.Lore, Enums.RoomType.Danger, Enums.RoomType.Unassigned, Enums.RoomType.Safe};
 
-    public override Enums.PlacementType PlacementType => Enums.PlacementType.UpperWall;
+    public override List<Enums.RoomSubType> RoomSubTypes => new List<Enums.RoomSubType> {Enums.RoomSubType.Library, Enums.RoomSubType.Treasure};
+    public override Enums.PlacementType PlacementType => Enums.PlacementType.Floor;
 
     public override int Width => 1;
 

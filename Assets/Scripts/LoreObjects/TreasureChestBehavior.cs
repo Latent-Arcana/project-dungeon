@@ -4,9 +4,11 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class TreasureChestBehavior : LoreObjectBehavior
+public class TreasureChestBehavior : ObjectBehavior
 {
-    public override Enums.LoreRoomSubType SubType => Enums.LoreRoomSubType.Treasure;
+    public override List<Enums.RoomType> RoomTypes => new List<Enums.RoomType> {Enums.RoomType.Lore};
+
+    public override List<Enums.RoomSubType> RoomSubTypes => new List<Enums.RoomSubType> {Enums.RoomSubType.Treasure};
 
     public override Enums.PlacementType PlacementType => Enums.PlacementType.Floor;
 

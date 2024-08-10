@@ -1,8 +1,12 @@
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class CandleBehavior : LoreObjectBehavior
+public class CandleBehavior : ObjectBehavior
 {
-    public override Enums.LoreRoomSubType SubType => Enums.LoreRoomSubType.Library;
+    public override List<Enums.RoomType> RoomTypes => new List<Enums.RoomType> {Enums.RoomType.Lore};
+
+    public override List<Enums.RoomSubType> RoomSubTypes => new List<Enums.RoomSubType> {Enums.RoomSubType.Library, Enums.RoomSubType.Treasure};
 
     public override Enums.PlacementType PlacementType => Enums.PlacementType.Floor;
 
