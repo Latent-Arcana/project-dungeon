@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 9095240796079885274}
   - component: {fileID: 4376366860525716135}
   - component: {fileID: 4082365400571088934}
-  - component: {fileID: 2284751687342573826}
   m_Layer: 6
   m_Name: PlacementCollisionObject
   m_TagString: Untagged
@@ -106,18 +105,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &2284751687342573826
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 572227746508744076}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 799068ceeca65e64bb9fc50b512cf160, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8614793181711624519
 GameObject:
   m_ObjectHideFlags: 0

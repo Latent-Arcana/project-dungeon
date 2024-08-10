@@ -4,21 +4,25 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public abstract class PlacementRule {
+public abstract class PlacementRule
+{
     public abstract bool CanPlaceObject(Tilemap tilemap, Vector3Int position, int width, int height);
 
     public abstract Vector3Int GetPointInRoom(Room room);
 
-    public bool PointIsOpenFloor(Tilemap tilemap, Vector3Int position){
+    public bool PointIsOpenFloor(Tilemap tilemap, Vector3Int position)
+    {
         return tilemap.GetTile(position).name == "dungeon-floor";
     }
 
-    public bool PointIsWall(Tilemap tilemap, Vector3Int position){
+    public bool PointIsWall(Tilemap tilemap, Vector3Int position)
+    {
         return tilemap.GetTile(position).name == "wall-rule";
     }
 }
 
-public class UpperWallPlacementRule : PlacementRule {
+public class UpperWallPlacementRule : PlacementRule
+{
 
     /// <summary>
     /// Check if we can place the object, in this case on an upper wall.
@@ -28,26 +32,37 @@ public class UpperWallPlacementRule : PlacementRule {
     /// <param name="width"> The width of the object we're placing. </param>
     /// <returns> A boolean telling us if we can place the object here (in this case we're checking to see if it's an upper wall.</returns>
     /// <remarks> We aren't currently handling the case where we have tall objects that go on the upper wall. Will that ever be an issue?</remarks>
-    public override bool CanPlaceObject(Tilemap tilemap, Vector3Int position, int width, int height){
+    public override bool CanPlaceObject(Tilemap tilemap, Vector3Int position, int width, int height)
+    {
 
         bool upperPointsAreWall = true;
 
         bool placementPointsAreFloor = true;
 
+        for (int i = 0; i < width; ++i)
+        {
 
-        // We have to check every single point above the object to see if it's a wall
-        for(int i = 0; i < width; ++i){
-            
-            Vector3Int upperOffset = new Vector3Int(i, 1, 0);
-            Vector3Int widthOffset = new Vector3Int(i, 0, 0);
-
-            if(!PointIsWall(tilemap, position + upperOffset)){
+            // We have to check every single point above the object to see if it's a wall
+            Vector3Int upperOffset = new Vector3Int(i, height, 0);
+            if (!PointIsWall(tilemap, position + upperOffset))
+            {
                 upperPointsAreWall = false;
             }
 
-            if(!PointIsOpenFloor(tilemap, position + widthOffset)){
-                placementPointsAreFloor = false;
+            // Then we just check every point of the object to make sure it's all on the floor
+            for (int j = 0; j < height; ++j)
+            {
+
+                Vector3Int widthOffset = new Vector3Int(i, 0, 0);
+                Vector3Int heightOffest = new Vector3Int(0, j, 0);
+
+                if (!PointIsOpenFloor(tilemap, position + widthOffset + heightOffest))
+                {
+                    placementPointsAreFloor = false;
+                }
+
             }
+
         }
 
         // now we need to check the tiles to our left and right to make sure we aren't blocking a hallway
@@ -60,15 +75,17 @@ public class UpperWallPlacementRule : PlacementRule {
         Vector3Int rightDown = new Vector3Int(position.x + width, position.y - 1, 0);
 
         bool blockingHallway = false;
-        
+
         // if the left is open but diagonal down isn't
-        if(PointIsOpenFloor(tilemap, left) && !PointIsOpenFloor(tilemap, leftDown)){
-            
+        if (PointIsOpenFloor(tilemap, left) && !PointIsOpenFloor(tilemap, leftDown))
+        {
+
             blockingHallway = true;
         }
 
         // if the right is open but diagonal down isn't
-        if(PointIsOpenFloor(tilemap, right) && !PointIsOpenFloor(tilemap, rightDown)){
+        if (PointIsOpenFloor(tilemap, right) && !PointIsOpenFloor(tilemap, rightDown))
+        {
             blockingHallway = true;
         }
 
@@ -86,21 +103,30 @@ public class UpperWallPlacementRule : PlacementRule {
 public class FloorPlacementRule : PlacementRule
 {
 
-    //TODO: FINISH
-    public override bool CanPlaceObject(Tilemap tilemap, Vector3Int position, int width, int height){
-        
+    public override bool CanPlaceObject(Tilemap tilemap, Vector3Int position, int width, int height)
+    {
+
 
         bool placementPointsAreFloor = true;
 
 
         // We have to check every single point on the floor to make sure it's actually floor
-        for(int i = 0; i < width; ++i){
-            
+        for (int i = 0; i < width; ++i)
+        {
+
             Vector3Int widthOffset = new Vector3Int(i, 0, 0);
 
-            if(!PointIsOpenFloor(tilemap, position + widthOffset)){
-                placementPointsAreFloor = false;
+            for (int j = 0; j < height; ++j)
+            {
+                Vector3Int heightOffset = new Vector3Int(0, i, 0);
+
+                if (!PointIsOpenFloor(tilemap, position + widthOffset + heightOffset))
+                {
+                    placementPointsAreFloor = false;
+                }
             }
+
+
         }
 
         return placementPointsAreFloor;
@@ -116,7 +142,8 @@ public class FloorPlacementRule : PlacementRule
 
 }
 
-public class SideWallPlacementRule : PlacementRule{
+public class SideWallPlacementRule : PlacementRule
+{
 
 
     public override bool CanPlaceObject(Tilemap tilemap, Vector3Int position, int width, int height)
@@ -125,30 +152,36 @@ public class SideWallPlacementRule : PlacementRule{
         bool leftSideIsWall = true;
         bool rightSideIsWall = true;
 
-        for(int i = 0; i < height; ++i){
+        for (int i = 0; i < height; ++i)
+        {
 
             Vector3Int heightOffset = new Vector3Int(0, i, 0);
 
-            if(!PointIsWall(tilemap, position + Vector3Int.left + heightOffset)){
+            if (!PointIsWall(tilemap, position + Vector3Int.left + heightOffset))
+            {
                 leftSideIsWall = false;
             }
 
-            if(!PointIsWall(tilemap, position + Vector3Int.right + heightOffset)){
+            if (!PointIsWall(tilemap, position + Vector3Int.right + heightOffset))
+            {
                 rightSideIsWall = false;
             }
         }
 
-        if(!leftSideIsWall && !rightSideIsWall){
+        if (!leftSideIsWall && !rightSideIsWall)
+        {
             return false;
         }
 
         // now we know that the left side is a wall
-        else if(leftSideIsWall){
+        else if (leftSideIsWall)
+        {
 
         }
 
         // now we know tha that the right side is a wall
-        else{
+        else
+        {
 
         }
 

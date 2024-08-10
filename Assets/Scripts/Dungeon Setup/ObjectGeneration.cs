@@ -106,8 +106,9 @@ public class ObjectGeneration : MonoBehaviour
 
         int attempt = 0;
         int numCreated = 0;
+        int max = GetRandomNumberOfObjects(roomObjectBehavior.MaximumNumberAllowed);
 
-        while (attempt < 100 && numCreated < roomObjectBehavior.MaximumNumberAllowed)
+        while (attempt < 100 && numCreated < max)
         {
 
             Vector3Int position = placementRule.GetPointInRoom(room);
@@ -130,6 +131,7 @@ public class ObjectGeneration : MonoBehaviour
 
                 else
                 {
+                    Debug.Log(testObject.name + " is at " + testObject.transform.position);
                     testObject.transform.parent = room.gameObject.transform.GetChild(1).transform;
                     ++numCreated;
                 }
@@ -142,10 +144,10 @@ public class ObjectGeneration : MonoBehaviour
         }
     }
 
-    private PlacementRule GetPlacementRuleByObject(ObjectBehavior loreObject)
+    private PlacementRule GetPlacementRuleByObject(ObjectBehavior roomObject)
     {
 
-        switch (loreObject.PlacementType)
+        switch (roomObject.PlacementType)
         {
 
             case Enums.PlacementType.Floor:
@@ -154,10 +156,18 @@ public class ObjectGeneration : MonoBehaviour
             case Enums.PlacementType.UpperWall:
                 return new UpperWallPlacementRule();
 
+            case Enums.PlacementType.SideWall:
+                return new SideWallPlacementRule();
+
             default:
                 return new FloorPlacementRule();
 
         }
+    }
+
+    private int GetRandomNumberOfObjects(int maxAllowed){
+
+        return UnityEngine.Random.Range(1, maxAllowed + 1);
     }
 
     private Enums.RoomSubType GetRandomRoomSubType()

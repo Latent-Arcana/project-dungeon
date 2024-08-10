@@ -22,7 +22,8 @@ public static class Enums
     public enum RoomSubType {
         
         Library = 0,
-        Treasure = 1
+        Treasure = 1,
+        None = 3
     }
 
     public enum PlacementType {

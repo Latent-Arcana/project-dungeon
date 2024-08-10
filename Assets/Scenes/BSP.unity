@@ -169,7 +169,7 @@ MonoBehaviour:
   allRooms: []
   player: {fileID: 0}
   Danger_Generator: {fileID: 0}
-  Lore_Generator: {fileID: 0}
+  Object_Generator: {fileID: 0}
 --- !u!4 &32644319
 Transform:
   m_ObjectHideFlags: 0
@@ -216,10 +216,13 @@ MonoBehaviour:
   - {fileID: 8614793181711624519, guid: 237aa1382a9949e48a1756ae7933a2f2, type: 3}
   - {fileID: 7557685827397718423, guid: 5c6af478757353a46b3a6627ef343d5b, type: 3}
   - {fileID: 8011701790813375566, guid: 22a7fe25a2c05b241a3845c4b066abe0, type: 3}
+  - {fileID: 8614793181711624519, guid: f2d5c10dce5ac86489719edd75acb5fc, type: 3}
   safeObjects:
   - {fileID: 7557685827397718423, guid: 2d300e93018fef349ba212366a793aa9, type: 3}
+  - {fileID: 8614793181711624519, guid: 05a8af6df85d5424c95dafbabd5bfd4c, type: 3}
   dangerObjects:
   - {fileID: 7557685827397718423, guid: 2d300e93018fef349ba212366a793aa9, type: 3}
+  unassignedObjects: []
 --- !u!1 &182280302
 GameObject:
   m_ObjectHideFlags: 0
