@@ -18,32 +18,43 @@ public class RoomFogController : MonoBehaviour
         roomId = this.gameObject.GetComponentInParent<Room>().roomId;
         fogSpriteObject = this.gameObject.transform.GetChild(0).gameObject;
         playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
+
+
+
+        if (roomId == 0)
+        {
+            fogSpriteObject.SetActive(false);
+        }
+
+
     }
 
     private void OnEnable()
     {
 
-      if(playerMovement == null){
+        if (playerMovement == null)
+        {
 
-        playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
+            playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
 
-      }
+        }
 
-      playerMovement.OnRoomEnter += RoomFog_OnRoomEnter;
+        playerMovement.OnRoomEnter += RoomFog_OnRoomEnter;
 
     }
 
     private void OnDisable()
     {
-       playerMovement.OnRoomEnter -= RoomFog_OnRoomEnter;
+        playerMovement.OnRoomEnter -= RoomFog_OnRoomEnter;
     }
 
     private void RoomFog_OnRoomEnter(object sender, PlayerMovement.InputArgs e)
     {
-        if(fogSpriteObject == null){
+        if (fogSpriteObject == null)
+        {
             fogSpriteObject = this.gameObject.transform.GetChild(0).gameObject;
         }
-        
+
         if (e.type == "enter" && e.roomId == roomId)
         {
             //collided with me

@@ -21,13 +21,9 @@ public class ScoreController : MonoBehaviour
     private Dictionary<GameObject, int> currentMarksInverse = new();
 
 
-    void Awake()
-    {
-        allRooms = GameObject.Find("DungeonGenerator").GetComponent<BSPGeneration>().allRooms;
-    }
-
     void Start()
     {
+        allRooms = GameObject.Find("DungeonGenerator").GetComponent<BSPGeneration>().allRooms;
         gameStats = GameObject.Find("GameStats").GetComponent<GameStats>();
 
     }

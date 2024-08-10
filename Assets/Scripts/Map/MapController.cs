@@ -7,37 +7,21 @@ using UnityEngine.Windows;
 
 public class MapController : MonoBehaviour
 {
-    // POTENTIAL OPTIMIZATION:
-    // Initialize the map here after BSP is done, after the game has "started"
-
 
     [SerializeField]
     GameObject fogBoxPrefab;
 
     GameObject[] fogBoxes;
 
-
     private List<GameObject> allRooms;
 
     PlayerMovement playerMovement;
 
 
-
     void Awake()
     {
-        //This way we can hide the room's partition/fogbox by roomId, instead of searching for the game object by name
-
         playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
-
     }
-
-    void Start(){
-        allRooms = GameObject.Find("DungeonGenerator").GetComponent<BSPGeneration>().allRooms;
-        fogBoxes = new GameObject[allRooms.Count];
-        FogOfWar();
-
-    }
-
 
     private void OnEnable()
     {
@@ -51,13 +35,16 @@ public class MapController : MonoBehaviour
         playerMovement.OnRoomEnter -= Event_OnRoomEnter;
     }
 
-    void FogOfWar()
+    public void FogOfWar()
     {
+
+        allRooms = GameObject.Find("DungeonGenerator").GetComponent<BSPGeneration>().allRooms;
+        fogBoxes = new GameObject[allRooms.Count];
 
         //For organization in the scene heirarchy
         GameObject partitionParent = GameObject.Find("Partitions");
 
-        foreach( GameObject roomParent in allRooms )
+        foreach (GameObject roomParent in allRooms)
         {
 
             Room room = roomParent.GetComponent<Room>();
@@ -68,8 +55,8 @@ public class MapController : MonoBehaviour
             //testing different offsets
             //GameObject fogBox = Instantiate(fogBoxPrefab, new Vector3(room.partition.x - 500.5f, room.partition.y-500.5f, 0f), Quaternion.identity); //half unit is to account for wall edges that are past the partition, not the movement grid
             //fogBox.transform.localScale = new Vector3(room.partition.width+1, room.partition.height+1, 0); //+1 here is to account for the half unit above
-            GameObject fogBox = Instantiate(fogBoxPrefab, new Vector3(room.partition.x - 500, room.partition.y-500, 0), Quaternion.identity); 
-            fogBox.transform.localScale = new Vector3(room.partition.width, room.partition.height, 0); 
+            GameObject fogBox = Instantiate(fogBoxPrefab, new Vector3(room.partition.x - 500, room.partition.y - 500, 0), Quaternion.identity);
+            fogBox.transform.localScale = new Vector3(room.partition.width, room.partition.height, 0);
             fogBox.GetComponent<SpriteRenderer>().sortingLayerID = SortingLayer.NameToID("Fog of War");
 
 
@@ -85,11 +72,13 @@ public class MapController : MonoBehaviour
         // change to figure out where player spawned
         // But - be aware of timing, as this script might run after the player spawns in
 
+
         RemoveFog(0);
 
     }
 
-    void RemoveFog(int roomId){
+    void RemoveFog(int roomId)
+    {
         if (fogBoxes[roomId] != null)
         {
             fogBoxes[roomId].SetActive(false);
@@ -97,7 +86,8 @@ public class MapController : MonoBehaviour
     }
 
 
-    private void Event_OnRoomEnter(object sender, PlayerMovement.InputArgs e){
+    private void Event_OnRoomEnter(object sender, PlayerMovement.InputArgs e)
+    {
         //Debug.Log("Entered room" + e.roomId);
         RemoveFog(e.roomId);
     }

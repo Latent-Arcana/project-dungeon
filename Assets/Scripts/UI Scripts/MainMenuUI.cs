@@ -168,7 +168,7 @@ public class MainMenuUI : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "Main Menu")
         {
             PlayAudioOpen();
-            SceneManager.LoadScene("BSP");
+            SceneManager.LoadScene("Loading");
         }
         else
         {

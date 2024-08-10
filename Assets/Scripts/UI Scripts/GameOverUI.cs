@@ -71,6 +71,6 @@ public class GameOverUI : MonoBehaviour
     public void StartNewGame()
     {
         gameStats.NewGame();
-        SceneManager.LoadScene("BSP");
+        SceneManager.LoadScene("Loading");
     }
 }

@@ -63,19 +63,19 @@ public class BSPGeneration : MonoBehaviour
 
     public GameObject player;
 
-    public DangerGeneration Danger_Generator;
+    public EnemyGeneration Danger_Generator;
     public ObjectGeneration Object_Generator;
 
     public Partition dungeon;
 
-    void Awake()
+    public void StartBspGeneration()
     {
         // Get the tilemaps
         mainTilemap = GameObject.Find("Main Tilemap").GetComponent<Tilemap>();
         //mapTilemap = GameObject.Find("Map Tilemap").GetComponent<Tilemap>();
 
         // Get Dungeon Setup
-        Danger_Generator = gameObject.GetComponent<DangerGeneration>();
+        Danger_Generator = gameObject.GetComponent<EnemyGeneration>();
         Object_Generator = gameObject.GetComponent<ObjectGeneration>();
 
         // Get the player so we can place them at the correct location
@@ -132,10 +132,7 @@ public class BSPGeneration : MonoBehaviour
         }
 
         CreateCorridors(dungeon);
-    }
 
-    void Start()
-    {
 
 
         // now we can place our player at the start of the dungeon.
@@ -192,12 +189,14 @@ public class BSPGeneration : MonoBehaviour
             }
         }
 
-        Object_Generator.GenerateObjectPlacements(allRooms);
 
         CreateCorridors(dungeon);
 
         // now we can place our player at the start of the dungeon.
         // FOR NOW WE ARE PICKING THE FIRST ROOM IN THE LIST, ARBITRARILY
+
+
+        Debug.Log("Moving the player");
 
         player.transform.position = new Vector3Int(allRooms[0].GetComponent<Room>().originX, allRooms[0].GetComponent<Room>().originY, 0);
 

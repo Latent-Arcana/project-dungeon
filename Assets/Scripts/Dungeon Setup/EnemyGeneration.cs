@@ -4,7 +4,7 @@ using static BSPGeneration;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class DangerGeneration : MonoBehaviour
+public class EnemyGeneration : MonoBehaviour
 {
 
     [Header("Enemy Prefabs")]
