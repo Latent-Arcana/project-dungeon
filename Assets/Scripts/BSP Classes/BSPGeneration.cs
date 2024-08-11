@@ -81,7 +81,7 @@ public class BSPGeneration : MonoBehaviour
         // Get the player so we can place them at the correct location
         player = GameObject.Find("Player");
 
-                // let's make the entire background walls
+        // let's make the entire background walls
         for (int i = -25; i < 75; ++i)
         {
             for (int j = -25; j < 75; ++j)
@@ -138,7 +138,7 @@ public class BSPGeneration : MonoBehaviour
         // now we can place our player at the start of the dungeon.
         // FOR NOW WE ARE PICKING THE FIRST ROOM IN THE LIST, ARBITRARILY
 
-       // player.gameObject.transform.position = new Vector3Int(allRooms[0].GetComponent<Room>().originX, allRooms[0].GetComponent<Room>().originY, 0);
+        // player.gameObject.transform.position = new Vector3Int(allRooms[0].GetComponent<Room>().originX, allRooms[0].GetComponent<Room>().originY, 0);
 
         // Time to set up the dungeon
         // Set Types
@@ -168,12 +168,8 @@ public class BSPGeneration : MonoBehaviour
 
             else if (rand < 60) // Lore
             {
-                if (rand > 30)
-                {
-                    room.roomType = Enums.RoomType.Lore;
-                }
 
-                // otherwise, room stays as Unassigned (initialized that way)
+                room.roomType = Enums.RoomType.Lore;
 
             }
 

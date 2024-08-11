@@ -16,9 +16,6 @@ public class CandleBehavior : ObjectBehavior
     public override int Width => 1;
 
     public override int Height => 1;
-
-    public override int MaximumNumberAllowed => 3;
-
     public override GameObject Interact()
     {
         return null;

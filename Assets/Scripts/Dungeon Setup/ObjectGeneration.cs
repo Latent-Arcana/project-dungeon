@@ -21,12 +21,11 @@ public class ObjectGeneration : MonoBehaviour
 
     public GameObject[] unassignedObjects;
 
+
     Dictionary<Vector3Int, bool> placedObjects = new Dictionary<Vector3Int, bool>();
 
     // This is how we're managing the count of unique instances of objects that have variants
     public ObjectCountManager objectCountManager;
-
-    public ObjectCounts objectCounter = new ObjectCounts();
 
     public void Awake()
     {
@@ -98,64 +97,77 @@ public class ObjectGeneration : MonoBehaviour
 
         roomObjects.Shuffle();
 
-        foreach (GameObject roomObject in roomObjects)
-        {
-            StartCoroutine(DoPlacementCheck(roomObject, room));
-        }
+        ObjectCounts objectCounter = new ObjectCounts();
+
+
+        StartCoroutine(DoPlacementChecks(roomObjects, room));
 
 
     }
 
 
-    IEnumerator DoPlacementCheck(GameObject roomObject, Room room)
+    IEnumerator DoPlacementChecks(List<GameObject> roomObjects, Room room)
     {
-        ObjectBehavior roomObjectBehavior = roomObject.GetComponent<ObjectBehavior>();
 
-        PlacementRule placementRule = GetPlacementRuleByObject(roomObjectBehavior);
+        ObjectCounts objectCounter = new ObjectCounts();
 
-        Enums.ObjectType objectType = roomObjectBehavior.ObjectType;
-
-        int attempt = 0;
-        int maxAllowed = objectCountManager.GetCountAllowedByObjectType(objectType);
-        // max is some amount between 1 and the max allowed of the object type
-        int max = GetRandomNumberOfObjects(maxAllowed);
-
-        int numCreated = objectCounter.GetCountByType(objectType);
-
-        while (attempt < 100 && numCreated < max)
+        foreach (GameObject roomObject in roomObjects)
         {
 
-            Vector3Int position = placementRule.GetPointInRoom(room);
+            ObjectBehavior roomObjectBehavior = roomObject.GetComponent<ObjectBehavior>();
 
-            if (placementRule.CanPlaceObject(tilemap, position, roomObjectBehavior.Width, roomObjectBehavior.Height))
+            PlacementRule placementRule = GetPlacementRuleByObject(roomObjectBehavior);
+
+            Enums.ObjectType objectType = roomObjectBehavior.ObjectType;
+
+            int attempt = 0;
+            int maxAllowed = objectCountManager.GetCountAllowedByObjectType(objectType);
+            // max is some amount between 1 and the max allowed of the object type
+            int max = GetRandomNumberOfObjects(maxAllowed);
+
+            int numCreated = objectCounter.GetCountByType(objectType);
+
+            Debug.Log($"Attempting {roomObject.name} and we have currently placed {numCreated} of object type {objectType}");
+
+            while (attempt < 100 && numCreated < max)
             {
 
-                GameObject testObject = Instantiate(roomObject, position, Quaternion.identity);
+                Vector3Int position = placementRule.GetPointInRoom(room);
 
-                Collider2D collider = testObject.transform.GetChild(0).GetComponent<Collider2D>();
-
-                LayerMask mask = 1 << LayerMask.NameToLayer("ObjectPlacementLayer");
-
-                yield return new WaitForFixedUpdate();
-
-                if (collider.IsTouchingLayers(mask))
+                if (placementRule.CanPlaceObject(tilemap, position, roomObjectBehavior.Width, roomObjectBehavior.Height))
                 {
-                    Destroy(testObject);
+
+                    GameObject testObject = Instantiate(roomObject, position, Quaternion.identity);
+
+                    Collider2D collider = testObject.transform.GetChild(0).GetComponent<Collider2D>();
+
+                    LayerMask mask = 1 << LayerMask.NameToLayer("ObjectPlacementLayer");
+
+                    yield return new WaitForFixedUpdate();
+
+                    if (collider.IsTouchingLayers(mask))
+                    {
+                        Destroy(testObject);
+                    }
+
+                    else
+                    {
+                        testObject.transform.parent = room.gameObject.transform.GetChild(1).transform;
+                        ++numCreated;
+                        Debug.Log($"Created {testObject.name}. Incrementing objectCounter by 1");
+                        objectCounter.IncreaseCountByType(objectType, 1);
+                        Debug.Log($"objectCounter count for this objectType {objectType} is {objectCounter.GetCountByType(objectType)}");
+                    }
+
+
                 }
 
-                else
-                {
-                    testObject.transform.parent = room.gameObject.transform.GetChild(1).transform;
-                    ++numCreated;
-                    objectCounter.SetCountByType(objectType, numCreated);
-                }
-
+                attempt++;
 
             }
 
-            attempt++;
-
         }
+
     }
 
     private PlacementRule GetPlacementRuleByObject(ObjectBehavior roomObject)
@@ -199,19 +211,28 @@ public class ObjectGeneration : MonoBehaviour
     public class ObjectCounts
     {
         // Running totals by object type
-        public int bedCount = 0;
-        public int candleCount = 0;
-        public int chestCount = 0;
-        public int debrisCount = 0;
-        public int bookShelfCount = 0;
+        public int bedCount;
+        public int candleCount;
+        public int chestCount;
+        public int debrisCount;
+        public int bookShelfCount;
 
-        public void SetCountByType(Enums.ObjectType objectType, int count)
+        public ObjectCounts()
         {
-            if (objectType == Enums.ObjectType.Bed) { bedCount = count; }
-            else if (objectType == Enums.ObjectType.Bookshelf) { bookShelfCount = count; }
-            else if (objectType == Enums.ObjectType.Candle) { candleCount = count; }
-            else if (objectType == Enums.ObjectType.Chest) { chestCount = count; }
-            else if (objectType == Enums.ObjectType.Debris) { debrisCount = count; }
+            bedCount = 0;
+            candleCount = 0;
+            chestCount = 0;
+            debrisCount = 0;
+            bookShelfCount = 0;
+        }
+
+        public void IncreaseCountByType(Enums.ObjectType objectType, int count)
+        {
+            if (objectType == Enums.ObjectType.Bed) { bedCount += count; }
+            else if (objectType == Enums.ObjectType.Bookshelf) { bookShelfCount += count; }
+            else if (objectType == Enums.ObjectType.Candle) { candleCount += count; }
+            else if (objectType == Enums.ObjectType.Chest) { chestCount += count; }
+            else if (objectType == Enums.ObjectType.Debris) { debrisCount += count; }
             else
             {
                 return;

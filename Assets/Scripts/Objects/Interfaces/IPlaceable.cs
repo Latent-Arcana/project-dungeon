@@ -32,8 +32,4 @@ public interface IPlaceable
       get;
    }
 
-   int MaximumNumberAllowed{
-      get;
-   }
-
 }

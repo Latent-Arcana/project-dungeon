@@ -217,11 +217,14 @@ MonoBehaviour:
   - {fileID: 7557685827397718423, guid: 5c6af478757353a46b3a6627ef343d5b, type: 3}
   - {fileID: 8011701790813375566, guid: 22a7fe25a2c05b241a3845c4b066abe0, type: 3}
   - {fileID: 8614793181711624519, guid: f2d5c10dce5ac86489719edd75acb5fc, type: 3}
+  - {fileID: 7557685827397718423, guid: ba57e161310601b4193cff853d4a7b30, type: 3}
   safeObjects:
   - {fileID: 7557685827397718423, guid: 2d300e93018fef349ba212366a793aa9, type: 3}
   - {fileID: 8614793181711624519, guid: 05a8af6df85d5424c95dafbabd5bfd4c, type: 3}
+  - {fileID: 8614793181711624519, guid: 25b108ed0f659a34783fa472f2652adb, type: 3}
   dangerObjects:
   - {fileID: 7557685827397718423, guid: 2d300e93018fef349ba212366a793aa9, type: 3}
+  - {fileID: 8614793181711624519, guid: f11740308936372438ec73f866ef1fa1, type: 3}
   unassignedObjects: []
   objectCountManager: {fileID: 11400000, guid: 646bc53469675104ca92cb146572aa8e, type: 2}
 --- !u!1 &182280302

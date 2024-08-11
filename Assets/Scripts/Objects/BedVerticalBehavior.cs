@@ -16,8 +16,6 @@ public class BedVerticalBehavior : ObjectBehavior
 
     public override int Height => 2;
 
-    public override int MaximumNumberAllowed => 1;
-
     public override GameObject Interact()
     {
         return null;

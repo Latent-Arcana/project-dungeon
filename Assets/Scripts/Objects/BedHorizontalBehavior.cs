@@ -16,8 +16,6 @@ public class BedHorizontalBehavior : ObjectBehavior
 
     public override int Height => 1;
 
-    public override int MaximumNumberAllowed => 1;
-
     public override GameObject Interact()
     {
         return null;

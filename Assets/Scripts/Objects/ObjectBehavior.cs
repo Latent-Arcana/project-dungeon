@@ -39,10 +39,5 @@ public abstract class ObjectBehavior : MonoBehaviour, IInteractable, IPlaceable
         get;
     }
 
-    public abstract int MaximumNumberAllowed
-    {
-        get;
-    }
-
     public abstract GameObject Interact();
 }

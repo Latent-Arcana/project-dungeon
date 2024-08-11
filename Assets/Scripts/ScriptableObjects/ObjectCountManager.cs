@@ -11,8 +11,8 @@ public class ObjectCountManager : ScriptableObject
 {
     // Maximum allowed
     public int maxBookShelfCount = 5;
-    public int maxCandleCount = 6;
-    public int maxDebrisCount = 6;
+    public int maxCandleCount = 4;
+    public int maxDebrisCount = 4;
     public int maxChestCount = 1;
     public int maxBedCount = 1;
 

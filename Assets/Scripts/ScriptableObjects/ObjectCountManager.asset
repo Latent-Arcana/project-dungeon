@@ -12,13 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e86af1f1087bff549b5caa9294f0a887, type: 3}
   m_Name: ObjectCountManager
   m_EditorClassIdentifier: 
-  maxBookShelfCount: 5
-  maxCandleCount: 6
-  maxDebrisCount: 6
+  maxBookShelfCount: 6
+  maxCandleCount: 4
+  maxDebrisCount: 4
   maxChestCount: 1
   maxBedCount: 1
-  bookShelfCount: 0
-  candleCount: 0
-  debrisCount: 0
-  chestCount: 0
-  bedCount: 0

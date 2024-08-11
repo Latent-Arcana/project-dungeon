@@ -117,6 +117,7 @@ GameObject:
   - component: {fileID: 344201217202336288}
   - component: {fileID: 2783835529191084822}
   - component: {fileID: 2609404153136306900}
+  - component: {fileID: -6332079228173995009}
   m_Layer: 0
   m_Name: Debris_Wide_1
   m_TagString: object
@@ -264,3 +265,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &-6332079228173995009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8614793181711624519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b5af4ef086d3994bbcaf1ad720f1a5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

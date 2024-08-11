@@ -14,8 +14,6 @@ public class WideBookShelfBehavior : ObjectBehavior
     public override int Width => 2;
 
     public override int Height => 1;
-    public override int MaximumNumberAllowed => 4;
-
 
     public override GameObject Interact()
     {
