@@ -223,6 +223,7 @@ MonoBehaviour:
   dangerObjects:
   - {fileID: 7557685827397718423, guid: 2d300e93018fef349ba212366a793aa9, type: 3}
   unassignedObjects: []
+  objectCountManager: {fileID: 11400000, guid: 646bc53469675104ca92cb146572aa8e, type: 2}
 --- !u!1 &182280302
 GameObject:
   m_ObjectHideFlags: 0
