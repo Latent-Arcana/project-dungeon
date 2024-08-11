@@ -8,6 +8,8 @@ public class BedHorizontalBehavior : ObjectBehavior
 
     public override List<Enums.RoomSubType> RoomSubTypes => new List<Enums.RoomSubType> {Enums.RoomSubType.None};
 
+    public override Enums.ObjectType ObjectType => Enums.ObjectType.Bed;
+
     public override Enums.PlacementType PlacementType => Enums.PlacementType.UpperWall;
 
     public override int Width => 2;

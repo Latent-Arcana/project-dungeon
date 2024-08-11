@@ -19,6 +19,10 @@ public interface IPlaceable
       get;
    }
 
+   Enums.ObjectType ObjectType{
+      get;
+   }
+
    int Width
    {
       get;

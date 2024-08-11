@@ -7,12 +7,14 @@ public class TallBookShelfBehavior : ObjectBehavior
 
     public override List<Enums.RoomSubType> RoomSubTypes => new List<Enums.RoomSubType> {Enums.RoomSubType.Library};
 
+    public override Enums.ObjectType ObjectType => Enums.ObjectType.Bookshelf;
+
     public override Enums.PlacementType PlacementType => Enums.PlacementType.UpperWall;
 
     public override int Width => 1;
 
     public override int Height => 2;
-    public override int MaximumNumberAllowed => 4;
+    public override int MaximumNumberAllowed => 2;
 
 
     public override GameObject Interact()

@@ -26,6 +26,15 @@ public static class Enums
         None = 3
     }
 
+    public enum ObjectType {
+        Bookshelf,
+        Candle,
+        Debris,
+        Chest,
+        Bed
+
+    }
+
     public enum PlacementType {
         Floor,
         UpperWall,

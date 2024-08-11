@@ -19,6 +19,10 @@ public abstract class ObjectBehavior : MonoBehaviour, IInteractable, IPlaceable
         get;
     }
 
+    public abstract ObjectType ObjectType{
+        get;
+    }
+
     public abstract PlacementType PlacementType
     {
         get;

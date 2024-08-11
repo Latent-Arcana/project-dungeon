@@ -10,6 +10,8 @@ public class TreasureChestBehavior : ObjectBehavior
 
     public override List<Enums.RoomSubType> RoomSubTypes => new List<Enums.RoomSubType> {Enums.RoomSubType.Treasure};
 
+    public override Enums.ObjectType ObjectType => Enums.ObjectType.Chest;
+
     public override Enums.PlacementType PlacementType => Enums.PlacementType.Floor;
 
     public override int Width => 1;

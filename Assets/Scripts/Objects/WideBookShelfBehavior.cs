@@ -9,6 +9,8 @@ public class WideBookShelfBehavior : ObjectBehavior
 
     public override Enums.PlacementType PlacementType => Enums.PlacementType.UpperWall;
 
+    public override Enums.ObjectType ObjectType => Enums.ObjectType.Bookshelf;
+
     public override int Width => 2;
 
     public override int Height => 1;

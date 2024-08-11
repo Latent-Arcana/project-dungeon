@@ -23,6 +23,11 @@ public class ObjectGeneration : MonoBehaviour
 
     Dictionary<Vector3Int, bool> placedObjects = new Dictionary<Vector3Int, bool>();
 
+    // This is how we're managing the count of unique instances of objects that have variants
+    public ObjectCountManager objectCountManager;
+
+    public ObjectCounts objectCounter = new ObjectCounts();
+
     public void Awake()
     {
         tilemap = GameObject.Find("Main Tilemap").GetComponent<Tilemap>();
@@ -87,6 +92,10 @@ public class ObjectGeneration : MonoBehaviour
 
         // Randomly sort the list before using it so that we don't use the same objects in the same order every time
 
+
+        // TODO:
+        // Go keep track of maxCount outside each individual room object. Otherwise we just start over every time and get the same count each time
+
         roomObjects.Shuffle();
 
         foreach (GameObject roomObject in roomObjects)
@@ -104,9 +113,14 @@ public class ObjectGeneration : MonoBehaviour
 
         PlacementRule placementRule = GetPlacementRuleByObject(roomObjectBehavior);
 
+        Enums.ObjectType objectType = roomObjectBehavior.ObjectType;
+
         int attempt = 0;
-        int numCreated = 0;
-        int max = GetRandomNumberOfObjects(roomObjectBehavior.MaximumNumberAllowed);
+        int maxAllowed = objectCountManager.GetCountAllowedByObjectType(objectType);
+        // max is some amount between 1 and the max allowed of the object type
+        int max = GetRandomNumberOfObjects(maxAllowed);
+
+        int numCreated = objectCounter.GetCountByType(objectType);
 
         while (attempt < 100 && numCreated < max)
         {
@@ -131,9 +145,9 @@ public class ObjectGeneration : MonoBehaviour
 
                 else
                 {
-                    Debug.Log(testObject.name + " is at " + testObject.transform.position);
                     testObject.transform.parent = room.gameObject.transform.GetChild(1).transform;
                     ++numCreated;
+                    objectCounter.SetCountByType(objectType, numCreated);
                 }
 
 
@@ -165,7 +179,8 @@ public class ObjectGeneration : MonoBehaviour
         }
     }
 
-    private int GetRandomNumberOfObjects(int maxAllowed){
+    private int GetRandomNumberOfObjects(int maxAllowed)
+    {
 
         return UnityEngine.Random.Range(1, maxAllowed + 1);
     }
@@ -179,4 +194,44 @@ public class ObjectGeneration : MonoBehaviour
 
         return loreRoomType;
     }
+
+
+    public class ObjectCounts
+    {
+        // Running totals by object type
+        public int bedCount = 0;
+        public int candleCount = 0;
+        public int chestCount = 0;
+        public int debrisCount = 0;
+        public int bookShelfCount = 0;
+
+        public void SetCountByType(Enums.ObjectType objectType, int count)
+        {
+            if (objectType == Enums.ObjectType.Bed) { bedCount = count; }
+            else if (objectType == Enums.ObjectType.Bookshelf) { bookShelfCount = count; }
+            else if (objectType == Enums.ObjectType.Candle) { candleCount = count; }
+            else if (objectType == Enums.ObjectType.Chest) { chestCount = count; }
+            else if (objectType == Enums.ObjectType.Debris) { debrisCount = count; }
+            else
+            {
+                return;
+            }
+        }
+
+
+        public int GetCountByType(Enums.ObjectType objectType)
+        {
+            if (objectType == Enums.ObjectType.Bed) { return bedCount; }
+            else if (objectType == Enums.ObjectType.Bookshelf) { return bookShelfCount; }
+            else if (objectType == Enums.ObjectType.Candle) { return candleCount; }
+            else if (objectType == Enums.ObjectType.Chest) { return chestCount; }
+            else if (objectType == Enums.ObjectType.Debris) { return debrisCount; }
+            else
+            {
+                return 1000; // huge number if we don't actually have a maximum defined
+            }
+        }
+
+    }
+
 }

@@ -12,7 +12,7 @@ public abstract class PlacementRule
 
     public bool PointIsOpenFloor(Tilemap tilemap, Vector3Int position)
     {
-        return tilemap.GetTile(position).name == "dungeon-floor";
+        return tilemap.GetTile(position).name == "dungeon-floor" || tilemap.GetTile(position).name == "dungeon-floor-hallway";
     }
 
     public bool PointIsWall(Tilemap tilemap, Vector3Int position)
@@ -67,34 +67,42 @@ public class UpperWallPlacementRule : PlacementRule
 
         // now we need to check the tiles to our left and right to make sure we aren't blocking a hallway
 
-        Vector3Int left = Vector3Int.left + position;
-        Vector3Int leftDown = new Vector3Int(position.x - 1, position.y - 1, 0);
 
 
-        Vector3Int right = new Vector3Int(position.x + width, position.y, 0);
-        Vector3Int rightDown = new Vector3Int(position.x + width, position.y - 1, 0);
+        bool noBlockedHallway = true;
 
-        bool blockingHallway = false;
 
-        // if the left is open but diagonal down isn't
-        if (PointIsOpenFloor(tilemap, left) && !PointIsOpenFloor(tilemap, leftDown))
+        for (int i = 0; i < height; ++i)
         {
+            Vector3Int left = new Vector3Int(position.x - 1, position.y + i, 0);
+            Vector3Int leftDown = new Vector3Int(position.x - 1, position.y - 1, 0);
 
-            blockingHallway = true;
+
+            Vector3Int right = new Vector3Int(position.x + width, position.y + i, 0);
+            Vector3Int rightDown = new Vector3Int(position.x + width, position.y - 1, 0);
+
+
+            // If our leftside point is open but either up or down aren't available to move through, we've blocked a hallway
+            if (PointIsOpenFloor(tilemap, left) && PointIsWall(tilemap, leftDown))
+            {
+                noBlockedHallway = false;
+            }
+
+            // if our rightside point is open but either up or down aren't available to move through, we've blocked a hallway
+            if (PointIsOpenFloor(tilemap, right) && PointIsWall(tilemap, rightDown))
+            {
+                noBlockedHallway = false;
+            }
+
         }
 
-        // if the right is open but diagonal down isn't
-        if (PointIsOpenFloor(tilemap, right) && !PointIsOpenFloor(tilemap, rightDown))
-        {
-            blockingHallway = true;
-        }
 
-        return upperPointsAreWall && placementPointsAreFloor && !blockingHallway;
+        return upperPointsAreWall && placementPointsAreFloor && noBlockedHallway;
     }
 
     public override Vector3Int GetPointInRoom(Room room)
     {
-        Vector3Int position = new Vector3Int(UnityEngine.Random.Range(room.x, room.x + room.width), UnityEngine.Random.Range(room.y, room.y + room.height), 0);
+        Vector3Int position = new Vector3Int(UnityEngine.Random.Range(room.x, room.x + room.width), UnityEngine.Random.Range(room.y + (room.height / 2), room.y + room.height), 0);
 
         return position;
     }
@@ -118,7 +126,7 @@ public class FloorPlacementRule : PlacementRule
 
             for (int j = 0; j < height; ++j)
             {
-                Vector3Int heightOffset = new Vector3Int(0, i, 0);
+                Vector3Int heightOffset = new Vector3Int(0, j, 0);
 
                 if (!PointIsOpenFloor(tilemap, position + widthOffset + heightOffset))
                 {
@@ -149,6 +157,28 @@ public class SideWallPlacementRule : PlacementRule
     public override bool CanPlaceObject(Tilemap tilemap, Vector3Int position, int width, int height)
     {
 
+        bool placementPointsAreFloor = true;
+
+        // We have to check every single point on the floor to make sure it's actually floor
+        for (int i = 0; i < width; ++i)
+        {
+            Vector3Int widthOffset = new Vector3Int(i, 0, 0);
+
+            for (int j = 0; j < height; ++j)
+            {
+                Vector3Int heightOffset = new Vector3Int(0, j, 0);
+
+                if (!PointIsOpenFloor(tilemap, position + widthOffset + heightOffset))
+                {
+                    placementPointsAreFloor = false;
+                }
+            }
+
+
+        }
+
+        // Let's find out what side wall we are, and ensure that that whole side is wall
+
         bool leftSideIsWall = true;
         bool rightSideIsWall = true;
 
@@ -156,36 +186,49 @@ public class SideWallPlacementRule : PlacementRule
         {
 
             Vector3Int heightOffset = new Vector3Int(0, i, 0);
+            Vector3Int right = new Vector3Int(position.x + width, position.y, 0);
+            Vector3Int left = new Vector3Int(position.x - 1, position.y, 0);
 
-            if (!PointIsWall(tilemap, position + Vector3Int.left + heightOffset))
+            if (!PointIsWall(tilemap, left + heightOffset))
             {
                 leftSideIsWall = false;
             }
 
-            if (!PointIsWall(tilemap, position + Vector3Int.right + heightOffset))
+            if (!PointIsWall(tilemap, right + heightOffset))
             {
                 rightSideIsWall = false;
             }
-        }
-
-        if (!leftSideIsWall && !rightSideIsWall)
-        {
-            return false;
-        }
-
-        // now we know that the left side is a wall
-        else if (leftSideIsWall)
-        {
 
         }
 
-        // now we know tha that the right side is a wall
-        else
-        {
+        // Now we just need to check above and below to make sure we aren't blocking anything
+        bool noBlockedHallway = true;
+
+        for(int i = 0; i < width; ++i){
+
+            Vector3Int abovePointOffset = new Vector3Int(position.x + i, position.y + height, 0);
+            Vector3Int belowPointOffset = new Vector3Int(position.x + i, position.y - 1, 0);
+
+            
+            // If the above point is a floor and both of its adjacent points are wall, we are blocked
+            if(PointIsOpenFloor(tilemap, abovePointOffset) && PointIsWall(tilemap, abovePointOffset + Vector3Int.right) && PointIsWall(tilemap, abovePointOffset + Vector3Int.left)){
+
+                noBlockedHallway = false;
+            }
+
+            // If the below point is a floor and both of its adjacent points are wall, we are blocked
+            if(PointIsOpenFloor(tilemap, belowPointOffset) && PointIsWall(tilemap, belowPointOffset + Vector3Int.right) && PointIsWall(tilemap, belowPointOffset + Vector3Int.left)){
+
+                noBlockedHallway = false;
+            }
 
         }
 
-        return false;
+
+
+
+
+        return placementPointsAreFloor && (leftSideIsWall || rightSideIsWall) && noBlockedHallway;
     }
 
     public override Vector3Int GetPointInRoom(Room room)
