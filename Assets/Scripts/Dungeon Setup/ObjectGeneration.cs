@@ -127,8 +127,6 @@ public class ObjectGeneration : MonoBehaviour
 
             int numCreated = objectCounter.GetCountByType(objectType);
 
-            Debug.Log($"Attempting {roomObject.name} and we have currently placed {numCreated} of object type {objectType}");
-
             while (attempt < 100 && numCreated < max)
             {
 
@@ -154,9 +152,7 @@ public class ObjectGeneration : MonoBehaviour
                     {
                         testObject.transform.parent = room.gameObject.transform.GetChild(1).transform;
                         ++numCreated;
-                        Debug.Log($"Created {testObject.name}. Incrementing objectCounter by 1");
                         objectCounter.IncreaseCountByType(objectType, 1);
-                        Debug.Log($"objectCounter count for this objectType {objectType} is {objectCounter.GetCountByType(objectType)}");
                     }
 
 

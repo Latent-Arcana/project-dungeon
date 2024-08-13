@@ -38,8 +38,8 @@ public class LoadingScreenUI : MonoBehaviour
 
     void Update()
     {
-        progressValue = Mathf.Clamp01(loadingOperation.progress / 0.9f);
-        loadingText.text = "Loading: " + Mathf.Round(progressValue * 100) + "%";
+        progressValue = loadingOperation.progress / 0.9f;
+        loadingText.text = "Loading: " + progressValue * 100 + "%";
     }
 
 
