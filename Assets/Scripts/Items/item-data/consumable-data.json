@@ -1,0 +1,24 @@
+{
+  "consumables": [
+    {
+      "itemName": "Vial of Pure Strength",
+      "itemDescription:": "A vial sealed with a red cork. The glowing liquid within feels hot to the touch.",
+      "STR": 1,
+      "SPD": 0,
+      "AGI": 0,
+      "HP": 0,
+      "useVerb": "drink",
+      "uses": 1
+    },
+    {
+      "itemName": "Elixir of Health",
+      "itemDescription:": "A crimson bottle that glitters with stardust.",
+      "STR": 0,
+      "SPD": 0,
+      "AGI": 0,
+      "HP": 5,
+      "useVerb": "drink",
+      "uses": 3
+    } 
+  ]
+}

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class Enums
 {
-      public enum RoomType
+    public enum RoomType
     {
         Lore,
         Safe,
@@ -19,14 +19,16 @@ public static class Enums
         Random
     }
 
-    public enum RoomSubType {
-        
+    public enum RoomSubType
+    {
+
         Library = 0,
         Treasure = 1,
         None = 3
     }
 
-    public enum ObjectType {
+    public enum ObjectType
+    {
         Bookshelf,
         Candle,
         Debris,
@@ -35,10 +37,21 @@ public static class Enums
 
     }
 
-    public enum PlacementType {
+    public enum PlacementType
+    {
         Floor,
         UpperWall,
         SideWall
+    }
+
+
+    public enum ItemType
+    {
+        General,
+        Armor,
+        Weapon,
+        Consumable,
+        Special
     }
 
 }
