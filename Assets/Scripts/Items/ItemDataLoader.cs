@@ -26,7 +26,7 @@ public class ItemLoader : MonoBehaviour
         string jsonString = consumablesFile.text;
 
         ConsumableData[] consumablesData = JsonUtility.FromJson<ConsumablesDataArray>(jsonString).consumables;
-
+        //TODO: Will need to add all the other item types
         foreach(ConsumableData data in consumablesData){
             CreateConsumable(data);
         }
