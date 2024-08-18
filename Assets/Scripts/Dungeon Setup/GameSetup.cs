@@ -10,6 +10,8 @@ public class GameSetup : MonoBehaviour
     public ObjectGeneration objectGenerator;
     public MapController mapController;
 
+    public ItemLoader itemLoader;
+
 
     void Awake()
     {
@@ -19,19 +21,24 @@ public class GameSetup : MonoBehaviour
         dangerGenerator = Dungeon_Generator.GetComponent<EnemyGeneration>();
         objectGenerator = Dungeon_Generator.GetComponent<ObjectGeneration>();
         bspController = Dungeon_Generator.GetComponent<BSPGeneration>();
+        itemLoader = Dungeon_Generator.GetComponent<ItemLoader>();
 
     }
 
+    //TODO: potential optimization: turn some of these into coroutines in their respective scripts, 
+    // so you aren't running them in series
     void Start()
     {
-        //kick off the first step here and run in order
+        // kick off the first step here and run in order
+       
+        // Loading Items from item data
+        itemLoader.LoadItemsFromJson();
+        List<Item> itemsDatabase = itemLoader.GetItemsDatabase();
 
-
-        //TODO: potential optimization: turn some of these into coroutines in their respective scripts, 
-        // so you aren't running them in series
+        // TODO: Generating container data so we can send information to each container in the game
 
         //bsp
-       bspController.StartBspGeneration();
+        bspController.StartBspGeneration();
 
         //enemy
 

@@ -3,6 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+/// This class is used to load data from the items .json files
+/// It gets called and used by the GameSetup controller and its data gets sent to ContainerController so that 
+/// we can generate the items that go into the game.
+/// </summary>
 public class ItemLoader : MonoBehaviour
 {
     [Header("Item Data JSON Files")]
@@ -11,14 +17,13 @@ public class ItemLoader : MonoBehaviour
     public TextAsset weaponsFile;
     public TextAsset armorFile;
 
-    private Dictionary<string, Item> itemsDatabase = new Dictionary<string, Item>();
-    // Start is called before the first frame update
-    void Start()
-    {
-        LoadItemsFromJson();
+    private List<Item> itemsDatabase = new List<Item>();
+
+    public List<Item> GetItemsDatabase(){
+        return itemsDatabase;
     }
 
-    private void LoadItemsFromJson()
+    public void LoadItemsFromJson()
     {
 
         // Check for null files and log errors early
@@ -71,7 +76,7 @@ public class ItemLoader : MonoBehaviour
 
             if (armor != null)
             {
-                itemsDatabase.Add(armor.itemName, armor);
+                itemsDatabase.Add(armor);
 
                 Debug.Log("Loaded armor " + armor.itemName + " and added to the dictionary.");
             }
@@ -96,7 +101,7 @@ public class ItemLoader : MonoBehaviour
 
             if (weapon != null)
             {
-                itemsDatabase.Add(weapon.itemName, weapon);
+                itemsDatabase.Add(weapon);
 
                 Debug.Log("Loaded weapon " + weapon.itemName + " and added to the dictionary.");
             }
@@ -123,7 +128,7 @@ public class ItemLoader : MonoBehaviour
 
             if (consumable != null)
             {
-                itemsDatabase.Add(consumable.itemName, consumable);
+                itemsDatabase.Add(consumable);
 
                 Debug.Log("Loaded consumable item " + consumable.itemName + " and added to the dictionary.");
             }
