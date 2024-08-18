@@ -1,13 +1,8 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 using static Enums;
 
-
-public abstract class ObjectBehavior : MonoBehaviour, IInteractable, IPlaceable
+public abstract class ObjectBehavior : MonoBehaviour, IPlaceable, ILookable
 {
     public abstract List<RoomType> RoomTypes
     {
@@ -19,7 +14,8 @@ public abstract class ObjectBehavior : MonoBehaviour, IInteractable, IPlaceable
         get;
     }
 
-    public abstract ObjectType ObjectType{
+    public abstract ObjectType ObjectType
+    {
         get;
     }
 
@@ -39,5 +35,5 @@ public abstract class ObjectBehavior : MonoBehaviour, IInteractable, IPlaceable
         get;
     }
 
-    public abstract GameObject Interact();
+    public abstract string Look();
 }

@@ -1,0 +1,22 @@
+{
+  "armor": [
+    {
+      "itemName": "Gambeson Robes",
+      "itemDescription:": "Priestly robes, the white has been stained and the edges are frayed and bitten by rats.",
+      "STR": 0,
+      "SPD": 1,
+      "AGI": 1,
+      "HP": 0,
+      "AP": 0
+    },
+    {
+      "itemName": "Elk Hide Armor",
+      "itemDescription:": "A set of tanned elk hide, held together with metal fasteners and stringy sinew.",
+      "STR": 0,
+      "SPD": 0,
+      "AGI": 1,
+      "HP": 0,
+      "AP": 1
+    } 
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "weapons": [
+    {
+      "itemName": "Saber",
+      "itemDescription:": "A dull steel blade, riddled with scars of battle.",
+      "STR": 2,
+      "SPD": 0,
+      "AGI": 0,
+      "HP": 0
+    },
+    {
+      "itemName": "Battle Axe",
+      "itemDescription:": "A one-handed weapon, rust scattered across the axe-head.",
+      "STR": 2,
+      "SPD": 0,
+      "AGI": 0,
+      "HP": 0
+    } 
+  ]
+}

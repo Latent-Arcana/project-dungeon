@@ -16,8 +16,8 @@ public class BedVerticalBehavior : ObjectBehavior
 
     public override int Height => 2;
 
-    public override GameObject Interact()
+    public override string Look()
     {
-        return null;
+        return "NOT IMPLEMENTED";
     }
 }

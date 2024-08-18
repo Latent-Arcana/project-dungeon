@@ -16,8 +16,8 @@ public class CandleBehavior : ObjectBehavior
     public override int Width => 1;
 
     public override int Height => 1;
-    public override GameObject Interact()
+    public override string Look()
     {
-        return null;
+        return "NOT IMPLEMENTED";
     }
 }
