@@ -8,6 +8,7 @@ _You are a cartographer. Many have come before you. Many shall come after. Your 
 
 _You must map out your crossing. Fail, and you shall be added to the Velvet Record, to be forgotten in a sea of remembrance, doomed to travel within the Coil forever. But, should you succeed, you just might ensure the safety of the next travelers who find their way in._
 
+![image](https://github.com/user-attachments/assets/eb562adf-e89d-428a-8a2e-50aab823471e)
 
 ## Information
 
@@ -19,5 +20,3 @@ Please use at your own risk while this project is in development. When the proje
 
 ## About The Team
 Latent Arcana is a small game and software development company supported by a growing network of software creatives. To find out more, visit our website at: https://latentarcana.com.
-
-![image](https://github.com/user-attachments/assets/eb562adf-e89d-428a-8a2e-50aab823471e)
