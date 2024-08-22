@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2009-2023 Latent Arcana
+Copyright (c) 2024 Latent Arcana
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
