@@ -130,9 +130,11 @@ public class ObjectGeneration : MonoBehaviour
             while (attempt < 100 && numCreated < max)
             {
 
-                Vector3Int position = placementRule.GetPointInRoom(room);
+                // generate a point and return it if it's valid. otherwise return Vector3Int.zero
+                Vector3Int position = placementRule.CanPlaceObject(tilemap, room, roomObjectBehavior.Width, roomObjectBehavior.Height);
 
-                if (placementRule.CanPlaceObject(tilemap, position, roomObjectBehavior.Width, roomObjectBehavior.Height))
+                // If we can place an object at the point we selected
+                if (position != Vector3Int.zero)
                 {
 
                     GameObject testObject = Instantiate(roomObject, position, Quaternion.identity);

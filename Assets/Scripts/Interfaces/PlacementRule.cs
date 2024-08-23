@@ -1,14 +1,15 @@
 using System.Collections.Generic;
 using System.Numerics;
+using System.Runtime.InteropServices.WindowsRuntime;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public abstract class PlacementRule
 {
-    public abstract bool CanPlaceObject(Tilemap tilemap, Vector3Int position, int width, int height);
+    public abstract Vector3Int CanPlaceObject(Tilemap tilemap, Room room, int width, int height);
 
-    public abstract Vector3Int GetPointInRoom(Room room);
+    public abstract Vector3Int GetPointInRoom(Room room, int objectWidth, int objectHeight);
 
     public bool PointIsOpenFloor(Tilemap tilemap, Vector3Int position)
     {
@@ -32,8 +33,10 @@ public class UpperWallPlacementRule : PlacementRule
     /// <param name="width"> The width of the object we're placing. </param>
     /// <returns> A boolean telling us if we can place the object here (in this case we're checking to see if it's an upper wall.</returns>
     /// <remarks> We aren't currently handling the case where we have tall objects that go on the upper wall. Will that ever be an issue?</remarks>
-    public override bool CanPlaceObject(Tilemap tilemap, Vector3Int position, int width, int height)
+    public override Vector3Int CanPlaceObject(Tilemap tilemap, Room room, int width, int height)
     {
+
+        Vector3Int position = GetPointInRoom(room, width, height);
 
         bool upperPointsAreWall = true;
 
@@ -97,10 +100,16 @@ public class UpperWallPlacementRule : PlacementRule
         }
 
 
-        return upperPointsAreWall && placementPointsAreFloor && noBlockedHallway;
+        if(upperPointsAreWall && placementPointsAreFloor && noBlockedHallway){
+            return position;
+        }
+
+        else{
+            return Vector3Int.zero;
+        }
     }
 
-    public override Vector3Int GetPointInRoom(Room room)
+    public override Vector3Int GetPointInRoom(Room room, int objectWidth, int objectHeight)
     {
         Vector3Int position = new Vector3Int(UnityEngine.Random.Range(room.x, room.x + room.width), UnityEngine.Random.Range(room.y + (room.height / 2), room.y + room.height), 0);
 
@@ -111,8 +120,10 @@ public class UpperWallPlacementRule : PlacementRule
 public class FloorPlacementRule : PlacementRule
 {
 
-    public override bool CanPlaceObject(Tilemap tilemap, Vector3Int position, int width, int height)
+    public override Vector3Int CanPlaceObject(Tilemap tilemap, Room room, int width, int height)
     {
+
+        Vector3Int position = GetPointInRoom(room, width, height);
 
 
         bool placementPointsAreFloor = true;
@@ -134,16 +145,21 @@ public class FloorPlacementRule : PlacementRule
                 }
             }
 
-
         }
 
-        return placementPointsAreFloor;
+        if(placementPointsAreFloor){
+            return position;
+        }
+
+        else{
+            return Vector3Int.zero;
+        }
 
     }
 
-    public override Vector3Int GetPointInRoom(Room room)
+    public override Vector3Int GetPointInRoom(Room room, int objectWidth, int objectHeight)
     {
-        Vector3Int position = new Vector3Int(UnityEngine.Random.Range(room.x + 1, room.x + room.width - 1), UnityEngine.Random.Range(room.y + 1, room.y + room.height - 1), 0);
+        Vector3Int position = new Vector3Int(UnityEngine.Random.Range(room.x + 1, room.x + room.width - objectWidth), UnityEngine.Random.Range(room.y + 1, room.y + room.height - objectHeight), 0);
 
         return position;
     }
@@ -154,8 +170,9 @@ public class SideWallPlacementRule : PlacementRule
 {
 
 
-    public override bool CanPlaceObject(Tilemap tilemap, Vector3Int position, int width, int height)
+    public override Vector3Int CanPlaceObject(Tilemap tilemap, Room room, int width, int height)
     {
+        Vector3Int position = GetPointInRoom(room, width, height);
 
         bool placementPointsAreFloor = true;
 
@@ -228,10 +245,15 @@ public class SideWallPlacementRule : PlacementRule
 
 
 
-        return placementPointsAreFloor && (leftSideIsWall || rightSideIsWall) && noBlockedHallway;
+        if(placementPointsAreFloor && (leftSideIsWall || rightSideIsWall) && noBlockedHallway){
+            return position;
+        }
+        else{
+            return Vector3Int.zero;
+        }
     }
 
-    public override Vector3Int GetPointInRoom(Room room)
+    public override Vector3Int GetPointInRoom(Room room, int objectWidth, int objectHeight)
     {
         Vector3Int position = new Vector3Int(UnityEngine.Random.Range(room.x, room.x + room.width), UnityEngine.Random.Range(room.y, room.y + room.height), 0);
 
