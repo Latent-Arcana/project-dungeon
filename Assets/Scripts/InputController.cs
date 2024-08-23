@@ -76,7 +76,6 @@ public class InputController : MonoBehaviour
 
         }
 
-
         //Note: Esc Key input is still located in the MainMenuController file
     }
 

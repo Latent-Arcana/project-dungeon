@@ -20,6 +20,8 @@ public class PlayerMovement : MonoBehaviour
 
     public event EventHandler<MovementArgs> OnPlayerMoved;
 
+    public event EventHandler OnContainerOpen;
+
     public event EventHandler OnPlayerTookDamage;
     public class MovementArgs : EventArgs
     {
@@ -59,7 +61,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Input_OnInput(object sender, InputController.InputArgs e)
     {
-        if(this.gameObject != null)
+        if (this.gameObject != null)
         {
             MovePlayer(e.direction);
         }
@@ -101,12 +103,24 @@ public class PlayerMovement : MonoBehaviour
 
 
         }
-        // else if (collision.tag == "room") { Debug.Log("hitting a room"); }
+
+
+        // We collided with an object
+        else if (collision.tag == "object")
+        {
+
+            // Check to see if we collided with something that should be opened
+            ContainerBehavior container = collision.gameObject.GetComponent<ContainerBehavior>();
+            if (container)
+            {
+                container.ContainerDebugPrint();
+            }
+        }
 
 
         if (OnPlayerMoved != null)
         {
-            OnPlayerMoved.Invoke(this, new MovementArgs { position = gameObject.transform.position, prevPosition = previousPosition});
+            OnPlayerMoved.Invoke(this, new MovementArgs { position = gameObject.transform.position, prevPosition = previousPosition });
         }
     }
 
@@ -159,8 +173,8 @@ public class PlayerMovement : MonoBehaviour
         // so we check to make sure it is still existing before invoking the event to prevent error
         if (collision.gameObject.tag == "room" && collision.gameObject.GetComponentInParent<Room>() != null && player.gameObject != null)
         {
-            Dungeon_Narrator.AddDungeonNarratorText("You entered " +  collision.gameObject.GetComponentInParent<Room>().name);
-            
+            Dungeon_Narrator.AddDungeonNarratorText("You entered " + collision.gameObject.GetComponentInParent<Room>().name);
+
             OnRoomEnter.Invoke(this, new InputArgs
             {
                 type = "exit",

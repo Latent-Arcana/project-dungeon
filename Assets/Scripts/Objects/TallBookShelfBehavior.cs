@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class TallBookShelfBehavior : ObjectBehavior, IOpenable
+public class TallBookShelfBehavior : ObjectBehavior
 {
     public override List<Enums.RoomType> RoomTypes => new List<Enums.RoomType> {Enums.RoomType.Lore};
 
@@ -19,15 +19,4 @@ public class TallBookShelfBehavior : ObjectBehavior, IOpenable
     {
         return "NOT IMPLEMENTED";
     }
-
-    public Item[] GetItems()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void Open()
-    {
-        throw new System.NotImplementedException();
-    }
-
 }

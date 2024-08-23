@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static ItemLoader;
+using static ContainerGeneration;
 
 public class GameSetup : MonoBehaviour
 {
@@ -9,8 +11,6 @@ public class GameSetup : MonoBehaviour
     public EnemyGeneration dangerGenerator;
     public ObjectGeneration objectGenerator;
     public MapController mapController;
-
-    public ItemLoader itemLoader;
 
 
     void Awake()
@@ -21,8 +21,6 @@ public class GameSetup : MonoBehaviour
         dangerGenerator = Dungeon_Generator.GetComponent<EnemyGeneration>();
         objectGenerator = Dungeon_Generator.GetComponent<ObjectGeneration>();
         bspController = Dungeon_Generator.GetComponent<BSPGeneration>();
-        itemLoader = Dungeon_Generator.GetComponent<ItemLoader>();
-
     }
 
     //TODO: potential optimization: turn some of these into coroutines in their respective scripts, 
@@ -31,11 +29,15 @@ public class GameSetup : MonoBehaviour
     {
         // kick off the first step here and run in order
        
-        // Loading Items from item data
-        itemLoader.LoadItemsFromJson();
-        List<Item> itemsDatabase = itemLoader.GetItemsDatabase();
+        // Loading Items from item data, singleton syntax is ItemLoader.Item_Loader
+        Item_Loader.LoadItemsFromJson();
+        List<Item> itemsDatabase = Item_Loader.GetItemsDatabase();
 
-        // TODO: Generating container data so we can send information to each container in the game
+        // Generating container data so we can send information to each container in the game
+        // At this point, ContainerBehavior.cs on each individual openable object is what handles grabbing container data for itself
+        // The generator produces this via functions within it as a singleton
+        Container_Generator.InitializeContainerGenerator(itemsDatabase);
+
 
         //bsp
         bspController.StartBspGeneration();

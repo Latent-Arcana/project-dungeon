@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -19,8 +20,23 @@ public class ItemLoader : MonoBehaviour
 
     private List<Item> itemsDatabase = new List<Item>();
 
-    public List<Item> GetItemsDatabase(){
+    public static ItemLoader Item_Loader { get; set; }
+
+    public List<Item> GetItemsDatabase()
+    {
         return itemsDatabase;
+    }
+
+    void Awake(){
+        // SINGLETON CHECK
+        if(Item_Loader == null){
+            Item_Loader = this;
+        }
+        else if(Item_Loader != this){
+            Destroy(this);
+        }
+
+        DontDestroyOnLoad(Item_Loader);
     }
 
     public void LoadItemsFromJson()

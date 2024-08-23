@@ -51,7 +51,8 @@ public static class Enums
         Armor,
         Weapon,
         Consumable,
-        Special
+        Special,
+        Book
     }
 
 }

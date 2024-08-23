@@ -4,7 +4,7 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class TreasureChestBehavior : ObjectBehavior, IOpenable
+public class TreasureChestBehavior : ObjectBehavior
 {
     public override List<Enums.RoomType> RoomTypes => new List<Enums.RoomType> { Enums.RoomType.Lore };
 
@@ -21,15 +21,5 @@ public class TreasureChestBehavior : ObjectBehavior, IOpenable
     public override string Look()
     {
         return "NOT IMPLEMENTED";
-    }
-
-    public Item[] GetItems()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void Open()
-    {
-        throw new System.NotImplementedException();
     }
 }
