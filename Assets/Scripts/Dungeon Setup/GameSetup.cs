@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using static ItemLoader;
 using static ContainerGeneration;
+using Unity.VisualScripting;
 
 public class GameSetup : MonoBehaviour
 {
-
+    [SerializeField]
+    public int seed = 1;
     public BSPGeneration bspController;
     public EnemyGeneration dangerGenerator;
     public ObjectGeneration objectGenerator;
@@ -21,6 +23,12 @@ public class GameSetup : MonoBehaviour
         dangerGenerator = Dungeon_Generator.GetComponent<EnemyGeneration>();
         objectGenerator = Dungeon_Generator.GetComponent<ObjectGeneration>();
         bspController = Dungeon_Generator.GetComponent<BSPGeneration>();
+
+        // EVEN NOW THE EVIL SEED OF WHAT YOU'VE DONE, GERMINATES WITHIN YOU!!!!1
+        // (Seed generation based on what you enter in the editor)
+
+        UnityEngine.Random.InitState((int)seed);
+        
     }
 
     //TODO: potential optimization: turn some of these into coroutines in their respective scripts, 
@@ -28,7 +36,7 @@ public class GameSetup : MonoBehaviour
     void Start()
     {
         // kick off the first step here and run in order
-       
+
         // Loading Items from item data, singleton syntax is ItemLoader.Item_Loader
         Item_Loader.LoadItemsFromJson();
         List<Item> itemsDatabase = Item_Loader.GetItemsDatabase();
