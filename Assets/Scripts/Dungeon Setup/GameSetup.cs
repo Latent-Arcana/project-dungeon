@@ -8,7 +8,7 @@ using Unity.VisualScripting;
 public class GameSetup : MonoBehaviour
 {
     [SerializeField]
-    public int seed = 1;
+    public int seed = 0;
     public BSPGeneration bspController;
     public EnemyGeneration dangerGenerator;
     public ObjectGeneration objectGenerator;
@@ -27,8 +27,18 @@ public class GameSetup : MonoBehaviour
         // EVEN NOW THE EVIL SEED OF WHAT YOU'VE DONE, GERMINATES WITHIN YOU!!!!1
         // (Seed generation based on what you enter in the editor)
 
-        UnityEngine.Random.InitState((int)seed);
-        
+        if (seed == 0)
+        {
+            seed = UnityEngine.Random.Range(1, int.MaxValue);
+
+            UnityEngine.Random.InitState(seed);
+        }
+        else
+        {
+            UnityEngine.Random.InitState(seed);
+
+        }
+
     }
 
     //TODO: potential optimization: turn some of these into coroutines in their respective scripts, 
