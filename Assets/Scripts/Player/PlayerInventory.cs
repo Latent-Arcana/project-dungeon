@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static ContainerGeneration;
-
 
 // TODO: Use inheritance so that our PlayerInventory and ContainerBehavior don't have so much code dupe between them
 public class PlayerInventory : MonoBehaviour
@@ -12,19 +10,6 @@ public class PlayerInventory : MonoBehaviour
     public int maxItemCount; // this is where we're going to define how many items at a time can spawn in our object
 
     private List<Item> items;
-    private ObjectBehavior objectData;
-
-    void Awake()
-    {
-        objectData = gameObject.GetComponent<ObjectBehavior>();
-    }
-
-    // We need to get container data for our container
-    void Start()
-    {
-        items = Container_Generator.GetItems(objectData.ObjectType, maxItemCount);
-
-    }
 
     // TODO: INVENTORY INTERACTION
     public List<Item> Open(){
