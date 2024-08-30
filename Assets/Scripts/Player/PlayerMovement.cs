@@ -29,6 +29,8 @@ public class PlayerMovement : MonoBehaviour
         public Vector3 prevPosition;
     }
 
+    public PlayerInventory playerInventory;
+
 
     //public Vector2 moveDirection = Vector2.zero;
 
@@ -39,6 +41,8 @@ public class PlayerMovement : MonoBehaviour
         playerCameraBehavior = GameObject.Find("Main Camera").GetComponent<PlayerCameraBehavior>();
 
         input = GameObject.Find("InputController").GetComponent<InputController>();
+
+        playerInventory = gameObject.GetComponent<PlayerInventory>();
 
     }
 
@@ -113,7 +117,12 @@ public class PlayerMovement : MonoBehaviour
             ContainerBehavior container = collision.gameObject.GetComponent<ContainerBehavior>();
             if (container)
             {
-                container.ContainerDebugPrint();
+                //container.ContainerDebugPrint();
+                List<Item> tempItems = container.Open();
+
+                playerInventory.items = tempItems;
+
+
             }
         }
 
