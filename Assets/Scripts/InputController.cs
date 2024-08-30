@@ -27,6 +27,14 @@ public class InputController : MonoBehaviour
         public Vector2 direction;
     }
 
+    //TODO: implement this in the M and I key if statements, and move enum to the enums file
+    public enum InputState{
+        Gameplay,
+        MapMenu,
+        PauseMenu,
+        InventoryMenu
+    }
+
     
     void Start()
     {
