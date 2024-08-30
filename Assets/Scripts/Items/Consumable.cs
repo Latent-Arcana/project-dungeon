@@ -20,6 +20,8 @@ public class ConsumableData
     public string itemDescription;
     public ItemType itemType; // e.g., "Weapon", "Armor"
     public string image;
+    public string statsText;
+
     public int STR;
     public int SPD;
     public int AGI;

@@ -27,12 +27,15 @@ public class ItemLoader : MonoBehaviour
         return itemsDatabase;
     }
 
-    void Awake(){
+    void Awake()
+    {
         // SINGLETON CHECK
-        if(Item_Loader == null){
+        if (Item_Loader == null)
+        {
             Item_Loader = this;
         }
-        else if(Item_Loader != this){
+        else if (Item_Loader != this)
+        {
             Destroy(this);
         }
 
@@ -154,6 +157,27 @@ public class ItemLoader : MonoBehaviour
         }
 
     }
+
+    // private string FormatStatsText(int AGI, int STR, int SPD, int AP, int HP)
+    // {
+    //     string agiString, strString, spdString, apString, hpString;
+
+    //     // string agiString = AGI > 0 ? "+" + AGI.ToString() + "; " : AGI.ToString() + "; ";
+    //     // string strString = STR > 0 ? "+" + STR.ToString() + "; " : STR.ToString() + "; ";
+    //     // string spdString = SPD > 0 ? "+" + SPD.ToString() + "; " : SPD.ToString() + "; ";
+    //     // string apString = AP > 0 ? "+" + AP.ToString() + "; " : AP.ToString() + "; ";
+    //     // string hpString = HP > 0 ? "+" + HP.ToString() + "; " : HP.ToString() + "; ";
+
+    //     if(AGI == 0){
+    //         agiString = "";
+    //     }
+    //     else{
+
+    //     }
+
+
+    // }
+
 }
 
 [Serializable]

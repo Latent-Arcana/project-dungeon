@@ -9,7 +9,7 @@ public class ContainerBehavior : MonoBehaviour
     [SerializeField]
     public int maxItemCount; // this is where we're going to define how many items at a time can spawn in our object
 
-    private List<Item> items;
+    public List<Item> items;
     private ObjectBehavior objectData;
 
     void Awake()
@@ -29,7 +29,7 @@ public class ContainerBehavior : MonoBehaviour
         return items;
     }
 
-    void RemoveItem(Item item){
+    public void RemoveItem(Item item){
         items.Remove(item);
     }
 

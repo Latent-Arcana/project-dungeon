@@ -117,11 +117,34 @@ public class PlayerMovement : MonoBehaviour
             ContainerBehavior container = collision.gameObject.GetComponent<ContainerBehavior>();
             if (container)
             {
-                //container.ContainerDebugPrint();
-                List<Item> tempItems = container.Open();
+                if (container.items.Count == 0)
+                {
+                    Dungeon_Narrator.AddDungeonNarratorText("There's nothing in there...");
+                }
+                else
+                {
+                    List<Item> itemsToRemove = new List<Item>();
+                    foreach (Item item in container.items)
+                    {
+                        if (playerInventory.items.Count < playerInventory.maxItemCount)
+                        {
+                            playerInventory.items.Add(item);
+                            itemsToRemove.Add(item);
+                            Dungeon_Narrator.AddDungeonNarratorText("You picked up the " + item.itemName);
+                        }
 
-                playerInventory.items = tempItems;
+                        else
+                        {
+                            Dungeon_Narrator.AddDungeonNarratorText("You do not have space to pick up the " + item.itemName);
+                        }
+                    }
 
+                    // Remove items from the container if any were removed
+                    foreach (Item item in itemsToRemove)
+                    {
+                        container.RemoveItem(item);
+                    }
+                }
 
             }
         }
