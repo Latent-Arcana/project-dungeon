@@ -7,7 +7,7 @@
       "SPD": 0,
       "AGI": 0,
       "HP": 0,
-      "image": "elixir_of_health.png"
+      "image": "elixir_of_health"
     },
     {
       "itemName": "Battle Axe",
@@ -16,7 +16,7 @@
       "SPD": 0,
       "AGI": 0,
       "HP": 0,
-      "image": "vial_of_pure_stamina.png"
+      "image": "vial_of_pure_stamina"
     } 
   ]
 }
