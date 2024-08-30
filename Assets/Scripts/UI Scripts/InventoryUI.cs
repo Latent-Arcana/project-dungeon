@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -42,10 +43,18 @@ public class InventoryUI : MonoBehaviour
 
         inventory = playerInventoryBehavior.items;
 
+        int tempCounter = 0;
+        
         foreach (var row in rows)
         {
             //get all 10 buttons and assign them actions (delegates)
             //button += function
+            Button butt = row.Q("Drop").Children().First() as Button;
+
+            int j = tempCounter;
+            butt.clicked +=  () => DropItem(j);
+            tempCounter++;
+
         }
 
         //Event Throw
@@ -94,7 +103,7 @@ public class InventoryUI : MonoBehaviour
             if (i < inventory.Count)
             {
 
-
+                rows[i].style.visibility = Visibility.Visible;
 
                 //assign img
                 Sprite sprt = Resources.Load<Sprite>(inventory[i].image);
@@ -111,6 +120,8 @@ public class InventoryUI : MonoBehaviour
             }
             else
             {
+                rows[i].style.visibility = Visibility.Hidden;
+
                 //assign empty img ?
                 //Sprite sprt = Resources.Load<Sprite>(inventory[i].image);
                 rows[i].Q("Icon").Children().First().style.backgroundImage = null;
@@ -149,11 +160,19 @@ public class InventoryUI : MonoBehaviour
         }
     }
 
+
+    private void DropItem(int index){
+        Debug.Log(index);
+
+        playerInventoryBehavior.RemoveItem(index);
+    }
+
     public void Event_OnInventoryEnter(object sender, EventArgs e)
     {
         input.ToggleMovement();
         parentContainer.style.display = (parentContainer.style.display == DisplayStyle.Flex) ? DisplayStyle.None : DisplayStyle.Flex;
 
     }
+
 
 }

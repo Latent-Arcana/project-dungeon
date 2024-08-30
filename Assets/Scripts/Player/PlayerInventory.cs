@@ -12,15 +12,21 @@ public class PlayerInventory : MonoBehaviour
     public List<Item> items;
 
     // TODO: INVENTORY INTERACTION
-    public List<Item> Open(){
+    public List<Item> Open()
+    {
         return items;
     }
 
-    void RemoveItem(Item item){
-        items.Remove(item);
+    public void RemoveItem(int index)
+    {
+        if (items.Count > index)
+        {
+            items.RemoveAt(index);
+        }
     }
 
-    void AddItem(Item item){
+    void AddItem(Item item)
+    {
         items.Add(item);
     }
 
