@@ -10,6 +10,9 @@ public class InventoryUI : MonoBehaviour
 
     ////Objects////
     private UIDocument main_document;
+    private VisualElement parentContainer;
+
+    private InputController input;
 
 
     private VisualElement table;
@@ -23,10 +26,11 @@ public class InventoryUI : MonoBehaviour
     private void Awake()
     {
 
+        input = GameObject.Find("InputController").GetComponent<InputController>();
+
         main_document = this.GetComponent<UIDocument>();
 
-        // row_1 = main_document.rootVisualElement.Q("Row1");
-        // row_4 = main_document.rootVisualElement.Q("Row4");
+        parentContainer = main_document.rootVisualElement.Q("Container");
 
         table = main_document.rootVisualElement.Q("Table");
 
@@ -55,6 +59,17 @@ public class InventoryUI : MonoBehaviour
         //listen for update to equip? - check boxes may need to be updated in UI
 
 
+    }
+
+    private void OnEnable()
+    {
+        input.OnInventoryEnter += Event_OnInventoryEnter;
+
+    }
+
+    private void OnDisable()
+    {
+        input.OnInventoryEnter -= Event_OnInventoryEnter;
     }
 
     /// <summary>
@@ -107,6 +122,11 @@ public class InventoryUI : MonoBehaviour
         }
     }
 
+    public void Event_OnInventoryEnter(object sender, EventArgs e)
+    {
+        input.ToggleMovement();
+        parentContainer.style.display = (parentContainer.style.display == DisplayStyle.Flex) ? DisplayStyle.None : DisplayStyle.Flex;
 
+    }
 
 }

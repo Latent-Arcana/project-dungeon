@@ -12,12 +12,14 @@ public class InputController : MonoBehaviour
     private bool movementEnabled = true;
     private bool pauseMenuOpen = false;
     private bool mapOpen = false;
+    private bool inventoryOpen = false;
 
     private Vector3 playerPosition;
 
     // Simple event handler for our input events
     public event EventHandler<InputArgs> OnInput;
     public event EventHandler OnMapEnter;
+    public event EventHandler OnInventoryEnter;
 
     // Passing in the dirction to the event will allow us to send movement data to the player and enemies
     public class InputArgs : EventArgs
@@ -76,6 +78,13 @@ public class InputController : MonoBehaviour
 
         }
 
+        //Inventory only usable when not in the menu
+        if (Input.GetKeyUp(KeyCode.I) && !pauseMenuOpen)
+        {
+            ToggleInventory();
+
+        }
+
         //Note: Esc Key input is still located in the MainMenuController file
     }
 
@@ -103,4 +112,14 @@ public class InputController : MonoBehaviour
         //calls the map toggle in MapMenuUI
         OnMapEnter.Invoke(this, EventArgs.Empty);
     }
+
+    public void ToggleInventory()
+    {
+        inventoryOpen = !inventoryOpen;
+        //note: this is used for entering and exiting the map
+        //calls the map toggle in MapMenuUI
+        OnInventoryEnter.Invoke(this, EventArgs.Empty);
+    }
+
+
 }
