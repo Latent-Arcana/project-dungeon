@@ -9,7 +9,7 @@ public class PlayerInventory : MonoBehaviour
     [SerializeField]
     public int maxItemCount; // this is where we're going to define how many items at a time can spawn in our object
 
-    private List<Item> items;
+    public List<Item> items;
 
     // TODO: INVENTORY INTERACTION
     public List<Item> Open(){

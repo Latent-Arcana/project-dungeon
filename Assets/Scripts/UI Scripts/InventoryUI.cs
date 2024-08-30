@@ -18,7 +18,9 @@ public class InventoryUI : MonoBehaviour
 
     // private VisualElement row_1, row_4;
 
+    public PlayerInventory playerInventoryBehavior;
 
+    private List<Item> inventory;
 
     private void Awake()
     {
@@ -32,8 +34,9 @@ public class InventoryUI : MonoBehaviour
 
         rows = table.Children().ToList();
 
+        playerInventoryBehavior = GameObject.Find("Player").GetComponent<PlayerInventory>();
 
-
+        inventory = playerInventoryBehavior.items;
 
         foreach (var row in rows)
         {
@@ -72,6 +75,31 @@ public class InventoryUI : MonoBehaviour
         for (i = 0; i < 10; i++)
         {
 
+            if (i < inventory.Count)
+            {
+                //assign img
+                Debug.Log(rows[i].Q("Icon").Children().First());
+                //rows[i].Q("Icon").Children().First().style.backgroundImage = new StyleBackground(AssetDatabase.LoadAssetAtPath<Sprite>("Assets/a.png"));
+
+                //assign name
+                Debug.Log(rows[i].Q("Name").Children().First());
+                TextElement te = rows[i].Q("Name").Children().First() as TextElement;
+                te.text = "word";
+
+
+            }
+            else
+            {
+                //assign img
+                Debug.Log(rows[i].Q("Icon").Children().First());
+                //rows[i].Q("Icon").Children().First().style.backgroundImage = new StyleBackground(AssetDatabase.LoadAssetAtPath<Sprite>("Assets/a.png"));
+
+                //assign name
+                Debug.Log(rows[i].Q("Name").Children().First());
+                TextElement te = rows[i].Q("Name").Children().First() as TextElement;
+                te.text = "";
+
+            }
 
             /*
             TODO: if Q performance is bad here, we can construct a List<CustomRowObject>  
@@ -86,14 +114,6 @@ public class InventoryUI : MonoBehaviour
             
             */
 
-            //assign img
-            Debug.Log(rows[i].Q("Icon").Children().First());
-            //rows[i].Q("Icon").Children().First().style.backgroundImage = new StyleBackground(AssetDatabase.LoadAssetAtPath<Sprite>("Assets/a.png"));
-
-            //assign name
-            Debug.Log(rows[i].Q("Name").Children().First());
-            TextElement te = rows[i].Q("Name").Children().First() as TextElement;
-            te.text = "word";
 
             //assign stats
 
