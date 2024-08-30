@@ -11,6 +11,7 @@ public abstract class Item : ScriptableObject
     public string itemDescription;
     public ItemType type;
     public string image;
+    public string statsText;
 
 
     [Header("Stat Buffs and Debuffs")]

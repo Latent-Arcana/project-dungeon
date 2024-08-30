@@ -44,7 +44,7 @@ public class InventoryUI : MonoBehaviour
         inventory = playerInventoryBehavior.items;
 
         int tempCounter = 0;
-        
+
         foreach (var row in rows)
         {
             //get all 10 buttons and assign them actions (delegates)
@@ -52,7 +52,7 @@ public class InventoryUI : MonoBehaviour
             Button butt = row.Q("Drop").Children().First() as Button;
 
             int j = tempCounter;
-            butt.clicked +=  () => DropItem(j);
+            butt.clicked += () => DropItem(j);
             tempCounter++;
 
         }
@@ -114,7 +114,7 @@ public class InventoryUI : MonoBehaviour
                 nameText.text = inventory[i].itemName;
 
                 TextElement statsText = rows[i].Q("Stats").Children().First() as TextElement;
-                statsText.text = inventory[i].HP.ToString();
+                statsText.text = inventory[i].statsText.ToString();
 
 
             }
@@ -161,7 +161,8 @@ public class InventoryUI : MonoBehaviour
     }
 
 
-    private void DropItem(int index){
+    private void DropItem(int index)
+    {
         Debug.Log(index);
 
         playerInventoryBehavior.RemoveItem(index);

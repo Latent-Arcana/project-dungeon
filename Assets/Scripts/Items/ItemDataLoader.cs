@@ -93,6 +93,7 @@ public class ItemLoader : MonoBehaviour
             armor.HP = data.HP;
             armor.type = Enums.ItemType.Weapon;
             armor.image = data.image;
+            armor.statsText = FormatStatsText(data.AGI, data.STR, data.SPD, data.AP, data.HP);
 
             if (armor != null)
             {
@@ -119,6 +120,7 @@ public class ItemLoader : MonoBehaviour
             weapon.HP = data.HP;
             weapon.type = Enums.ItemType.Weapon;
             weapon.image = data.image;
+            weapon.statsText = FormatStatsText(data.AGI, data.STR, data.SPD, 0, data.HP);
 
             if (weapon != null)
             {
@@ -147,6 +149,7 @@ public class ItemLoader : MonoBehaviour
             consumable.HP = data.HP;
             consumable.type = Enums.ItemType.Consumable;
             consumable.image = data.image;
+            consumable.statsText = FormatStatsText(data.AGI, data.STR, data.SPD, 0, data.HP);
 
             if (consumable != null)
             {
@@ -158,25 +161,61 @@ public class ItemLoader : MonoBehaviour
 
     }
 
-    // private string FormatStatsText(int AGI, int STR, int SPD, int AP, int HP)
-    // {
-    //     string agiString, strString, spdString, apString, hpString;
+    private string FormatStatsText(int AGI, int STR, int SPD, int AP, int HP)
+    {
+        string statsText = "";
 
-    //     // string agiString = AGI > 0 ? "+" + AGI.ToString() + "; " : AGI.ToString() + "; ";
-    //     // string strString = STR > 0 ? "+" + STR.ToString() + "; " : STR.ToString() + "; ";
-    //     // string spdString = SPD > 0 ? "+" + SPD.ToString() + "; " : SPD.ToString() + "; ";
-    //     // string apString = AP > 0 ? "+" + AP.ToString() + "; " : AP.ToString() + "; ";
-    //     // string hpString = HP > 0 ? "+" + HP.ToString() + "; " : HP.ToString() + "; ";
+        if (AGI > 0)
+        {
+            statsText += "+" + AGI.ToString() + " AGI  ";
+        }
 
-    //     if(AGI == 0){
-    //         agiString = "";
-    //     }
-    //     else{
+        else if (AGI < 0)
+        {
+            statsText += AGI.ToString() + " AGI  ";
+        }
 
-    //     }
+        if (STR > 0)
+        {
+            statsText += "+" + STR.ToString() + " STR  ";
+        }
+        else if (STR < 0)
+        {
+            statsText += STR.ToString() + " STR  ";
+        }
 
 
-    // }
+        if (SPD > 0)
+        {
+            statsText += "+" + SPD.ToString() + " SPD  ";
+        }
+        else if (SPD < 0)
+        {
+            statsText += SPD.ToString() + " SPD  ";
+        }
+
+
+        if (AP > 0)
+        {
+            statsText += "+" + AP.ToString() + " AP  ";
+        }
+        else if (AP < 0)
+        {
+            statsText += AP.ToString() + " AP  ";
+        }
+
+        if (HP > 0)
+        {
+            statsText += "+" + HP.ToString() + " HP  ";
+        }
+        else if (HP < 0)
+        {
+            statsText += HP.ToString() + " HP  ";
+        }
+
+        return statsText;
+
+    }
 
 }
 
