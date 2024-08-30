@@ -8,7 +8,8 @@
       "AGI": 0,
       "HP": 0,
       "useVerb": "drink",
-      "uses": 1
+      "uses": 1,
+      "image": "vial_of_pure_strength.png"
     },
     {
       "itemName": "Elixir of Health",
@@ -18,7 +19,8 @@
       "AGI": 0,
       "HP": 5,
       "useVerb": "drink",
-      "uses": 3
+      "uses": 3,
+      "image": "elixir_of_health.png"
     } 
   ]
 }

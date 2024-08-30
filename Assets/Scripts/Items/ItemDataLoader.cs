@@ -89,12 +89,13 @@ public class ItemLoader : MonoBehaviour
             armor.AP = data.AP;
             armor.HP = data.HP;
             armor.type = Enums.ItemType.Weapon;
+            armor.image = data.image;
 
             if (armor != null)
             {
                 itemsDatabase.Add(armor);
 
-                Debug.Log("Loaded armor " + armor.itemName + " and added to the dictionary.");
+                //Debug.Log("Loaded armor " + armor.itemName + " and added to the dictionary.");
             }
 
         }
@@ -114,12 +115,13 @@ public class ItemLoader : MonoBehaviour
             weapon.useVerb = data.useVerb;
             weapon.HP = data.HP;
             weapon.type = Enums.ItemType.Weapon;
+            weapon.image = data.image;
 
             if (weapon != null)
             {
                 itemsDatabase.Add(weapon);
 
-                Debug.Log("Loaded weapon " + weapon.itemName + " and added to the dictionary.");
+                //Debug.Log("Loaded weapon " + weapon.itemName + " and added to the dictionary.");
             }
 
         }
@@ -141,12 +143,13 @@ public class ItemLoader : MonoBehaviour
             consumable.useVerb = data.useVerb;
             consumable.HP = data.HP;
             consumable.type = Enums.ItemType.Consumable;
+            consumable.image = data.image;
 
             if (consumable != null)
             {
                 itemsDatabase.Add(consumable);
 
-                Debug.Log("Loaded consumable item " + consumable.itemName + " and added to the dictionary.");
+                //Debug.Log("Loaded consumable item " + consumable.itemName + " and added to the dictionary.");
             }
         }
 
