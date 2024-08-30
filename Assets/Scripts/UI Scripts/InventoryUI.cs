@@ -48,20 +48,19 @@ public class InventoryUI : MonoBehaviour
             //button += function
         }
 
-
-        //testing
-        InventoryRefresh();
-
-
         //Event Throw
         // Row4.Button += onDrop(row4)
 
 
         //Event Listeners
-        //listen for Total Inventory Refresh on a change (such as use or drop)
         //listen for update to equip? - check boxes may need to be updated in UI
 
+    }
 
+
+    void Update()
+    {
+        InventoryRefresh();
     }
 
     private void OnEnable()
@@ -84,6 +83,8 @@ public class InventoryUI : MonoBehaviour
 
         int i = 0;
 
+        inventory = playerInventoryBehavior.items;
+
         //loop through items table
 
         //foreach (Item item in items)
@@ -92,27 +93,33 @@ public class InventoryUI : MonoBehaviour
 
             if (i < inventory.Count)
             {
+
+
+
                 //assign img
-                Debug.Log(rows[i].Q("Icon").Children().First());
-                //rows[i].Q("Icon").Children().First().style.backgroundImage = new StyleBackground(AssetDatabase.LoadAssetAtPath<Sprite>("Assets/a.png"));
+                Sprite sprt = Resources.Load<Sprite>(inventory[i].image);
+                rows[i].Q("Icon").Children().First().style.backgroundImage = new StyleBackground(sprt);
 
                 //assign name
-                Debug.Log(rows[i].Q("Name").Children().First());
-                TextElement te = rows[i].Q("Name").Children().First() as TextElement;
-                te.text = "word";
+                TextElement nameText = rows[i].Q("Name").Children().First() as TextElement;
+                nameText.text = inventory[i].itemName;
+
+                TextElement statsText = rows[i].Q("Stats").Children().First() as TextElement;
+                statsText.text = inventory[i].HP.ToString();
 
 
             }
             else
             {
-                //assign img
-                Debug.Log(rows[i].Q("Icon").Children().First());
-                //rows[i].Q("Icon").Children().First().style.backgroundImage = new StyleBackground(AssetDatabase.LoadAssetAtPath<Sprite>("Assets/a.png"));
+                //assign empty img ?
+                //Sprite sprt = Resources.Load<Sprite>(inventory[i].image);
+                rows[i].Q("Icon").Children().First().style.backgroundImage = null;
 
-                //assign name
-                Debug.Log(rows[i].Q("Name").Children().First());
-                TextElement te = rows[i].Q("Name").Children().First() as TextElement;
-                te.text = "";
+                TextElement nameText = rows[i].Q("Name").Children().First() as TextElement;
+                nameText.text = "";
+
+                TextElement statsText = rows[i].Q("Stats").Children().First() as TextElement;
+                statsText.text = "";
 
             }
 
