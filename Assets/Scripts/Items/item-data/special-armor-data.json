@@ -1,0 +1,54 @@
+{
+  "special-armor": [
+    {
+      "itemName": "The Berserk's Armor",
+      "itemDescription:": "A jet-black set of jagged armor, it imbues the wearer with incredible strength. This strength comes with a price, eating away the wearer's soul bite by bloody bite.",
+      "STR": 3,
+      "SPD": 0,
+      "AGI": -5,
+      "HP": 0,
+      "AP": 2,
+      "image": "temp_icon"
+    },
+    {
+      "itemName": "The Mark XIV Phebos",
+      "itemDescription:": "A brilliant gold and blue armor, adorned with scriptures of protection, granting the wearer a tremendous speed to outmaneuver most adversaries.",
+      "STR": 0,
+      "SPD": 2,
+      "AGI": 4,
+      "HP": 0,
+      "AP": 2,
+      "image": "temp_icon"
+    },
+    {
+      "itemName": "The Garon's Fur",
+      "itemDescription:": "A set of hardened leather armor made from the carcass of a slain wolf-beast. It shines eerily in the dark, as a red oil seeps out of the joints over the leather plates, as though it continues to bleed.",
+      "STR": 0,
+      "SPD": 2,
+      "AGI": 0,
+      "HP": 5,
+      "AP": 2,
+      "image": "The_Garons_Fur"
+    },
+    {
+      "itemName": "The Wailing Lamés",
+      "itemDescription:": "Appearing as a common set of fencing armor, the wearer can feel a cold aura from the aged cloth and metallic mask. Upon donning the mask, one cannot help but feel ghostly tears shed from their eyes.",
+      "STR": 0,
+      "SPD": 3,
+      "AGI": 5,
+      "HP": 0,
+      "AP": 0,
+      "image": "temp_icon"
+    },
+    {
+      "itemName": "The Golden Belt and Shorts",
+      "itemDescription:": "A comfortable set of golden shorts, the fabric stretching just to your size. Their metallic shimmer catches the attention of any enemy trying to fight you for the Belt.",
+      "STR": 0,
+      "SPD": 3,
+      "AGI": 3,
+      "HP": 10,
+      "AP": 0,
+      "image": "The_Golden_Belt_And_Shorts"
+    }
+  ]
+}

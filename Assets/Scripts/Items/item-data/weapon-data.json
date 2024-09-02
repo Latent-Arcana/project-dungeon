@@ -7,7 +7,8 @@
       "SPD": 0,
       "AGI": 0,
       "HP": 0,
-      "image": "elixir_of_health"
+      "AP": 0,
+      "image": "temp_icon"
     },
     {
       "itemName": "Battle Axe",
@@ -16,7 +17,38 @@
       "SPD": 0,
       "AGI": 0,
       "HP": 0,
-      "image": "vial_of_pure_stamina"
-    } 
+      "AP": 0,
+      "image": "temp_icon"
+    },
+    {
+      "itemName": "Falchion",
+      "itemDescription:": "A well kept blade, curving at the end to help catch weakpoints.",
+      "STR": 1,
+      "SPD": 1,
+      "AGI": 1,
+      "HP": 0,
+      "AP": 0,
+      "image": "temp_icon"
+    },
+    {
+      "itemName": "Heavy Mace",
+      "itemDescription:": "A heavy ball of iron adorned with spikes, attached to a long metal rod.",
+      "STR": 3,
+      "SPD": -1,
+      "AGI": 0,
+      "HP": 0,
+      "AP": 0,
+      "image": "temp_icon"
+    },
+    {
+      "itemName": "Halberd",
+      "itemDescription:": "A lengthy wooden polearm, with a pointed axe attached at the end.",
+      "STR": 2,
+      "SPD": 0,
+      "AGI": 1,
+      "HP": 0,
+      "AP": 0,
+      "image": "temp_icon"
+    }
   ]
 }

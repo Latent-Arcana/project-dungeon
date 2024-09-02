@@ -118,6 +118,7 @@ public class ItemLoader : MonoBehaviour
             weapon.STR = data.STR;
             weapon.useVerb = data.useVerb;
             weapon.HP = data.HP;
+            weapon.AP = data.AP;
             weapon.type = Enums.ItemType.Weapon;
             weapon.image = data.image;
             weapon.statsText = FormatStatsText(data.AGI, data.STR, data.SPD, 0, data.HP);
@@ -144,6 +145,7 @@ public class ItemLoader : MonoBehaviour
             consumable.AGI = data.AGI;
             consumable.SPD = data.SPD;
             consumable.STR = data.STR;
+            consumable.permanent = data.permanent == 1 ? true : false; // seriously I just want to convert 0 -> false
             consumable.uses = data.uses;
             consumable.useVerb = data.useVerb;
             consumable.HP = data.HP;

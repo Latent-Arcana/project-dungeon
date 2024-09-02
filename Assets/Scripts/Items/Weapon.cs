@@ -6,6 +6,7 @@ using static Enums;
 public class Weapon : Item
 {
     [Header("Weapon Properties")]
+    public int AP;
     public string useVerb;
 }
 
@@ -20,5 +21,6 @@ public class WeaponData
     public int SPD;
     public int AGI;
     public int HP;
+    public int AP;
     public string useVerb; 
 }

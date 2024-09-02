@@ -8,7 +8,7 @@
       "AGI": 1,
       "HP": 0,
       "AP": 0,
-      "image": "elixir_of_health"
+      "image": "temp_icon"
     },
     {
       "itemName": "Elk Hide Armor",
@@ -18,7 +18,37 @@
       "AGI": 1,
       "HP": 0,
       "AP": 1,
-      "image": "vial_of_pure_stamina"
-    } 
+      "image": "temp_icon"
+    },
+    {
+      "itemName": "Hauberk",
+      "itemDescription:": "An aged chain-mail shirt, riddled with battle scars and holes that clearly killed the last owner.",
+      "STR": 0,
+      "SPD": 0,
+      "AGI": 0,
+      "HP": 2,
+      "AP": 2,
+      "image": "temp_icon"
+    },
+    {
+      "itemName": "Plackart",
+      "itemDescription:": "A breastplate adorned with aging metallic filigree. One feels an age-lost honor restored when worn.",
+      "STR": 0,
+      "SPD": 0,
+      "AGI": 0,
+      "HP": 4,
+      "AP": 2,
+      "image": "temp_icon"
+    },
+    {
+      "itemName": "Laminar Plate Mail",
+      "itemDescription:": "A customized set of overlapping chain-mail and woven plates.",
+      "STR": 0,
+      "SPD": 2,
+      "AGI": 0,
+      "HP": 5,
+      "AP": 2,
+      "image": "temp_icon"
+    }
   ]
 }
