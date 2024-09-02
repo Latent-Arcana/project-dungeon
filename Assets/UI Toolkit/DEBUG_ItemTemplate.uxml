@@ -1,0 +1,8 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="Item" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/Rooms/Walls_Map/emptycolor_map.png?fileID=2800000&amp;guid=1d2c4e17e3c55db49b5ede7bb3c81912&amp;type=3#emptycolor_map&quot;); border-top-width: 10px; border-right-width: 10px; border-bottom-width: 10px; border-left-width: 10px; border-left-color: rgba(22, 74, 87, 0); border-right-color: rgba(22, 74, 87, 0); border-top-color: rgba(22, 74, 87, 0); border-bottom-color: rgba(22, 74, 87, 0); margin-top: 2px; margin-right: 2px; margin-bottom: 2px; margin-left: 2px; padding-top: 2px; padding-right: 2px; padding-bottom: 2px; padding-left: 2px;">
+        <ui:Label tabindex="-1" text="Item Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Name" style="color: rgb(255, 255, 255); font-size: 28px;" />
+        <ui:VisualElement name="Image" style="flex-grow: 1; background-image: resource(&apos;vial_of_pure_strength&apos;); width: 100px; height: 100px; max-width: 100px; max-height: 100px;" />
+        <ui:Label tabindex="-1" text="Item Stats" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Stats" style="color: rgb(178, 178, 178);" />
+        <ui:Label tabindex="-1" text="Item Description" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Description" style="color: rgb(178, 178, 178);" />
+    </ui:VisualElement>
+</ui:UXML>
