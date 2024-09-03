@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -17,6 +18,9 @@ public class ItemLoader : MonoBehaviour
     public TextAsset consumablesFile;
     public TextAsset weaponsFile;
     public TextAsset armorFile;
+
+    public TextAsset specialWeaponFile;
+    public TextAsset specialArmorFile;
 
     private List<Item> itemsDatabase = new List<Item>();
 
@@ -64,27 +68,51 @@ public class ItemLoader : MonoBehaviour
             return;
         }
 
+        if(specialArmorFile == null){
+            Debug.LogError("JSON file for special armor was not assigned.");
+            return;
+        }
+
+        if(specialWeaponFile == null){
+            Debug.LogError("JSON file for special weapons was not assigned.");
+            return;
+        }
+
         // All files are valid, proceed with processing
         string consumablesJsonString = consumablesFile.text;
         string weaponsJsonString = weaponsFile.text;
         string armorJsonString = armorFile.text;
+        string specialArmorJsonString = specialArmorFile.text;
+        string specialWeaponJsonString = specialWeaponFile.text;
+
+        print(specialWeaponJsonString);
 
         ConsumableData[] consumablesData = JsonUtility.FromJson<ConsumablesDataArray>(consumablesJsonString).consumables;
         WeaponData[] weaponsData = JsonUtility.FromJson<WeaponsDataArray>(weaponsJsonString).weapons;
+        WeaponData[] specialWeaponsData = JsonUtility.FromJson<WeaponsDataArray>(specialWeaponJsonString).weapons;
+
         ArmorData[] armorData = JsonUtility.FromJson<ArmorDataArray>(armorJsonString).armor;
+        ArmorData[] specialArmorData = JsonUtility.FromJson<ArmorDataArray>(specialArmorJsonString).armor;
+
+        
+
 
         CreateArmor(armorData);
+        CreateArmor(specialArmorData);
+        
         CreateConsumables(consumablesData);
+        
         CreateWeapons(weaponsData);
+        CreateWeapons(specialWeaponsData);
     }
 
     private void CreateArmor(ArmorData[] dataArray)
     {
         foreach (ArmorData data in dataArray)
         {
-
             Armor armor = ScriptableObject.CreateInstance<Armor>();
             armor.itemName = data.itemName;
+            Debug.Log(data.itemDescription);
             armor.itemDescription = data.itemDescription;
             armor.AGI = data.AGI;
             armor.SPD = data.SPD;

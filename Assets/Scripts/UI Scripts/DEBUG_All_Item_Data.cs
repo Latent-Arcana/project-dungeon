@@ -49,6 +49,7 @@ public class DEBUG_All_Item_Data : MonoBehaviour
             tempText.text = "Stats:" + item.statsText;
 
             tempText = tempElement.Q("Description") as TextElement;
+            Debug.Log(item.itemDescription);
             tempText.text = "Description:" + item.itemDescription;
 
             parentContainer.Add(tempElement);
