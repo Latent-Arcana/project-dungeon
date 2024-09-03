@@ -43,14 +43,14 @@ public class DEBUG_All_Item_Data : MonoBehaviour
 
 
             TextElement tempText = tempElement.Q("Name") as TextElement;
-            tempText.text = "Name:" + item.itemName;
+            tempText.text = item.itemName;
 
             tempText = tempElement.Q("Stats") as TextElement;
-            tempText.text = "Stats:" + item.statsText;
+            tempText.text = "Stats: " + item.statsText;
 
             tempText = tempElement.Q("Description") as TextElement;
             Debug.Log(item.itemDescription);
-            tempText.text = "Description:" + item.itemDescription;
+            tempText.text = "Description: " + item.itemDescription;
 
             parentContainer.Add(tempElement);
 
@@ -59,15 +59,16 @@ public class DEBUG_All_Item_Data : MonoBehaviour
 
         }
 
-
-
-
     }
 
 
     // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetKeyUp(KeyCode.Escape))
+        {
+            Debug.Log("Quit Game");
+            Application.Quit();
+        }
     }
 }
