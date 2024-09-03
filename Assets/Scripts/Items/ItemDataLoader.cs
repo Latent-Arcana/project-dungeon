@@ -85,8 +85,6 @@ public class ItemLoader : MonoBehaviour
         string specialArmorJsonString = specialArmorFile.text;
         string specialWeaponJsonString = specialWeaponFile.text;
 
-        print(specialWeaponJsonString);
-
         ConsumableData[] consumablesData = JsonUtility.FromJson<ConsumablesDataArray>(consumablesJsonString).consumables;
         WeaponData[] weaponsData = JsonUtility.FromJson<WeaponsDataArray>(weaponsJsonString).weapons;
         WeaponData[] specialWeaponsData = JsonUtility.FromJson<WeaponsDataArray>(specialWeaponJsonString).weapons;
@@ -112,7 +110,6 @@ public class ItemLoader : MonoBehaviour
         {
             Armor armor = ScriptableObject.CreateInstance<Armor>();
             armor.itemName = data.itemName;
-            Debug.Log(data.itemDescription);
             armor.itemDescription = data.itemDescription;
             armor.AGI = data.AGI;
             armor.SPD = data.SPD;
@@ -126,8 +123,6 @@ public class ItemLoader : MonoBehaviour
             if (armor != null)
             {
                 itemsDatabase.Add(armor);
-
-                //Debug.Log("Loaded armor " + armor.itemName + " and added to the dictionary.");
             }
 
         }

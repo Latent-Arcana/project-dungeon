@@ -53,7 +53,8 @@ public class EnemyBehavior : MonoBehaviour
     {
         Hostile,
         Idle,
-        Fleeing
+        Fleeing,
+        Dead
     }
 
 
@@ -96,7 +97,7 @@ public class EnemyBehavior : MonoBehaviour
 
     private void Input_OnPlayerMoved(object sender, PlayerMovement.MovementArgs e)
     {
-        if(this.gameObject != null)
+        if(this.gameObject != null && behaviorState != BehaviorState.Dead)
         {
             Physics2D.SyncTransforms();
 
@@ -165,6 +166,9 @@ public class EnemyBehavior : MonoBehaviour
    
     public virtual void Move(Vector3 currentPlayerPosition)
     {
+        if(behaviorState == BehaviorState.Dead){
+            return;
+        }
 
         if (behaviorState == BehaviorState.Hostile)
         {
@@ -316,7 +320,16 @@ public class EnemyBehavior : MonoBehaviour
     {
         Debug.Log("The enemy " + id + " died.");
 
-        Destroy(this.gameObject);
+        behaviorState = BehaviorState.Dead;
+
+        gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        gameObject.GetComponent<BoxCollider2D>().enabled = false;
+        
+        GameObject corpse = gameObject.transform.GetChild(1).gameObject; // the Enemy Corpse object
+        corpse.SetActive(true);
+        
+
+        //Destroy(this.gameObject);
 
     }
 
@@ -333,6 +346,10 @@ public class EnemyBehavior : MonoBehaviour
 
     public virtual void MoveEnemy(Vector2 direction)
     {
+        if(behaviorState == BehaviorState.Dead){
+            return;
+        }
+
         Vector3 potentialPosition = (Vector2)gameObject.transform.position + direction;
         
 
@@ -384,7 +401,7 @@ public class EnemyBehavior : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "room" && collision.gameObject.GetComponentInParent<Room>() != null && gameObject != null)
+        if (collision.gameObject.tag == "room" && collision.gameObject.GetComponentInParent<Room>() != null && gameObject != null && behaviorState != BehaviorState.Dead)
         {
             behaviorState = BehaviorState.Idle;
         }
@@ -393,7 +410,7 @@ public class EnemyBehavior : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "room" && collision.gameObject.GetComponentInParent<Room>() != null && gameObject != null)
+        if (collision.gameObject.tag == "room" && collision.gameObject.GetComponentInParent<Room>() != null && gameObject != null && behaviorState != BehaviorState.Dead)
         {
             behaviorState = BehaviorState.Fleeing;
         }
