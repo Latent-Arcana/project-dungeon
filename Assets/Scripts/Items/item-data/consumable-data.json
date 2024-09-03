@@ -2,7 +2,7 @@
   "consumables": [
     {
       "itemName": "Elixir of Health",
-      "itemDescription:": "A crimson bottle that glitters with stardust.",
+      "itemDescription": "A crimson bottle that glitters with stardust.",
       "STR": 0,
       "SPD": 0,
       "AGI": 0,
@@ -14,7 +14,7 @@
     },
     {
       "itemName": "Vial of Pure Strength",
-      "itemDescription:": "A vial sealed with a red cork. The glowing liquid within feels hot to the touch.",
+      "itemDescription": "A vial sealed with a red cork. The glowing liquid within feels hot to the touch.",
       "STR": 1,
       "SPD": 0,
       "AGI": 0,
@@ -26,7 +26,7 @@
     },
     {
       "itemName": "Vial of Pure Speed",
-      "itemDescription:": "A vial sealed with a blue cork. The glowing liquid within rattles with constant energy.",
+      "itemDescription": "A vial sealed with a blue cork. The glowing liquid within rattles with constant energy.",
       "STR": 0,
       "SPD": 1,
       "AGI": 0,
@@ -38,7 +38,7 @@
     },
     {
       "itemName": "Vial of Pure Adrenaline",
-      "itemDescription:": "A vial sealed with a pink cork. The glowing liquid within spins in a constant vortex.",
+      "itemDescription": "A vial sealed with a pink cork. The glowing liquid within spins in a constant vortex.",
       "STR": 0,
       "SPD": 0,
       "AGI": 1,
@@ -50,7 +50,7 @@
     },
     {
       "itemName": "Vial of Pure Stamina",
-      "itemDescription:": "A vial sealed with an emerald cork. The glowing liquid within moves with a constant ebb and flow.",
+      "itemDescription": "A vial sealed with an emerald cork. The glowing liquid within moves with a constant ebb and flow.",
       "STR": 0,
       "SPD": 0,
       "AGI": 0,

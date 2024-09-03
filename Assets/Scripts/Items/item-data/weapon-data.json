@@ -2,7 +2,7 @@
   "weapons": [
     {
       "itemName": "Saber",
-      "itemDescription:": "A dull steel blade, riddled with scars of battle.",
+      "itemDescription": "A dull steel blade, riddled with scars of battle.",
       "STR": 2,
       "SPD": 0,
       "AGI": 0,
@@ -12,7 +12,7 @@
     },
     {
       "itemName": "Battle Axe",
-      "itemDescription:": "A one-handed weapon, rust scattered across the axe-head.",
+      "itemDescription": "A one-handed weapon, rust scattered across the axe-head.",
       "STR": 2,
       "SPD": 0,
       "AGI": 0,
@@ -22,7 +22,7 @@
     },
     {
       "itemName": "Falchion",
-      "itemDescription:": "A well kept blade, curving at the end to help catch weakpoints.",
+      "itemDescription": "A well kept blade, curving at the end to help catch weakpoints.",
       "STR": 1,
       "SPD": 1,
       "AGI": 1,
@@ -32,7 +32,7 @@
     },
     {
       "itemName": "Heavy Mace",
-      "itemDescription:": "A heavy ball of iron adorned with spikes, attached to a long metal rod.",
+      "itemDescription": "A heavy ball of iron adorned with spikes, attached to a long metal rod.",
       "STR": 3,
       "SPD": -1,
       "AGI": 0,
@@ -42,7 +42,7 @@
     },
     {
       "itemName": "Halberd",
-      "itemDescription:": "A lengthy wooden polearm, with a pointed axe attached at the end.",
+      "itemDescription": "A lengthy wooden polearm, with a pointed axe attached at the end.",
       "STR": 2,
       "SPD": 0,
       "AGI": 1,
