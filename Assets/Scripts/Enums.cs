@@ -33,8 +33,8 @@ public static class Enums
         Candle,
         Debris,
         Chest,
-        Bed
-
+        Bed,
+        Corpse
     }
 
     public enum PlacementType

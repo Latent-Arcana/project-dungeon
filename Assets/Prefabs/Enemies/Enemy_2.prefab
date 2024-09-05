@@ -12,11 +12,10 @@ GameObject:
   - component: {fileID: 2111185338694453074}
   - component: {fileID: 4383948408401380910}
   - component: {fileID: 5920552514546570724}
-  - component: {fileID: 3786326549629492582}
-  - component: {fileID: 2367482921160473574}
+  - component: {fileID: 4780683736736640629}
   m_Layer: 0
   m_Name: Enemy_Corpse
-  m_TagString: object
+  m_TagString: corpse
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -158,9 +157,9 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.5, y: 0.5}
   m_EdgeRadius: 0
---- !u!114 &3786326549629492582
+--- !u!114 &4780683736736640629
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -169,22 +168,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 206955202286569666}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7c4da0c753237447b438532cbb18857, type: 3}
+  m_Script: {fileID: 11500000, guid: a83678c7c75932a4cae0cf654975e5c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2367482921160473574
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 206955202286569666}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa5d3ba2b7d82e74babbf9b713e26f81, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxItemCount: 2
+  maxItemCount: 1
   items: []
 --- !u!1 &3808141499864693543
 GameObject:

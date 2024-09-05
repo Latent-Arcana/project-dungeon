@@ -192,6 +192,46 @@ public class PlayerMovement : MonoBehaviour
 
         }
 
+        else if (collision.gameObject.tag == "corpse")
+        {
+            Debug.Log("corpse");
+
+            // Check to see if we collided with something that should be opened
+            EnemyCorpseBehavior corpse = collision.gameObject.GetComponent<EnemyCorpseBehavior>();
+            if (corpse)
+            {
+                if (corpse.items.Count == 0)
+                {
+                    Dungeon_Narrator.AddDungeonNarratorText("There's nothing on this body...");
+                }
+                else
+                {
+                    List<Item> itemsToRemove = new List<Item>();
+                    foreach (Item item in corpse.items)
+                    {
+                        if (playerInventory.items.Count < playerInventory.maxItemCount)
+                        {
+                            playerInventory.items.Add(item);
+                            itemsToRemove.Add(item);
+                            Dungeon_Narrator.AddDungeonNarratorText("You picked up the " + item.itemName);
+                        }
+
+                        else
+                        {
+                            Dungeon_Narrator.AddDungeonNarratorText("You do not have space to pick up the " + item.itemName);
+                        }
+                    }
+
+                    // Remove items from the container if any were removed
+                    foreach (Item item in itemsToRemove)
+                    {
+                        corpse.RemoveItem(item);
+                    }
+                }
+
+            }
+        }
+
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -235,5 +275,6 @@ public class PlayerMovement : MonoBehaviour
             }
 
         }
+
     }
 }

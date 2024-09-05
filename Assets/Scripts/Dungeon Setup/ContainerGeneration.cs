@@ -90,6 +90,10 @@ public class ContainerGeneration : MonoBehaviour
 
         }
 
+        else if(objectType == ObjectType.Corpse){
+            possibleItems = itemsDatabase;
+        }
+
         else{
             possibleItems = null;
         }
