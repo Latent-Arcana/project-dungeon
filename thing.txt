@@ -1,1 +1,38 @@
-hi
+# REVIEW TEMPLATE\\EXAMPLE
+
+| LINK | SPRITE | SPRITE | SPRITE | SPRITE | SPRITE |
+| :--- | ------ | ------ | ------ | ------ | ------ |
+| [Chair](#chair) <br> <br> [Bed](#bed) <br> <br> [Candle](#candle) <br> <br> [Chest](#chest) <br> <br> [Armor Stand](#armor-stand) <br> <br> [Rat](#rat) <br> | ![Image](https://github.com/user-attachments/assets/0d043c52-d674-4406-adea-4f30d8bcee50) | ![Image](https://github.com/user-attachments/assets/391e5799-ab99-4fb6-9a36-fb1b5df164b0) | ![Image](https://github.com/user-attachments/assets/5844d144-f8c6-4034-8076-a209354b103c) | ![Image](https://github.com/user-attachments/assets/2d16d275-96e3-44b2-bb64-be5100d8a776) | ![Image](https://github.com/user-attachments/assets/06555c6d-e635-4cbb-ba93-2488bc063c11) |
+
+#### Chair
+
+> [!NOTE]
+> 
+> Chair -> PERFECTO
+
+#### Bed
+
+> [!NOTE]
+> 
+> Bed   -> Looks great!
+> Only feedback is that the "boards"/frame of the bed is a bit too sharp. There are a few ways to do that, but honestly i think just bring the left leg over to the right by one pixel, and erasing the top two corners of the back frame would be about it.
+
+#### Candle
+
+> [!NOTE]
+> Candle --> Looks sick. Would recommend deleting corner pixels on the bottom of the arms. Possibly a tiny bit lighter of a brown but I can do that later with color variant stuff.
+
+#### Chest
+
+> [!NOTE]
+> Chest --> Good stuff. Need to delete corner pixels at the bottom corners and I may mess with the shape a bit
+
+#### Armor Stand
+
+> [!NOTE]
+> Armor Stand --> LITERALLY PERFECT
+
+#### Rat
+
+> [!NOTE]
+> Rat --> Other than round ing the one or two sharp edges, I think it looks great!!
