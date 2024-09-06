@@ -13,7 +13,7 @@ public class TallBookShelfBehavior : ObjectBehavior
 
     public override int Width => 1;
 
-    public override int Height => 2;
+    public override int Height => 1;
 
     public override string Look()
     {

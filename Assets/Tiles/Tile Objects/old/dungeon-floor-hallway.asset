@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: dungeon-floor-hallway
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: caf71014dd2fcd14d89c9eb7237ac805, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6f30c0ff3b72c954e9dfe40c4783d34b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
