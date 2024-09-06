@@ -162,7 +162,7 @@ MonoBehaviour:
   roomMinimumHeight: 7
   mapOffset: 500
   gameplayFloorTile: {fileID: 11400000, guid: 87b2baa602ec59b4ebdf350e4639fb49, type: 2}
-  gameplayFloorHallwayTile: {fileID: 11400000, guid: 244bdada7fa122c41b5a969f6df34692, type: 2}
+  gameplayFloorHallwayTile: {fileID: 11400000, guid: 87b2baa602ec59b4ebdf350e4639fb49, type: 2}
   gameplayWallTile: {fileID: 11400000, guid: 36f4a5e638b591e46930cd78533cbb7f, type: 2}
   mapFloorAndWallTile: {fileID: 11400000, guid: 1120fac58d28cab4783c6d816514330d, type: 2}
   mapOutsideTile: {fileID: 11400000, guid: c9b446417343b9a418e0a701167420fc, type: 2}
