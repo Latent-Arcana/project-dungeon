@@ -52,7 +52,7 @@ public class SaveSystem : MonoBehaviour
             //File not found
 
             //Create a default settings object instead
-            SaveOptions data = new(.50f, .50f);
+            SaveOptions data = new(.50f, .50f,.50f);
 
             return data;
         }

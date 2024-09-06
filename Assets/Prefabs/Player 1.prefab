@@ -75,9 +75,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -293510981
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 267cd771c4cf68a43882f72522e5194f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7587ae1d3137f4c4f8772bd065e9d439, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -101,7 +101,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  tilemap: {fileID: 0}
+  playerCameraBehavior: {fileID: 0}
+  input: {fileID: 0}
+  playerInventory: {fileID: 0}
 --- !u!61 &1273503724347657077
 BoxCollider2D:
   m_ObjectHideFlags: 0

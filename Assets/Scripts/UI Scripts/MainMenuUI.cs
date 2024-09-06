@@ -27,6 +27,7 @@ public class MainMenuUI : MonoBehaviour
     private SaveOptions ops;
     private Slider volMusicSlider;
     private Slider volEffectsSlider;
+    private Slider ambientSlider;
 
     //Audio
     [SerializeField]
@@ -36,6 +37,7 @@ public class MainMenuUI : MonoBehaviour
     [SerializeField]
     private AudioClip audioClose;
     private AudioSource menuAudio;
+    private BackgroundMusicController backgroundMusicController;
 
     private void Awake()
     {
@@ -65,6 +67,7 @@ public class MainMenuUI : MonoBehaviour
         ops = SaveSystem.LoadOptions();
         volMusicSlider = main_document.rootVisualElement.Q("VolumeMusicSlider") as Slider;
         volEffectsSlider = main_document.rootVisualElement.Q("VolumeSoundEffectsSlider") as Slider;
+        ambientSlider = main_document.rootVisualElement.Q("VolumeAmbientSlider") as Slider;
 
         ////Events////
 
@@ -77,10 +80,12 @@ public class MainMenuUI : MonoBehaviour
         //Sliders
         volMusicSlider.RegisterCallback<ChangeEvent<float>>(SetMusicVolume);
         volEffectsSlider.RegisterCallback<ChangeEvent<float>>(SetSoundEffectsVolume);
+        ambientSlider.RegisterCallback<ChangeEvent<float>>(SetAmbientVolume);
 
-        
+
         if (SceneManager.GetActiveScene().name != "Main Menu")
         {
+
             //Pause Menu not displayed by default on gameplay
             parentContainer.style.display = DisplayStyle.None;
 
@@ -88,13 +93,31 @@ public class MainMenuUI : MonoBehaviour
             input = GameObject.Find("InputController").GetComponent<InputController>();
         }
 
+        else
+        {
+            backgroundMusicController = GameObject.Find("BackgroundAudio").GetComponent<BackgroundMusicController>();
+
+        }
+
+
+
+
+
     }
 
     private void Start()
     {
+
         //warning, don't put audiomixer setfloat in MonoBehavior.Awake()
         audioMixer.SetFloat("MixerSFXVolume", ConvertVolumeToDb(ops.soundEffectVolume));
         audioMixer.SetFloat("MixerMusicVolume", ConvertVolumeToDb(ops.musicVolume));
+        audioMixer.SetFloat("MixerAmbientVolume", ConvertVolumeToDb(ops.ambientVolume));
+
+        if (SceneManager.GetActiveScene().name == "Main Menu")
+        {
+            Debug.Log("Main Menu Loaded");
+            backgroundMusicController.ChangeSongForScene("Main Menu");
+        }
     }
 
 
@@ -121,6 +144,12 @@ public class MainMenuUI : MonoBehaviour
         audioMixer.SetFloat("MixerSFXVolume", ConvertVolumeToDb(ops.soundEffectVolume));
     }
 
+    private void SetAmbientVolume(ChangeEvent<float> ev)
+    {
+        ops.ambientVolume = ambientSlider.value;
+        audioMixer.SetFloat("MixerAmbientVolume", ConvertVolumeToDb(ops.ambientVolume));
+    }
+
     private float ConvertVolumeToDb(float vol)
     {
         //log scale because decibels
@@ -140,8 +169,13 @@ public class MainMenuUI : MonoBehaviour
     private void GoToOptions()
     {
         PlayAudioOpen();
+
+        //set sliders to the saved values
         volMusicSlider.SetValueWithoutNotify(ops.musicVolume);
         volEffectsSlider.SetValueWithoutNotify(ops.soundEffectVolume);
+        ambientSlider.SetValueWithoutNotify(ops.ambientVolume);
+
+        //show options menu
         ToggleOptions();
     }
 
@@ -160,13 +194,12 @@ public class MainMenuUI : MonoBehaviour
         parentContainer.style.display = (parentContainer.style.display == DisplayStyle.Flex) ? DisplayStyle.None : DisplayStyle.Flex;
     }
 
-
-
-    //Play and Quit Buttons
+    //load the game (if main menu), or unpause the game (if pause menu)
     private void PlayGame()
     {
         if (SceneManager.GetActiveScene().name == "Main Menu")
         {
+            backgroundMusicController.ChangeSongForScene("Loading");
             PlayAudioOpen();
             SceneManager.LoadScene("Loading");
         }

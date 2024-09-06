@@ -19,6 +19,9 @@ public class GameOverUI : MonoBehaviour
     private TextElement statsText;
     private GameStats gameStats;
 
+    //// Music ////
+    private BackgroundMusicController backgroundMusicController;
+
 
     private void Awake()
     {
@@ -39,6 +42,10 @@ public class GameOverUI : MonoBehaviour
         MainMenuButton.clicked += ReturnToMenu;
         QuitButton.clicked += QuitGame;
         NewGameButton.clicked += StartNewGame;
+
+        // Audio
+        backgroundMusicController = GameObject.Find("BackgroundAudio").GetComponent<BackgroundMusicController>();
+
 
     }
 
@@ -64,6 +71,7 @@ public class GameOverUI : MonoBehaviour
 
     public void ReturnToMenu()
     {
+        backgroundMusicController.ChangeSongForScene("Main Menu");
         gameStats.NewGame();
         SceneManager.LoadScene("Main Menu");
     }

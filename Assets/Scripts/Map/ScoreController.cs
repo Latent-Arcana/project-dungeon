@@ -146,6 +146,7 @@ public class ScoreController : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.Keypad9))
         {
+            GameObject.Find("BackgroundAudio").GetComponent<BackgroundMusicController>().ChangeSongForScene("GameOver");
             SetFinalScore();
         }
     }
