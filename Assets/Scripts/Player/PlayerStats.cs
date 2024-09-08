@@ -1,42 +1,39 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 using static DungeonNarrator;
+using static PlayerStatsManager;
 
 public class PlayerStats : MonoBehaviour
 {
 
-    //private int _HP_MAX = 10;
-    public int _HP = 10;
-    public int _SPD = 2;
-    public int _AGI = 1;
+    public PlayerStatsManager Stats_Manager;
 
-
-    private UIDocument narrator_doc;
-
-    private TextElement healthText;
-
-
-    // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
-       //healthText = narrator_doc.rootVisualElement.Q("HealthText") as TextElement;
 
-       //testEvent.TriggerEvent();
+        Stats_Manager.OnHealthChanged += Stats_ModifyHP;
 
     }
 
-    public void SetHealth (int health){
-        //_HP = health;
-        //healthText.text = "HP: " + health.ToString();
+    void OnDisable()
+    {
+        Stats_Manager.OnHealthChanged -= Stats_ModifyHP;
     }
 
-    public int GetCurrentHealth(){
-        return _HP;
+    private void Stats_ModifyHP(object sender, EventArgs e)
+    {
+        StartCoroutine(IncomingDamageFlash());
     }
 
-    //TODO: Do the rest of the stats
-
+    public IEnumerator IncomingDamageFlash()
+    {
+        gameObject.GetComponent<SpriteRenderer>().color = UnityEngine.Color.black;
+        yield return new WaitForSeconds(.05f);
+        gameObject.GetComponent<SpriteRenderer>().color = UnityEngine.Color.white;
+    }
 }

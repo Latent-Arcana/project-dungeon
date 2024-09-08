@@ -27,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
     {
         public Vector3 position;
         public Vector3 prevPosition;
+        public Vector3 intendedDirection;
     }
 
     public PlayerInventory playerInventory;
@@ -152,7 +153,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (OnPlayerMoved != null)
         {
-            OnPlayerMoved.Invoke(this, new MovementArgs { position = gameObject.transform.position, prevPosition = previousPosition });
+            OnPlayerMoved.Invoke(this, new MovementArgs { position = gameObject.transform.position, prevPosition = previousPosition, intendedDirection = direction });
         }
     }
 
@@ -194,8 +195,6 @@ public class PlayerMovement : MonoBehaviour
 
         else if (collision.gameObject.tag == "corpse")
         {
-            Debug.Log("corpse");
-
             // Check to see if we collided with something that should be opened
             EnemyCorpseBehavior corpse = collision.gameObject.GetComponent<EnemyCorpseBehavior>();
             if (corpse)

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -8,25 +9,39 @@ using UnityEngine.Events;
 [CreateAssetMenu(menuName = "Stats Manager")]
 public class PlayerStatsManager : ScriptableObject
 {
-    public int _MAX_HP = 10;
-    public int _HP = 10;
-    public int _SPD = 2;
-    public int _AGI = 1;
-    
-    public UnityEvent<int> healthChangeEvent;
+    private int _MAX_HP = 10, _HP = 10, _SPD = 2, _AGI = 1;
 
-    private void OnEnable(){
-        _HP = _MAX_HP;
-
-        if(healthChangeEvent == null){
-            healthChangeEvent = new UnityEvent<int>();
-        }
+    public int MAX_HP
+    {
+        get { return _MAX_HP; }
     }
 
-    public void DecreaseHealth(int amount){
-        _HP -= amount;
-        Debug.Log("decreasing the player's HP by " + amount);
-        healthChangeEvent.Invoke(_HP);
+    public int HP
+    {
+        get { return _HP; }
+    }
+
+    public int SPD
+    {
+        get { return _SPD; }
+    }
+
+    public int AGI
+    {
+        get { return _AGI; }
+    }
+
+    public event EventHandler OnHealthChanged;
+
+    private void OnEnable()
+    {
+        _HP = _MAX_HP;
+    }
+
+    public void ModifyHP(int amount)
+    {
+        _HP += amount;
+        OnHealthChanged.Invoke(this, EventArgs.Empty);
     }
 
 }

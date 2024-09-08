@@ -10,19 +10,16 @@ using UnityEngine.Tilemaps;
 using static UnityEngine.GraphicsBuffer;
 using static DungeonNarrator;
 using static PlayerMovement;
-using static PlayerStats;
 
-public class EnemyBehavior : MonoBehaviour
+public partial class EnemyBehavior : MonoBehaviour
 {
-    protected int HP;
-    protected int SPD;
-    protected int AGI;
 
+
+    [SerializeField]
+    public PlayerStatsManager Player_Stats;
     protected string type;
 
-    public PlayerStatsManager playerStats;
-
-    public PlayerMovement playerMovement;
+    private PlayerMovement playerMovement;
 
     protected InputController input;
     protected DungeonNarrator dungeonNarrator;
@@ -47,6 +44,8 @@ public class EnemyBehavior : MonoBehaviour
         public int playerDamageDealt;
     }
 
+    public EnemyStats enemyStats;
+
     BehaviorState behaviorState;
 
     public enum BehaviorState
@@ -58,7 +57,7 @@ public class EnemyBehavior : MonoBehaviour
     }
 
 
-    
+
     // 0: Vector3 upPosition;
     // 1: Vector3 downPosition;
     // 2: Vector3 rightPosition;
@@ -87,7 +86,7 @@ public class EnemyBehavior : MonoBehaviour
         playerMovement.OnRoomEnter += PlayerMovement_OnRoomEnter;
     }
 
-   
+
     public virtual void OnDisable()
     {
         playerMovement.OnPlayerMoved -= Input_OnPlayerMoved;
@@ -97,7 +96,7 @@ public class EnemyBehavior : MonoBehaviour
 
     private void Input_OnPlayerMoved(object sender, PlayerMovement.MovementArgs e)
     {
-        if(this.gameObject != null && behaviorState != BehaviorState.Dead)
+        if (this.gameObject != null && behaviorState != BehaviorState.Dead)
         {
             Physics2D.SyncTransforms();
 
@@ -109,13 +108,13 @@ public class EnemyBehavior : MonoBehaviour
             borderPositions[3] = currentEnemyPosition + Vector3.left;
 
             // Set Behavior State
- 
+
             if (playerInRoom && behaviorState != BehaviorState.Fleeing)
             {
                 behaviorState = BehaviorState.Hostile;
             }
 
-            else if(!playerInRoom && behaviorState != BehaviorState.Fleeing)
+            else if (!playerInRoom && behaviorState != BehaviorState.Fleeing)
             {
                 behaviorState = BehaviorState.Idle;
             }
@@ -123,30 +122,41 @@ public class EnemyBehavior : MonoBehaviour
             //Debug.Log($"{gameObject.name} is in the {behaviorState} state");
 
 
-            CheckAndAttack(e.prevPosition);
+            CheckAndAttack(e.prevPosition, e.position, e.intendedDirection);
 
 
             Move(e.position);
             Physics2D.SyncTransforms();
         }
-        
+
     }
 
-    private void CheckAndAttack(Vector3 prevPosition)
+    private void CheckAndAttack(Vector3 prevPosition, Vector3 currentPosition, Vector2 intendedDirection)
     {
-        
-        foreach(Vector3 position in borderPositions)
+
+        foreach (Vector3 position in borderPositions)
         {
-            if(prevPosition == position)
+            if (prevPosition == position)
             {
-                Attack();
+
+                // Identify whether the player was trying to attack the enemy too
+                if (prevPosition == currentPosition && (Vector3)intendedDirection + prevPosition == transform.position)
+                {
+                    Attack(playerAttacked: true);
+                }
+
+                else
+                {
+                    Attack(playerAttacked: false);
+                }
+
             }
         }
-}
+    }
 
     private void PlayerMovement_OnRoomEnter(object sender, InputArgs e)
     {
-        if(e.roomId == room && e.type == "enter")
+        if (e.roomId == room && e.type == "enter")
         {
             playerInRoom = true;
         }
@@ -158,15 +168,13 @@ public class EnemyBehavior : MonoBehaviour
 
     public virtual void AssignStats()
     {
-        type = "slug";
-        HP = 10;
-        SPD = 1;
-        AGI = 2;
+        enemyStats = new EnemyStats("slug", 10, 1, 2);
     }
-   
+
     public virtual void Move(Vector3 currentPlayerPosition)
     {
-        if(behaviorState == BehaviorState.Dead){
+        if (behaviorState == BehaviorState.Dead)
+        {
             return;
         }
 
@@ -184,12 +192,12 @@ public class EnemyBehavior : MonoBehaviour
             }
         }
 
-        else if(behaviorState == BehaviorState.Idle)
+        else if (behaviorState == BehaviorState.Idle)
         {
             WanderRandomly();
         }
 
-        else if(behaviorState == BehaviorState.Fleeing)
+        else if (behaviorState == BehaviorState.Fleeing)
         {
             Vector3 originDirection = GetDirectionToTarget(new Vector3(originPoint.x, originPoint.y, 0));
             MoveEnemy(originDirection);
@@ -268,17 +276,64 @@ public class EnemyBehavior : MonoBehaviour
         gameObject.GetComponent<SpriteRenderer>().color = UnityEngine.Color.white;
 
     }
-    public virtual void Attack()
+    public virtual void Attack(bool playerAttacked)
     {
+        int _enemyDamageDealt = UnityEngine.Random.Range(-5, 0);
+        int _playerDamageDealt = UnityEngine.Random.Range(-5, 0);
+
+        if (playerAttacked)
+        {
+            // if the enemy attacks first
+            if (enemyStats.SPD > Player_Stats.SPD)
+            {
+
+                Player_Stats.ModifyHP(_enemyDamageDealt);
+                enemyStats.HP += _playerDamageDealt;
+                StartCoroutine(IncomingDamageFlash());
+
+                // if the enemy was reduced to 0 HP, they die
+                if (enemyStats.HP <= 0)
+                {
+                    Dungeon_Narrator.AddDungeonNarratorText($"You attacked the {enemyStats.EnemyType} for {Mathf.Abs(_playerDamageDealt)} damage");
+                    Die();
+                }
+
+                else
+                {
+                    Dungeon_Narrator.AddDungeonNarratorText($"The {enemyStats.EnemyType} attacked you for {Mathf.Abs(_enemyDamageDealt)} damage.");
+                    Dungeon_Narrator.AddDungeonNarratorText($"You attacked the {enemyStats.EnemyType} for {Mathf.Abs(_playerDamageDealt)} damage");
+                }
+            }
+            // if the player attacks first
+            else
+            {
+                enemyStats.HP += _playerDamageDealt;
+                StartCoroutine(IncomingDamageFlash());
+
+                // if the enemy was reduced to 0 HP, they die
+                if (enemyStats.HP <= 0)
+                {
+                    Dungeon_Narrator.AddDungeonNarratorText($"You attacked the {enemyStats.EnemyType} for {Mathf.Abs(_playerDamageDealt)} damage");
+                    Die();
+                }
+                else
+                {
+                    Player_Stats.ModifyHP(_enemyDamageDealt);
+
+                    Dungeon_Narrator.AddDungeonNarratorText($"You attacked the {enemyStats.EnemyType} for {Mathf.Abs(_playerDamageDealt)} damage");
+                    Dungeon_Narrator.AddDungeonNarratorText($"The {enemyStats.EnemyType} attacked you for {Mathf.Abs(_enemyDamageDealt)} damage.");
+                }
 
 
-        string _enemyType = type;
-        int _enemyId = id;
+            }
 
-        int _enemyDamageDealt = UnityEngine.Random.Range(1, 5);
-        int _playerDamageDealt = UnityEngine.Random.Range(1, 5);
+        }
 
-        Die();
+        else
+        {
+            Dungeon_Narrator.AddDungeonNarratorText($"The {enemyStats.EnemyType} attacked you for {Mathf.Abs(_enemyDamageDealt)} damage.");
+            Player_Stats.ModifyHP(_enemyDamageDealt);
+        }
 
         //if(SPD > Player_Stats.SPD)
         //{
@@ -318,16 +373,16 @@ public class EnemyBehavior : MonoBehaviour
 
     public virtual void Die()
     {
-        Debug.Log("The enemy " + id + " died.");
+        Dungeon_Narrator.AddDungeonNarratorText($"The {enemyStats.EnemyType} died.");
 
         behaviorState = BehaviorState.Dead;
 
         gameObject.GetComponent<SpriteRenderer>().enabled = false;
         gameObject.GetComponent<BoxCollider2D>().enabled = false;
-        
+
         GameObject corpse = gameObject.transform.GetChild(1).gameObject; // the Enemy Corpse object
         corpse.SetActive(true);
-        
+
 
         //Destroy(this.gameObject);
 
@@ -346,12 +401,13 @@ public class EnemyBehavior : MonoBehaviour
 
     public virtual void MoveEnemy(Vector2 direction)
     {
-        if(behaviorState == BehaviorState.Dead){
+        if (behaviorState == BehaviorState.Dead)
+        {
             return;
         }
 
         Vector3 potentialPosition = (Vector2)gameObject.transform.position + direction;
-        
+
 
         Collider2D checkCollision = CheckPosition(potentialPosition);
 
@@ -361,7 +417,7 @@ public class EnemyBehavior : MonoBehaviour
         }
 
 
-        else if(checkCollision.name == "Player")
+        else if (checkCollision.name == "Player")
         {
             return;
         }

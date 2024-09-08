@@ -333,7 +333,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78a683c074be3fa46b0777e29836f879, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seed: 919261971
+  seed: 0
   bspController: {fileID: 0}
   dangerGenerator: {fileID: 0}
   objectGenerator: {fileID: 0}
@@ -624,7 +624,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 63.7
+  orthographic size: 64
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1569,9 +1569,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: befe491c5d9571b4c94ddb99347bf8f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 10
-  _SPD: 2
-  _AGI: 1
+  Stats_Manager: {fileID: 11400000, guid: 49cdfbab4b8796a41af4e48e5ee7d3d5, type: 2}
 --- !u!114 &1311237463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2009,6 +2007,18 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1311237456}
+    - target: {fileID: 8471889749017087191, guid: d757ba61582e1f945a3be705c12a51e8, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8471889749017087191, guid: d757ba61582e1f945a3be705c12a51e8, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8471889749017087191, guid: d757ba61582e1f945a3be705c12a51e8, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
