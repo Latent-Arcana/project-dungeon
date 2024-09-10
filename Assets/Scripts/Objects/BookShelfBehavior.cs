@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class TallBookShelfBehavior : ObjectBehavior
+public class BookShelfBehavior : ObjectBehavior
 {
     public override List<Enums.RoomType> RoomTypes => new List<Enums.RoomType> {Enums.RoomType.Lore};
 
@@ -13,7 +13,7 @@ public class TallBookShelfBehavior : ObjectBehavior
 
     public override int Width => 1;
 
-    public override int Height => 2;
+    public override int Height => 1;
 
     public override string Look()
     {

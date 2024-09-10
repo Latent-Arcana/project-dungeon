@@ -24,7 +24,9 @@ public static class Enums
 
         Library = 0,
         Treasure = 1,
-        None = 3
+        None = 3,
+        Armory = 4,
+        Dining = 5
     }
 
     public enum ObjectType
@@ -34,7 +36,10 @@ public static class Enums
         Debris,
         Chest,
         Bed,
-        Corpse
+        Corpse,
+        Chair,
+        Table,
+        ArmorStand
     }
 
     public enum PlacementType
