@@ -11,7 +11,7 @@ using static UnityEngine.GraphicsBuffer;
 using static DungeonNarrator;
 using static PlayerMovement;
 
-public partial class EnemyBehavior : MonoBehaviour
+public class EnemyBehavior : MonoBehaviour
 {
 
 
