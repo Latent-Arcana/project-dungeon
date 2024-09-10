@@ -1,22 +1,28 @@
-using UnityEngine;
-using System.Collections.Generic;
+// using UnityEngine;
+// using System.Collections.Generic;
+// using System;
 
-public class BookShelfBehavior : ObjectBehavior
-{
-    public override List<Enums.RoomType> RoomTypes => new List<Enums.RoomType> {Enums.RoomType.Lore};
+// [Serializable]
+// public class BookShelfBehavior : ObjectBehavior
+// {
+//     public int _width;
+//     public int _height;
 
-    public override List<Enums.RoomSubType> RoomSubTypes => new List<Enums.RoomSubType> {Enums.RoomSubType.Library};
 
-    public override Enums.ObjectType ObjectType => Enums.ObjectType.Bookshelf;
+//     public override List<Enums.RoomType> RoomTypes => new List<Enums.RoomType> {Enums.RoomType.Lore};
 
-    public override Enums.PlacementType PlacementType => Enums.PlacementType.UpperWall;
+//     public override List<Enums.RoomSubType> RoomSubTypes => new List<Enums.RoomSubType> {Enums.RoomSubType.Library};
 
-    public override int Width => 1;
+//     public override Enums.ObjectType ObjectType => Enums.ObjectType.Bookshelf;
 
-    public override int Height => 1;
+//     public override Enums.PlacementType PlacementType => Enums.PlacementType.UpperWall;
 
-    public override string Look()
-    {
-        return "NOT IMPLEMENTED";
-    }
-}
+//     public override int Width => _width;
+
+//     public override int Height => 1;
+
+//     public override string Look()
+//     {
+//         return "NOT IMPLEMENTED";
+//     }
+// }

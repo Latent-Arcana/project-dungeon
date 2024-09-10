@@ -2,38 +2,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using static Enums;
 
-public abstract class ObjectBehavior : MonoBehaviour, IPlaceable, ILookable
+public class ObjectBehavior : MonoBehaviour, ILookable
 {
-    public abstract List<RoomType> RoomTypes
+    public List<RoomType> RoomTypes;
+
+    public List<Enums.RoomSubType> RoomSubTypes;
+
+    public ObjectType ObjectType;
+
+    public PlacementType PlacementType;
+
+    public int Width;
+
+    public int Height;
+
+
+    public string[] lookStrings;
+
+    public string Look()
     {
-        get;
+        //TODO: make random
+        return lookStrings[0];
     }
 
-    public abstract List<Enums.RoomSubType> RoomSubTypes
-    {
-        get;
-    }
 
-    public abstract ObjectType ObjectType
-    {
-        get;
-    }
-
-    public abstract PlacementType PlacementType
-    {
-        get;
-    }
-
-
-    public abstract int Width
-    {
-        get;
-    }
-
-    public abstract int Height
-    {
-        get;
-    }
-
-    public abstract string Look();
 }

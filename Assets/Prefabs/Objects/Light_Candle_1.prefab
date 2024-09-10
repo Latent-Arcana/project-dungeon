@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 3404560659914325236}
   - component: {fileID: 1696054406223749852}
   - component: {fileID: 5059746965632024800}
-  - component: {fileID: 6974595349413496387}
+  - component: {fileID: -8733455549777365534}
   m_Layer: 0
   m_Name: Light_Candle_1
   m_TagString: object
@@ -255,8 +255,8 @@ BoxCollider2D:
   m_Offset: {x: 0.5, y: 0.5}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 0.16, y: 0.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -265,7 +265,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &6974595349413496387
+--- !u!114 &-8733455549777365534
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -274,6 +274,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 8011701790813375566}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc72d222e3fa33849b9cc204085e0508, type: 3}
+  m_Script: {fileID: 11500000, guid: 99c1cc0f00e86b945b9951b3d91d54d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RoomTypes: 00000000
+  RoomSubTypes: 02000000010000000400000005000000
+  ObjectType: 2
+  PlacementType: 0
+  Width: 1
+  Height: 1
+  lookStrings:
+  - NOT IMPLEMENTED

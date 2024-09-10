@@ -117,8 +117,8 @@ GameObject:
   - component: {fileID: 3354927704216351639}
   - component: {fileID: 8965686453867737625}
   - component: {fileID: 887201924762341734}
-  - component: {fileID: 3497341725993647759}
   - component: {fileID: 1185119982388793188}
+  - component: {fileID: 2635687351742019245}
   m_Layer: 0
   m_Name: Chest_Front_1
   m_TagString: object
@@ -266,18 +266,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &3497341725993647759
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7557685827397718423}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7c4da0c753237447b438532cbb18857, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1185119982388793188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -292,3 +280,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxItemCount: 2
   items: []
+--- !u!114 &2635687351742019245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7557685827397718423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99c1cc0f00e86b945b9951b3d91d54d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RoomTypes: 00000000
+  RoomSubTypes: 01000000
+  ObjectType: 4
+  PlacementType: 0
+  Width: 1
+  Height: 1
+  lookStrings:
+  - NOT IMPLEMENTED

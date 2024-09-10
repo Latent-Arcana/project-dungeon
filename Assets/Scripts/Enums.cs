@@ -21,9 +21,9 @@ public static class Enums
 
     public enum RoomSubType
     {
-
-        Library = 0,
+        Undefined = 0,
         Treasure = 1,
+        Library = 2,
         None = 3,
         Armory = 4,
         Dining = 5
@@ -31,6 +31,7 @@ public static class Enums
 
     public enum ObjectType
     {
+        Undefined = 0,
         Bookshelf,
         Candle,
         Debris,

@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 344201217202336288}
   - component: {fileID: 2783835529191084822}
   - component: {fileID: 2609404153136306900}
-  - component: {fileID: 518880645814037115}
+  - component: {fileID: -4324655053843801933}
   m_Layer: 0
   m_Name: Bed_Vertical_1
   m_TagString: object
@@ -265,7 +265,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &518880645814037115
+--- !u!114 &-4324655053843801933
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -274,6 +274,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 8614793181711624519}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 298445385f309434e93bf5f9f34f3981, type: 3}
+  m_Script: {fileID: 11500000, guid: 99c1cc0f00e86b945b9951b3d91d54d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RoomTypes: 01000000
+  RoomSubTypes: 03000000
+  ObjectType: 5
+  PlacementType: 0
+  Width: 1
+  Height: 1
+  lookStrings:
+  - NOT IMPLEMENTED
