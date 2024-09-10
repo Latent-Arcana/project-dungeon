@@ -333,7 +333,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78a683c074be3fa46b0777e29836f879, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seed: 0
+  seed: 601769669
   bspController: {fileID: 0}
   dangerGenerator: {fileID: 0}
   objectGenerator: {fileID: 0}
@@ -1569,7 +1569,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: befe491c5d9571b4c94ddb99347bf8f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Stats_Manager: {fileID: 11400000, guid: 49cdfbab4b8796a41af4e48e5ee7d3d5, type: 2}
+  _HP: 10
+  _SPD: 2
+  _AGI: 1
 --- !u!114 &1311237463
 MonoBehaviour:
   m_ObjectHideFlags: 0

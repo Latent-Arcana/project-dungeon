@@ -251,12 +251,12 @@ SpriteRenderer:
   m_SortingLayerID: -293510981
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f15c93c552292fd46ac7dacf322f4473, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8b83279d40bafe648bdea5250b8d6a00, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.64, y: 0.64}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -326,7 +326,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
     oldSize: {x: 1, y: 1}
-    newSize: {x: 0.64, y: 0.64}
+    newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -346,7 +346,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73e8630d5017afa488db0a6ce30e03e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player_Stats: {fileID: 11400000, guid: 49cdfbab4b8796a41af4e48e5ee7d3d5, type: 2}
+  playerStats: {fileID: 0}
+  playerMovement: {fileID: 0}
   room: 0
   id: 0
   playerInRoom: 0
