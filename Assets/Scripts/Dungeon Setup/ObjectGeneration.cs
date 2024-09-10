@@ -214,6 +214,9 @@ public class ObjectGeneration : MonoBehaviour
         public int chestCount;
         public int debrisCount;
         public int bookShelfCount;
+        public int armorStandCount;
+        public int tableCount;
+        public int chairCount;
 
         public ObjectCounts()
         {
@@ -222,6 +225,9 @@ public class ObjectGeneration : MonoBehaviour
             chestCount = 0;
             debrisCount = 0;
             bookShelfCount = 0;
+            armorStandCount = 0;
+            tableCount = 0;
+            chairCount = 0;
         }
 
         public void IncreaseCountByType(Enums.ObjectType objectType, int count)
@@ -231,6 +237,9 @@ public class ObjectGeneration : MonoBehaviour
             else if (objectType == Enums.ObjectType.Candle) { candleCount += count; }
             else if (objectType == Enums.ObjectType.Chest) { chestCount += count; }
             else if (objectType == Enums.ObjectType.Debris) { debrisCount += count; }
+            else if (objectType == Enums.ObjectType.ArmorStand) { armorStandCount += count; }
+            else if (objectType == Enums.ObjectType.Table) { tableCount += count; }
+            else if (objectType == Enums.ObjectType.Chair) { chairCount += count; }
             else
             {
                 return;
@@ -245,6 +254,10 @@ public class ObjectGeneration : MonoBehaviour
             else if (objectType == Enums.ObjectType.Candle) { return candleCount; }
             else if (objectType == Enums.ObjectType.Chest) { return chestCount; }
             else if (objectType == Enums.ObjectType.Debris) { return debrisCount; }
+            else if (objectType == Enums.ObjectType.ArmorStand) { return armorStandCount; }
+            else if (objectType == Enums.ObjectType.Table) { return tableCount; }
+            else if (objectType == Enums.ObjectType.Chair) { return chairCount; }
+
             else
             {
                 return 1000; // huge number if we don't actually have a maximum defined

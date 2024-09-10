@@ -15,6 +15,9 @@ public class ObjectCountManager : ScriptableObject
     public int maxDebrisCount = 4;
     public int maxChestCount = 1;
     public int maxBedCount = 1;
+    public int maxArmorStandCount = 2;
+    public int maxChairCount = 3;
+    public int maxTableCount = 2;
 
 
     public int GetCountAllowedByObjectType(Enums.ObjectType objectType)
@@ -25,6 +28,9 @@ public class ObjectCountManager : ScriptableObject
         else if (objectType == Enums.ObjectType.Candle) { return maxCandleCount; }
         else if (objectType == Enums.ObjectType.Chest) { return maxChestCount; }
         else if (objectType == Enums.ObjectType.Debris) { return maxDebrisCount; }
+        else if (objectType == Enums.ObjectType.ArmorStand) { return maxArmorStandCount; }
+        else if (objectType == Enums.ObjectType.Chair) { return maxChairCount; }
+        else if (objectType == Enums.ObjectType.Table) { return maxTableCount; }
         else
         {
             return 1000; // return a huge number so we just run out of attempts instead of running out of maxCount

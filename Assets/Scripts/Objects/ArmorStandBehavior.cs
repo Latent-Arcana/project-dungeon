@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -12,12 +13,11 @@ public class ArmorStandBehavior : ObjectBehavior
 
 
     public override Enums.PlacementType PlacementType => Enums.PlacementType.Floor;
-
     public override int Width => 1;
 
     public override int Height => 1;
     public override string Look()
     {
-        return "No time to sit, keep pressing onwards.";
+        return "No time to... armor... keep pressing onwards.";
     }
 }

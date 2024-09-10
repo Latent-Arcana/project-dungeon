@@ -172,7 +172,7 @@ public partial class EnemyBehavior : MonoBehaviour
 
     public virtual void AssignStats()
     {
-        enemyStats = new EnemyStats("slug", 10, 1, 2);
+        enemyStats = new EnemyStats("skeleton", 10, 1, 2);
     }
 
     public virtual void Move(Vector3 currentPlayerPosition)
@@ -377,9 +377,25 @@ public partial class EnemyBehavior : MonoBehaviour
 
     public virtual void Die()
     {
+
+        // check to see if we're standing on a corpse
+        Collider2D[] colliders = CheckPositionAll(transform.position);
+
+        foreach(Collider2D collider in colliders){
+            
+            if(collider.tag == "corpse"){
+                // at this point, we know we are trying to spawn a corpse on top of a corpse...
+                
+                // Let's try and spawn on a boundary position
+
+            }
+
+        }
+
         Dungeon_Narrator.AddDungeonNarratorText($"The {enemyStats.EnemyType} died.");
 
         behaviorState = BehaviorState.Dead;
+
 
         gameObject.GetComponent<SpriteRenderer>().enabled = false;
         gameObject.GetComponent<BoxCollider2D>().enabled = false;
@@ -401,6 +417,17 @@ public partial class EnemyBehavior : MonoBehaviour
         Collider2D collision = Physics2D.OverlapCircle(checkPosition + new Vector3(0.5f, 0.5f, 0), 0.25f, mask);
 
         return collision;
+    }
+
+    public Collider2D[] CheckPositionAll(Vector3 checkPosition)
+    {
+
+        LayerMask mask = ~(1 << LayerMask.NameToLayer("ObjectPlacementLayer")); // we want to ignore the placement layer that we used for creating objects  in each scene
+
+        // Check at the origin point of the location we're checking (the center)
+        Collider2D[] collisions = Physics2D.OverlapCircleAll(checkPosition + new Vector3(0.5f, 0.5f, 0), 0.25f, mask);
+
+        return collisions;
     }
 
     public virtual void MoveEnemy(Vector2 direction)
