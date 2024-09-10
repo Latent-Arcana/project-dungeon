@@ -61,9 +61,7 @@ public class DungeonNarrator : MonoBehaviour
         if (text_narrator.text.Length > 2500)
         {
             text_narrator.text = text_narrator.text.Remove(2000);
-        }
-        //TODO: This should eventually be truncated so it doesn't overflow the string variable
-        
+        }        
     }
 
 

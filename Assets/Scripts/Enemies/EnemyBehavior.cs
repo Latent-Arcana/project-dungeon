@@ -25,6 +25,7 @@ public partial class EnemyBehavior : MonoBehaviour
     protected DungeonNarrator dungeonNarrator;
 
     public int room;
+    public int currentRoom;
     public int id;
     public bool playerInRoom;
     public Vector2Int originPoint;
@@ -76,6 +77,8 @@ public partial class EnemyBehavior : MonoBehaviour
         behaviorState = BehaviorState.Idle;
 
         playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
+
+        currentRoom = room;
 
     }
 
@@ -156,10 +159,11 @@ public partial class EnemyBehavior : MonoBehaviour
 
     private void PlayerMovement_OnRoomEnter(object sender, InputArgs e)
     {
-        if (e.roomId == room && e.type == "enter")
+        if ((e.roomId == room || e.roomId == currentRoom) && e.type == "enter")
         {
             playerInRoom = true;
         }
+
         else
         {
             playerInRoom = false;
@@ -417,7 +421,7 @@ public partial class EnemyBehavior : MonoBehaviour
         }
 
 
-        else if (checkCollision.name == "Player")
+        else if (checkCollision.name == "Player" || checkCollision.tag == "enemy")
         {
             return;
         }
@@ -454,24 +458,23 @@ public partial class EnemyBehavior : MonoBehaviour
 
     }
 
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "room" && collision.gameObject.GetComponentInParent<Room>() != null && gameObject != null && behaviorState != BehaviorState.Dead)
         {
             behaviorState = BehaviorState.Idle;
+            currentRoom = collision.gameObject.GetComponentInParent<Room>().roomId;
         }
     }
-
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "room" && collision.gameObject.GetComponentInParent<Room>() != null && gameObject != null && behaviorState != BehaviorState.Dead)
         {
             behaviorState = BehaviorState.Fleeing;
+            currentRoom = collision.gameObject.GetComponentInParent<Room>().roomId;
         }
     }
-
 
 }
 
