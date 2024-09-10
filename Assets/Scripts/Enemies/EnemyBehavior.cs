@@ -10,6 +10,7 @@ using UnityEngine.Tilemaps;
 using static UnityEngine.GraphicsBuffer;
 using static DungeonNarrator;
 using static PlayerMovement;
+using Unity.Collections;
 
 public class EnemyBehavior : MonoBehaviour
 {
@@ -29,6 +30,7 @@ public class EnemyBehavior : MonoBehaviour
     public int id;
     public bool playerInRoom;
     public Vector2Int originPoint;
+    public bool standingOnCorpse;
 
     public event EventHandler<AttackArgs> OnAttack;
 
@@ -79,6 +81,7 @@ public class EnemyBehavior : MonoBehaviour
         playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
 
         currentRoom = room;
+        standingOnCorpse = false;
 
     }
 
@@ -378,33 +381,56 @@ public class EnemyBehavior : MonoBehaviour
     public virtual void Die()
     {
 
-        // check to see if we're standing on a corpse
-        Collider2D[] colliders = CheckPositionAll(transform.position);
-
-        foreach(Collider2D collider in colliders){
-            
-            if(collider.tag == "corpse"){
-                // at this point, we know we are trying to spawn a corpse on top of a corpse...
-                
-                // Let's try and spawn on a boundary position
-
-            }
-
-        }
-
         Dungeon_Narrator.AddDungeonNarratorText($"The {enemyStats.EnemyType} died.");
 
         behaviorState = BehaviorState.Dead;
 
 
         gameObject.GetComponent<SpriteRenderer>().enabled = false;
-        gameObject.GetComponent<BoxCollider2D>().enabled = false;
 
         GameObject corpse = gameObject.transform.GetChild(1).gameObject; // the Enemy Corpse object
+
+
+        // check to see if we're standing on a corpse
+        if (standingOnCorpse)
+        {
+            Debug.Log("WTF");
+            foreach (Vector3 borderPosition in borderPositions)
+            {
+                if (CheckPosition(borderPosition) == null)
+                {
+                    corpse.transform.position = borderPosition;
+                }
+            }
+        }
+
+        gameObject.GetComponent<BoxCollider2D>().enabled = false;
+
         corpse.SetActive(true);
 
+        // foreach (Collider2D collider in colliders)
+        // {
+        //     if (collider.gameObject.tag == "corpse")
+        //     {
+        //         // at this point, we know we are trying to spawn a corpse on top of a corpse...
 
-        //Destroy(this.gameObject);
+        //         // Let's try and spawn on a boundary position
+        //         foreach (Vector3 borderPosition in borderPositions)
+        //         {
+        //             Collider2D[] coll = CheckPositionAll(borderPosition);
+
+        //             Debug.Log(coll[0].name);
+        //             if (CheckPositionAll(borderPosition).Length == 0)
+        //             {
+        //                 corpse.SetActive(true);
+        //                 corpse.transform.position = borderPosition;
+        //             }
+        //         }
+        //     }
+        // }
+
+        //corpse.SetActive(true);
+
 
     }
 
@@ -487,10 +513,17 @@ public class EnemyBehavior : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+
         if (collision.gameObject.tag == "room" && collision.gameObject.GetComponentInParent<Room>() != null && gameObject != null && behaviorState != BehaviorState.Dead)
         {
             behaviorState = BehaviorState.Idle;
             currentRoom = collision.gameObject.GetComponentInParent<Room>().roomId;
+        }
+
+        if (collision.gameObject.tag == "corpse")
+        {
+            // we are standing on a corpse. We need to move our body to another location
+            standingOnCorpse = true;
         }
     }
 
@@ -500,6 +533,12 @@ public class EnemyBehavior : MonoBehaviour
         {
             behaviorState = BehaviorState.Fleeing;
             currentRoom = collision.gameObject.GetComponentInParent<Room>().roomId;
+        }
+
+        if (collision.gameObject.tag == "corpse")
+        {
+            // we are standing on a corpse. We need to move our body to another location
+            standingOnCorpse = false;
         }
     }
 
