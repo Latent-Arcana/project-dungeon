@@ -7,5 +7,5 @@
     color: rgb(195, 155, 155);
     margin-right: 10px;
     margin-left: 10px;
-    font-size: 36px;
+    font-size: 24px;
 }
