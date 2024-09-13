@@ -16,8 +16,7 @@ public class DontDestroyGenerator : MonoBehaviour
     void Awake()
     {
 
-        if (SceneManager.GetActiveScene().name == "Main Menu")
-        {
+  
 
             //check for existing object with name
             GameObject objs = GameObject.Find("Audio");
@@ -30,14 +29,14 @@ public class DontDestroyGenerator : MonoBehaviour
             }
 
 
-        }
+      
 
-        else if (SceneManager.GetActiveScene().name == "BSP")
+        if (SceneManager.GetActiveScene().name == "BSP")
         {
 
-            GameObject objs = GameObject.Find("GameStats");
+            //GameObject audioObj = ;
 
-            if (objs == null)
+            if (GameObject.Find("GameStats") == null)
             {
                 GameObject obj = Instantiate(gameScoreController);
                 obj.name = "GameStats";
