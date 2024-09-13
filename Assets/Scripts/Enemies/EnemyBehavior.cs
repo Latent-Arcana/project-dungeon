@@ -391,45 +391,32 @@ public class EnemyBehavior : MonoBehaviour
         GameObject corpse = gameObject.transform.GetChild(1).gameObject; // the Enemy Corpse object
 
 
-        // check to see if we're standing on a corpse
-        if (standingOnCorpse)
+        // check to see if we're standing on a corpse. If not, it's easy
+        if (!standingOnCorpse)
         {
-            Debug.Log("WTF");
+
+            gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            corpse.SetActive(true);
+
+        }
+
+        // Otherwise let's check each border position and only spawn the corpse if there's an available spot
+        else
+        {
             foreach (Vector3 borderPosition in borderPositions)
             {
                 if (CheckPosition(borderPosition) == null)
                 {
                     corpse.transform.position = borderPosition;
+
+                    gameObject.GetComponent<BoxCollider2D>().enabled = false;
+
+                    corpse.SetActive(true);
                 }
             }
         }
 
-        gameObject.GetComponent<BoxCollider2D>().enabled = false;
 
-        corpse.SetActive(true);
-
-        // foreach (Collider2D collider in colliders)
-        // {
-        //     if (collider.gameObject.tag == "corpse")
-        //     {
-        //         // at this point, we know we are trying to spawn a corpse on top of a corpse...
-
-        //         // Let's try and spawn on a boundary position
-        //         foreach (Vector3 borderPosition in borderPositions)
-        //         {
-        //             Collider2D[] coll = CheckPositionAll(borderPosition);
-
-        //             Debug.Log(coll[0].name);
-        //             if (CheckPositionAll(borderPosition).Length == 0)
-        //             {
-        //                 corpse.SetActive(true);
-        //                 corpse.transform.position = borderPosition;
-        //             }
-        //         }
-        //     }
-        // }
-
-        //corpse.SetActive(true);
 
 
     }

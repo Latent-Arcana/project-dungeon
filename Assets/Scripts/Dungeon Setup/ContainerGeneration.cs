@@ -11,12 +11,15 @@ public class ContainerGeneration : MonoBehaviour
     public static ContainerGeneration Container_Generator { get; set; }
 
     // Singleton pattern
-    void Awake(){
+    void Awake()
+    {
         // SINGLETON CHECK
-        if(Container_Generator == null){
+        if (Container_Generator == null)
+        {
             Container_Generator = this;
         }
-        else if(Container_Generator != this){
+        else if (Container_Generator != this)
+        {
             Destroy(this);
         }
 
@@ -27,7 +30,8 @@ public class ContainerGeneration : MonoBehaviour
     /// Initalized by Game Setup so that we can use the data loaded by ItemLoader safely without any dependencies between the two singletons
     /// </summary>
     /// <param name="initializationItems"></param>
-    public void InitializeContainerGenerator(List<Item> initializationItems){
+    public void InitializeContainerGenerator(List<Item> initializationItems)
+    {
         itemsDatabase = initializationItems;
         return;
     }
@@ -41,7 +45,8 @@ public class ContainerGeneration : MonoBehaviour
     /// <param name="maxItemCount"></param>
     /// <returns></returns>
 
-    public List<Item> GetItems(ObjectType objectType, int maxItemCount){
+    public List<Item> GetItems(ObjectType objectType, int maxItemCount)
+    {
 
         int itemCount = 0;
 
@@ -51,17 +56,26 @@ public class ContainerGeneration : MonoBehaviour
 
         possibleItems.Shuffle(); // let's randomly shuffle our possible items!
 
-        // loop through each possible item and see if we can include that object
-        foreach(Item possibleItem in possibleItems){
+        float dropItems = UnityEngine.Random.value;
 
-            float dropChance = UnityEngine.Random.value; // returns float between 0 and 1
+        if (dropItems >= 0.95f)
+        {
+            // loop through each possible item and see if we can include that object
+            foreach (Item possibleItem in possibleItems)
+            {
 
-            if(dropChance >= .75f && itemCount <= maxItemCount){
-                itemCount++;
-                resultItems.Add(possibleItem);
+                float dropChance = UnityEngine.Random.value; // returns float between 0 and 1
+
+                if (dropChance >= 0.95f && itemCount <= maxItemCount)
+                {
+                    itemCount++;
+                    resultItems.Add(possibleItem);
+                }
             }
+
         }
-        
+
+
 
         return resultItems;
 
@@ -72,29 +86,34 @@ public class ContainerGeneration : MonoBehaviour
     /// </summary>
     /// <param name="objectType"></param>
     /// <returns></returns>
-    private List<Item> GetPossibleItems(ObjectType objectType){
+    private List<Item> GetPossibleItems(ObjectType objectType)
+    {
 
         List<Item> possibleItems = new List<Item>();
 
         // A chest can have anything that isn't a book or a special item
-        if(objectType == ObjectType.Chest){
+        if (objectType == ObjectType.Chest)
+        {
 
             possibleItems = itemsDatabase.Where(x => x.type != ItemType.Book && x.type != ItemType.Special).ToList();
 
         }
 
         // A bookshelf can only have books
-        else if(objectType == ObjectType.Bookshelf){
+        else if (objectType == ObjectType.Bookshelf)
+        {
 
             possibleItems = itemsDatabase.Where(x => x.type != ItemType.Book && x.type != ItemType.Special).ToList();
 
         }
 
-        else if(objectType == ObjectType.Corpse){
+        else if (objectType == ObjectType.Corpse)
+        {
             possibleItems = itemsDatabase;
         }
 
-        else{
+        else
+        {
             possibleItems = null;
         }
 
