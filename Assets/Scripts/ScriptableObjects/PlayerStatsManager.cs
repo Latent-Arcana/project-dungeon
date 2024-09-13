@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 
 [CreateAssetMenu(menuName = "Stats Manager")]
@@ -31,17 +32,27 @@ public class PlayerStatsManager : ScriptableObject
         get { return _AGI; }
     }
 
-    public event EventHandler OnHealthChanged;
+    public event EventHandler<HP_Args> OnHealthChanged;
 
+    public class HP_Args : EventArgs
+    {
+        public int newValue;
+    }
     private void OnEnable()
     {
         _HP = _MAX_HP;
     }
 
-    public void ModifyHP(int amount)
+    public void Initialize(){
+        _HP = 10;
+        _SPD = 2;
+        _AGI = 1;
+    }
+
+    public void SetHP(int newValue)
     {
-        _HP += amount;
-        OnHealthChanged.Invoke(this, EventArgs.Empty);
+        _HP = newValue;
+        OnHealthChanged.Invoke(this, new HP_Args { newValue = newValue });
     }
 
 }

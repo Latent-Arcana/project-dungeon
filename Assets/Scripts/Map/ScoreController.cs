@@ -134,20 +134,11 @@ public class ScoreController : MonoBehaviour
 
         //pass the stats to the object that won't be destroyed
         gameStats.SetScore(Numerator, Denominator);
+        
+        GameObject.Find("BackgroundAudio").GetComponent<BackgroundMusicController>().ChangeSongForScene("GameOver");
 
         //call game over scene
         SceneManager.LoadScene("GameOver");
-    }
 
-    /// <summary>
-    /// TODO: DELETE THIS. ONLY FOR TESTING. PUT THIS IN PLAYER DEATH
-    /// </summary>
-    void Update()
-    {
-        if (Input.GetKeyUp(KeyCode.Keypad9))
-        {
-            GameObject.Find("BackgroundAudio").GetComponent<BackgroundMusicController>().ChangeSongForScene("GameOver");
-            SetFinalScore();
-        }
-    }
+    }   
 }

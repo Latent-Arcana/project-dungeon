@@ -8,7 +8,7 @@
         </ui:VisualElement>
     </ui:VisualElement>
     <ui:VisualElement name="Stats" class="window-background-color" style="flex-grow: 1; height: 10%; background-image: url(&quot;project://database/Assets/Sprites/Rooms/Walls_Testing/dungeon-floor.png?fileID=2800000&amp;guid=fbeb65c950ade98478953810c4543e94&amp;type=3#dungeon-floor&quot;); -unity-background-image-tint-color: rgb(39, 11, 13); flex-direction: row;">
-        <ui:Label tabindex="-1" text="HP: 0" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Health" class="narrator-stat-text" />
+        <ui:Label tabindex="-1" text="HP: 10" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Health" class="narrator-stat-text" />
         <ui:Label tabindex="-1" text="AP: 0" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Armor" class="narrator-stat-text" />
         <ui:Label tabindex="-1" text="STR: 0" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Strength" class="narrator-stat-text" />
         <ui:Label tabindex="-1" text="AGI: 0" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Agility" class="narrator-stat-text" />

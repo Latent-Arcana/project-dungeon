@@ -13,11 +13,15 @@ public class PlayerStats : MonoBehaviour
 
     public PlayerStatsManager Stats_Manager;
 
+    private ScoreController scoreController;
+
+    void Awake(){
+        scoreController = GameObject.Find("ScoreController").GetComponent<ScoreController>();
+    }
+
     void OnEnable()
     {
-
         Stats_Manager.OnHealthChanged += Stats_ModifyHP;
-
     }
 
     void OnDisable()
@@ -25,8 +29,11 @@ public class PlayerStats : MonoBehaviour
         Stats_Manager.OnHealthChanged -= Stats_ModifyHP;
     }
 
-    private void Stats_ModifyHP(object sender, EventArgs e)
+    private void Stats_ModifyHP(object sender, HP_Args e)
     {
+        if(e.newValue <= 0){
+            scoreController.SetFinalScore();
+        }
         StartCoroutine(IncomingDamageFlash());
     }
 

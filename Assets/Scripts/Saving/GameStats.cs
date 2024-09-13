@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class GameStats : MonoBehaviour
 {
+    
+    public PlayerStatsManager Player_Stats;
+
     [SerializeField]
     private int Numerator;
     [SerializeField]
@@ -33,6 +36,11 @@ public class GameStats : MonoBehaviour
     public void NewGame(){
         SetScore(0,0);
         SetRoomsVisited(0);
+        InitializePlayer(); // TODO: Continue to extend
+    }
+
+    public void InitializePlayer(){
+        Player_Stats.Initialize();
     }
 
     /// <summary>

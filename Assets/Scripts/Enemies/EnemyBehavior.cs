@@ -294,7 +294,7 @@ public class EnemyBehavior : MonoBehaviour
             if (enemyStats.SPD > Player_Stats.SPD)
             {
 
-                Player_Stats.ModifyHP(_enemyDamageDealt);
+                Player_Stats.SetHP(Player_Stats.HP + _enemyDamageDealt);
                 enemyStats.HP += _playerDamageDealt;
                 StartCoroutine(IncomingDamageFlash());
 
@@ -325,7 +325,7 @@ public class EnemyBehavior : MonoBehaviour
                 }
                 else
                 {
-                    Player_Stats.ModifyHP(_enemyDamageDealt);
+                    Player_Stats.SetHP(Player_Stats.HP + _enemyDamageDealt);
 
                     Dungeon_Narrator.AddDungeonNarratorText($"You attacked the {enemyStats.EnemyType} for {Mathf.Abs(_playerDamageDealt)} damage");
                     Dungeon_Narrator.AddDungeonNarratorText($"The {enemyStats.EnemyType} attacked you for {Mathf.Abs(_enemyDamageDealt)} damage.");
@@ -339,7 +339,7 @@ public class EnemyBehavior : MonoBehaviour
         else
         {
             Dungeon_Narrator.AddDungeonNarratorText($"The {enemyStats.EnemyType} attacked you for {Mathf.Abs(_enemyDamageDealt)} damage.");
-            Player_Stats.ModifyHP(_enemyDamageDealt);
+            Player_Stats.SetHP(Player_Stats.HP + _enemyDamageDealt);
         }
 
         //if(SPD > Player_Stats.SPD)

@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45609ed8ab43e3043844216b53190436, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player_Stats: {fileID: 11400000, guid: 49cdfbab4b8796a41af4e48e5ee7d3d5, type: 2}
   Numerator: 0
   Denominator: 0
 --- !u!114 &2215021889738765494
