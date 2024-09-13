@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
+using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -25,6 +26,7 @@ public class InventoryUI : MonoBehaviour
     public PlayerInventory playerInventoryBehavior;
 
     private List<Item> inventory;
+    private List<Toggle> equipmentToggles = new List<Toggle>();
 
     private void Awake()
     {
@@ -50,9 +52,14 @@ public class InventoryUI : MonoBehaviour
             //get all 10 buttons and assign them actions (delegates)
             //button += function
             Button butt = row.Q("Drop").Children().First() as Button;
+            Toggle togg = row.Q("Equipped").Children().First() as Toggle;
 
+            equipmentToggles.Add(togg); // there should be 10 of these
+
+            butt.text = "drop";
             int j = tempCounter;
             butt.clicked += () => DropItem(j);
+
             tempCounter++;
 
         }
@@ -103,6 +110,53 @@ public class InventoryUI : MonoBehaviour
             if (i < inventory.Count)
             {
 
+                // only show the EQUIP button if the item is equippable
+                if (inventory[i].type != Enums.ItemType.Armor && inventory[i].type != Enums.ItemType.Weapon)
+                {
+                    equipmentToggles[i].visible = false;
+                }
+
+                // else
+                // {
+
+                //     if (inventory[i].type == Enums.ItemType.Armor && equipmentToggles[i].value == true)
+                //     {
+
+                //         if(playerInventoryBehavior.equippedArmor != -1) { equipmentToggles[playerInventoryBehavior.equippedArmor].value = false; }
+
+                //         playerInventoryBehavior.equippedArmor = i;
+
+                //     }
+                //     else if (inventory[i].type == Enums.ItemType.Weapon && equipmentToggles[i].value == true)
+                //     {
+                //         if(playerInventoryBehavior.equippedWeapon != -1) { equipmentToggles[playerInventoryBehavior.equippedWeapon].value = false; }
+
+                //         playerInventoryBehavior.equippedWeapon = i;
+                //     }
+
+                    
+
+                    // else
+                    // {
+                    //     if (inventory[i].type == Enums.ItemType.Armor)
+                    //     {
+
+                    //         playerInventoryBehavior.equippedArmor = -1;
+
+                    //     }
+                    //     else if (inventory[i].type == Enums.ItemType.Weapon)
+                    //     {
+                    //         playerInventoryBehavior.equippedWeapon = -1;
+                    //     }
+                    // }
+                //}
+
+
+
+
+
+
+
                 rows[i].style.visibility = Visibility.Visible;
 
                 //assign img
@@ -120,6 +174,8 @@ public class InventoryUI : MonoBehaviour
             }
             else
             {
+               // equipmentToggles[i].value = false; // make sure we unequip whatever we drop
+
                 rows[i].style.visibility = Visibility.Hidden;
 
                 //assign empty img ?
@@ -167,6 +223,50 @@ public class InventoryUI : MonoBehaviour
 
         playerInventoryBehavior.RemoveItem(index);
     }
+
+    // private void EquipItem(int index, Enums.ItemType type)
+    // {
+    //     Debug.Log("trying to equip " + inventory[index].itemName + " at " + index);
+
+    //     if (type == Enums.ItemType.Armor)
+    //     {
+    //         int indexToSwap = playerInventoryBehavior.EquipArmor(index);
+
+    //         if (indexToSwap >= 0)
+    //         {
+    //             Debug.Log("swapping out " + inventory[indexToSwap].itemName + " at " + indexToSwap);
+    //             equipmentToggles[indexToSwap].value = !equipmentToggles[indexToSwap].value;
+
+    //         }
+    //     }
+
+    //     else if (type == Enums.ItemType.Weapon)
+    //     {
+    //         int indexToSwap = playerInventoryBehavior.EquipWeapon(index);
+
+    //         if (indexToSwap >= 0)
+    //         {
+    //             Debug.Log("swapping out " + inventory[indexToSwap].itemName + " at " + indexToSwap);
+    //             equipmentToggles[indexToSwap].value = !equipmentToggles[indexToSwap].value;
+
+    //         }
+    //     }
+    // }
+
+    // private void UnequipItem(int index, Enums.ItemType type)
+    // {
+
+    //     if (type == Enums.ItemType.Armor)
+    //     {
+    //         playerInventoryBehavior.UnequipArmor(index);
+
+    //     }
+
+    //     else if (type == Enums.ItemType.Weapon)
+    //     {
+    //         playerInventoryBehavior.UnequipWeapon(index);
+    //     }
+    // }
 
     public void Event_OnInventoryEnter(object sender, EventArgs e)
     {

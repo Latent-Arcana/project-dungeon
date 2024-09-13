@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,12 @@ public class PlayerInventory : MonoBehaviour
 
     [SerializeField]
     public int maxItemCount; // this is where we're going to define how many items at a time can spawn in our object
+
+    [SerializeField]
+    public PlayerStatsManager Player_Stats;
+
+    public int equippedArmor = -1;
+    public int equippedWeapon = -1;
 
     public List<Item> items;
 
@@ -30,6 +37,51 @@ public class PlayerInventory : MonoBehaviour
         items.Add(item);
     }
 
+    public int EquipArmor(int index)
+    {
+        int indexToSwap = equippedArmor;
+        equippedArmor = index;
+
+        return indexToSwap;
+    }
+
+    public void UnequipArmor(int index)
+    {
+
+        if (equippedArmor == index)
+        {
+            equippedArmor = -1;
+
+        }
+
+    }
+
+    public int EquipWeapon(int index)
+    {
+        int indexToSwap = equippedWeapon;
+        equippedWeapon = index;
+
+        return indexToSwap;
+    }
+
+    public void UnequipWeapon(int index)
+    {
+        if (equippedWeapon == index)
+        {
+            equippedWeapon = -1;
+
+        }
+    }
+
+    public void Start(){
+        equippedArmor = -1;
+        equippedWeapon = -1;
+    }
+
+    public void Update(){
+        Debug.Log("Armor: " + equippedArmor);
+        Debug.Log("Weapon: " + equippedWeapon);
+    }
 
     // DEBUG
     public void InventoryDebugPrint()

@@ -1589,6 +1589,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxItemCount: 10
+  Player_Stats: {fileID: 11400000, guid: 49cdfbab4b8796a41af4e48e5ee7d3d5, type: 2}
+  equippedArmor: 0
+  equippedWeapon: 0
   items: []
 --- !u!1 &1477042718
 GameObject:

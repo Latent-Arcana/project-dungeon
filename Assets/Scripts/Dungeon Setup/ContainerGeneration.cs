@@ -58,7 +58,7 @@ public class ContainerGeneration : MonoBehaviour
 
         float dropItems = UnityEngine.Random.value;
 
-        if (dropItems >= 0.95f)
+        if (dropItems >= 0.5f)
         {
             // loop through each possible item and see if we can include that object
             foreach (Item possibleItem in possibleItems)
@@ -66,7 +66,7 @@ public class ContainerGeneration : MonoBehaviour
 
                 float dropChance = UnityEngine.Random.value; // returns float between 0 and 1
 
-                if (dropChance >= 0.95f && itemCount <= maxItemCount)
+                if (dropChance >= 0.75f && itemCount <= maxItemCount)
                 {
                     itemCount++;
                     resultItems.Add(possibleItem);
