@@ -54,7 +54,9 @@ public class DungeonNarrator : MonoBehaviour
 
     private void Stats_HealthChanged(object sender, PlayerStatsManager.HP_Args e)
     {
-        hp_text.text = "HP: " + e.newValue;
+        // if we just died...
+        if (e.newValue <= 0) { hp_text.text = "HP: -"; }
+        else { hp_text.text = "HP: " + e.newValue; }
     }
 
     public void SetDungeonNarratorText(string message)

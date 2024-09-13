@@ -33,6 +33,17 @@ public class PlayerMovement : MonoBehaviour
     public PlayerInventory playerInventory;
 
 
+    [SerializeField]
+    private Sprite rightFacingSprite;
+    
+    [SerializeField]
+    private Sprite leftFacingSprite;
+    private bool isRightFacing = true;
+
+
+    private SpriteRenderer spriteRenderer;
+
+
     //public Vector2 moveDirection = Vector2.zero;
 
     void Awake()
@@ -44,6 +55,8 @@ public class PlayerMovement : MonoBehaviour
         input = GameObject.Find("InputController").GetComponent<InputController>();
 
         playerInventory = gameObject.GetComponent<PlayerInventory>();
+
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
 
     }
 
@@ -68,6 +81,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (this.gameObject != null)
         {
+            FlipDirection(e.direction);
             MovePlayer(e.direction);
         }
     }
@@ -90,6 +104,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void MovePlayer(Vector2 direction)
     {
+
         Vector2 checkPosition = (Vector2)player.transform.position + new Vector2(0.5f, 0.5f) + new Vector2(direction.x, direction.y);
 
         LayerMask mask = ~(1 << LayerMask.NameToLayer("ObjectPlacementLayer")); // we want to ignore the placement layer that we used for creating objects  in each scene
@@ -154,6 +169,15 @@ public class PlayerMovement : MonoBehaviour
         if (OnPlayerMoved != null)
         {
             OnPlayerMoved.Invoke(this, new MovementArgs { position = gameObject.transform.position, prevPosition = previousPosition, intendedDirection = direction });
+        }
+    }
+
+    public void FlipDirection(Vector2 direction)
+    {
+        if ((direction == Vector2.right && !isRightFacing) || (direction == Vector2.left && isRightFacing))
+        {
+            spriteRenderer.sprite = (spriteRenderer.sprite == rightFacingSprite) ? leftFacingSprite : rightFacingSprite;
+            isRightFacing = !isRightFacing;
         }
     }
 

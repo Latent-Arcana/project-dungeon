@@ -78,6 +78,7 @@ public class GameOverUI : MonoBehaviour
 
     public void StartNewGame()
     {
+        backgroundMusicController.ChangeSongForScene("BSP");
         gameStats.NewGame();
         SceneManager.LoadScene("Loading");
     }
