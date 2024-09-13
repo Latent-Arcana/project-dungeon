@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro.EditorUtilities;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
@@ -10,7 +11,7 @@ using UnityEngine.SceneManagement;
 [CreateAssetMenu(menuName = "Stats Manager")]
 public class PlayerStatsManager : ScriptableObject
 {
-    private int _MAX_HP = 10, _HP = 10, _SPD = 2, _AGI = 1;
+    private int _MAX_HP = 10, _HP = 10, _SPD = 2, _AGI = 1, _STR = 1, _AP = 0;
 
     public int MAX_HP
     {
@@ -32,6 +33,16 @@ public class PlayerStatsManager : ScriptableObject
         get { return _AGI; }
     }
 
+    public int STR
+    {
+        get { return _STR; }
+    }
+
+    public int AP
+    {
+        get { return _AP; }
+    }
+
     public event EventHandler<HP_Args> OnHealthChanged;
 
     public class HP_Args : EventArgs
@@ -47,6 +58,8 @@ public class PlayerStatsManager : ScriptableObject
         _HP = 10;
         _SPD = 2;
         _AGI = 1;
+        _STR = 1;
+        _AP = 0;
     }
 
     public void SetHP(int newValue)

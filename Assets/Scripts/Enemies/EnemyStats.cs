@@ -1,7 +1,7 @@
 public class EnemyStats
 {
     protected string _type;
-    protected int _HP, _SPD, _AGI;
+    protected int _HP, _SPD, _AGI, _STR, _AP;
 
     public string EnemyType
     {
@@ -27,12 +27,27 @@ public class EnemyStats
         set { _AGI = value; }
     }
 
-    public EnemyStats(string type, int HP, int SPD, int AGI)
+    public int STR
+    {
+        get { return _STR; }
+        set { _STR = value; }
+    }
+
+    public int AP
+    {
+        get { return _AP; }
+        set { _AP = value; }
+    }
+
+
+    public EnemyStats(string type, int HP, int SPD, int AGI, int STR, int AP)
     {
         _type = type;
         _HP = HP;
         _SPD = SPD;
         _AGI = AGI;
+        _STR = STR;
+        _AP = AP;
     }
 }
 

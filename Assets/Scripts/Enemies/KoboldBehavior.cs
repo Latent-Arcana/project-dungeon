@@ -9,6 +9,6 @@ public class KoboldBehavior : EnemyBehavior
     // Pyromancer is a TEST enemy. Test your overrides here!
     public override void AssignStats()
     {
-        enemyStats = new EnemyStats("kobold", 6, 2, 2);
+        enemyStats = new EnemyStats("kobold", 6, 2, 2, 1, 0);
     }
 }

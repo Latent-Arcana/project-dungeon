@@ -175,7 +175,7 @@ public class EnemyBehavior : MonoBehaviour
 
     public virtual void AssignStats()
     {
-        enemyStats = new EnemyStats("skeleton", 10, 1, 2);
+        enemyStats = new EnemyStats("skeleton", 10, 1, 2, 1, 1);
     }
 
     public virtual void Move(Vector3 currentPlayerPosition)
@@ -285,97 +285,106 @@ public class EnemyBehavior : MonoBehaviour
     }
     public virtual void Attack(bool playerAttacked)
     {
-        int _enemyDamageDealt = UnityEngine.Random.Range(-5, 0);
-        int _playerDamageDealt = UnityEngine.Random.Range(-5, 0);
+        bool playerMissed = false;
+        bool enemyMissed = false;
+
+        // FACTOR IN STRENGTH/DAMAGE
+        int _enemyDamageDealt = (-1 * (enemyStats.STR + UnityEngine.Random.Range(1, 3))) + Player_Stats.AP;
+        int _playerDamageDealt = (-1 * (Player_Stats.STR + UnityEngine.Random.Range(1, 3))) + enemyStats.AP;
+
+        // FACTOR IN AGI/DODGE
+        int _playerHitChance = UnityEngine.Random.Range(1, 100);
+        int _enemyHitChance = UnityEngine.Random.Range(1, 100);
+
+        int _enemyHitThreshold = Player_Stats.AGI * 5;
+        int _playerHitThreshold = enemyStats.AGI * 5;
+
+        if (_playerHitChance <= _playerHitThreshold)
+        {
+            Debug.Log($"the player missed, after rolling a {_playerHitChance} against an AGI threshold of {_playerHitThreshold}");
+            // PLAYER MISSED ENEMY
+            playerMissed = true;
+            Dungeon_Narrator.AddDungeonNarratorText($"The {enemyStats.EnemyType} dodged your attack!");
+        }
+
+        if (_enemyHitChance <= _enemyHitThreshold)
+        {
+            Debug.Log($"the enemy missed, after rolling a {_enemyHitChance} against an AGI threshold of {_enemyHitThreshold}");
+            // ENEMY MISSED PLAYER
+            enemyMissed = true;
+            Dungeon_Narrator.AddDungeonNarratorText("You dodged the enemy's attack!");
+        }
+
+
 
         if (playerAttacked)
         {
+
             // if the enemy attacks first
             if (enemyStats.SPD > Player_Stats.SPD)
             {
-
-                Player_Stats.SetHP(Player_Stats.HP + _enemyDamageDealt);
-                enemyStats.HP += _playerDamageDealt;
-                StartCoroutine(IncomingDamageFlash());
-
-                // if the enemy was reduced to 0 HP, they die
-                if (enemyStats.HP <= 0)
+                if (!enemyMissed)
                 {
-                    Dungeon_Narrator.AddDungeonNarratorText($"You attacked the {enemyStats.EnemyType} for {Mathf.Abs(_playerDamageDealt)} damage");
-                    Die();
+                    Player_Stats.SetHP(Player_Stats.HP + _enemyDamageDealt);
                 }
 
-                else
+                if (!playerMissed)
                 {
-                    Dungeon_Narrator.AddDungeonNarratorText($"The {enemyStats.EnemyType} attacked you for {Mathf.Abs(_enemyDamageDealt)} damage.");
-                    Dungeon_Narrator.AddDungeonNarratorText($"You attacked the {enemyStats.EnemyType} for {Mathf.Abs(_playerDamageDealt)} damage");
+                    enemyStats.HP += _playerDamageDealt;
+                    StartCoroutine(IncomingDamageFlash());
+                    // if the enemy was reduced to 0 HP, they die
+                    if (enemyStats.HP <= 0)
+                    {
+                        Dungeon_Narrator.AddDungeonNarratorText($"You attacked the {enemyStats.EnemyType} for {Mathf.Abs(_playerDamageDealt)} damage");
+                        Die();
+                    }
+
+                    else
+                    {
+                        Dungeon_Narrator.AddDungeonNarratorText($"The {enemyStats.EnemyType} attacked you for {Mathf.Abs(_enemyDamageDealt)} damage.");
+                        Dungeon_Narrator.AddDungeonNarratorText($"You attacked the {enemyStats.EnemyType} for {Mathf.Abs(_playerDamageDealt)} damage");
+                    }
                 }
+
             }
             // if the player attacks first
             else
             {
-                enemyStats.HP += _playerDamageDealt;
-                StartCoroutine(IncomingDamageFlash());
-
-                // if the enemy was reduced to 0 HP, they die
-                if (enemyStats.HP <= 0)
+                if (!playerMissed)
                 {
-                    Dungeon_Narrator.AddDungeonNarratorText($"You attacked the {enemyStats.EnemyType} for {Mathf.Abs(_playerDamageDealt)} damage");
-                    Die();
+                    enemyStats.HP += _playerDamageDealt;
+                    StartCoroutine(IncomingDamageFlash());
+
+                    // if the enemy was reduced to 0 HP, they die
+                    if (enemyStats.HP <= 0)
+                    {
+                        Dungeon_Narrator.AddDungeonNarratorText($"You attacked the {enemyStats.EnemyType} for {Mathf.Abs(_playerDamageDealt)} damage");
+                        Die();
+                    }
                 }
-                else
+
+                if (!enemyMissed)
                 {
                     Player_Stats.SetHP(Player_Stats.HP + _enemyDamageDealt);
 
                     Dungeon_Narrator.AddDungeonNarratorText($"You attacked the {enemyStats.EnemyType} for {Mathf.Abs(_playerDamageDealt)} damage");
                     Dungeon_Narrator.AddDungeonNarratorText($"The {enemyStats.EnemyType} attacked you for {Mathf.Abs(_enemyDamageDealt)} damage.");
+
                 }
-
-
             }
 
         }
 
         else
         {
-            Dungeon_Narrator.AddDungeonNarratorText($"The {enemyStats.EnemyType} attacked you for {Mathf.Abs(_enemyDamageDealt)} damage.");
-            Player_Stats.SetHP(Player_Stats.HP + _enemyDamageDealt);
+            if (!enemyMissed)
+            {
+                Dungeon_Narrator.AddDungeonNarratorText($"The {enemyStats.EnemyType} attacked you for {Mathf.Abs(_enemyDamageDealt)} damage.");
+                Player_Stats.SetHP(Player_Stats.HP + _enemyDamageDealt);
+            }
+
         }
 
-        //if(SPD > Player_Stats.SPD)
-        //{
-        //    Player_Stats.HP -= _enemyDamageDealt;
-        //    HP -= _playerDamageDealt;
-
-        //    string _combatText = "You were attacked by enemy " + id + " for " + _enemyDamageDealt + " damage. You dealt " + _playerDamageDealt + " damage to the enemy.";
-        //    Dungeon_Narrator.AddDungeonNarratorText(_combatText);
-
-        //    // TODO: Create a player took damage event that would actually register everywhere
-        //    Player_Movement.StartCoroutine(Player_Movement.IncomingDamageFlash());
-
-        //    StartCoroutine(IncomingDamageFlash());
-
-        //}
-        //else
-        //{
-        //    string _combatText = "You attacked enemy " + id + " for " + _enemyDamageDealt + " damage. The enemy dealt " + _enemyDamageDealt + " damage to you.";
-
-        //    HP -= _playerDamageDealt;
-
-        //    if (HP <= 0)
-        //    {
-        //        Die();
-        //    }
-
-        //    Player_Stats.HP -= _enemyDamageDealt;
-        //    Dungeon_Narrator.AddDungeonNarratorText(_combatText);
-
-        //    // TODO: Create a player took damage event that would actually register everywhere
-        //    Player_Movement.StartCoroutine(Player_Movement.IncomingDamageFlash());
-
-        //    StartCoroutine(IncomingDamageFlash());
-
-        //}
     }
 
     public virtual void Die()
