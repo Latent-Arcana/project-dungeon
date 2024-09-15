@@ -61,6 +61,12 @@ public class PlayerInventory : MonoBehaviour
         items.Add(item);
     }
 
+    public void Consume(int index)
+    {
+        Debug.Log("consume the " + items[index].itemName);
+        EquipStatsChange(items[index]);
+    }
+
     public void EquipItem(int index)
     {
 
@@ -112,14 +118,32 @@ public class PlayerInventory : MonoBehaviour
     {
         return equippedWeapon;
     }
-
     public void EquipStatsChange(Item item)
     {
+        bool useMaxHealth = true;
+        if (item.type == Enums.ItemType.Consumable)
+        {
+            Consumable consumable = item as Consumable;
+
+            if (!consumable.permanent)
+            {
+                useMaxHealth = false;
+            }
+        }
 
         Player_Stats.SetAGI(item.AGI + Player_Stats.AGI);
         Player_Stats.SetSPD(item.SPD + Player_Stats.SPD);
         Player_Stats.SetSTR(item.STR + Player_Stats.STR);
-        Player_Stats.SetMaxHP(item.HP + Player_Stats.MAX_HP);
+
+        if (useMaxHealth)
+        {
+            Player_Stats.SetMaxHP(item.HP + Player_Stats.MAX_HP);
+        }
+        else
+        {
+            Player_Stats.SetHP(item.HP + Player_Stats.HP);
+
+        }
 
         if (item.type == Enums.ItemType.Armor)
         {

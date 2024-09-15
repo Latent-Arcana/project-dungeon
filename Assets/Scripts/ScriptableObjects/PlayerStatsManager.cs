@@ -12,11 +12,11 @@ using UnityEngine.SceneManagement;
 public class PlayerStatsManager : ScriptableObject
 {
     // PLAYER BASE STATS
-    int BASE_MAX_HP = 10;
-    int BASE_AGI = 1;
-    int BASE_SPD = 2;
-    int BASE_STR = 1;
-    int BASE_AP = 0;
+    public int BASE_MAX_HP = 10;
+    public int BASE_AGI = 1;
+    public int BASE_SPD = 2;
+    public int BASE_STR = 1;
+    public int BASE_AP = 0;
 
     private int _MAX_HP = 10, _HP = 10, _SPD = 2, _AGI = 1, _STR = 1, _AP = 0;
 
@@ -60,6 +60,7 @@ public class PlayerStatsManager : ScriptableObject
     public class Stats_Args : EventArgs
     {
         public int newValue;
+        public int oldValue;
     }
     private void OnEnable()
     {
@@ -78,38 +79,44 @@ public class PlayerStatsManager : ScriptableObject
 
     public void SetHP(int newValue)
     {
+        int temp = _HP;
         _HP = newValue;
-        OnHealthChanged.Invoke(this, new Stats_Args { newValue = newValue });
+        OnHealthChanged.Invoke(this, new Stats_Args { newValue = newValue, oldValue = temp });
     }
 
     public void SetAGI(int newValue)
     {
+        int temp = _AGI;
         _AGI = newValue;
-        OnAgilityChanged.Invoke(this, new Stats_Args { newValue = newValue });
+        OnAgilityChanged.Invoke(this, new Stats_Args { newValue = newValue, oldValue = temp });
     }
 
     public void SetSTR(int newValue)
     {
+        int temp = _STR;
         _STR = newValue;
-        OnStrengthChanged.Invoke(this, new Stats_Args { newValue = newValue });
+        OnStrengthChanged.Invoke(this, new Stats_Args { newValue = newValue, oldValue = temp });
     }
 
     public void SetSPD(int newValue)
     {
+        int temp = _SPD;
         _SPD = newValue;
-        OnSpeedChanged.Invoke(this, new Stats_Args { newValue = newValue });
+        OnSpeedChanged.Invoke(this, new Stats_Args { newValue = newValue, oldValue = temp });
     }
 
     public void SetAP(int newValue)
     {
+        int temp = _AP;
         _AP = newValue;
-        OnArmorPointsChanged.Invoke(this, new Stats_Args { newValue = newValue });
+        OnArmorPointsChanged.Invoke(this, new Stats_Args { newValue = newValue, oldValue = temp });
     }
 
     public void SetMaxHP(int newValue)
     {
+        int temp = _MAX_HP;
         _MAX_HP = newValue;
-        OnMaxHealthChanged.Invoke(this, new Stats_Args { newValue = newValue });
+        OnMaxHealthChanged.Invoke(this, new Stats_Args { newValue = newValue, oldValue = temp });
     }
 
 }

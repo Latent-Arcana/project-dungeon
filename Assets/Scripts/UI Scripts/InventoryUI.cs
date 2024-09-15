@@ -122,16 +122,16 @@ public class InventoryUI : MonoBehaviour
             {
 
                 // only show the EQUIP button if the item is equippable
-                if (inventory[i].type != Enums.ItemType.Armor && inventory[i].type != Enums.ItemType.Weapon)
-                {
-                    equipmentToggles[i].visible = false;
-                }
+                // if (inventory[i].type != Enums.ItemType.Armor && inventory[i].type != Enums.ItemType.Weapon)
+                // {
+                //     equipmentToggles[i].visible = false;
+                // }
 
-                // only show the EQUIP button if the item is equippable
-                if (inventory[i].type == Enums.ItemType.Armor || inventory[i].type == Enums.ItemType.Weapon)
-                {
-                    equipmentToggles[i].visible = true;
-                }
+                // // only show the EQUIP button if the item is equippable
+                // if (inventory[i].type == Enums.ItemType.Armor || inventory[i].type == Enums.ItemType.Weapon)
+                // {
+                //     equipmentToggles[i].visible = true;
+                // }
 
                 rows[i].style.visibility = Visibility.Visible;
 
@@ -152,7 +152,7 @@ public class InventoryUI : MonoBehaviour
             {
                 rows[i].style.visibility = Visibility.Hidden;
 
-                equipmentToggles[i].visible = false;
+                //equipmentToggles[i].visible = false;
 
                 //assign empty img ?
                 //Sprite sprt = Resources.Load<Sprite>(inventory[i].image);
@@ -243,6 +243,10 @@ public class InventoryUI : MonoBehaviour
                 }
 
             }
+
+            else if(equippedItem.type == Enums.ItemType.Consumable){
+                Consume(index);
+            }
         }
 
         else
@@ -250,6 +254,11 @@ public class InventoryUI : MonoBehaviour
             Unequip(index);
         }
 
+    }
+
+    private void Consume(int index){
+        playerInventoryBehavior.Consume(index);
+        DropItem(index);
     }
     private void DropItem(int index)
     {

@@ -16,6 +16,7 @@ public class PlayerCameraBehavior : MonoBehaviour
     private Camera mapCamera;
     private Camera mainCamera;
 
+
     void Awake()
     {
         player = GameObject.Find("Player");
@@ -67,5 +68,6 @@ public class PlayerCameraBehavior : MonoBehaviour
             this.gameObject.transform.position = new Vector3(playerX, playerY, cameraZ);
         }
     }
+
 
 }

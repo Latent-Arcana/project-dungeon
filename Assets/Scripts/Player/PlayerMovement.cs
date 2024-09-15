@@ -35,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField]
     private Sprite rightFacingSprite;
-    
+
     [SerializeField]
     private Sprite leftFacingSprite;
     private bool isRightFacing = true;

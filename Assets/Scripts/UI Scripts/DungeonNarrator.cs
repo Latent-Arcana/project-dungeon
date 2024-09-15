@@ -92,8 +92,7 @@ public class DungeonNarrator : MonoBehaviour
     private void Stats_HealthChanged(object sender, PlayerStatsManager.Stats_Args e)
     {
         // if we just died...
-        if (e.newValue <= 0) { hp_text.text = "HP: -"; }
-        else { hp_text.text = "HP: " + e.newValue; }
+        hp_text.text = "HP: " + e.newValue;
 
         hp_text.text += " / " + Player_Stats.MAX_HP;
     }

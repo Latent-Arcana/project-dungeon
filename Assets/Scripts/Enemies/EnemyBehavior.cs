@@ -175,7 +175,7 @@ public class EnemyBehavior : MonoBehaviour
 
     public virtual void AssignStats()
     {
-        enemyStats = new EnemyStats("skeleton", 10, 1, 2, 1, 1);
+        enemyStats = new EnemyStats("skeleton", 5, 1, 2, 1, 1);
     }
 
     public virtual void Move(Vector3 currentPlayerPosition)
@@ -288,7 +288,7 @@ public class EnemyBehavior : MonoBehaviour
         bool playerMissed = false;
         bool enemyMissed = false;
 
-        // FACTOR IN STRENGTH/DAMAGE
+        // FACTOR IN STRENGTH/DAMAGE/AP, AND A SMALL AMOUNT OF RANDOM VARIABILITY
         int _enemyDamageDealt = (-1 * (enemyStats.STR + UnityEngine.Random.Range(1, 3))) + Player_Stats.AP;
         int _playerDamageDealt = (-1 * (Player_Stats.STR + UnityEngine.Random.Range(1, 3))) + enemyStats.AP;
 
