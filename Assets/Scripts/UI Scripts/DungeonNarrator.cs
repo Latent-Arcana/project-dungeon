@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
@@ -19,6 +20,10 @@ public class DungeonNarrator : MonoBehaviour
     private TextElement text_narrator;
 
     private TextElement hp_text;
+    private TextElement ap_text;
+    private TextElement agi_text;
+    private TextElement spd_text;
+    private TextElement str_text;
 
     private void Awake()
     {
@@ -36,29 +41,87 @@ public class DungeonNarrator : MonoBehaviour
         narrator_doc = this.GetComponent<UIDocument>();
         text_narrator = narrator_doc.rootVisualElement.Q("DungeonNarratorText") as TextElement;
         text_narrator_top = narrator_doc.rootVisualElement.Q("DungeonNarratorTextTop") as TextElement;
-        hp_text = narrator_doc.rootVisualElement.Q("Health") as TextElement;
+
+
+        InitializeStatsUI();
+
 
         ClearDungeonNarratorText();
+
+    }
+
+    private void InitializeStatsUI()
+    {
+        hp_text = narrator_doc.rootVisualElement.Q("Health") as TextElement;
+        hp_text.text = "HP: " + Player_Stats.HP + " / " + Player_Stats.MAX_HP;
+
+        ap_text = narrator_doc.rootVisualElement.Q("Armor") as TextElement;
+        ap_text.text = "AP: " + Player_Stats.AP;
+
+        agi_text = narrator_doc.rootVisualElement.Q("Agility") as TextElement;
+        agi_text.text = "AGI: " + Player_Stats.AGI;
+
+        str_text = narrator_doc.rootVisualElement.Q("Strength") as TextElement;
+        str_text.text = "STR: " + Player_Stats.STR;
+
+        spd_text = narrator_doc.rootVisualElement.Q("Speed") as TextElement;
+        spd_text.text = "SPD: " + Player_Stats.SPD;
 
     }
 
     private void OnEnable()
     {
         Player_Stats.OnHealthChanged += Stats_HealthChanged;
+        Player_Stats.OnAgilityChanged += Stats_AgilityChanged;
+        Player_Stats.OnStrengthChanged += Stats_StrengthChanged;
+        Player_Stats.OnSpeedChanged += Stats_SpeedChanged;
+        Player_Stats.OnArmorPointsChanged += Stats_ArmorPointsChanged;
+        Player_Stats.OnMaxHealthChanged += Stats_MaxHealthChanged;
     }
 
     private void OnDisable()
     {
         Player_Stats.OnHealthChanged -= Stats_HealthChanged;
+        Player_Stats.OnAgilityChanged -= Stats_AgilityChanged;
+        Player_Stats.OnStrengthChanged -= Stats_StrengthChanged;
+        Player_Stats.OnSpeedChanged -= Stats_SpeedChanged;
+        Player_Stats.OnArmorPointsChanged -= Stats_ArmorPointsChanged;
+        Player_Stats.OnMaxHealthChanged -= Stats_MaxHealthChanged;
     }
 
-    private void Stats_HealthChanged(object sender, PlayerStatsManager.HP_Args e)
+    private void Stats_HealthChanged(object sender, PlayerStatsManager.Stats_Args e)
     {
         // if we just died...
         if (e.newValue <= 0) { hp_text.text = "HP: -"; }
         else { hp_text.text = "HP: " + e.newValue; }
+
+        hp_text.text += " / " + Player_Stats.MAX_HP;
     }
 
+    private void Stats_MaxHealthChanged(object sender, PlayerStatsManager.Stats_Args e){
+        string hp_text_prepend = hp_text.text.Split('/')[0];
+
+        hp_text.text = hp_text_prepend + "/ " + e.newValue;
+    }
+
+
+    private void Stats_AgilityChanged(object sender, PlayerStatsManager.Stats_Args e)
+    {
+        agi_text.text = "AGI: " + e.newValue;
+    }
+
+    private void Stats_StrengthChanged(object sender, PlayerStatsManager.Stats_Args e)
+    {
+        str_text.text = "STR: " + e.newValue;
+    }
+
+    private void Stats_SpeedChanged(object sender, PlayerStatsManager.Stats_Args e){
+        spd_text.text = "SPD: " + e.newValue;
+    }
+
+    private void Stats_ArmorPointsChanged(object sender, PlayerStatsManager.Stats_Args e){
+        ap_text.text = "AP: " + e.newValue;
+    }
     public void SetDungeonNarratorText(string message)
     {
         text_narrator_top.text = message;

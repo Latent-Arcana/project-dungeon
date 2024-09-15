@@ -34,7 +34,7 @@ public class PlayerStats : MonoBehaviour
         Stats_Manager.OnHealthChanged -= Stats_ModifyHP;
     }
 
-    private void Stats_ModifyHP(object sender, HP_Args e)
+    private void Stats_ModifyHP(object sender, Stats_Args e)
     {
         if(e.newValue <= 0 && !DEBUG_GOD_MODE){
 

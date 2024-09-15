@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 // TODO: Use inheritance so that our PlayerInventory and ContainerBehavior don't have so much code dupe between them
@@ -74,6 +75,7 @@ public class PlayerInventory : MonoBehaviour
         {
 
             equippedArmor = index;
+            EquipStatsChange(items[index]);
         }
 
 
@@ -81,6 +83,7 @@ public class PlayerInventory : MonoBehaviour
         else if (items[index].type == Enums.ItemType.Weapon)
         {
             equippedWeapon = index;
+            EquipStatsChange(items[index]);
         }
 
     }
@@ -89,11 +92,13 @@ public class PlayerInventory : MonoBehaviour
     {
         if (index == equippedArmor)
         {
+            UnequipStatsChange(items[index]);
             equippedArmor = -1;
         }
 
         else if (index == equippedWeapon)
         {
+            UnequipStatsChange(items[index]);
             equippedWeapon = -1;
         }
     }
@@ -108,8 +113,34 @@ public class PlayerInventory : MonoBehaviour
         return equippedWeapon;
     }
 
+    public void EquipStatsChange(Item item)
+    {
 
+        Player_Stats.SetAGI(item.AGI + Player_Stats.AGI);
+        Player_Stats.SetSPD(item.SPD + Player_Stats.SPD);
+        Player_Stats.SetSTR(item.STR + Player_Stats.STR);
+        Player_Stats.SetMaxHP(item.HP + Player_Stats.MAX_HP);
 
+        if (item.type == Enums.ItemType.Armor)
+        {
+            Armor armor = item as Armor;
+            Player_Stats.SetAP(armor.AP + Player_Stats.AP);
+        }
+    }
+
+    public void UnequipStatsChange(Item item)
+    {
+        Player_Stats.SetAGI(Player_Stats.AGI - item.AGI);
+        Player_Stats.SetSPD(Player_Stats.SPD - item.SPD);
+        Player_Stats.SetSTR(Player_Stats.STR - item.STR);
+        Player_Stats.SetMaxHP(Player_Stats.MAX_HP - item.HP);
+
+        if (item.type == Enums.ItemType.Armor)
+        {
+            Armor armor = item as Armor;
+            Player_Stats.SetAP(Player_Stats.AP - armor.AP);
+        }
+    }
 
     public void Start()
     {
@@ -119,8 +150,8 @@ public class PlayerInventory : MonoBehaviour
 
     public void Update()
     {
-       // Debug.Log("Armor: " + equippedArmor);
-       // Debug.Log("Weapon: " + equippedWeapon);
+        // Debug.Log("Armor: " + equippedArmor);
+        // Debug.Log("Weapon: " + equippedWeapon);
     }
 
     // DEBUG
