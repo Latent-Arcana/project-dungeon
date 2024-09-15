@@ -116,7 +116,7 @@ public class ItemLoader : MonoBehaviour
             armor.STR = data.STR;
             armor.AP = data.AP;
             armor.HP = data.HP;
-            armor.type = Enums.ItemType.Weapon;
+            armor.type = Enums.ItemType.Armor;
             armor.image = data.image;
             armor.statsText = FormatStatsText(data.AGI, data.STR, data.SPD, data.AP, data.HP);
 

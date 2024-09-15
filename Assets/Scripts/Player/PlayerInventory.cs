@@ -29,6 +29,16 @@ public class PlayerInventory : MonoBehaviour
         if (items.Count > index)
         {
             items.RemoveAt(index);
+
+            if(equippedArmor == index){
+
+                equippedArmor = -1;
+            }
+
+            else if(equippedWeapon == index){
+                equippedWeapon = -1;
+
+            }
         }
     }
 
@@ -37,48 +47,65 @@ public class PlayerInventory : MonoBehaviour
         items.Add(item);
     }
 
-    public int EquipArmor(int index)
+    public void EquipItem(int index)
     {
-        int indexToSwap = equippedArmor;
-        equippedArmor = index;
 
-        return indexToSwap;
+        // out of bounds check
+        if (index < 0 || index >= items.Count)
+        {
+            return;
+        }
+
+        // if we're handling armor
+        if (items[index].type == Enums.ItemType.Armor)
+        {
+
+            equippedArmor = index;
+        }
+
+
+        // if we're handling weapons
+        else if (items[index].type == Enums.ItemType.Weapon)
+        {
+            equippedWeapon = index;
+        }
+
     }
 
-    public void UnequipArmor(int index)
+    public void HandleUnequip(int index)
     {
-
-        if (equippedArmor == index)
+        if (index == equippedArmor)
         {
             equippedArmor = -1;
-
         }
 
-    }
-
-    public int EquipWeapon(int index)
-    {
-        int indexToSwap = equippedWeapon;
-        equippedWeapon = index;
-
-        return indexToSwap;
-    }
-
-    public void UnequipWeapon(int index)
-    {
-        if (equippedWeapon == index)
+        else if (index == equippedWeapon)
         {
             equippedWeapon = -1;
-
         }
     }
 
-    public void Start(){
+    public int GetEquippedArmor()
+    {
+        return equippedArmor;
+    }
+
+    public int GetEquippedWeapon()
+    {
+        return equippedWeapon;
+    }
+
+
+
+
+    public void Start()
+    {
         equippedArmor = -1;
         equippedWeapon = -1;
     }
 
-    public void Update(){
+    public void Update()
+    {
         Debug.Log("Armor: " + equippedArmor);
         Debug.Log("Weapon: " + equippedWeapon);
     }

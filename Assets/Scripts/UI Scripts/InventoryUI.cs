@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
+using UnityEditor.Build.Player;
 using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -54,7 +55,17 @@ public class InventoryUI : MonoBehaviour
             Button butt = row.Q("Drop").Children().First() as Button;
             Toggle togg = row.Q("Equipped").Children().First() as Toggle;
 
+            int toggleIndex = equipmentToggles.Count;
+
+            togg.RegisterValueChangedCallback(evt =>
+            {
+
+                OnToggleValueChanged(evt.newValue, toggleIndex);
+
+            });
+
             equipmentToggles.Add(togg); // there should be 10 of these
+
 
             butt.text = "drop";
             int j = tempCounter;
@@ -77,6 +88,7 @@ public class InventoryUI : MonoBehaviour
     void Update()
     {
         InventoryRefresh();
+        //EquipmentRefresh();
     }
 
     private void OnEnable()
@@ -116,47 +128,6 @@ public class InventoryUI : MonoBehaviour
                     equipmentToggles[i].visible = false;
                 }
 
-                // else
-                // {
-
-                //     if (inventory[i].type == Enums.ItemType.Armor && equipmentToggles[i].value == true)
-                //     {
-
-                //         if(playerInventoryBehavior.equippedArmor != -1) { equipmentToggles[playerInventoryBehavior.equippedArmor].value = false; }
-
-                //         playerInventoryBehavior.equippedArmor = i;
-
-                //     }
-                //     else if (inventory[i].type == Enums.ItemType.Weapon && equipmentToggles[i].value == true)
-                //     {
-                //         if(playerInventoryBehavior.equippedWeapon != -1) { equipmentToggles[playerInventoryBehavior.equippedWeapon].value = false; }
-
-                //         playerInventoryBehavior.equippedWeapon = i;
-                //     }
-
-                    
-
-                    // else
-                    // {
-                    //     if (inventory[i].type == Enums.ItemType.Armor)
-                    //     {
-
-                    //         playerInventoryBehavior.equippedArmor = -1;
-
-                    //     }
-                    //     else if (inventory[i].type == Enums.ItemType.Weapon)
-                    //     {
-                    //         playerInventoryBehavior.equippedWeapon = -1;
-                    //     }
-                    // }
-                //}
-
-
-
-
-
-
-
                 rows[i].style.visibility = Visibility.Visible;
 
                 //assign img
@@ -174,8 +145,6 @@ public class InventoryUI : MonoBehaviour
             }
             else
             {
-               // equipmentToggles[i].value = false; // make sure we unequip whatever we drop
-
                 rows[i].style.visibility = Visibility.Hidden;
 
                 //assign empty img ?
@@ -216,7 +185,60 @@ public class InventoryUI : MonoBehaviour
         }
     }
 
+    private void OnToggleValueChanged(bool equipped, int index)
+    {
+        // first let's just figure out what we're even trying to check
+        Item equippedItem = inventory[index];
 
+        int currentArmor = playerInventoryBehavior.GetEquippedArmor();
+        int currentWeapon = playerInventoryBehavior.GetEquippedWeapon();
+
+        if (equipped == true)
+        {
+            if (equippedItem.type == Enums.ItemType.Armor)
+            {
+                // we can just straight up equip this
+                if (currentArmor == -1)
+                {
+                    Equip(index);
+                }
+
+                else
+                {
+                    equipmentToggles[currentArmor].value = false; // unequip screen
+                    Unequip(currentArmor); // unequip data
+
+                    Equip(index);
+                }
+
+            }
+            else if (equippedItem.type == Enums.ItemType.Weapon)
+            {
+                // we can just straight up equip this
+                if (currentWeapon == -1)
+                {
+                    Equip(index);
+                }
+
+                else
+                {
+                    equipmentToggles[currentWeapon].value = false; // unequip screen
+                    Unequip(currentWeapon); // unequip data
+
+                    Equip(index);
+                }
+
+            }
+        }
+
+        else
+        {
+            Unequip(index);
+        }
+
+
+
+    }
     private void DropItem(int index)
     {
         Debug.Log(index);
@@ -224,49 +246,16 @@ public class InventoryUI : MonoBehaviour
         playerInventoryBehavior.RemoveItem(index);
     }
 
-    // private void EquipItem(int index, Enums.ItemType type)
-    // {
-    //     Debug.Log("trying to equip " + inventory[index].itemName + " at " + index);
+    private void Equip(int index)
+    {
+        playerInventoryBehavior.EquipItem(index);
 
-    //     if (type == Enums.ItemType.Armor)
-    //     {
-    //         int indexToSwap = playerInventoryBehavior.EquipArmor(index);
+    }
 
-    //         if (indexToSwap >= 0)
-    //         {
-    //             Debug.Log("swapping out " + inventory[indexToSwap].itemName + " at " + indexToSwap);
-    //             equipmentToggles[indexToSwap].value = !equipmentToggles[indexToSwap].value;
-
-    //         }
-    //     }
-
-    //     else if (type == Enums.ItemType.Weapon)
-    //     {
-    //         int indexToSwap = playerInventoryBehavior.EquipWeapon(index);
-
-    //         if (indexToSwap >= 0)
-    //         {
-    //             Debug.Log("swapping out " + inventory[indexToSwap].itemName + " at " + indexToSwap);
-    //             equipmentToggles[indexToSwap].value = !equipmentToggles[indexToSwap].value;
-
-    //         }
-    //     }
-    // }
-
-    // private void UnequipItem(int index, Enums.ItemType type)
-    // {
-
-    //     if (type == Enums.ItemType.Armor)
-    //     {
-    //         playerInventoryBehavior.UnequipArmor(index);
-
-    //     }
-
-    //     else if (type == Enums.ItemType.Weapon)
-    //     {
-    //         playerInventoryBehavior.UnequipWeapon(index);
-    //     }
-    // }
+    private void Unequip(int index)
+    {
+        playerInventoryBehavior.HandleUnequip(index);
+    }
 
     public void Event_OnInventoryEnter(object sender, EventArgs e)
     {
