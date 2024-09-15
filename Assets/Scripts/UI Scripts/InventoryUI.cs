@@ -88,7 +88,6 @@ public class InventoryUI : MonoBehaviour
     void Update()
     {
         InventoryRefresh();
-        //EquipmentRefresh();
     }
 
     private void OnEnable()
@@ -128,6 +127,12 @@ public class InventoryUI : MonoBehaviour
                     equipmentToggles[i].visible = false;
                 }
 
+                // only show the EQUIP button if the item is equippable
+                if (inventory[i].type == Enums.ItemType.Armor || inventory[i].type == Enums.ItemType.Weapon)
+                {
+                    equipmentToggles[i].visible = true;
+                }
+
                 rows[i].style.visibility = Visibility.Visible;
 
                 //assign img
@@ -146,6 +151,8 @@ public class InventoryUI : MonoBehaviour
             else
             {
                 rows[i].style.visibility = Visibility.Hidden;
+
+                equipmentToggles[i].visible = false;
 
                 //assign empty img ?
                 //Sprite sprt = Resources.Load<Sprite>(inventory[i].image);
@@ -187,8 +194,15 @@ public class InventoryUI : MonoBehaviour
 
     private void OnToggleValueChanged(bool equipped, int index)
     {
+
+        // Before we do anything, we should check if this is a drop event. 
+        // We don't want to pass the index in if we are just dropping this item
+        if(index >= inventory.Count){
+            return;
+        }
         // first let's just figure out what we're even trying to check
         Item equippedItem = inventory[index];
+
 
         int currentArmor = playerInventoryBehavior.GetEquippedArmor();
         int currentWeapon = playerInventoryBehavior.GetEquippedWeapon();
@@ -236,12 +250,14 @@ public class InventoryUI : MonoBehaviour
             Unequip(index);
         }
 
-
-
     }
     private void DropItem(int index)
     {
-        Debug.Log(index);
+        // if the item was equipped, let's unequip it to update the screen
+        if (equipmentToggles[index].value == true)
+        {
+            equipmentToggles[index].value = false;
+        }
 
         playerInventoryBehavior.RemoveItem(index);
     }

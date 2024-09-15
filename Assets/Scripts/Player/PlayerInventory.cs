@@ -30,14 +30,27 @@ public class PlayerInventory : MonoBehaviour
         {
             items.RemoveAt(index);
 
-            if(equippedArmor == index){
+            if (equippedArmor == index)
+            {
 
                 equippedArmor = -1;
             }
 
-            else if(equippedWeapon == index){
+            else if (equippedWeapon == index)
+            {
                 equippedWeapon = -1;
 
+            }
+
+            // now let's move our indices too
+            if (index < equippedArmor)
+            {
+                equippedArmor -= 1;
+            }
+
+            if (index < equippedWeapon)
+            {
+                equippedWeapon -= 1;
             }
         }
     }
@@ -106,8 +119,8 @@ public class PlayerInventory : MonoBehaviour
 
     public void Update()
     {
-        Debug.Log("Armor: " + equippedArmor);
-        Debug.Log("Weapon: " + equippedWeapon);
+       // Debug.Log("Armor: " + equippedArmor);
+       // Debug.Log("Weapon: " + equippedWeapon);
     }
 
     // DEBUG
