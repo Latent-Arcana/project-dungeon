@@ -10,9 +10,6 @@ public class InputController : MonoBehaviour
     private GameObject player;
 
     private bool movementEnabled = true;
-    private bool pauseMenuOpen = false;
-    private bool mapOpen = false;
-    private bool inventoryOpen = false;
 
     private Vector3 playerPosition;
 
@@ -20,6 +17,9 @@ public class InputController : MonoBehaviour
     public event EventHandler<InputArgs> OnInput;
     public event EventHandler OnMapEnter;
     public event EventHandler OnInventoryEnter;
+    public event EventHandler OnMenuEnter;
+
+    public InputState currentInputState = InputState.Gameplay;
 
     // Passing in the dirction to the event will allow us to send movement data to the player and enemies
     public class InputArgs : EventArgs
@@ -28,14 +28,15 @@ public class InputController : MonoBehaviour
     }
 
     //TODO: implement this in the M and I key if statements, and move enum to the enums file
-    public enum InputState{
+    public enum InputState
+    {
         Gameplay,
         MapMenu,
         PauseMenu,
         InventoryMenu
     }
 
-    
+
     void Start()
     {
         //get player
@@ -79,55 +80,141 @@ public class InputController : MonoBehaviour
 
         }
 
-        //Map only usable when not in the menu
-        if (Input.GetKeyUp(KeyCode.M) && !pauseMenuOpen)
+
+        //Menu and UI controls
+
+        if (Input.GetKeyUp(KeyCode.Escape))
         {
-            ToggleMap();
+            //Enter Pause Menu
+            if (currentInputState == InputState.Gameplay)
+            {
+                PauseGame();
+            }
+
+            //Exit Pause Menu
+            else if (currentInputState == InputState.PauseMenu)
+            {
+                ClosePauseMenu();
+            }
+
+            //Exit Inventory Screen
+            else if (currentInputState == InputState.InventoryMenu)
+            {
+                CloseInventory();
+            }
+
+            //Exit Map Screen
+            else if (currentInputState == InputState.MapMenu)
+            {
+                CloseMap();
+            }
 
         }
 
-        //Inventory only usable when not in the menu
-        if (Input.GetKeyUp(KeyCode.I) && !pauseMenuOpen)
+        else if (Input.GetKeyUp(KeyCode.I))
         {
-            ToggleInventory();
+            //return to gameplay from Inv
+            if (currentInputState == InputState.InventoryMenu)
+            {
+                CloseInventory();
+            }
 
+            //open inv
+            else if (currentInputState == InputState.MapMenu)
+            {
+                //close map but dont return to gameplay
+                OnMapEnter.Invoke(this, EventArgs.Empty); //throw event to MapMenuUI to toggle UI element
+
+                //open Inv
+                OpenInventory();
+            }
+
+            else if (currentInputState == InputState.Gameplay)
+            {
+                OpenInventory();
+            }
         }
 
-        //Note: Esc Key input is still located in the MainMenuController file
+        else if (Input.GetKeyUp(KeyCode.M))
+        {
+            //return to gameplay from Map
+            if (currentInputState == InputState.MapMenu)
+            {
+                CloseMap();
+            }
+
+            //open inv
+            else if (currentInputState == InputState.InventoryMenu)
+            {
+                //close inv but dont return to gameplay
+                OnInventoryEnter.Invoke(this, EventArgs.Empty); //throw event to InventoryUI to toggle UI element
+
+                //open Map
+                OpenMap();
+            }
+
+            else if (currentInputState == InputState.Gameplay)
+            {
+                OpenMap();
+            }
+        }
+
     }
 
+
+    //Functions to toggle game state, UI elements, and movement
+    public void ReturnToGameplay()
+    {
+        currentInputState = InputState.Gameplay;
+        movementEnabled = true;
+    }
+
+    public void PauseGame()
+    {
+        OnMenuEnter.Invoke(this, EventArgs.Empty); //throw event to InventoryUI to toggle UI element
+        currentInputState = InputState.PauseMenu;
+        movementEnabled = false;
+    }
+
+    public void ClosePauseMenu()
+    {
+        OnMenuEnter.Invoke(this, EventArgs.Empty); //throw event to InventoryUI to toggle UI element
+        ReturnToGameplay();
+    }
+
+    public void OpenMap()
+    {
+        OnMapEnter.Invoke(this, EventArgs.Empty); //throw event to MapMenuUI to toggle UI element
+        currentInputState = InputState.MapMenu;
+        movementEnabled = false;
+    }
+
+    public void CloseMap()
+    {
+        OnMapEnter.Invoke(this, EventArgs.Empty); //throw event to MapMenuUI to toggle UI element
+        ReturnToGameplay();
+    }
+
+    public void OpenInventory()
+    {
+        OnInventoryEnter.Invoke(this, EventArgs.Empty); //throw event to InventoryUI to toggle UI element
+        currentInputState = InputState.InventoryMenu;
+        movementEnabled = false;
+
+    }
+
+    public void CloseInventory()
+    {
+        OnInventoryEnter.Invoke(this, EventArgs.Empty); //throw event to InventoryUI to toggle UI element
+        ReturnToGameplay();
+    }
+
+    /// <summary>
+    /// used to toggle the movementEnabled variable, which controlls if the WASD keys are able to move the player
+    /// </summary>
     public void ToggleMovement()
     {
         movementEnabled = !movementEnabled;
     }
-
-    //Called by the MainMenuUI script when the menu is opened
-    public void TogglePauseMenu()
-    {
-        pauseMenuOpen = !pauseMenuOpen;
-
-        //If the menu was just opened and the map was already open, close the map
-        if (pauseMenuOpen && mapOpen)
-        {
-            ToggleMap();
-        }
-    }
-
-    public void ToggleMap()
-    {
-        mapOpen = !mapOpen;
-        //note: this is used for entering and exiting the map
-        //calls the map toggle in MapMenuUI
-        OnMapEnter.Invoke(this, EventArgs.Empty);
-    }
-
-    public void ToggleInventory()
-    {
-        inventoryOpen = !inventoryOpen;
-        //note: this is used for entering and exiting the map
-        //calls the map toggle in MapMenuUI
-        OnInventoryEnter.Invoke(this, EventArgs.Empty);
-    }
-
 
 }

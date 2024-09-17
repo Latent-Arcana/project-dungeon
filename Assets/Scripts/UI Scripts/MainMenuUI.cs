@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
+
 
 
 public class MainMenuUI : MonoBehaviour
@@ -96,13 +98,23 @@ public class MainMenuUI : MonoBehaviour
         else
         {
             backgroundMusicController = GameObject.Find("BackgroundAudio").GetComponent<BackgroundMusicController>();
-
         }
+    }
 
+    private void OnEnable()
+    {
+        if (SceneManager.GetActiveScene().name != "Main Menu")
+        {
+            input.OnMenuEnter += Event_OnMenuEnter;
+        }
+    }
 
-
-
-
+    private void OnDisable()
+    {
+        if (SceneManager.GetActiveScene().name != "Main Menu")
+        {
+            input.OnMenuEnter -= Event_OnMenuEnter;
+        }
     }
 
     private void Start()
@@ -119,17 +131,6 @@ public class MainMenuUI : MonoBehaviour
             backgroundMusicController.ChangeSongForScene("Main Menu");
         }
     }
-
-
-    private void Update()
-    {
-        //Listen for the trigger to pause the game, if not on the Main menu screen
-        if (Input.GetKeyUp(KeyCode.Escape) && SceneManager.GetActiveScene().name != "Main Menu")
-        {
-            TogglePauseMenu();
-        }
-    }
-
 
     //Volume Settings
     private void SetMusicVolume(ChangeEvent<float> ev)
@@ -189,8 +190,6 @@ public class MainMenuUI : MonoBehaviour
     //Pause Menu
     private void TogglePauseMenu()
     {
-        input.ToggleMovement();
-        input.TogglePauseMenu();
         parentContainer.style.display = (parentContainer.style.display == DisplayStyle.Flex) ? DisplayStyle.None : DisplayStyle.Flex;
     }
 
@@ -207,6 +206,7 @@ public class MainMenuUI : MonoBehaviour
         {
             PlayAudioClose();
             TogglePauseMenu();
+            input.currentInputState = InputController.InputState.Gameplay; //this is the only place we change the state of the menus outside of input controller, so we manually set the state
         }
 
     }
@@ -229,6 +229,14 @@ public class MainMenuUI : MonoBehaviour
     {
         menuAudio.clip = audioClose;
         menuAudio.Play();
+    }
+
+    /// <summary>
+    /// Caught in MainMenuUI, Thrown by InputController
+    /// </summary>
+    public void Event_OnMenuEnter(object sender, EventArgs e)
+    {
+        TogglePauseMenu();
     }
 
 }

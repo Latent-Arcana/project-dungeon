@@ -90,7 +90,6 @@ public class InventoryUI : MonoBehaviour
     private void OnEnable()
     {
         input.OnInventoryEnter += Event_OnInventoryEnter;
-
     }
 
     private void OnDisable()
@@ -271,7 +270,6 @@ public class InventoryUI : MonoBehaviour
     private void Equip(int index)
     {
         playerInventoryBehavior.EquipItem(index);
-
     }
 
     private void Unequip(int index)
@@ -281,9 +279,7 @@ public class InventoryUI : MonoBehaviour
 
     public void Event_OnInventoryEnter(object sender, EventArgs e)
     {
-        input.ToggleMovement();
         parentContainer.style.display = (parentContainer.style.display == DisplayStyle.Flex) ? DisplayStyle.None : DisplayStyle.Flex;
-
     }
 
 

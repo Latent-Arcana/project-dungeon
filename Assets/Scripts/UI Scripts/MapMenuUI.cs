@@ -76,10 +76,7 @@ public class MapMenuUI : MonoBehaviour
 
     public void Event_OnMapEnter(object sender, EventArgs e)
     {
-        input.ToggleMovement();
-        OnMapToggle.Invoke(this, EventArgs.Empty);
         parentContainer.style.display = (parentContainer.style.display == DisplayStyle.Flex) ? DisplayStyle.None : DisplayStyle.Flex;
-
     }
 
 }
