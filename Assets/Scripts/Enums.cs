@@ -26,7 +26,9 @@ public static class Enums
         Library = 2,
         None = 3,
         Armory = 4,
-        Dining = 5
+        Dining = 5,
+        Trap = 6,
+        Enemy = 7
     }
 
     public enum ObjectType

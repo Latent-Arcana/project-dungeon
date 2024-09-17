@@ -14,24 +14,18 @@ using Unity.Collections;
 
 public class EnemyBehavior : MonoBehaviour
 {
-
-
     [SerializeField]
     public PlayerStatsManager Player_Stats;
     protected string type;
-
     private PlayerMovement playerMovement;
-
     protected InputController input;
     protected DungeonNarrator dungeonNarrator;
-
     public int room;
     public int currentRoom;
     public int id;
     public bool playerInRoom;
     public Vector2Int originPoint;
     public bool standingOnCorpse;
-
     public event EventHandler<AttackArgs> OnAttack;
 
     [SerializeField]
@@ -59,15 +53,12 @@ public class EnemyBehavior : MonoBehaviour
         Dead
     }
 
-
-
     // 0: Vector3 upPosition;
     // 1: Vector3 downPosition;
     // 2: Vector3 rightPosition;
     // 3: Vector3 leftPosition;
 
     Vector3[] borderPositions = new Vector3[4];
-
 
     public virtual void Awake()
     {
@@ -85,13 +76,11 @@ public class EnemyBehavior : MonoBehaviour
 
     }
 
-
     public virtual void OnEnable()
     {
         playerMovement.OnPlayerMoved += Input_OnPlayerMoved;
         playerMovement.OnRoomEnter += PlayerMovement_OnRoomEnter;
     }
-
 
     public virtual void OnDisable()
     {

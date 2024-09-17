@@ -65,6 +65,7 @@ public class BSPGeneration : MonoBehaviour
 
     public EnemyGeneration Danger_Generator;
     public ObjectGeneration Object_Generator;
+    public TrapGeneration Trap_Generator;
 
     public Partition dungeon;
 
@@ -77,6 +78,7 @@ public class BSPGeneration : MonoBehaviour
         // Get Dungeon Setup
         Danger_Generator = gameObject.GetComponent<EnemyGeneration>();
         Object_Generator = gameObject.GetComponent<ObjectGeneration>();
+        Trap_Generator = gameObject.GetComponent<TrapGeneration>();
 
         // Get the player so we can place them at the correct location
         player = GameObject.Find("Player");
@@ -166,22 +168,28 @@ public class BSPGeneration : MonoBehaviour
                 room.roomType = Enums.RoomType.Safe;
             }
 
-            else if (rand < 60) // Lore
+            else if (rand < 40) // Lore
             {
 
                 room.roomType = Enums.RoomType.Lore;
 
             }
+            // Danger
 
-            else // Danger
+            else if (rand < 60)
             {
-                if (i > 0)
-                {
-                    // Debug.Log("Room " + allRooms[i].roomId + " is a danger room defined at: (" + allRooms[i].x + ", " + allRooms[i].y + ")");
-                    room.roomType = Enums.RoomType.Danger;
-                    // Place Enemies
-                    Danger_Generator.GenerateEnemies(allRooms[i]);
-                }
+                room.roomType = Enums.RoomType.Danger;
+                Trap_Generator.GenerateTrap(allRooms[i]);
+            }
+
+            else
+            {
+
+                // Debug.Log("Room " + allRooms[i].roomId + " is a danger room defined at: (" + allRooms[i].x + ", " + allRooms[i].y + ")");
+                room.roomType = Enums.RoomType.Danger;
+                // Place Enemies
+                Danger_Generator.GenerateEnemies(allRooms[i]);
+
             }
         }
 

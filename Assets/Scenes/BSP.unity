@@ -137,6 +137,7 @@ GameObject:
   - component: {fileID: 32644321}
   - component: {fileID: 32644322}
   - component: {fileID: 32644323}
+  - component: {fileID: 32644324}
   m_Layer: 0
   m_Name: DungeonGenerator
   m_TagString: Untagged
@@ -172,6 +173,7 @@ MonoBehaviour:
   player: {fileID: 0}
   Danger_Generator: {fileID: 0}
   Object_Generator: {fileID: 0}
+  Trap_Generator: {fileID: 0}
 --- !u!4 &32644319
 Transform:
   m_ObjectHideFlags: 0
@@ -262,6 +264,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6a7a1a200a4d7147a89142fa4075166, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &32644324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 32644317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 216d0ae00e81d5e469424f2501f4c67a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trapPrefabs:
+  - {fileID: 9191118223540507927, guid: 85b6bec990b392d4b83ecaa6303ddea4, type: 3}
+  - {fileID: 9191118223540507927, guid: ea770c32dd84bdc4888fa2ebe8ccd451, type: 3}
 --- !u!1 &182280302
 GameObject:
   m_ObjectHideFlags: 0
@@ -1905,6 +1922,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21f5a75e5cbb9e74f82ebeab572c4d72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentInputState: 0
 --- !u!4 &2103679181
 Transform:
   m_ObjectHideFlags: 0
