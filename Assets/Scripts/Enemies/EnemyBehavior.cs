@@ -355,19 +355,24 @@ public class EnemyBehavior : MonoBehaviour
                     enemyStats.HP += _playerDamageDealt;
                     StartCoroutine(IncomingDamageFlash());
 
+
                     // if the enemy was reduced to 0 HP, they die
                     if (enemyStats.HP <= 0)
                     {
                         Dungeon_Narrator.AddDungeonNarratorText($"You attacked the {enemyStats.EnemyType} for {Mathf.Abs(_playerDamageDealt)} damage");
                         Die();
                     }
+
+                    else
+                    {
+                        Dungeon_Narrator.AddDungeonNarratorText($"You attacked the {enemyStats.EnemyType} for {Mathf.Abs(_playerDamageDealt)} damage");
+
+                    }
                 }
 
                 if (!enemyMissed && behaviorState != BehaviorState.Dead)
                 {
                     Player_Stats.SetHP(Player_Stats.HP + _enemyDamageDealt);
-
-                    Dungeon_Narrator.AddDungeonNarratorText($"You attacked the {enemyStats.EnemyType} for {Mathf.Abs(_playerDamageDealt)} damage");
                     Dungeon_Narrator.AddDungeonNarratorText($"The {enemyStats.EnemyType} attacked you for {Mathf.Abs(_enemyDamageDealt)} damage.");
 
                 }
