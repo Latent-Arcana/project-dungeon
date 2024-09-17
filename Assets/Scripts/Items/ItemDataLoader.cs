@@ -31,6 +31,8 @@ public class ItemLoader : MonoBehaviour
         return itemsDatabase;
     }
 
+    public bool hasLoadedSuccessfully = false;
+
     void Awake()
     {
         // SINGLETON CHECK
@@ -102,6 +104,8 @@ public class ItemLoader : MonoBehaviour
         
         CreateWeapons(weaponsData);
         CreateWeapons(specialWeaponsData);
+
+        hasLoadedSuccessfully = true;
     }
 
     private void CreateArmor(ArmorData[] dataArray)

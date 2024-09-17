@@ -135,7 +135,6 @@ GameObject:
   - component: {fileID: 32644318}
   - component: {fileID: 32644320}
   - component: {fileID: 32644321}
-  - component: {fileID: 32644322}
   - component: {fileID: 32644323}
   - component: {fileID: 32644324}
   m_Layer: 0
@@ -235,23 +234,6 @@ MonoBehaviour:
   - {fileID: 8011701790813375566, guid: e2b1e35cc6a19d849917dab13afad87e, type: 3}
   unassignedObjects: []
   objectCountManager: {fileID: 11400000, guid: 646bc53469675104ca92cb146572aa8e, type: 2}
---- !u!114 &32644322
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 32644317}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e2f68e33b2c3f14db517c9226ba2428, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  consumablesFile: {fileID: 4900000, guid: 149536b5af830864d9dfe2f5930027ad, type: 3}
-  weaponsFile: {fileID: 4900000, guid: 5ddbe892e1163da478a075a08b127185, type: 3}
-  armorFile: {fileID: 4900000, guid: 6bcfb7f5e4b4a144aa4df96bdde53e7d, type: 3}
-  specialWeaponFile: {fileID: 4900000, guid: 9d20770a59b8a054dae6118167d6b07c, type: 3}
-  specialArmorFile: {fileID: 4900000, guid: afbd3f0113093134d80f2814b4977629, type: 3}
 --- !u!114 &32644323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -520,6 +502,7 @@ MonoBehaviour:
   audioMixer: {fileID: 24100000, guid: f7f206a5337464844b44955228165480, type: 2}
   audioOpen: {fileID: 8300000, guid: 57c8bb89e6c462c4f92491533f1142ea, type: 3}
   audioClose: {fileID: 8300000, guid: 4ab0763cf68a3394a9aff88387079f18, type: 3}
+  Player_Stats: {fileID: 11400000, guid: 49cdfbab4b8796a41af4e48e5ee7d3d5, type: 2}
 --- !u!114 &339782761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1641,6 +1624,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainMenuAudio: {fileID: 8428759403118509146, guid: cfd9ad998059d914e810ac2d37cb6fb6, type: 3}
   gameScoreController: {fileID: 1522855409419736890, guid: 606ddb800c28f59499b39f916ef64815, type: 3}
+  itemDataLoader: {fileID: 4801144799437301872, guid: 876626ac45d45c54ca0959db52952de5, type: 3}
 --- !u!4 &1477042720
 Transform:
   m_ObjectHideFlags: 0

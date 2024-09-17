@@ -48,7 +48,13 @@ public class GameSetup : MonoBehaviour
         // kick off the first step here and run in order
 
         // Loading Items from item data, singleton syntax is ItemLoader.Item_Loader
-        Item_Loader.LoadItemsFromJson();
+
+        if (!Item_Loader.hasLoadedSuccessfully)
+        {
+            Item_Loader.LoadItemsFromJson();
+            Debug.Log("First time loading Item Data");
+        }
+
         List<Item> itemsDatabase = Item_Loader.GetItemsDatabase();
 
         // Generating container data so we can send information to each container in the game

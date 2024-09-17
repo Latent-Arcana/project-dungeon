@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -9,6 +10,7 @@ using UnityEngine.SceneManagement;
 [CreateAssetMenu(menuName = "Stats Manager")]
 public class PlayerStatsManager : ScriptableObject
 {
+    [Header("BASE STATS")]
     // PLAYER BASE STATS
     public int BASE_MAX_HP = 50;
     public int BASE_AGI = 1;
@@ -16,7 +18,18 @@ public class PlayerStatsManager : ScriptableObject
     public int BASE_STR = 1;
     public int BASE_AP = 0;
 
-    private int _MAX_HP = 50, _HP = 50, _SPD = 2, _AGI = 1, _STR = 1, _AP = 0;
+    [SerializeField]
+    [Header("Reset the current stats on scene load?")]
+    bool DEBUG_RESET = false;
+    
+    [Header("CURRENT STATS")]
+    [SerializeField]
+    public int _MAX_HP = 50;
+    public int _HP = 50;
+    public int _SPD = 2;
+    public int _AGI = 1; 
+    public int _STR = 1;
+    public int _AP = 0;
 
     public int MAX_HP
     {
@@ -60,10 +73,16 @@ public class PlayerStatsManager : ScriptableObject
         public int newValue;
         public int oldValue;
     }
-    private void OnEnable()
+
+    public void OnEnable()
     {
-        Initialize();
+        if (DEBUG_RESET)
+        {
+            Initialize();
+        }
+
     }
+
 
     public void Initialize()
     {

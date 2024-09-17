@@ -41,6 +41,9 @@ public class MainMenuUI : MonoBehaviour
     private AudioSource menuAudio;
     private BackgroundMusicController backgroundMusicController;
 
+    [SerializeField]
+    public PlayerStatsManager Player_Stats;
+
     private void Awake()
     {
         //UI Document
@@ -200,6 +203,7 @@ public class MainMenuUI : MonoBehaviour
         {
             backgroundMusicController.ChangeSongForScene("Loading");
             PlayAudioOpen();
+            Player_Stats.Initialize(); // Resetting the player's stats to base stats when a new game begins
             SceneManager.LoadScene("Loading");
         }
         else
