@@ -10,13 +10,13 @@ using UnityEngine.SceneManagement;
 public class PlayerStatsManager : ScriptableObject
 {
     // PLAYER BASE STATS
-    public int BASE_MAX_HP = 10;
+    public int BASE_MAX_HP = 50;
     public int BASE_AGI = 1;
     public int BASE_SPD = 2;
     public int BASE_STR = 1;
     public int BASE_AP = 0;
 
-    private int _MAX_HP = 10, _HP = 10, _SPD = 2, _AGI = 1, _STR = 1, _AP = 0;
+    private int _MAX_HP = 50, _HP = 50, _SPD = 2, _AGI = 1, _STR = 1, _AP = 0;
 
     public int MAX_HP
     {

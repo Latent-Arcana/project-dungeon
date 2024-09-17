@@ -12,10 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da0395b4101bc454bb8e5a98fc742abb, type: 3}
   m_Name: PlayerStatsManager
   m_EditorClassIdentifier: 
-  _MAX_HP: 10
-  _HP: 10
-  _SPD: 2
-  _AGI: 1
-  healthChangeEvent:
-    m_PersistentCalls:
-      m_Calls: []
+  BASE_MAX_HP: 50
+  BASE_AGI: 1
+  BASE_SPD: 2
+  BASE_STR: 1
+  BASE_AP: 0
