@@ -47,13 +47,15 @@ public class TrapBehavior : MonoBehaviour
         float spawnChance = UnityEngine.Random.value;
         int prefabChoice = UnityEngine.Random.Range(0, projectilePrefabs.Length);
 
-        if (spawnChance <= .10f && playerInRoom)
+        if (spawnChance <= .25f && playerInRoom)
         {
             //Debug.Log("Spawn a trap projectile");
 
             SpawnProjectile(projectilePrefabs[prefabChoice]);
 
         }
+
+        Physics2D.SyncTransforms();
 
         // now let's just move the traps we have to move too
 
@@ -157,7 +159,9 @@ public class TrapBehavior : MonoBehaviour
 
 
         GameObject proj = Instantiate(projectile, spawnPosition, Quaternion.identity);
-        proj.GetComponent<ProjectileBehavior>().directionOfTravel = direction;
+        ProjectileBehavior projectileBehavior = proj.GetComponent<ProjectileBehavior>();
+        projectileBehavior.directionOfTravel = direction;
+        projectileBehavior.isAtSpawn = true;
         projectiles.Add(proj);
 
 

@@ -7,9 +7,22 @@ public class ProjectileBehavior : MonoBehaviour
 {
     public Vector3 directionOfTravel;
 
+    public bool isAtSpawn;
 
-    public void Move(){
-        // TODO: IMPLEMENT
-        return;
+    public void Move()
+    {
+        if (isAtSpawn)
+        {
+            isAtSpawn = false;
+            return;
+        }
+
+        else
+        {
+            gameObject.transform.position += (Vector3)directionOfTravel;
+            return;
+        }
+
+
     }
 }
