@@ -117,6 +117,7 @@ GameObject:
   - component: {fileID: 4212856467096571926}
   - component: {fileID: 6176209156950977762}
   - component: {fileID: 6409474464251790136}
+  - component: {fileID: 1675059978392872248}
   m_Layer: 0
   m_Name: TEST_TRAP 1
   m_TagString: Untagged
@@ -264,3 +265,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1675059978392872248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9191118223540507927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4845f9553eff1c14aa85762039df5d93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomId: 0
+  projectilePrefabs:
+  - {fileID: 8234369491197853260, guid: 573bc9d4e3cdc434d9e9fb8e4c7f53c7, type: 3}

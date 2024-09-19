@@ -10,6 +10,7 @@ TagManager:
   - hallway
   - object
   - corpse
+  - projectile
   layers:
   - Default
   - TransparentFX
