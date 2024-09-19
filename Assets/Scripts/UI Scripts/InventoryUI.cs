@@ -41,7 +41,7 @@ public class InventoryUI : MonoBehaviour
 
         playerInventoryBehavior = GameObject.Find("Player").GetComponent<PlayerInventory>();
 
-        inventory = playerInventoryBehavior.items;
+        inventory = playerInventoryBehavior.inventory.items;
 
         int tempCounter = 0;
 
@@ -106,7 +106,7 @@ public class InventoryUI : MonoBehaviour
 
         int i = 0;
 
-        inventory = playerInventoryBehavior.items;
+        inventory = playerInventoryBehavior.inventory.items;
 
         //loop through items table
 

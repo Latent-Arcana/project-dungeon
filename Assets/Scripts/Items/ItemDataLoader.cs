@@ -156,7 +156,6 @@ public class ItemLoader : MonoBehaviour
 
                 //Debug.Log("Loaded weapon " + weapon.itemName + " and added to the dictionary.");
             }
-
         }
 
 

@@ -142,9 +142,9 @@ public class PlayerMovement : MonoBehaviour
                     List<Item> itemsToRemove = new List<Item>();
                     foreach (Item item in container.items)
                     {
-                        if (playerInventory.items.Count < playerInventory.maxItemCount)
+                        if (playerInventory.inventory.items.Count < playerInventory.maxItemCount)
                         {
-                            playerInventory.items.Add(item);
+                            playerInventory.inventory.items.Add(item);
                             itemsToRemove.Add(item);
                             Dungeon_Narrator.AddDungeonNarratorText("You picked up the " + item.itemName);
                         }
@@ -232,9 +232,9 @@ public class PlayerMovement : MonoBehaviour
                     List<Item> itemsToRemove = new List<Item>();
                     foreach (Item item in corpse.items)
                     {
-                        if (playerInventory.items.Count < playerInventory.maxItemCount)
+                        if (playerInventory.inventory.items.Count < playerInventory.maxItemCount)
                         {
-                            playerInventory.items.Add(item);
+                            playerInventory.inventory.items.Add(item);
                             itemsToRemove.Add(item);
                             Dungeon_Narrator.AddDungeonNarratorText("You picked up the " + item.itemName);
                         }

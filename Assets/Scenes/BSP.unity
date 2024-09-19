@@ -503,6 +503,7 @@ MonoBehaviour:
   audioOpen: {fileID: 8300000, guid: 57c8bb89e6c462c4f92491533f1142ea, type: 3}
   audioClose: {fileID: 8300000, guid: 4ab0763cf68a3394a9aff88387079f18, type: 3}
   Player_Stats: {fileID: 11400000, guid: 49cdfbab4b8796a41af4e48e5ee7d3d5, type: 2}
+  Player_Inventory: {fileID: 11400000, guid: 28215ae7375c4ab42862dc3518774c71, type: 2}
 --- !u!114 &339782761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -816,7 +817,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff45a6194a5ddd642b65642c374b329d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerInventoryBehavior: {fileID: 0}
+  playerInventoryBehavior: {fileID: 1311237463}
 --- !u!1 &893277003
 GameObject:
   m_ObjectHideFlags: 0
@@ -1590,9 +1591,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxItemCount: 10
   Player_Stats: {fileID: 11400000, guid: 49cdfbab4b8796a41af4e48e5ee7d3d5, type: 2}
-  equippedArmor: 0
-  equippedWeapon: 0
-  items: []
+  inventory: {fileID: 11400000, guid: 28215ae7375c4ab42862dc3518774c71, type: 2}
 --- !u!1 &1477042718
 GameObject:
   m_ObjectHideFlags: 0

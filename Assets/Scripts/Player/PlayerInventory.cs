@@ -14,109 +14,106 @@ public class PlayerInventory : MonoBehaviour
     [SerializeField]
     public PlayerStatsManager Player_Stats;
 
-    public int equippedArmor = -1;
-    public int equippedWeapon = -1;
-
-    public List<Item> items;
+    public Inventory inventory;
 
     // TODO: INVENTORY INTERACTION
     public List<Item> Open()
     {
-        return items;
+        return inventory.items;
     }
 
     public void RemoveItem(int index)
     {
-        if (items.Count > index)
+        if (inventory.items.Count > index)
         {
-            items.RemoveAt(index);
+            inventory.items.RemoveAt(index);
 
-            if (equippedArmor == index)
+            if (inventory.equippedArmor == index)
             {
 
-                equippedArmor = -1;
+                inventory.equippedArmor = -1;
             }
 
-            else if (equippedWeapon == index)
+            else if (inventory.equippedWeapon == index)
             {
-                equippedWeapon = -1;
+                inventory.equippedWeapon = -1;
 
             }
 
             // now let's move our indices too
-            if (index < equippedArmor)
+            if (index < inventory.equippedArmor)
             {
-                equippedArmor -= 1;
+                inventory.equippedArmor -= 1;
             }
 
-            if (index < equippedWeapon)
+            if (index < inventory.equippedWeapon)
             {
-                equippedWeapon -= 1;
+                inventory.equippedWeapon -= 1;
             }
         }
     }
 
     void AddItem(Item item)
     {
-        items.Add(item);
+        inventory.items.Add(item);
     }
 
     public void Consume(int index)
     {
-        Debug.Log("consume the " + items[index].itemName);
-        EquipStatsChange(items[index]);
+        Debug.Log("consume the " + inventory.items[index].itemName);
+        EquipStatsChange(inventory.items[index]);
     }
 
     public void EquipItem(int index)
     {
 
         // out of bounds check
-        if (index < 0 || index >= items.Count)
+        if (index < 0 || index >= inventory.items.Count)
         {
             return;
         }
 
         // if we're handling armor
-        if (items[index].type == Enums.ItemType.Armor)
+        if (inventory.items[index].type == Enums.ItemType.Armor)
         {
 
-            equippedArmor = index;
-            EquipStatsChange(items[index]);
+            inventory.equippedArmor = index;
+            EquipStatsChange(inventory.items[index]);
         }
 
 
         // if we're handling weapons
-        else if (items[index].type == Enums.ItemType.Weapon)
+        else if (inventory.items[index].type == Enums.ItemType.Weapon)
         {
-            equippedWeapon = index;
-            EquipStatsChange(items[index]);
+            inventory.equippedWeapon = index;
+            EquipStatsChange(inventory.items[index]);
         }
 
     }
 
     public void HandleUnequip(int index)
     {
-        if (index == equippedArmor)
+        if (index == inventory.equippedArmor)
         {
-            UnequipStatsChange(items[index]);
-            equippedArmor = -1;
+            UnequipStatsChange(inventory.items[index]);
+            inventory.equippedArmor = -1;
         }
 
-        else if (index == equippedWeapon)
+        else if (index == inventory.equippedWeapon)
         {
-            UnequipStatsChange(items[index]);
-            equippedWeapon = -1;
+            UnequipStatsChange(inventory.items[index]);
+            inventory.equippedWeapon = -1;
         }
     }
 
     public int GetEquippedArmor()
     {
-        return equippedArmor;
+        return inventory.equippedArmor;
     }
 
     public int GetEquippedWeapon()
     {
-        return equippedWeapon;
+        return inventory.equippedWeapon;
     }
     public void EquipStatsChange(Item item)
     {
@@ -166,12 +163,6 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 
-    public void Start()
-    {
-        equippedArmor = -1;
-        equippedWeapon = -1;
-    }
-
     public void Update()
     {
         // Debug.Log("Armor: " + equippedArmor);
@@ -186,7 +177,7 @@ public class PlayerInventory : MonoBehaviour
 
         Debug.Log($"The player is currently holding: ");
 
-        foreach (Item item in items)
+        foreach (Item item in inventory.items)
         {
 
             Debug.Log(item.itemName);

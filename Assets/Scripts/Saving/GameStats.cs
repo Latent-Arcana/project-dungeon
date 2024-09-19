@@ -6,6 +6,7 @@ public class GameStats : MonoBehaviour
 {
     
     public PlayerStatsManager Player_Stats;
+    public Inventory Player_Inventory;
 
     [SerializeField]
     private int Numerator;
@@ -41,6 +42,7 @@ public class GameStats : MonoBehaviour
 
     public void InitializePlayer(){
         Player_Stats.Initialize();
+        Player_Inventory.Reset();
     }
 
     /// <summary>

@@ -19,7 +19,10 @@ public class PlayerStatsManager : ScriptableObject
     public int BASE_AP = 0;
 
     [SerializeField]
-    [Header("Reset the current stats on scene load?")]
+
+    [Header("DEBUG")]
+    
+    [Tooltip("Reset the current stats on scene load?")]
     bool DEBUG_RESET = false;
     
     [Header("CURRENT STATS")]
