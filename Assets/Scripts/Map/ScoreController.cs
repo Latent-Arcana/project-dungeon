@@ -28,6 +28,24 @@ public class ScoreController : MonoBehaviour
 
     }
 
+    void Update()
+    {
+        //TODO: Delete all this, it's DEBUG
+
+        if (Input.GetKeyUp(KeyCode.Keypad9))
+        {
+            Debug.Log("DIE");
+            StartCoroutine(GameObject.Find("Player").GetComponent<PlayerStats>().PlayerDeath());
+        }
+
+        if (Input.GetKeyUp(KeyCode.Keypad8))
+        {
+            Debug.Log("NEW LEVEL");
+            SceneManager.LoadScene("Loading");
+        }
+
+    }
+
 
     /// <summary>
     /// Add a room marker to the list of markers. If one already exists for a room, delete the game object
@@ -134,11 +152,11 @@ public class ScoreController : MonoBehaviour
 
         //pass the stats to the object that won't be destroyed
         gameStats.SetScore(Numerator, Denominator);
-        
+
         GameObject.Find("BackgroundAudio").GetComponent<BackgroundMusicController>().ChangeSongForScene("GameOver");
 
         //call game over scene
         SceneManager.LoadScene("GameOver");
 
-    }   
+    }
 }

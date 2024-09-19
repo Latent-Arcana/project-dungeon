@@ -49,11 +49,16 @@ public class GameOverUI : MonoBehaviour
 
     }
 
+    void Start()
+    {
+        SetGameStatText();
+    }
+
     private void SetGameStatText()
     {
         int num = gameStats.GetNumerator();
         int denom = gameStats.GetDenominator();
-        int roomsVisited = gameStats.GetRoomsVisited(); //currently not set in GameStats
+        int roomsVisited = gameStats.GetRoomsVisited(); //currently not being incremented anywhere
 
         statsText.text = @$"Final Stats: \n
         Total rooms marked correctly: {num}/{denom}\n
