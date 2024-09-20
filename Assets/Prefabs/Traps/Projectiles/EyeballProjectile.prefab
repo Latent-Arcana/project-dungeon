@@ -157,7 +157,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.25, y: 0.25}
   m_EdgeRadius: 0
 --- !u!114 &-2962719969034484901
 MonoBehaviour:
@@ -172,4 +172,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   directionOfTravel: {x: 0, y: 0, z: 0}
+  trap: {fileID: 0}
+  projectileId: 0
   isAtSpawn: 0

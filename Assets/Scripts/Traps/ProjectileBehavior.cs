@@ -1,9 +1,14 @@
 using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 public class ProjectileBehavior : MonoBehaviour
 {
     public Vector3 directionOfTravel;
+
+    public GameObject trap;
+
+    public int projectileId;
 
     public bool isAtSpawn;
 
@@ -23,6 +28,12 @@ public class ProjectileBehavior : MonoBehaviour
 
     }
 
+    private void OnTriggerExit2D(Collider2D collision){
+        if(collision.tag == "room"){
+            trap.GetComponent<TrapBehavior>().DestroyProjectile(projectileId);
+        }
+    }
+
     // public bool CollisionPath(){
         
     //     // Let's check to see if we should despawn our projectile or deal damage to something
@@ -35,7 +46,8 @@ public class ProjectileBehavior : MonoBehaviour
     //     }
 
     //     else if(collision.gameObject.tag == "Player"){
-    //         StartCoroutine(HitPlayer(collision.gameObject))
+    //         StartCoroutine(HitPlayer(collision.gameObject));
+    //         return true;
     //     }
 
     // }
@@ -45,7 +57,7 @@ public class ProjectileBehavior : MonoBehaviour
 
         yield return new WaitForSeconds(0.1f);
 
-        Destroy(gameObject);
+        trap.GetComponent<TrapBehavior>().DestroyProjectile(projectileId);
 
         
     }

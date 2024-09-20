@@ -18,6 +18,8 @@ public class TrapBehavior : MonoBehaviour
 
     private List<GameObject> projectiles;
 
+    private List<int> projectilesToDelete;
+
 
     public void Awake()
     {
@@ -26,6 +28,8 @@ public class TrapBehavior : MonoBehaviour
         playerMovement = player.GetComponent<PlayerMovement>();
 
         projectiles = new List<GameObject>();
+
+        projectilesToDelete = new List<int>();
     }
 
     public void OnEnable()
@@ -44,27 +48,43 @@ public class TrapBehavior : MonoBehaviour
 
     private void Input_OnPlayerMoved(object sender, PlayerMovement.MovementArgs e)
     {
-        float spawnChance = UnityEngine.Random.value;
-        int prefabChoice = UnityEngine.Random.Range(0, projectilePrefabs.Length);
+        // float spawnChance = UnityEngine.Random.value;
+        // int prefabChoice = UnityEngine.Random.Range(0, projectilePrefabs.Length);
 
-        if (spawnChance <= .25f && playerInRoom)
-        {
-            //Debug.Log("Spawn a trap projectile");
+        // if (spawnChance <= .25f && playerInRoom)
+        // {
+        //     //Debug.Log("Spawn a trap projectile");
 
-            SpawnProjectile(projectilePrefabs[prefabChoice]);
+        //     SpawnProjectile(projectilePrefabs[prefabChoice]);
 
-        }
+        // }
 
-        Physics2D.SyncTransforms();
+        // Physics2D.SyncTransforms();
 
         // now let's just move the traps we have to move too
 
-        foreach (GameObject projectileObject in projectiles)
-        {
-            ProjectileBehavior projectile = projectileObject.GetComponent<ProjectileBehavior>();
+        // foreach (GameObject projectileObject in projectiles)
+        // {
+        //     ProjectileBehavior projectile = projectileObject.GetComponent<ProjectileBehavior>();
 
-            projectile.Move();
-        }
+        //     projectile.Move();
+        // }
+
+        // // delete anything to be destroyed at this point
+        // if (projectilesToDelete.Count > 0)
+        // {
+        //     foreach (int projectile in projectilesToDelete)
+        //     {
+
+        //         GameObject deletedProjectile = projectiles[projectile];
+        //         projectiles.RemoveAt(projectile);
+
+        //         Destroy(deletedProjectile);
+        //     }
+
+        //     projectilesToDelete.Clear();
+        // }
+
     }
 
     private void PlayerMovement_OnRoomEnter(object sender, PlayerMovement.InputArgs e)
@@ -84,6 +104,13 @@ public class TrapBehavior : MonoBehaviour
             }
 
         }
+
+    }
+
+    public void DestroyProjectile(int index)
+    {
+
+        projectilesToDelete.Add(index);
 
     }
 
@@ -168,6 +195,8 @@ public class TrapBehavior : MonoBehaviour
             GameObject proj = Instantiate(projectile, spawnPosition, Quaternion.identity);
             ProjectileBehavior projectileBehavior = proj.GetComponent<ProjectileBehavior>();
             projectileBehavior.directionOfTravel = direction;
+            projectileBehavior.trap = gameObject;
+            projectileBehavior.projectileId = projectiles.Count;
             projectileBehavior.isAtSpawn = true;
             projectiles.Add(proj);
         }
