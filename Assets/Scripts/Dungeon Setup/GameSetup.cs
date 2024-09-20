@@ -52,7 +52,7 @@ public class GameSetup : MonoBehaviour
         if (!Item_Loader.hasLoadedSuccessfully)
         {
             Item_Loader.LoadItemsFromJson();
-            Debug.Log("First time loading Item Data");
+            //Debug.Log("First time loading Item Data");
         }
 
         List<Item> itemsDatabase = Item_Loader.GetItemsDatabase();

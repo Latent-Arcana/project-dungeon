@@ -7,8 +7,8 @@ public class Inventory : ScriptableObject
 {
     public List<Item> items;
 
-    public int equippedArmor = -1;
-    public int equippedWeapon = -1;
+    public int equippedArmor;
+    public int equippedWeapon;
 
 
     [SerializeField]

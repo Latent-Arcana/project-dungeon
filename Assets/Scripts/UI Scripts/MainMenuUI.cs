@@ -133,7 +133,6 @@ public class MainMenuUI : MonoBehaviour
 
         if (SceneManager.GetActiveScene().name == "Main Menu")
         {
-            Debug.Log("Main Menu Loaded");
             backgroundMusicController.ChangeSongForScene("Main Menu");
         }
     }

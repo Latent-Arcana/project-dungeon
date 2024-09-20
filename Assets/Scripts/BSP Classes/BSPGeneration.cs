@@ -200,7 +200,7 @@ public class BSPGeneration : MonoBehaviour
         // FOR NOW WE ARE PICKING THE FIRST ROOM IN THE LIST, ARBITRARILY
 
 
-        Debug.Log("Moving the player");
+        //Debug.Log("Moving the player");
 
         player.transform.position = new Vector3Int(allRooms[0].GetComponent<Room>().originX, allRooms[0].GetComponent<Room>().originY, 0);
 

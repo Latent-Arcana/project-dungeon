@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -22,6 +23,9 @@ public class InventoryUI : MonoBehaviour
     // private VisualElement row_1, row_4;
 
     public PlayerInventory playerInventoryBehavior;
+
+    [SerializeField]
+    public Inventory player_inventory;
 
     private List<Item> inventory;
     private List<Toggle> equipmentToggles = new List<Toggle>();
@@ -72,12 +76,6 @@ public class InventoryUI : MonoBehaviour
 
         }
 
-        //Event Throw
-        // Row4.Button += onDrop(row4)
-
-
-        //Event Listeners
-        //listen for update to equip? - check boxes may need to be updated in UI
 
     }
 
@@ -142,6 +140,13 @@ public class InventoryUI : MonoBehaviour
                 TextElement statsText = rows[i].Q("Stats").Children().First() as TextElement;
                 statsText.text = inventory[i].statsText.ToString();
 
+                //Debug.Log($"Comparing i ({i}) to armor ({player_inventory.equippedArmor}) and weapon ({player_inventory.equippedArmor})");
+
+                if (i == player_inventory.equippedArmor || i == player_inventory.equippedWeapon)
+                {
+                    //Debug.Log($"Equipped item in slot {i}");
+                    equipmentToggles[i].SetValueWithoutNotify(true);
+                }
 
             }
             else
@@ -162,29 +167,6 @@ public class InventoryUI : MonoBehaviour
 
             }
 
-            /*
-            TODO: if Q performance is bad here, we can construct a List<CustomRowObject>  
-            up in Awake to only load them once, something like:
-            
-            class row {
-                TextElement Name,
-                VisualElement image,
-                TextElement stats
-                etc
-            }
-            
-            */
-
-
-            //assign stats
-
-
-
-            //assign equipped
-
-
-
-            //i++;
         }
     }
 
@@ -193,7 +175,8 @@ public class InventoryUI : MonoBehaviour
 
         // Before we do anything, we should check if this is a drop event. 
         // We don't want to pass the index in if we are just dropping this item
-        if(index >= inventory.Count){
+        if (index >= inventory.Count)
+        {
             return;
         }
         // first let's just figure out what we're even trying to check
@@ -240,7 +223,8 @@ public class InventoryUI : MonoBehaviour
 
             }
 
-            else if(equippedItem.type == Enums.ItemType.Consumable){
+            else if (equippedItem.type == Enums.ItemType.Consumable)
+            {
                 Consume(index);
             }
         }
@@ -252,7 +236,8 @@ public class InventoryUI : MonoBehaviour
 
     }
 
-    private void Consume(int index){
+    private void Consume(int index)
+    {
         playerInventoryBehavior.Consume(index);
         DropItem(index);
     }

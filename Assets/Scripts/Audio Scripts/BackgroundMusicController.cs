@@ -47,7 +47,6 @@ public class BackgroundMusicController : MonoBehaviour
         backgroundAudio.Stop();
 
         //change audio clip song
-        Debug.Log("Swap Song");
         if (newSceneName == "Main Menu")
         {
             backgroundAudio.clip = mainMenuMusic;
@@ -109,7 +108,6 @@ public class BackgroundMusicController : MonoBehaviour
         backgroundAudio.Stop();
 
         //change audio clip song
-        Debug.Log("Swap Song");
         if (newSceneName == "Main Menu")
         {
             backgroundAudio.clip = mainMenuMusic;

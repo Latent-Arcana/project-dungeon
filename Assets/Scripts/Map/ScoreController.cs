@@ -34,13 +34,11 @@ public class ScoreController : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.Keypad9))
         {
-            Debug.Log("DIE");
             StartCoroutine(GameObject.Find("Player").GetComponent<PlayerStats>().PlayerDeath());
         }
 
         if (Input.GetKeyUp(KeyCode.Keypad8))
         {
-            Debug.Log("NEW LEVEL");
             SceneManager.LoadScene("Loading");
         }
 
