@@ -17,10 +17,10 @@ MonoBehaviour:
   BASE_SPD: 2
   BASE_STR: 1
   BASE_AP: 0
-  DEBUG_RESET: 1
-  _MAX_HP: 50
-  _HP: 35
-  _SPD: 2
-  _AGI: 1
+  DEBUG_RESET: 0
+  _MAX_HP: 64
+  _HP: 29
+  _SPD: 7
+  _AGI: 4
   _STR: 1
-  _AP: 0
+  _AP: 2
