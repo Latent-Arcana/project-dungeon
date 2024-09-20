@@ -147,7 +147,7 @@ public class InventoryUI : MonoBehaviour
                     //Debug.Log($"Equipped item in slot {i}");
                     equipmentToggles[i].SetValueWithoutNotify(true);
                 }
-                
+
                 else
                 {
                     equipmentToggles[i].SetValueWithoutNotify(false);
@@ -251,7 +251,9 @@ public class InventoryUI : MonoBehaviour
         // if the item was equipped, let's unequip it to update the screen
         if (equipmentToggles[index].value == true)
         {
-            equipmentToggles[index].value = false;
+            equipmentToggles[index].SetValueWithoutNotify(false);
+
+            playerInventoryBehavior.UnequipStatsChange(inventory[index]);
         }
 
         playerInventoryBehavior.RemoveItem(index);

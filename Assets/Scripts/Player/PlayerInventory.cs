@@ -24,6 +24,19 @@ public class PlayerInventory : MonoBehaviour
 
     public void RemoveItem(int index)
     {
+        /*
+            [Armor1, Weapon1]
+            equippedArmor = 0;
+            equippedWeapon = 1;
+            index = 0;
+            DROP ITEM
+
+            [Weapon1] (actual weapon is 0)
+
+            equippedArmor -1;
+            equippedWeapon = 0;
+
+        */
         if (inventory.items.Count > index)
         {
             inventory.items.RemoveAt(index);
@@ -43,12 +56,14 @@ public class PlayerInventory : MonoBehaviour
             // now let's move our indices too
             if (index < inventory.equippedArmor)
             {
+
                 inventory.equippedArmor -= 1;
             }
 
             if (index < inventory.equippedWeapon)
             {
                 inventory.equippedWeapon -= 1;
+
             }
         }
     }
