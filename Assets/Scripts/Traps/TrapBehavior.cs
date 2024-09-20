@@ -59,7 +59,8 @@ public class TrapBehavior : MonoBehaviour
 
         // now let's just move the traps we have to move too
 
-        foreach(GameObject projectileObject in projectiles){
+        foreach (GameObject projectileObject in projectiles)
+        {
             ProjectileBehavior projectile = projectileObject.GetComponent<ProjectileBehavior>();
 
             projectile.Move();
@@ -157,13 +158,19 @@ public class TrapBehavior : MonoBehaviour
                 break;
         }
 
+        // Now lets's do the check to see if this spawn point is even valid
+        Vector2 checkPosition = (Vector2)spawnPosition;
+        LayerMask mask = ~(1 << LayerMask.NameToLayer("ObjectPlacementLayer")); // we want to ignore the placement layer that we used for creating objects  in each scene
+        Collider2D collision = Physics2D.OverlapCircle(checkPosition, 0.1f, mask);
 
-        GameObject proj = Instantiate(projectile, spawnPosition, Quaternion.identity);
-        ProjectileBehavior projectileBehavior = proj.GetComponent<ProjectileBehavior>();
-        projectileBehavior.directionOfTravel = direction;
-        projectileBehavior.isAtSpawn = true;
-        projectiles.Add(proj);
-
+        if (collision == null)
+        {
+            GameObject proj = Instantiate(projectile, spawnPosition, Quaternion.identity);
+            ProjectileBehavior projectileBehavior = proj.GetComponent<ProjectileBehavior>();
+            projectileBehavior.directionOfTravel = direction;
+            projectileBehavior.isAtSpawn = true;
+            projectiles.Add(proj);
+        }
 
         return;
     }
