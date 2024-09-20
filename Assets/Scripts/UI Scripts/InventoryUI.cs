@@ -147,6 +147,11 @@ public class InventoryUI : MonoBehaviour
                     //Debug.Log($"Equipped item in slot {i}");
                     equipmentToggles[i].SetValueWithoutNotify(true);
                 }
+                
+                else
+                {
+                    equipmentToggles[i].SetValueWithoutNotify(false);
+                }
 
             }
             else
