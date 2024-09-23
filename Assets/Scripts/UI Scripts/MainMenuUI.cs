@@ -49,6 +49,10 @@ public class MainMenuUI : MonoBehaviour
 
     private void Awake()
     {
+
+
+        Screen.SetResolution(1920, 1080, true);
+
         //UI Document
         main_document = this.GetComponent<UIDocument>();
 
