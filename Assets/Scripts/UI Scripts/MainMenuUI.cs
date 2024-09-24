@@ -30,7 +30,7 @@ public class MainMenuUI : MonoBehaviour
     private Slider volMusicSlider;
     private Slider volEffectsSlider;
     private Slider ambientSlider;
-
+    private DropdownField screenResDropdown;
     //Audio
     [SerializeField]
     private AudioMixer audioMixer;
@@ -49,10 +49,6 @@ public class MainMenuUI : MonoBehaviour
 
     private void Awake()
     {
-
-
-        Screen.SetResolution(1920, 1080, true);
-
         //UI Document
         main_document = this.GetComponent<UIDocument>();
 
@@ -80,6 +76,7 @@ public class MainMenuUI : MonoBehaviour
         volMusicSlider = main_document.rootVisualElement.Q("VolumeMusicSlider") as Slider;
         volEffectsSlider = main_document.rootVisualElement.Q("VolumeSoundEffectsSlider") as Slider;
         ambientSlider = main_document.rootVisualElement.Q("VolumeAmbientSlider") as Slider;
+        screenResDropdown = main_document.rootVisualElement.Q("ResolutionDropdown") as DropdownField;
 
         ////Events////
 
@@ -93,6 +90,11 @@ public class MainMenuUI : MonoBehaviour
         volMusicSlider.RegisterCallback<ChangeEvent<float>>(SetMusicVolume);
         volEffectsSlider.RegisterCallback<ChangeEvent<float>>(SetSoundEffectsVolume);
         ambientSlider.RegisterCallback<ChangeEvent<float>>(SetAmbientVolume);
+        screenResDropdown.RegisterValueChangedCallback(evt =>
+        {
+            OnScreenResolutionChanged(evt.newValue);
+
+        });
 
 
         if (SceneManager.GetActiveScene().name != "Main Menu")
@@ -172,6 +174,27 @@ public class MainMenuUI : MonoBehaviour
         PlayAudioClose();
         SaveSystem.SaveOptions(ops);
         ToggleOptions();
+    }
+
+    private void OnScreenResolutionChanged(string newValue)
+    {
+        switch (newValue)
+        {
+            case "1920x1080":
+                ops.screenOptions = new ScreenOptions(1920, 1080, true);
+                Screen.SetResolution(1920, 1080, true);
+                break;
+
+            case "640x480":
+                ops.screenOptions = new ScreenOptions(640, 480, true);
+                Screen.SetResolution(640, 480, true);
+                break;
+
+            default:
+                ops.screenOptions = new ScreenOptions(640, 480, true);
+                Screen.SetResolution(640, 480, true);
+                break;
+        }
     }
 
 
