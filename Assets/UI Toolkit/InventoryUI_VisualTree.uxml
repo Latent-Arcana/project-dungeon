@@ -1,174 +1,175 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:VisualElement name="Container" style="flex-grow: 1; display: none; background-image: url(&quot;project://database/Assets/Sprites/Rooms/Walls_Map/emptycolor_map%20centered.png?fileID=2800000&amp;guid=ca71fe13f5d840e47b71d05aba3c6b85&amp;type=3#emptycolor_map centered&quot;);">
+    <Style src="project://database/Assets/UI%20Toolkit/MenuStyleSheet.uss?fileID=7433441132597879392&amp;guid=8622666c0c77f81419510e23e5912e27&amp;type=3#MenuStyleSheet" />
+    <ui:VisualElement name="Container" style="flex-grow: 1; display: none; background-image: url(&quot;project://database/Assets/Sprites/Rooms/Walls_Map/emptycolor_map%20centered.png?fileID=2800000&amp;guid=ca71fe13f5d840e47b71d05aba3c6b85&amp;type=3#emptycolor_map centered&quot;); margin-top: 0; margin-bottom: 0; margin-right: 0; margin-left: 0; padding-top: 20px; padding-bottom: 20px;">
         <ui:VisualElement name="Table" style="flex-grow: 1;">
             <ui:VisualElement name="Row0" style="flex-grow: 1; flex-direction: row;">
-                <ui:VisualElement name="Icon" style="flex-grow: 1;">
+                <ui:VisualElement name="Icon" class="inventory-icon-background" style="flex-grow: 1;">
                     <ui:VisualElement name="Icon_0_Img" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/Icons/rapid-sketch-9-export.png?fileID=2800000&amp;guid=3f96a5c2bebac4a45941aabe9b6a383a&amp;type=3#rapid-sketch-9-export&quot;); -unity-background-scale-mode: scale-to-fit; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-top: 5px; margin-right: 5px; margin-bottom: 5px; margin-left: 5px;" />
                 </ui:VisualElement>
-                <ui:VisualElement name="Name" style="flex-grow: 1;">
-                    <ui:Label tabindex="-1" text="Sword" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Name_Text_1" />
+                <ui:VisualElement name="Name" class="inventory-item-name-col" style="flex-grow: 1;">
+                    <ui:Label tabindex="-1" text="Sword" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Name_Text_1" class="inventory-text" />
                 </ui:VisualElement>
-                <ui:VisualElement name="Stats" style="flex-grow: 1;">
-                    <ui:Label tabindex="-1" text="+1 STR" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+                <ui:VisualElement name="Stats" class="inventory-item-stats-col" style="flex-grow: 1;">
+                    <ui:Label tabindex="-1" text="+1 STR" parse-escape-sequences="true" display-tooltip-when-elided="true" class="inventory-text" />
                 </ui:VisualElement>
-                <ui:VisualElement name="Equipped" style="flex-grow: 1;">
+                <ui:VisualElement name="Equipped" class="inventory-equip-col" style="flex-grow: 1;">
                     <ui:Toggle style="align-items: stretch; flex-direction: row; align-self: center;" />
                 </ui:VisualElement>
-                <ui:VisualElement name="Drop" style="flex-grow: 1;">
-                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+                <ui:VisualElement name="Drop" class="inventory-drop-col" style="flex-grow: 1;">
+                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" class="menu-button" />
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="Row1" style="flex-grow: 1; flex-direction: row;">
-                <ui:VisualElement name="Icon" style="flex-grow: 1;">
+                <ui:VisualElement name="Icon" class="inventory-icon-background" style="flex-grow: 1;">
                     <ui:VisualElement name="Icon_1_Img" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/Icons/rapid-sketch-9-export.png?fileID=2800000&amp;guid=3f96a5c2bebac4a45941aabe9b6a383a&amp;type=3#rapid-sketch-9-export&quot;); -unity-background-scale-mode: scale-to-fit; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-top: 5px; margin-right: 5px; margin-bottom: 5px; margin-left: 5px;" />
                 </ui:VisualElement>
-                <ui:VisualElement name="Name" style="flex-grow: 1;">
-                    <ui:Label tabindex="-1" text="Sword" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Name_Text_1" />
+                <ui:VisualElement name="Name" class="inventory-item-name-col" style="flex-grow: 1;">
+                    <ui:Label tabindex="-1" text="Sword" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Name_Text_1" class="inventory-text" />
                 </ui:VisualElement>
-                <ui:VisualElement name="Stats" style="flex-grow: 1;">
-                    <ui:Label tabindex="-1" text="+1 STR" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+                <ui:VisualElement name="Stats" class="inventory-item-stats-col" style="flex-grow: 1;">
+                    <ui:Label tabindex="-1" text="+1 STR" parse-escape-sequences="true" display-tooltip-when-elided="true" class="inventory-text" />
                 </ui:VisualElement>
-                <ui:VisualElement name="Equipped" style="flex-grow: 1;">
+                <ui:VisualElement name="Equipped" class="inventory-equip-col" style="flex-grow: 1;">
                     <ui:Toggle style="align-items: stretch; flex-direction: row; align-self: center;" />
                 </ui:VisualElement>
-                <ui:VisualElement name="Drop" style="flex-grow: 1;">
-                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+                <ui:VisualElement name="Drop" class="inventory-drop-col" style="flex-grow: 1;">
+                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" class="menu-button" />
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="Row2" style="flex-grow: 1; flex-direction: row;">
-                <ui:VisualElement name="Icon" style="flex-grow: 1;">
+                <ui:VisualElement name="Icon" class="inventory-icon-background" style="flex-grow: 1;">
                     <ui:VisualElement name="Icon_2_Img" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/Icons/rapid-sketch-9-export.png?fileID=2800000&amp;guid=3f96a5c2bebac4a45941aabe9b6a383a&amp;type=3#rapid-sketch-9-export&quot;); -unity-background-scale-mode: scale-to-fit; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-top: 5px; margin-right: 5px; margin-bottom: 5px; margin-left: 5px;" />
                 </ui:VisualElement>
-                <ui:VisualElement name="Name" style="flex-grow: 1;">
-                    <ui:Label tabindex="-1" text="Sword" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Name_Text_1" />
+                <ui:VisualElement name="Name" class="inventory-item-name-col" style="flex-grow: 1;">
+                    <ui:Label tabindex="-1" text="Sword" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Name_Text_1" class="inventory-text" />
                 </ui:VisualElement>
-                <ui:VisualElement name="Stats" style="flex-grow: 1;">
-                    <ui:Label tabindex="-1" text="+1 STR" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+                <ui:VisualElement name="Stats" class="inventory-item-stats-col" style="flex-grow: 1;">
+                    <ui:Label tabindex="-1" text="+1 STR" parse-escape-sequences="true" display-tooltip-when-elided="true" class="inventory-text" />
                 </ui:VisualElement>
-                <ui:VisualElement name="Equipped" style="flex-grow: 1;">
+                <ui:VisualElement name="Equipped" class="inventory-equip-col" style="flex-grow: 1;">
                     <ui:Toggle style="align-items: stretch; flex-direction: row; align-self: center;" />
                 </ui:VisualElement>
-                <ui:VisualElement name="Drop" style="flex-grow: 1;">
-                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+                <ui:VisualElement name="Drop" class="inventory-drop-col" style="flex-grow: 1;">
+                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" class="menu-button" />
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="Row3" style="flex-grow: 1; flex-direction: row; visibility: visible;">
-                <ui:VisualElement name="Icon" style="flex-grow: 1;">
+                <ui:VisualElement name="Icon" class="inventory-icon-background" style="flex-grow: 1;">
                     <ui:VisualElement name="Icon_1_Img" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/Icons/rapid-sketch-9-export.png?fileID=2800000&amp;guid=3f96a5c2bebac4a45941aabe9b6a383a&amp;type=3#rapid-sketch-9-export&quot;); -unity-background-scale-mode: scale-to-fit; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-top: 5px; margin-right: 5px; margin-bottom: 5px; margin-left: 5px;" />
                 </ui:VisualElement>
-                <ui:VisualElement name="Name" style="flex-grow: 1;">
-                    <ui:Label tabindex="-1" text="Sword" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Name_Text_1" />
+                <ui:VisualElement name="Name" class="inventory-item-name-col" style="flex-grow: 1;">
+                    <ui:Label tabindex="-1" text="Sword" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Name_Text_1" class="inventory-text" />
                 </ui:VisualElement>
-                <ui:VisualElement name="Stats" style="flex-grow: 1;">
-                    <ui:Label tabindex="-1" text="+1 STR" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+                <ui:VisualElement name="Stats" class="inventory-item-stats-col" style="flex-grow: 1;">
+                    <ui:Label tabindex="-1" text="+1 STR" parse-escape-sequences="true" display-tooltip-when-elided="true" class="inventory-text" />
                 </ui:VisualElement>
-                <ui:VisualElement name="Equipped" style="flex-grow: 1;">
+                <ui:VisualElement name="Equipped" class="inventory-equip-col" style="flex-grow: 1;">
                     <ui:Toggle style="align-items: stretch; flex-direction: row; align-self: center;" />
                 </ui:VisualElement>
-                <ui:VisualElement name="Drop" style="flex-grow: 1;">
-                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+                <ui:VisualElement name="Drop" class="inventory-drop-col" style="flex-grow: 1;">
+                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" class="menu-button" />
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="Row4" style="flex-grow: 1; flex-direction: row;">
-                <ui:VisualElement name="Icon" style="flex-grow: 1;">
+                <ui:VisualElement name="Icon" class="inventory-icon-background" style="flex-grow: 1;">
                     <ui:VisualElement name="Icon_1_Img" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/Icons/rapid-sketch-9-export.png?fileID=2800000&amp;guid=3f96a5c2bebac4a45941aabe9b6a383a&amp;type=3#rapid-sketch-9-export&quot;); -unity-background-scale-mode: scale-to-fit; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-top: 5px; margin-right: 5px; margin-bottom: 5px; margin-left: 5px;" />
                 </ui:VisualElement>
-                <ui:VisualElement name="Name" style="flex-grow: 1;">
-                    <ui:Label tabindex="-1" text="Sword" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Name_Text_1" />
+                <ui:VisualElement name="Name" class="inventory-item-name-col" style="flex-grow: 1;">
+                    <ui:Label tabindex="-1" text="Sword" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Name_Text_1" class="inventory-text" />
                 </ui:VisualElement>
-                <ui:VisualElement name="Stats" style="flex-grow: 1;">
-                    <ui:Label tabindex="-1" text="+1 STR" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+                <ui:VisualElement name="Stats" class="inventory-item-stats-col" style="flex-grow: 1;">
+                    <ui:Label tabindex="-1" text="+1 STR" parse-escape-sequences="true" display-tooltip-when-elided="true" class="inventory-text" />
                 </ui:VisualElement>
-                <ui:VisualElement name="Equipped" style="flex-grow: 1;">
+                <ui:VisualElement name="Equipped" class="inventory-equip-col" style="flex-grow: 1;">
                     <ui:Toggle style="align-items: stretch; flex-direction: row; align-self: center;" />
                 </ui:VisualElement>
-                <ui:VisualElement name="Drop" style="flex-grow: 1;">
-                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+                <ui:VisualElement name="Drop" class="inventory-drop-col" style="flex-grow: 1;">
+                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" class="menu-button" />
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="Row5" style="flex-grow: 1; flex-direction: row;">
-                <ui:VisualElement name="Icon" style="flex-grow: 1;">
+                <ui:VisualElement name="Icon" class="inventory-icon-background" style="flex-grow: 1;">
                     <ui:VisualElement name="Icon_1_Img" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/Icons/rapid-sketch-9-export.png?fileID=2800000&amp;guid=3f96a5c2bebac4a45941aabe9b6a383a&amp;type=3#rapid-sketch-9-export&quot;); -unity-background-scale-mode: scale-to-fit; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-top: 5px; margin-right: 5px; margin-bottom: 5px; margin-left: 5px;" />
                 </ui:VisualElement>
-                <ui:VisualElement name="Name" style="flex-grow: 1;">
-                    <ui:Label tabindex="-1" text="Sword" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Name_Text_1" />
+                <ui:VisualElement name="Name" class="inventory-item-name-col" style="flex-grow: 1;">
+                    <ui:Label tabindex="-1" text="Sword" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Name_Text_1" class="inventory-text" />
                 </ui:VisualElement>
-                <ui:VisualElement name="Stats" style="flex-grow: 1;">
-                    <ui:Label tabindex="-1" text="+1 STR" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+                <ui:VisualElement name="Stats" class="inventory-item-stats-col" style="flex-grow: 1;">
+                    <ui:Label tabindex="-1" text="+1 STR" parse-escape-sequences="true" display-tooltip-when-elided="true" class="inventory-text" />
                 </ui:VisualElement>
-                <ui:VisualElement name="Equipped" style="flex-grow: 1;">
+                <ui:VisualElement name="Equipped" class="inventory-equip-col" style="flex-grow: 1;">
                     <ui:Toggle style="align-items: stretch; flex-direction: row; align-self: center;" />
                 </ui:VisualElement>
-                <ui:VisualElement name="Drop" style="flex-grow: 1;">
-                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+                <ui:VisualElement name="Drop" class="inventory-drop-col" style="flex-grow: 1;">
+                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" class="menu-button" />
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="Row6" style="flex-grow: 1; flex-direction: row;">
-                <ui:VisualElement name="Icon" style="flex-grow: 1;">
+                <ui:VisualElement name="Icon" class="inventory-icon-background" style="flex-grow: 1;">
                     <ui:VisualElement name="Icon_1_Img" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/Icons/rapid-sketch-9-export.png?fileID=2800000&amp;guid=3f96a5c2bebac4a45941aabe9b6a383a&amp;type=3#rapid-sketch-9-export&quot;); -unity-background-scale-mode: scale-to-fit; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-top: 5px; margin-right: 5px; margin-bottom: 5px; margin-left: 5px;" />
                 </ui:VisualElement>
-                <ui:VisualElement name="Name" style="flex-grow: 1;">
-                    <ui:Label tabindex="-1" text="Sword" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Name_Text_1" />
+                <ui:VisualElement name="Name" class="inventory-item-name-col" style="flex-grow: 1;">
+                    <ui:Label tabindex="-1" text="Sword" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Name_Text_1" class="inventory-text" />
                 </ui:VisualElement>
-                <ui:VisualElement name="Stats" style="flex-grow: 1;">
-                    <ui:Label tabindex="-1" text="+1 STR" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+                <ui:VisualElement name="Stats" class="inventory-item-stats-col" style="flex-grow: 1;">
+                    <ui:Label tabindex="-1" text="+1 STR" parse-escape-sequences="true" display-tooltip-when-elided="true" class="inventory-text" />
                 </ui:VisualElement>
-                <ui:VisualElement name="Equipped" style="flex-grow: 1;">
+                <ui:VisualElement name="Equipped" class="inventory-equip-col" style="flex-grow: 1;">
                     <ui:Toggle style="align-items: stretch; flex-direction: row; align-self: center;" />
                 </ui:VisualElement>
-                <ui:VisualElement name="Drop" style="flex-grow: 1;">
-                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+                <ui:VisualElement name="Drop" class="inventory-drop-col" style="flex-grow: 1;">
+                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" class="menu-button" />
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="Row7" style="flex-grow: 1; flex-direction: row;">
-                <ui:VisualElement name="Icon" style="flex-grow: 1;">
+                <ui:VisualElement name="Icon" class="inventory-icon-background" style="flex-grow: 1;">
                     <ui:VisualElement name="Icon_1_Img" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/Icons/rapid-sketch-9-export.png?fileID=2800000&amp;guid=3f96a5c2bebac4a45941aabe9b6a383a&amp;type=3#rapid-sketch-9-export&quot;); -unity-background-scale-mode: scale-to-fit; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-top: 5px; margin-right: 5px; margin-bottom: 5px; margin-left: 5px;" />
                 </ui:VisualElement>
-                <ui:VisualElement name="Name" style="flex-grow: 1;">
-                    <ui:Label tabindex="-1" text="Sword" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Name_Text_1" />
+                <ui:VisualElement name="Name" class="inventory-item-name-col" style="flex-grow: 1;">
+                    <ui:Label tabindex="-1" text="Sword" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Name_Text_1" class="inventory-text" />
                 </ui:VisualElement>
-                <ui:VisualElement name="Stats" style="flex-grow: 1;">
-                    <ui:Label tabindex="-1" text="+1 STR" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+                <ui:VisualElement name="Stats" class="inventory-item-stats-col" style="flex-grow: 1;">
+                    <ui:Label tabindex="-1" text="+1 STR" parse-escape-sequences="true" display-tooltip-when-elided="true" class="inventory-text" />
                 </ui:VisualElement>
-                <ui:VisualElement name="Equipped" style="flex-grow: 1;">
+                <ui:VisualElement name="Equipped" class="inventory-equip-col" style="flex-grow: 1;">
                     <ui:Toggle style="align-items: stretch; flex-direction: row; align-self: center;" />
                 </ui:VisualElement>
-                <ui:VisualElement name="Drop" style="flex-grow: 1;">
-                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+                <ui:VisualElement name="Drop" class="inventory-drop-col" style="flex-grow: 1;">
+                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" class="menu-button" style="background-color: rgba(188, 188, 188, 0); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0);" />
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="Row8" style="flex-grow: 1; flex-direction: row;">
-                <ui:VisualElement name="Icon" style="flex-grow: 1;">
+                <ui:VisualElement name="Icon" class="inventory-icon-background" style="flex-grow: 1;">
                     <ui:VisualElement name="Icon_1_Img" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/Icons/rapid-sketch-9-export.png?fileID=2800000&amp;guid=3f96a5c2bebac4a45941aabe9b6a383a&amp;type=3#rapid-sketch-9-export&quot;); -unity-background-scale-mode: scale-to-fit; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-top: 5px; margin-right: 5px; margin-bottom: 5px; margin-left: 5px;" />
                 </ui:VisualElement>
-                <ui:VisualElement name="Name" style="flex-grow: 1;">
-                    <ui:Label tabindex="-1" text="Sword" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Name_Text_1" />
+                <ui:VisualElement name="Name" class="inventory-item-name-col" style="flex-grow: 1;">
+                    <ui:Label tabindex="-1" text="Sword" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Name_Text_1" class="inventory-text" />
                 </ui:VisualElement>
-                <ui:VisualElement name="Stats" style="flex-grow: 1;">
-                    <ui:Label tabindex="-1" text="+1 STR" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+                <ui:VisualElement name="Stats" class="inventory-item-stats-col" style="flex-grow: 1;">
+                    <ui:Label tabindex="-1" text="+1 STR" parse-escape-sequences="true" display-tooltip-when-elided="true" class="inventory-text" />
                 </ui:VisualElement>
-                <ui:VisualElement name="Equipped" style="flex-grow: 1;">
+                <ui:VisualElement name="Equipped" class="inventory-equip-col" style="flex-grow: 1;">
                     <ui:Toggle style="align-items: stretch; flex-direction: row; align-self: center;" />
                 </ui:VisualElement>
-                <ui:VisualElement name="Drop" style="flex-grow: 1;">
-                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+                <ui:VisualElement name="Drop" class="inventory-drop-col" style="flex-grow: 1;">
+                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" class="menu-button" />
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="Row9" style="flex-grow: 1; flex-direction: row;">
-                <ui:VisualElement name="Icon" style="flex-grow: 1;">
+                <ui:VisualElement name="Icon" class="inventory-icon-background" style="flex-grow: 1;">
                     <ui:VisualElement name="Icon_1_Img" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/Icons/rapid-sketch-9-export.png?fileID=2800000&amp;guid=3f96a5c2bebac4a45941aabe9b6a383a&amp;type=3#rapid-sketch-9-export&quot;); -unity-background-scale-mode: scale-to-fit; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-top: 5px; margin-right: 5px; margin-bottom: 5px; margin-left: 5px;" />
                 </ui:VisualElement>
-                <ui:VisualElement name="Name" style="flex-grow: 1;">
-                    <ui:Label tabindex="-1" text="Sword" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Name_Text_1" />
+                <ui:VisualElement name="Name" class="inventory-item-name-col" style="flex-grow: 1;">
+                    <ui:Label tabindex="-1" text="Sword" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Name_Text_1" class="inventory-text" />
                 </ui:VisualElement>
-                <ui:VisualElement name="Stats" style="flex-grow: 1;">
-                    <ui:Label tabindex="-1" text="+1 STR" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+                <ui:VisualElement name="Stats" class="inventory-item-stats-col" style="flex-grow: 1;">
+                    <ui:Label tabindex="-1" text="+1 STR" parse-escape-sequences="true" display-tooltip-when-elided="true" class="inventory-text" />
                 </ui:VisualElement>
-                <ui:VisualElement name="Equipped" style="flex-grow: 1;">
+                <ui:VisualElement name="Equipped" class="inventory-equip-col" style="flex-grow: 1;">
                     <ui:Toggle style="align-items: stretch; flex-direction: row; align-self: center;" />
                 </ui:VisualElement>
-                <ui:VisualElement name="Drop" style="flex-grow: 1;">
-                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+                <ui:VisualElement name="Drop" class="inventory-drop-col" style="flex-grow: 1;">
+                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" class="menu-button" />
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>

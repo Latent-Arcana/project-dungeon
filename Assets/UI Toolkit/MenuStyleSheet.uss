@@ -1,6 +1,15 @@
 .menu-button {
     margin-right: 10px;
     margin-left: 10px;
+    background-image: url("project://database/Assets/UI%20Toolkit/UI%20Sprites/1920x1080/drop_item_button.png?fileID=2800000&guid=116ce4fbc613b284dac75e5fd8e99011&type=3#drop_item_button");
+    background-color: rgba(0, 0, 0, 0);
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    -unity-font: url("project://database/Assets/Font/Seraphimb1.ttf?fileID=12800000&guid=3f1f980884aaaae4a87358e26cfd514b&type=3#Seraphimb1");
+    -unity-font-definition: initial;
+    color: rgb(255, 255, 255);
 }
 
 .menu-container-main {
@@ -41,4 +50,46 @@
     color: rgb(255, 255, 255);
     -unity-text-align: upper-left;
     font-size: 16px;
+}
+
+.inventory-text {
+    -unity-font: url("project://database/Assets/Font/Seraphimb1.ttf?fileID=12800000&guid=3f1f980884aaaae4a87358e26cfd514b&type=3#Seraphimb1");
+    -unity-font-definition: initial;
+    color: rgb(255, 255, 255);
+    font-size: 26px;
+    height: 100%;
+    padding-left: 30px;
+}
+
+.inventory-icon-background {
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    background-image: url("project://database/Assets/UI%20Toolkit/UI%20Sprites/1920x1080/item_icon_border.png?fileID=2800000&guid=2ae7f1f24ad5adf448994070843b09d0&type=3#item_icon_border");
+    -unity-background-scale-mode: scale-to-fit;
+    width: auto;
+    align-items: stretch;
+    align-self: flex-start;
+}
+
+.inventory-item-name-col {
+    width: 40%;
+    background-image: url("project://database/Assets/UI%20Toolkit/UI%20Sprites/1920x1080/item_text_border.png?fileID=2800000&guid=15cb80a8e6430204da3fe5a27c0f3f85&type=3#item_text_border");
+    -unity-background-scale-mode: scale-to-fit;
+    background-position: left;
+    -unity-text-align: middle-left;
+}
+
+.inventory-item-stats-col {
+    width: 20%;
+    -unity-text-align: middle-left;
+}
+
+.inventory-equip-col {
+    align-self: center;
+}
+
+.inventory-drop-col {
+    align-self: center;
 }
