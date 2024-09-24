@@ -1,11 +1,42 @@
-.narrator-text {
-    color: rgb(195, 195, 195);
-    font-size: 32px;
-}
-
 .narrator-stat-text {
     color: rgb(195, 155, 155);
     margin-right: 10px;
     margin-left: 10px;
     font-size: 24px;
+    align-self: center;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    padding-top: 4px;
+    padding-right: 2px;
+    padding-bottom: 4px;
+    padding-left: 1px;
+    -unity-font: url("project://database/Assets/Font/Seraphimb1.ttf?fileID=12800000&guid=3f1f980884aaaae4a87358e26cfd514b&type=3#Seraphimb1");
+    white-space: nowrap;
+}
+
+.narrator-text {
+    color: rgb(195, 195, 195);
+    font-size: 16px;
+    -unity-font: url("project://database/Assets/Font/Seraphimb1.ttf?fileID=12800000&guid=3f1f980884aaaae4a87358e26cfd514b&type=3#Seraphimb1");
+    margin-top: 4px;
+    margin-right: 4px;
+    margin-bottom: 2px;
+    margin-left: 2px;
+    padding-top: 4px;
+    padding-right: 2px;
+    padding-bottom: 4px;
+    padding-left: 1px;
+    -unity-font-definition: initial;
+}
+
+.narrator-text-top {
+    -unity-font-style: bold;
+    margin-top: 4px;
+    margin-right: 4px;
+    margin-left: 2px;
+    padding-top: 4px;
+    padding-right: 2px;
+    padding-bottom: 4px;
+    padding-left: 1px;
+    -unity-font-definition: initial;
 }
