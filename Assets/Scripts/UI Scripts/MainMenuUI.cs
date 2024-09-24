@@ -31,6 +31,7 @@ public class MainMenuUI : MonoBehaviour
     private Slider volEffectsSlider;
     private Slider ambientSlider;
     private DropdownField screenResDropdown;
+    private Toggle fullScreenToggle;
     //Audio
     [SerializeField]
     private AudioMixer audioMixer;
@@ -77,6 +78,7 @@ public class MainMenuUI : MonoBehaviour
         volEffectsSlider = main_document.rootVisualElement.Q("VolumeSoundEffectsSlider") as Slider;
         ambientSlider = main_document.rootVisualElement.Q("VolumeAmbientSlider") as Slider;
         screenResDropdown = main_document.rootVisualElement.Q("ResolutionDropdown") as DropdownField;
+        fullScreenToggle = main_document.rootVisualElement.Q("FullScreen") as Toggle;
 
         ////Events////
 
@@ -90,11 +92,13 @@ public class MainMenuUI : MonoBehaviour
         volMusicSlider.RegisterCallback<ChangeEvent<float>>(SetMusicVolume);
         volEffectsSlider.RegisterCallback<ChangeEvent<float>>(SetSoundEffectsVolume);
         ambientSlider.RegisterCallback<ChangeEvent<float>>(SetAmbientVolume);
-        screenResDropdown.RegisterValueChangedCallback(evt =>
-        {
-            OnScreenResolutionChanged(evt.newValue);
 
-        });
+
+        //Dropdowns
+        screenResDropdown.RegisterCallback<ChangeEvent<string>>(OnScreenResolutionChanged);
+
+        //Toggles
+        fullScreenToggle.RegisterCallback<ChangeEvent<bool>>(SetFullScreen);
 
 
         if (SceneManager.GetActiveScene().name != "Main Menu")
@@ -137,6 +141,10 @@ public class MainMenuUI : MonoBehaviour
         audioMixer.SetFloat("MixerMusicVolume", ConvertVolumeToDb(ops.musicVolume));
         audioMixer.SetFloat("MixerAmbientVolume", ConvertVolumeToDb(ops.ambientVolume));
 
+
+        Screen.SetResolution(ops.screenOptions.screenWidth, ops.screenOptions.screenHeight, ops.screenOptions.fullScreen);
+
+
         if (SceneManager.GetActiveScene().name == "Main Menu")
         {
             backgroundMusicController.ChangeSongForScene("Main Menu");
@@ -176,25 +184,31 @@ public class MainMenuUI : MonoBehaviour
         ToggleOptions();
     }
 
-    private void OnScreenResolutionChanged(string newValue)
+    private void OnScreenResolutionChanged(ChangeEvent<string> evt)
     {
-        switch (newValue)
+        switch (evt.newValue)
         {
             case "1920x1080":
                 ops.screenOptions = new ScreenOptions(1920, 1080, true);
-                Screen.SetResolution(1920, 1080, true);
+                Screen.SetResolution(1920, 1080, Screen.fullScreen);
                 break;
 
             case "640x480":
                 ops.screenOptions = new ScreenOptions(640, 480, true);
-                Screen.SetResolution(640, 480, true);
+                Screen.SetResolution(640, 480, Screen.fullScreen);
                 break;
 
             default:
                 ops.screenOptions = new ScreenOptions(640, 480, true);
-                Screen.SetResolution(640, 480, true);
+                Screen.SetResolution(640, 480, Screen.fullScreen);
                 break;
         }
+    }
+
+    private void SetFullScreen(ChangeEvent<bool> evt){
+
+        ops.screenOptions.fullScreen = evt.newValue;
+        Screen.SetResolution(Screen.width, Screen.height, evt.newValue);
     }
 
 
@@ -207,6 +221,10 @@ public class MainMenuUI : MonoBehaviour
         volMusicSlider.SetValueWithoutNotify(ops.musicVolume);
         volEffectsSlider.SetValueWithoutNotify(ops.soundEffectVolume);
         ambientSlider.SetValueWithoutNotify(ops.ambientVolume);
+        
+        string resString = ops.screenOptions.screenWidth.ToString() + "x" + ops.screenOptions.screenHeight.ToString();
+        screenResDropdown.SetValueWithoutNotify(resString);
+        fullScreenToggle.SetValueWithoutNotify(ops.screenOptions.fullScreen);
 
         //show options menu
         ToggleOptions();

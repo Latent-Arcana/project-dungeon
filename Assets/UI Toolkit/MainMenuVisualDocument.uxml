@@ -12,7 +12,8 @@
             <ui:Slider label="Music" high-value="1" low-value="0.0001" name="VolumeMusicSlider" />
             <ui:Slider label="Effects" high-value="1" low-value="0.0001" name="VolumeSoundEffectsSlider" />
             <ui:Slider label="Ambient" high-value="1" low-value="0.0001" name="VolumeAmbientSlider" />
-            <ui:DropdownField label="Resolution" choices="640x480,1920x1080" index="0" name="ResolutionDropdown" />
+            <ui:DropdownField label="Resolution" choices="640x480,1920x1080" index="0" name="ResolutionDropdown" style="flex-direction: row;" />
+            <ui:Toggle label="Fullscreen" name="FullScreen" value="false" />
             <ui:Button text="Back" parse-escape-sequences="true" display-tooltip-when-elided="true" name="BackButton" class="menu-button" />
         </ui:VisualElement>
     </ui:VisualElement>
