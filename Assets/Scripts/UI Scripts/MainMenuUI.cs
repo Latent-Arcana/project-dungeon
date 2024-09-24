@@ -259,7 +259,8 @@ public class MainMenuUI : MonoBehaviour
             PlayAudioClose();
             TogglePauseMenu();
             input.currentInputState = InputController.InputState.Gameplay; //this is the only place we change the state of the menus outside of input controller, so we manually set the state
-        }
+            input.ToggleMovement();
+       }
 
     }
 
