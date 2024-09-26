@@ -58,19 +58,32 @@
     color: rgb(255, 255, 255);
     font-size: 26px;
     height: 100%;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
     padding-left: 30px;
 }
 
 .inventory-icon-background {
-    padding-top: 20px;
-    padding-right: 20px;
-    padding-bottom: 20px;
-    padding-left: 20px;
+
     background-image: url("project://database/Assets/UI%20Toolkit/UI%20Sprites/1920x1080/item_icon_border.png?fileID=2800000&guid=2ae7f1f24ad5adf448994070843b09d0&type=3#item_icon_border");
     -unity-background-scale-mode: scale-to-fit;
-    width: auto;
+    width: 5%;
     align-items: stretch;
     align-self: flex-start;
+    background-position: right;
+}
+
+.inventory-icon {
+    -unity-background-scale-mode: scale-to-fit;
+    align-items: stretch;
+    align-self: flex-start;
+    width: 100%;
+    background-position: right;
 }
 
 .inventory-item-name-col {
@@ -92,4 +105,11 @@
 
 .inventory-drop-col {
     align-self: center;
+}
+
+.inventory-row {
+    margin-top: 15px;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
 }
