@@ -131,7 +131,7 @@ public class InventoryUI : MonoBehaviour
 
                 //assign img
                 Sprite sprt = Resources.Load<Sprite>(inventory[i].image);
-                rows[i].Q("Icon").Children().First().style.backgroundImage = new StyleBackground(sprt);
+                rows[i].Q("Icon").Children().First().Children().First().style.backgroundImage = new StyleBackground(sprt);
 
                 //assign name
                 TextElement nameText = rows[i].Q("Name").Children().First() as TextElement;
@@ -162,7 +162,7 @@ public class InventoryUI : MonoBehaviour
 
                 //assign empty img ?
                 //Sprite sprt = Resources.Load<Sprite>(inventory[i].image);
-                rows[i].Q("Icon").Children().First().style.backgroundImage = null;
+                rows[i].Q("Icon").Children().First().Children().First().style.backgroundImage = null;
 
                 TextElement nameText = rows[i].Q("Name").Children().First() as TextElement;
                 nameText.text = "";

@@ -68,22 +68,20 @@
     padding-left: 30px;
 }
 
-.inventory-icon-background {
+.inventory-icon-col {
+    width: 5%;
+}
 
+.inventory-icon-background {
     background-image: url("project://database/Assets/UI%20Toolkit/UI%20Sprites/1920x1080/item_icon_border.png?fileID=2800000&guid=2ae7f1f24ad5adf448994070843b09d0&type=3#item_icon_border");
     -unity-background-scale-mode: scale-to-fit;
-    width: 5%;
-    align-items: stretch;
-    align-self: flex-start;
     background-position: right;
+    padding: 11px; 
 }
 
 .inventory-icon {
     -unity-background-scale-mode: scale-to-fit;
-    align-items: stretch;
-    align-self: flex-start;
-    width: 100%;
-    background-position: right;
+        background-position: right;
 }
 
 .inventory-item-name-col {
