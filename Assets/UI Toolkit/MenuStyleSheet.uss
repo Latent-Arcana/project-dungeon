@@ -62,10 +62,10 @@
 }
 
 .inventory-icon-background {
-    padding-top: 10px;
-    padding-right: 10px;
-    padding-bottom: 10px;
-    padding-left: 10px;
+    padding-top: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
     background-image: url("project://database/Assets/UI%20Toolkit/UI%20Sprites/1920x1080/item_icon_border.png?fileID=2800000&guid=2ae7f1f24ad5adf448994070843b09d0&type=3#item_icon_border");
     -unity-background-scale-mode: scale-to-fit;
     width: auto;
