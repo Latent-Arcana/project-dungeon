@@ -15,4 +15,4 @@ MonoBehaviour:
   items: []
   equippedArmor: -1
   equippedWeapon: -1
-  DEBUG_RESET: 1
+  DEBUG_RESET: 0
