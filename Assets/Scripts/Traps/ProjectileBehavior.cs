@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
-public class ProjectileBehavior : MonoBehaviour
+public class ProjectileBehavior : EnemyBehavior
 {
     public Vector3 directionOfTravel;
 
@@ -12,53 +12,90 @@ public class ProjectileBehavior : MonoBehaviour
 
     public bool isAtSpawn;
 
-    public void Move()
+
+    public override void CheckAndAttack(Vector3 prevPosition, Vector3 currentPosition, Vector2 intendedDirection)
     {
-        if (isAtSpawn)
+        foreach (Vector3 position in borderPositions)
         {
-            isAtSpawn = false;
-            return;
-        }
+            if (prevPosition == position)
+            {
 
-        else
+                // Identify whether the player was trying to attack the enemy too
+                if (prevPosition == currentPosition && (Vector3)intendedDirection + prevPosition == transform.position)
+                {
+                    Attack(playerAttacked: true);
+                }
+
+                else
+                {
+                    Attack(playerAttacked: false);
+                }
+
+            }
+        }
+    }
+
+    public override void AssignStats()
+    {
+        //enemyStats = new EnemyStats("skeleton", 5, 1, 2, 1, 1);
+    }
+
+    public override void Input_OnPlayerMoved(object sender, PlayerMovement.MovementArgs e)
+    {
+        if (this.gameObject != null)
         {
-            gameObject.transform.position += (Vector3)directionOfTravel;
-            return;
+            Physics2D.SyncTransforms();
+
+            borderPositions[0] = gameObject.transform.position + Vector3.up;
+            borderPositions[1] = gameObject.transform.position + Vector3.down;
+            borderPositions[2] = gameObject.transform.position + Vector3.right;
+            borderPositions[3] = gameObject.transform.position + Vector3.left;
+
+
+            CheckAndAttack(e.prevPosition, e.position, e.intendedDirection);
+
+            Move(e.position);
         }
 
     }
 
-    private void OnTriggerExit2D(Collider2D collision){
-        if(collision.tag == "room"){
-            trap.GetComponent<TrapBehavior>().DestroyProjectile(projectileId);
+
+    public override void Move(Vector3 currentPlayerPosition)
+    {
+
+    }
+
+    public override void WanderRandomly()
+    {
+
+    }
+
+    public override void Die()
+    {
+
+    }
+
+
+    public override void OnTriggerEnter2D(Collider2D collision)
+    {
+
+        if (collision.gameObject.tag == "room" && collision.gameObject.GetComponentInParent<Room>() != null && gameObject != null && behaviorState != BehaviorState.Dead)
+        {
+            behaviorState = BehaviorState.Idle;
+            currentRoom = collision.gameObject.GetComponentInParent<Room>().roomId;
+        }
+
+    }
+
+    public override void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "room" && collision.gameObject.GetComponentInParent<Room>() != null && gameObject != null && behaviorState != BehaviorState.Dead)
+        {
+            Die();
         }
     }
 
-    // public bool CollisionPath(){
-        
-    //     // Let's check to see if we should despawn our projectile or deal damage to something
-    //     Vector3 checkPosition = gameObject.transform.position + directionOfTravel;
-    //     LayerMask mask = ~(1 << LayerMask.NameToLayer("ObjectPlacementLayer")); // we want to ignore the placement layer that we used for creating objects  in each scene
-    //     Collider2D collision = Physics2D.OverlapCircle(checkPosition, 0.1f, mask);
 
-    //     if(collision == null){
-    //         return false;
-    //     }
 
-    //     else if(collision.gameObject.tag == "Player"){
-    //         StartCoroutine(HitPlayer(collision.gameObject));
-    //         return true;
-    //     }
 
-    // }
-
-    IEnumerator HitPlayer(GameObject player){
-        gameObject.transform.position += (Vector3)directionOfTravel;
-
-        yield return new WaitForSeconds(0.1f);
-
-        trap.GetComponent<TrapBehavior>().DestroyProjectile(projectileId);
-
-        
-    }
 }

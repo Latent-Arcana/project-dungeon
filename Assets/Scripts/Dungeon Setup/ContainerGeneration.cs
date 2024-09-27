@@ -122,4 +122,10 @@ public class ContainerGeneration : MonoBehaviour
     }
 
 
+    public Item GetRandomItem(){
+        
+        int randomIndex = UnityEngine.Random.Range(0, itemsDatabase.Count);
+
+        return itemsDatabase[randomIndex];
+    }
 }

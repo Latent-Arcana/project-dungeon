@@ -43,7 +43,7 @@ public class EnemyBehavior : MonoBehaviour
 
     public EnemyStats enemyStats;
 
-    BehaviorState behaviorState;
+    public BehaviorState behaviorState;
 
     public enum BehaviorState
     {
@@ -58,7 +58,7 @@ public class EnemyBehavior : MonoBehaviour
     // 2: Vector3 rightPosition;
     // 3: Vector3 leftPosition;
 
-    Vector3[] borderPositions = new Vector3[4];
+    public Vector3[] borderPositions = new Vector3[4];
 
     public virtual void Awake()
     {
@@ -89,7 +89,7 @@ public class EnemyBehavior : MonoBehaviour
 
     }
 
-    private void Input_OnPlayerMoved(object sender, PlayerMovement.MovementArgs e)
+    public virtual void Input_OnPlayerMoved(object sender, PlayerMovement.MovementArgs e)
     {
         if (this.gameObject != null && behaviorState != BehaviorState.Dead)
         {
@@ -126,7 +126,7 @@ public class EnemyBehavior : MonoBehaviour
 
     }
 
-    private void CheckAndAttack(Vector3 prevPosition, Vector3 currentPosition, Vector2 intendedDirection)
+    public virtual void CheckAndAttack(Vector3 prevPosition, Vector3 currentPosition, Vector2 intendedDirection)
     {
 
         foreach (Vector3 position in borderPositions)
@@ -501,7 +501,7 @@ public class EnemyBehavior : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public virtual void OnTriggerEnter2D(Collider2D collision)
     {
 
         if (collision.gameObject.tag == "room" && collision.gameObject.GetComponentInParent<Room>() != null && gameObject != null && behaviorState != BehaviorState.Dead)
@@ -517,7 +517,7 @@ public class EnemyBehavior : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    public virtual void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "room" && collision.gameObject.GetComponentInParent<Room>() != null && gameObject != null && behaviorState != BehaviorState.Dead)
         {

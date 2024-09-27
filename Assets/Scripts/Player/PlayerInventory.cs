@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-
+using static ContainerGeneration;
 // TODO: Use inheritance so that our PlayerInventory and ContainerBehavior don't have so much code dupe between them
 public class PlayerInventory : MonoBehaviour
 {
@@ -182,6 +182,18 @@ public class PlayerInventory : MonoBehaviour
     {
         // Debug.Log("Armor: " + equippedArmor);
         // Debug.Log("Weapon: " + equippedWeapon);
+
+        if (Input.GetKeyDown(KeyCode.Keypad1))
+        {
+            Item item = Container_Generator.GetRandomItem();
+
+            if (inventory.items.Count < maxItemCount)
+            {
+                inventory.items.Add(item);
+
+            }
+
+        }
     }
 
     // DEBUG
