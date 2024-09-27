@@ -12,12 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c67958a35483ac42a06ae828d59eadc, type: 3}
   m_Name: Inventory
   m_EditorClassIdentifier: 
-  items:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  items: []
   equippedArmor: -1
-  equippedWeapon: 3
+  equippedWeapon: -1
   DEBUG_RESET: 0

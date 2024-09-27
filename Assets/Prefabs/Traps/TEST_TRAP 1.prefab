@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 1675059978392872248}
   m_Layer: 0
   m_Name: TEST_TRAP 1
-  m_TagString: Untagged
+  m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -280,3 +280,4 @@ MonoBehaviour:
   roomId: 0
   projectilePrefabs:
   - {fileID: 8234369491197853260, guid: 573bc9d4e3cdc434d9e9fb8e4c7f53c7, type: 3}
+  Player_Stats: {fileID: 11400000, guid: 49cdfbab4b8796a41af4e48e5ee7d3d5, type: 2}

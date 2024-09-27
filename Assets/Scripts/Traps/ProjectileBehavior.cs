@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using static DungeonNarrator;
+
 public class ProjectileBehavior : EnemyBehavior
 {
     public Vector3 directionOfTravel;
@@ -12,6 +14,7 @@ public class ProjectileBehavior : EnemyBehavior
 
     public bool isAtSpawn;
 
+    public bool isDestroyed = false;
 
     public override void CheckAndAttack(Vector3 prevPosition, Vector3 currentPosition, Vector2 intendedDirection)
     {
@@ -42,17 +45,9 @@ public class ProjectileBehavior : EnemyBehavior
 
     public override void Input_OnPlayerMoved(object sender, PlayerMovement.MovementArgs e)
     {
-        if (this.gameObject != null)
+        if (gameObject != null && isDestroyed == false)
         {
-            Physics2D.SyncTransforms();
-
-            borderPositions[0] = gameObject.transform.position + Vector3.up;
-            borderPositions[1] = gameObject.transform.position + Vector3.down;
-            borderPositions[2] = gameObject.transform.position + Vector3.right;
-            borderPositions[3] = gameObject.transform.position + Vector3.left;
-
-
-            CheckAndAttack(e.prevPosition, e.position, e.intendedDirection);
+            //CheckAndAttack(e.prevPosition, e.position, e.intendedDirection);
 
             Move(e.position);
         }
@@ -62,6 +57,29 @@ public class ProjectileBehavior : EnemyBehavior
 
     public override void Move(Vector3 currentPlayerPosition)
     {
+        Physics2D.SyncTransforms();
+
+        Vector3 targetPosition = directionOfTravel + gameObject.transform.position;
+
+        Collider2D coll = CheckPosition(targetPosition);
+
+        if (coll == null)
+        {
+            gameObject.transform.position += directionOfTravel;
+            Physics2D.SyncTransforms();
+        }
+
+        else if (coll.name == "Player")
+        {
+            Attack(playerAttacked: false);
+            isDestroyed = true;
+            Destroy(gameObject);
+        }
+
+        else
+        {
+            Die();
+        }
 
     }
 
@@ -72,7 +90,38 @@ public class ProjectileBehavior : EnemyBehavior
 
     public override void Die()
     {
+        if (gameObject != null && isDestroyed == false)
+        {
+            StartCoroutine(ProjectileDestroy());
+        }
 
+    }
+
+    public IEnumerator ProjectileDestroy()
+    {
+        isDestroyed = true;
+
+        SpriteRenderer spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        spriteRenderer.color = new Color(255f, 255f, 255f, 1.0f);
+        yield return new WaitForSeconds(.20f);
+        spriteRenderer.color = new Color(255f, 255f, 255f, 0.75f);
+        yield return new WaitForSeconds(.20f);
+        spriteRenderer.color = new Color(255f, 255f, 255f, 0.5f);
+        yield return new WaitForSeconds(.20f);
+        spriteRenderer.color = new Color(255f, 255f, 255f, 0.25f);
+        yield return new WaitForSeconds(.20f);
+        spriteRenderer.color = new Color(255f, 255f, 255f, 0.0f);
+        yield return new WaitForSeconds(.20f);
+
+        yield return new WaitForEndOfFrame();
+        Destroy(gameObject);
+
+    }
+
+    public override void Attack(bool playerAttacked)
+    {
+        Player_Stats.SetHP(Player_Stats.HP - 2);
+        Dungeon_Narrator.AddDungeonNarratorText($"You took 2 points of damage from the trap projectile.");
     }
 
 
@@ -86,15 +135,6 @@ public class ProjectileBehavior : EnemyBehavior
         }
 
     }
-
-    public override void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "room" && collision.gameObject.GetComponentInParent<Room>() != null && gameObject != null && behaviorState != BehaviorState.Dead)
-        {
-            Die();
-        }
-    }
-
 
 
 
