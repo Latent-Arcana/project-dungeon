@@ -76,12 +76,12 @@
     background-image: url("project://database/Assets/UI%20Toolkit/UI%20Sprites/1920x1080/item_icon_border.png?fileID=2800000&guid=2ae7f1f24ad5adf448994070843b09d0&type=3#item_icon_border");
     -unity-background-scale-mode: scale-to-fit;
     background-position: right;
-    padding: 11px; 
+    padding: 11px;
 }
 
 .inventory-icon {
     -unity-background-scale-mode: scale-to-fit;
-        background-position: right;
+    background-position: right;
 }
 
 .inventory-item-name-col {
@@ -110,4 +110,16 @@
     margin-right: 0;
     margin-bottom: 0;
     margin-left: 0;
+}
+
+.inventory-toggle:checked > .unity-toggle__input > .unity-toggle__checkmark {
+    background-image: url("project://database/Assets/UI%20Toolkit/UI%20Sprites/1920x1080/toggle_on.png?fileID=2800000&guid=8cacaad50744e0943b77afd4ffe3f683&type=3#toggle_on");
+    background-color: rgb(255, 255, 255);
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+}
+
+.inventory-toggle > .unity-toggle__input > .unity-toggle__checkmark {
+    background-image: url("project://database/Assets/UI%20Toolkit/UI%20Sprites/1920x1080/toggle_off.png?fileID=2800000&guid=25d2efb0a7358b34b8d5cda65e6c07c6&type=3#toggle_off");
+    background-color: rgb(255, 255, 255);
+    -unity-background-image-tint-color: rgb(255, 255, 255);
 }
