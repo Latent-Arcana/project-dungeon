@@ -58,6 +58,7 @@ public class BSPGeneration : MonoBehaviour
     //public Tilemap mapTilemap;
 
     public List<GameObject> allRooms = new List<GameObject>();
+    public List<GameObject> allHallways = new List<GameObject>();
 
     public float[][] distances;
 
@@ -193,8 +194,6 @@ public class BSPGeneration : MonoBehaviour
             }
         }
 
-
-        CreateCorridors(dungeon);
 
         // now we can place our player at the start of the dungeon.
         // FOR NOW WE ARE PICKING THE FIRST ROOM IN THE LIST, ARBITRARILY
@@ -485,6 +484,7 @@ public class BSPGeneration : MonoBehaviour
 
     void DrawCorridor(Room room1, Room room2)
     {
+
         Vector3Int start = new Vector3Int(room1.originX, room1.originY, 0);
         Vector3Int end = new Vector3Int(room2.originX, room2.originY, 0);
 
@@ -494,12 +494,11 @@ public class BSPGeneration : MonoBehaviour
 
         //Game Object Stuff
         GameObject hallwayObject = new GameObject("Hallway_" + room1.roomId.ToString() + "_" + room2.roomId.ToString());
-        //GameObject hallwayObjGameplay = new GameObject("Hallway_Gameplay");
+        allHallways.Add(hallwayObject);
 
-        //parent objects
+        //parent object
         hallwayObject.transform.SetParent(GameObject.Find("Hallways").transform);
-        //hallwayObjGameplay.transform.SetParent(hallwayObject.transform); //child 0
-        //no map object yet, but we could make one if we fog the map differently
+
 
         //attach hallway class and assign
         Hallway hallway = hallwayObject.AddComponent<Hallway>();
@@ -510,29 +509,9 @@ public class BSPGeneration : MonoBehaviour
         hallway.room1Id = room1.roomId;
         hallway.room2Id = room2.roomId;
 
-        //Tag
+        //Tag and layer
         hallwayObject.tag = "hallway";
-
-        //
-        hallwayObject.AddComponent<HallwayFogController>();
-
-        //  Horizontal Collider
-        BoxCollider2D horizCollider = hallwayObject.AddComponent<BoxCollider2D>();
-        horizCollider.isTrigger = true;
-        horizCollider.offset = new Vector2(
-            horizontalStart.x + .5f + (horizontalEnd.x - horizontalStart.x) / 2f,
-            horizontalStart.y + 0.5f
-            ); //offset is centered
-        horizCollider.size = new Vector2(Mathf.Max(horizontalEnd.x - horizontalStart.x - 0.25f, .5f), 0.5f); // for single tile hallways, x-x is 0 so we have to take the max of 0.5f
-
-        //  Vertical Collider
-        BoxCollider2D vertCollider = hallwayObject.AddComponent<BoxCollider2D>();
-        vertCollider.isTrigger = true;
-        vertCollider.offset = new Vector2(
-            verticalStart.x + 0.5f,
-            verticalStart.y + .5f + (verticalEnd.y - verticalStart.y) / 2f
-            ); //offset is centered
-        vertCollider.size = new Vector2(0.5f, Mathf.Max(verticalEnd.y - verticalStart.y - 0.25f, .5f)); // for single tile hallways, y-y is 0 so we have to take the max of 0.5f
+        hallwayObject.layer = LayerMask.NameToLayer("RoomFog");
 
 
         //horizontal line object

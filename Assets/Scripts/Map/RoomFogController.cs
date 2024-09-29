@@ -21,10 +21,10 @@ public class RoomFogController : MonoBehaviour
 
 
 
-        if (roomId == 0)
-        {
-            fogSpriteObject.SetActive(false);
-        }
+        // if (roomId == 0)
+        // {
+        //     fogSpriteObject.SetActive(false);
+        // }
 
 
     }
@@ -58,13 +58,13 @@ public class RoomFogController : MonoBehaviour
         if (e.type == "enter" && e.roomId == roomId)
         {
             //collided with me
-            fogSpriteObject.SetActive(false);
+            //fogSpriteObject.SetActive(false);
         }
 
         else
         {
             //room or hallway change, I should not be visible now
-            fogSpriteObject.SetActive(true);
+            //fogSpriteObject.SetActive(true);
         }
 
     }

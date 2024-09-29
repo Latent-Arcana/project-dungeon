@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3278021294717465607}
   - component: {fileID: 1273503724347657077}
   - component: {fileID: 1596733944401104670}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,6 +104,8 @@ MonoBehaviour:
   playerCameraBehavior: {fileID: 0}
   input: {fileID: 0}
   playerInventory: {fileID: 0}
+  rightFacingSprite: {fileID: 0}
+  leftFacingSprite: {fileID: 0}
 --- !u!61 &1273503724347657077
 BoxCollider2D:
   m_ObjectHideFlags: 0
