@@ -427,7 +427,9 @@ public class EnemyBehavior : MonoBehaviour
     public Collider2D CheckPosition(Vector3 checkPosition)
     {
 
-        LayerMask mask = ~(1 << LayerMask.NameToLayer("ObjectPlacementLayer")); // we want to ignore the placement layer that we used for creating objects  in each scene
+        //LayerMask mask = ~(1 << LayerMask.NameToLayer("ObjectPlacementLayer")); // we want to ignore the placement layer that we used for creating objects  in each scene
+        LayerMask mask = LayerMask.GetMask("Default","Player"); //we only care about colliding on default for now, but we should add in other layers here if needed
+
 
         // Check at the origin point of the location we're checking (the center)
         Collider2D collision = Physics2D.OverlapCircle(checkPosition + new Vector3(0.5f, 0.5f, 0), 0.25f, mask);

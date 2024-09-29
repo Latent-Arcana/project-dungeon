@@ -54,8 +54,6 @@ public class GameplayFogController : MonoBehaviour
             }
         }
 
-        Debug.Log($"Found {allRooms.Count} room fog game objects");
-
         allHallways = GameObject.Find("DungeonGenerator").GetComponent<BSPGeneration>().allHallways;
 
     }
@@ -110,9 +108,11 @@ public class GameplayFogController : MonoBehaviour
         foreach (GameObject hallway in allHallways)
         {
 
-            //handles L shaped hallways that have 2 child objects
+            //handles L shaped hallways that have 2+ child objects
             foreach (Transform child in hallway.transform)
             {
+
+                //TODO here: make the entire hallway visible if any of the segment (horizontal/vertical) colliders are in list
                 if (collisionObjects.Contains(child.gameObject.GetComponent<Collider2D>()))
                 {
                     child.gameObject.GetComponent<SpriteRenderer>().enabled = false;
@@ -120,7 +120,6 @@ public class GameplayFogController : MonoBehaviour
                 else
                 {
                     child.gameObject.GetComponent<SpriteRenderer>().enabled = true;
-
                 }
             }
         }

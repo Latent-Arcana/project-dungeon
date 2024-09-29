@@ -1,15 +1,8 @@
 using System;
 using System.Collections;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
-using TMPro;
-using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.Rendering;
 using UnityEngine.Tilemaps;
-using UnityEngine.UIElements;
 
 public class BSPGeneration : MonoBehaviour
 {
@@ -134,7 +127,10 @@ public class BSPGeneration : MonoBehaviour
 
         }
 
+        //handle hallways
         CreateCorridors(dungeon);
+        //StartCoroutine(CleanUpAndMergeHallways());
+
 
 
 
@@ -492,12 +488,31 @@ public class BSPGeneration : MonoBehaviour
         DrawCooridorY(ref start, ref end, out Vector2Int verticalStart, out Vector2Int verticalEnd);
 
 
+        // //Check if the hallway will touch existing hallways
+        // bool isOverlapping = false;
+        // GameObject parent = null;
+
+        // //horizontal check
+        // if (horizontalStart != Vector2Int.zero)
+        // {
+        //     //Vector2 h = horizontalStart;
+        //     Collider2D col = Physics2D.OverlapArea(horizontalStart, horizontalEnd+Vector2.one ,LayerMask.GetMask("RoomFog"));
+        //     //Debug.DrawLine(horizontalStart, horizontalEnd + UnityEngine.Vector2.one, UnityEngine.Color.white);
+
+        // }
+
+        // //vertical check
+
+        // if (verticalStart != Vector2Int.zero)
+        // {
+
+        // }
+
+
         //Game Object Stuff
         GameObject hallwayObject = new GameObject("Hallway_" + room1.roomId.ToString() + "_" + room2.roomId.ToString());
-        allHallways.Add(hallwayObject);
-
-        //parent object
         hallwayObject.transform.SetParent(GameObject.Find("Hallways").transform);
+        allHallways.Add(hallwayObject);
 
 
         //attach hallway class and assign
@@ -522,8 +537,6 @@ public class BSPGeneration : MonoBehaviour
             fogBoxHorizontal.GetComponent<SpriteRenderer>().sortingLayerID = SortingLayer.NameToID("Fog of War");
             fogBoxHorizontal.transform.SetParent(hallwayObject.transform);
             fogBoxHorizontal.name = "Horizontal Hallway";
-
-            //fogBoxHorizontal.AddComponent<HallwayFogController>();
             fogBoxHorizontal.tag = "hallway";
         }
 
@@ -535,11 +548,6 @@ public class BSPGeneration : MonoBehaviour
             fogBoxVertical.GetComponent<SpriteRenderer>().sortingLayerID = SortingLayer.NameToID("Fog of War");
             fogBoxVertical.transform.SetParent(hallwayObject.transform);
             fogBoxVertical.name = "Vertical Hallway";
-
-            // BoxCollider2D roomColl = fogBoxVertical.AddComponent<BoxCollider2D>();
-            // roomColl.isTrigger = true;
-
-            //fogBoxVertical.AddComponent<HallwayFogController>();
             fogBoxVertical.tag = "hallway";
         }
 
@@ -551,16 +559,13 @@ public class BSPGeneration : MonoBehaviour
         hallEnd = new Vector2Int(0, 0);
         bool isSet = false;
 
-        //Debug.Log($"Checking location ({start.x}, {start.y}) - {mainTilemap.GetTile(start)} ");
-
-
         if (start.x < end.x) //from left to right
         {
             while (start.x != end.x)
             {
                 start.x += 1;
 
-                if (mainTilemap.GetTile(start) != gameplayFloorTile) // only draw hallways over
+                if (mainTilemap.GetTile(start) != gameplayFloorTile) // not overlapping a room, tile != floor already (it will overlap a hallway though)
                 {
                     if (!isSet) //set the starting position one time
                     {
@@ -575,6 +580,7 @@ public class BSPGeneration : MonoBehaviour
                     mainTilemap.SetTileFlags(start, TileFlags.None);
                     mainTilemap.SetTile(start, gameplayFloorHallwayTile);
 
+                    //and the map tiles
                     mainTilemap.SetTileFlags(start + new Vector3Int(-mapOffset, -mapOffset, 0), TileFlags.None);
                     mainTilemap.SetTile(start + new Vector3Int(-mapOffset, -mapOffset, 0), mapFloorAndWallTile);
 
@@ -588,7 +594,7 @@ public class BSPGeneration : MonoBehaviour
             {
                 start.x -= 1;
 
-                if (mainTilemap.GetTile(start) != gameplayFloorTile) // not overlapping a room, tile != floor already
+                if (mainTilemap.GetTile(start) != gameplayFloorTile) // not overlapping a room, tile != floor already (it will overlap a hallway though)
                 {
                     if (!isSet) //set the starting position one time
                     {
@@ -603,6 +609,7 @@ public class BSPGeneration : MonoBehaviour
                     mainTilemap.SetTileFlags(start, TileFlags.None);
                     mainTilemap.SetTile(start, gameplayFloorHallwayTile);
 
+                    //and the map tiles
                     mainTilemap.SetTileFlags(start + new Vector3Int(-mapOffset, -mapOffset, 0), TileFlags.None);
                     mainTilemap.SetTile(start + new Vector3Int(-mapOffset, -mapOffset, 0), mapFloorAndWallTile);
                 }
@@ -628,7 +635,7 @@ public class BSPGeneration : MonoBehaviour
             {
                 start.y += 1;
 
-                if (mainTilemap.GetTile(start) != gameplayFloorTile) // not overlapping a room, tile != floor already
+                if (mainTilemap.GetTile(start) != gameplayFloorTile) // not overlapping a room, tile != floor already (it will overlap a hallway though)
                 {
                     if (!isSet) //set the starting position one time
                     {
@@ -639,11 +646,11 @@ public class BSPGeneration : MonoBehaviour
                     hallEnd.x = start.x;
                     hallEnd.y = start.y;
 
+                    //gameplay tiles
                     mainTilemap.SetTileFlags(start, TileFlags.None);
                     mainTilemap.SetTile(start, gameplayFloorHallwayTile);
 
-
-
+                    //map tiles
                     mainTilemap.SetTileFlags(start + new Vector3Int(-mapOffset, -mapOffset, 0), TileFlags.None);
                     mainTilemap.SetTile(start + new Vector3Int(-mapOffset, -mapOffset, 0), mapFloorAndWallTile);
                 }
@@ -656,7 +663,7 @@ public class BSPGeneration : MonoBehaviour
             {
                 start.y -= 1;
 
-                if (mainTilemap.GetTile(start) != gameplayFloorTile) // not overlapping a room, tile != floor already
+                if (mainTilemap.GetTile(start) != gameplayFloorTile) // not overlapping a room, tile != floor already (it will overlap a hallway though)
                 {
                     if (!isSet) //set the starting position one time
                     {
@@ -667,9 +674,11 @@ public class BSPGeneration : MonoBehaviour
                     hallStart.x = start.x;
                     hallStart.y = start.y;
 
+                    //gameplay tiles
                     mainTilemap.SetTileFlags(start, TileFlags.None);
                     mainTilemap.SetTile(start, gameplayFloorHallwayTile);
 
+                    //map tiles
                     mainTilemap.SetTileFlags(start + new Vector3Int(-mapOffset, -mapOffset, 0), TileFlags.None);
                     mainTilemap.SetTile(start + new Vector3Int(-mapOffset, -mapOffset, 0), mapFloorAndWallTile);
                 }
@@ -804,6 +813,39 @@ public class BSPGeneration : MonoBehaviour
             queue.Dequeue();
         }
     }
+
+    private IEnumerator CleanUpAndMergeHallways()
+    {
+
+        //make sure to let physics happen first
+        yield return new WaitForFixedUpdate();
+
+        for (int i = 0; i < allHallways.Count - 1; i++)
+        {
+            //check if the hallway overlaps with any of the hallways further down the list
+            for (int j = i + 1; j < allHallways.Count; j++)
+            {
+                //Debug.Log($"Checking combo {i} + {j}");
+
+                //for each child (Horizontal or Vertical in hallway i)
+                // foreach (Transform child in allHallways[i].transform)
+                // {
+                //     //same thing but in j
+                //     foreach (Transform child2 in allHallways[j].transform)
+                //     {
+
+                // I also tried to use Physics2D.IsTouching(col1 , col2) and used a Collider2D instead of BoxCollider2D
+                //         if (child.gameObject.GetComponent<BoxCollider2D>().IsTouching(child2.gameObject.GetComponent<BoxCollider2D>()))
+                //         {
+                //             Debug.Log($"MOMMMMMMM HES TOUCHING MEEEEE {i},{j}");
+                //         }
+                //     }
+                // }
+            }
+        }
+
+    }
+
 
     void _DrawPartitionHelper(Partition part)
     {
