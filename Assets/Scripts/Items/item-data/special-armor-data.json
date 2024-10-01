@@ -28,7 +28,7 @@
       "AGI": 0,
       "HP": 5,
       "AP": 2,
-      "image": "The_Garons_Fur"
+      "image": "temp_icon"
     },
     {
       "itemName": "The Wailing Lamés",
@@ -48,7 +48,7 @@
       "AGI": 3,
       "HP": 10,
       "AP": 0,
-      "image": "The_Golden_Belt_And_Shorts"
+      "image": "temp_icon"
     }
   ]
 }

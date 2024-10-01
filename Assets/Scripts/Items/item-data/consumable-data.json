@@ -10,7 +10,7 @@
       "permanent": 0,
       "useVerb": "drink",
       "uses": 3,
-      "image": "Elixir_Of_Health"
+      "image": "potion-health-1"
     },
     {
       "itemName": "Vial of Pure Strength",
@@ -22,7 +22,7 @@
       "permanent": 0,
       "useVerb": "drink",
       "uses": 1,
-      "image": "Vial_Of_Pure_Strength"
+      "image": "temp_icon"
     },
     {
       "itemName": "Vial of Pure Speed",
@@ -34,7 +34,7 @@
       "permanent": 0,
       "useVerb": "drink",
       "uses": 1,
-      "image": "Vial_Of_Pure_Speed"
+      "image": "temp_icon"
     },
     {
       "itemName": "Vial of Pure Adrenaline",
@@ -46,7 +46,7 @@
       "permanent": 0,
       "useVerb": "drink",
       "uses": 1,
-      "image": "Vial_Of_Pure_Adrenaline"
+      "image": "temp_icon"
     },
     {
       "itemName": "Vial of Pure Stamina",
@@ -58,7 +58,7 @@
       "permanent": 1,
       "useVerb": "drink",
       "uses": 1,
-      "image": "Vial_Of_Pure_Stamina"
+      "image": "temp_icon"
     }
   ]
 }

@@ -8,7 +8,7 @@
       "AGI": 0,
       "HP": 0,
       "AP": 0,
-      "image": "temp_icon"
+      "image": "sabre"
     },
     {
       "itemName": "Battle Axe",
@@ -18,7 +18,7 @@
       "AGI": 0,
       "HP": 0,
       "AP": 0,
-      "image": "temp_icon"
+      "image": "battle-axe"
     },
     {
       "itemName": "Falchion",
@@ -28,7 +28,7 @@
       "AGI": 1,
       "HP": 0,
       "AP": 0,
-      "image": "temp_icon"
+      "image": "falchion"
     },
     {
       "itemName": "Heavy Mace",
