@@ -8,7 +8,7 @@
       "AGI": -5,
       "HP": 0,
       "AP": 0,
-      "image": "temp_icon"
+      "image": "the-slayer-of-dragons"
     },
     {
       "itemName": "The Almighty Doctrina",
@@ -18,7 +18,7 @@
       "AGI": 1,
       "HP": 0,
       "AP": 1,
-      "image": "temp_icon"
+      "image": "the-almighty-doctrina"
     },
     {
       "itemName": "The Teeth that Bite Back",
@@ -28,7 +28,7 @@
       "AGI": 0,
       "HP": 0,
       "AP": 0,
-      "image": "temp_icon"
+      "image": "the-teeth-that-bite-back"
     },
     {
       "itemName": "The Honour's Lament",
@@ -38,7 +38,7 @@
       "AGI": 2,
       "HP": 0,
       "AP": 0,
-      "image": "temp_icon"
+      "image": "the-honours-lament"
     },
     {
       "itemName": "The Left Hook, Right Hook",
@@ -48,7 +48,7 @@
       "AGI": 6,
       "HP": 0,
       "AP": 0,
-      "image": "temp_icon"
+      "image": "the-left-hook-right-hook"
     }
   ]
 }

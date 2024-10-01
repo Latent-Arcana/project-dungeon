@@ -8,7 +8,7 @@
       "AGI": -5,
       "HP": 0,
       "AP": 2,
-      "image": "temp_icon"
+      "image": "the-berserkers-armor_opt-1"
     },
     {
       "itemName": "The Mark XIV Phebos",
@@ -18,7 +18,7 @@
       "AGI": 4,
       "HP": 0,
       "AP": 2,
-      "image": "temp_icon"
+      "image": "The-mark-xiv-phebos"
     },
     {
       "itemName": "The Garon's Fur",
@@ -28,17 +28,17 @@
       "AGI": 0,
       "HP": 5,
       "AP": 2,
-      "image": "temp_icon"
+      "image": "the-garons-fur"
     },
     {
-      "itemName": "The Wailing Lamés",
+      "itemName": "The Wailing Fauld",
       "itemDescription": "Appearing as a common set of fencing armor, the wearer can feel a cold aura from the aged cloth and metallic mask. Upon donning the mask, one cannot help but feel ghostly tears shed from their eyes.",
       "STR": 0,
       "SPD": 3,
       "AGI": 5,
       "HP": 0,
       "AP": 0,
-      "image": "temp_icon"
+      "image": "the-wailing-fauld"
     },
     {
       "itemName": "The Golden Belt and Shorts",
