@@ -97,8 +97,7 @@ public class GameplayFogController : MonoBehaviour
         Physics2D.OverlapArea(posPlayerCenter, hitLeft.point, contactFilter: filter, results: leftOverlaps);
 
         //remove duplicates, since the room the player is in can be in up to all 4 lists
-        List<Collider2D> collisionObjects = new();
-        collisionObjects = rightOverlaps.Concat(downOverlaps).Concat(upOverlaps).Concat(leftOverlaps).ToList();
+        List<Collider2D> collisionObjects = rightOverlaps.Concat(downOverlaps).Concat(upOverlaps).Concat(leftOverlaps).ToList();
         collisionObjects = collisionObjects.Distinct().ToList();
 
 

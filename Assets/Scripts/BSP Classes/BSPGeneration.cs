@@ -129,7 +129,7 @@ public class BSPGeneration : MonoBehaviour
 
         //handle hallways
         CreateCorridors(dungeon);
-        //StartCoroutine(CleanUpAndMergeHallways());
+        StartCoroutine(CleanUpAndMergeHallways());
 
 
 
@@ -534,7 +534,7 @@ public class BSPGeneration : MonoBehaviour
         {
             GameObject fogBoxHorizontal = Instantiate(fogGameplayPrefab, new Vector3Int(horizontalStart.x, horizontalStart.y, 0), Quaternion.identity);
             fogBoxHorizontal.transform.localScale = new Vector3(horizontalEnd.x - horizontalStart.x + 1, 1, 0);
-            fogBoxHorizontal.GetComponent<SpriteRenderer>().sortingLayerID = SortingLayer.NameToID("Fog of War");
+            //fogBoxHorizontal.GetComponent<SpriteRenderer>().sortingLayerID = SortingLayer.NameToID("Fog of War");
             fogBoxHorizontal.transform.SetParent(hallwayObject.transform);
             fogBoxHorizontal.name = "Horizontal Hallway";
             fogBoxHorizontal.tag = "hallway";
@@ -545,7 +545,7 @@ public class BSPGeneration : MonoBehaviour
         {
             GameObject fogBoxVertical = Instantiate(fogGameplayPrefab, new Vector3Int(verticalStart.x, verticalStart.y, 0), Quaternion.identity);
             fogBoxVertical.transform.localScale = new Vector3(1, verticalEnd.y - verticalStart.y + 1, 0);
-            fogBoxVertical.GetComponent<SpriteRenderer>().sortingLayerID = SortingLayer.NameToID("Fog of War");
+            //fogBoxVertical.GetComponent<SpriteRenderer>().sortingLayerID = SortingLayer.NameToID("Fog of War");
             fogBoxVertical.transform.SetParent(hallwayObject.transform);
             fogBoxVertical.name = "Vertical Hallway";
             fogBoxVertical.tag = "hallway";
@@ -822,26 +822,41 @@ public class BSPGeneration : MonoBehaviour
 
         for (int i = 0; i < allHallways.Count - 1; i++)
         {
+
+            //keep a list of merges so they 
+            Dictionary<Transform, Transform> childrenToMove = new();
+
             //check if the hallway overlaps with any of the hallways further down the list
             for (int j = i + 1; j < allHallways.Count; j++)
             {
-                //Debug.Log($"Checking combo {i} + {j}");
 
-                //for each child (Horizontal or Vertical in hallway i)
-                // foreach (Transform child in allHallways[i].transform)
-                // {
-                //     //same thing but in j
-                //     foreach (Transform child2 in allHallways[j].transform)
-                //     {
+                ////for each child (Horizontal or Vertical in hallway i)
+                foreach (Transform child in allHallways[i].transform)
+                {
+                    //same thing but in j
+                    foreach (Transform child2 in allHallways[j].transform)
+                    {
 
-                // I also tried to use Physics2D.IsTouching(col1 , col2) and used a Collider2D instead of BoxCollider2D
-                //         if (child.gameObject.GetComponent<BoxCollider2D>().IsTouching(child2.gameObject.GetComponent<BoxCollider2D>()))
-                //         {
-                //             Debug.Log($"MOMMMMMMM HES TOUCHING MEEEEE {i},{j}");
-                //         }
-                //     }
-                // }
+                        if (child.gameObject.GetComponent<BoxCollider2D>().IsTouching(child2.gameObject.GetComponent<BoxCollider2D>()))
+                        {
+                            // Transform parent1 = child.gameObject.transform.parent;
+                            // Transform parent2 = child2.gameObject.transform.parent;
+
+                            // //if we havent already added the child to move
+                            // if (!childrenToMove.ContainsKey(child2))
+                            // {
+                            //     childrenToMove.Add(child2, parent1);
+                            // }
+                        }
+                    }
+                }
             }
+
+            // //merge hallways outside the list of children so we dont accidentally skip any
+            // foreach (KeyValuePair<Transform, Transform> c in childrenToMove)
+            // {
+            //     c.Key.SetParent(c.Value);
+            // }
         }
 
     }
