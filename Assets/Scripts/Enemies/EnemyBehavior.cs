@@ -190,7 +190,7 @@ public class EnemyBehavior : MonoBehaviour
 
         else if (behaviorState == BehaviorState.Idle)
         {
-            WanderRandomly();
+            MoveEnemy(WanderRandomly());
         }
 
         else if (behaviorState == BehaviorState.Fleeing)
@@ -201,31 +201,32 @@ public class EnemyBehavior : MonoBehaviour
 
     }
 
-    public virtual void WanderRandomly()
+    public virtual Vector2 WanderRandomly()
     {
         // wander inside the room
         int randDir = UnityEngine.Random.Range(0, 4);
 
         if (randDir == 0)
         {
-            MoveEnemy(Vector2.up);
+            return Vector2.up;
 
         }
+
         else if (randDir == 1)
         {
-            MoveEnemy(Vector2.right);
+            return Vector2.right;
 
         }
+
         else if (randDir == 2)
         {
-            MoveEnemy(Vector2.down);
+            return Vector2.down;
 
         }
-        else if (randDir == 3)
+
+        else
         {
-
-            MoveEnemy(Vector2.left);
-
+            return Vector2.left;
         }
     }
 

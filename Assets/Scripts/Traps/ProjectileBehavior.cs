@@ -83,11 +83,6 @@ public class ProjectileBehavior : EnemyBehavior
 
     }
 
-    public override void WanderRandomly()
-    {
-
-    }
-
     public override void Die()
     {
         if (gameObject != null && isDestroyed == false)

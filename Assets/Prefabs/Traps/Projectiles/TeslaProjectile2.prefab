@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5719957855129071786}
   - component: {fileID: 1075422822669047546}
   - component: {fileID: 4996596457169025825}
-  - component: {fileID: -7871550293402376676}
+  - component: {fileID: 765686804892960551}
   m_Layer: 0
   m_Name: TeslaProjectile2
   m_TagString: projectile
@@ -159,7 +159,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &-7871550293402376676
+--- !u!114 &765686804892960551
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -168,7 +168,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6944768765336641834}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 909ff642e6bdd854399bbe70583f0df0, type: 3}
+  m_Script: {fileID: 11500000, guid: 644a16e88cf82414090b8cbd5444e545, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Player_Stats: {fileID: 0}
