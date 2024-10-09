@@ -63,7 +63,7 @@ public class GameplayFogController : MonoBehaviour
         }
 
         allHallways = GameObject.Find("DungeonGenerator").GetComponent<BSPGeneration>().allHallways;
-        
+
     }
 
     public virtual void OnEnable()
@@ -127,19 +127,27 @@ public class GameplayFogController : MonoBehaviour
 
         foreach (GameObject hallway in allHallways)
         {
+            bool isEnabled = true;
 
             //handles L shaped hallways that have 2+ child objects
             foreach (Transform child in hallway.transform)
             {
+                //temporarily make the hallway segment dark
+                child.gameObject.GetComponent<SpriteRenderer>().enabled = true;
 
-                //TODO here: make the entire hallway visible if any of the segment (horizontal/vertical) colliders are in list
+                //if the segment is colliding with the raycast, flag the hallway for sprite renderer turned off
                 if (collisionObjects.Contains(child.gameObject.GetComponent<Collider2D>()))
                 {
-                    child.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+                    isEnabled = false;
                 }
-                else
+            }
+
+            //go back and turn off the segments if any of the hallway is in raycast
+            if (!isEnabled)
+            {
+                foreach (Transform child in hallway.transform)
                 {
-                    child.gameObject.GetComponent<SpriteRenderer>().enabled = true;
+                    child.gameObject.GetComponent<SpriteRenderer>().enabled = false;
                 }
             }
         }
@@ -158,34 +166,34 @@ public class GameplayFogController : MonoBehaviour
 
 
 
-        //DEBUG
+        // //DEBUG
 
-        //If the collider of the object hit is not NUll
-        if (hitRight.collider != null)
-        {
-            //Hit something, print the tag of the object
-            //Debug.Log($"Hitting Right:  {hitRight.collider.name} with tag {hitRight.collider.tag} at point {hitRight.point} and distance {hitRight.distance}");
+        // //If the collider of the object hit is not NUll
+        // if (hitRight.collider != null)
+        // {
+        //     //Hit something, print the tag of the object
+        //     //Debug.Log($"Hitting Right:  {hitRight.collider.name} with tag {hitRight.collider.tag} at point {hitRight.point} and distance {hitRight.distance}");
 
-        }
+        // }
 
-        if (hitDown.collider != null)
-        {
-            //Hit something, print the tag of the object
-            //Debug.Log($"Hitting Down: {hitDown.collider.name} with tag {hitDown.collider.tag} at point {hitDown.point} and distance {hitDown.distance}");
-        }
+        // if (hitDown.collider != null)
+        // {
+        //     //Hit something, print the tag of the object
+        //     //Debug.Log($"Hitting Down: {hitDown.collider.name} with tag {hitDown.collider.tag} at point {hitDown.point} and distance {hitDown.distance}");
+        // }
 
-        //If the collider of the object hit is not NUll
-        if (hitUp.collider != null)
-        {
-            //Hit something, print the tag of the object
-            //Debug.Log($"Hitting Up:  {hitUp.collider.name} with tag {hitUp.collider.tag} at point {hitUp.point} and distance {hitUp.distance}");
-        }
+        // //If the collider of the object hit is not NUll
+        // if (hitUp.collider != null)
+        // {
+        //     //Hit something, print the tag of the object
+        //     //Debug.Log($"Hitting Up:  {hitUp.collider.name} with tag {hitUp.collider.tag} at point {hitUp.point} and distance {hitUp.distance}");
+        // }
 
-        if (hitLeft.collider != null)
-        {
-            //Hit something, print the tag of the object
-            //Debug.Log($"Hitting Left:  {hitLeft.collider.name} with tag {hitLeft.collider.tag} at point {hitLeft.point} and distance {hitLeft.distance}");
-        }
+        // if (hitLeft.collider != null)
+        // {
+        //     //Hit something, print the tag of the object
+        //     //Debug.Log($"Hitting Left:  {hitLeft.collider.name} with tag {hitLeft.collider.tag} at point {hitLeft.point} and distance {hitLeft.distance}");
+        // }
 
         //Method to draw the ray in scene for debug purpose
         Debug.DrawRay(posPlayerCenter, Vector2.right * hitRight.distance, UnityEngine.Color.red);
