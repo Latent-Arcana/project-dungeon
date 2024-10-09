@@ -3,14 +3,18 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using System.Linq;
+using static PlayerMovement;
 
 
 //Master Controller for all gameplay fog. Replacing RoomFogControllers?
 public class GameplayFogController : MonoBehaviour
 {
 
+    //Player Objects
     private GameObject player;
+    private PlayerMovement playerMovement;
 
+    //Variables
     public float laserLength = 20f; //length of the raycast
 
     //filters for raycasts/overlaps
@@ -18,15 +22,19 @@ public class GameplayFogController : MonoBehaviour
     private LayerMask maskFog;
     private ContactFilter2D filter;
 
+    //Lists
     private List<GameObject> allRooms;
     private List<GameObject> allHallways;
 
 
+    private void Awake()
+    {
+        player = GameObject.Find("Player"); //.GetComponent<PlayerMovement>();
+        playerMovement = player.GetComponent<PlayerMovement>();
+    }
 
     private void Start()
     {
-        player = GameObject.Find("Player"); //.GetComponent<PlayerMovement>();
-
         mask = LayerMask.GetMask("Default");
         maskFog = LayerMask.GetMask("RoomFog");
         filter = new()
@@ -55,31 +63,44 @@ public class GameplayFogController : MonoBehaviour
         }
 
         allHallways = GameObject.Find("DungeonGenerator").GetComponent<BSPGeneration>().allHallways;
-
+        
     }
 
-    //TODO: optimize by attaching to player movement event (OnPlayerMoved), instead of checking every update?
-    private void FixedUpdate()
+    public virtual void OnEnable()
     {
+        playerMovement.OnPlayerMoved += EventListener_OnPlayerMoved;
+    }
+
+    public virtual void OnDisable()
+    {
+        playerMovement.OnPlayerMoved -= EventListener_OnPlayerMoved;
+    }
+
+    /// <summary>
+    /// Catch OnPlayerMoved event from PlayerMovement, and call the coroutine for room fog on/off
+    /// </summary>
+    public virtual void EventListener_OnPlayerMoved(object sender, PlayerMovement.MovementArgs e)
+    {
+        StartCoroutine(RoomFog());
+    }
+
+    public IEnumerator RoomFog()
+    {
+
+        //first, make sure that the physics has actually happened
+        yield return new WaitForFixedUpdate();
+
 
         //Raycast to find what rooms/hallways you can see into
 
         //centered position of player
         Vector2 posPlayerCenter = new Vector2(player.transform.position.x + 0.5f, player.transform.position.y + 0.5f);
 
-        // //positions to start the respective rays, slightly outside the bounds of the character to avoid that collision
-        // Vector2 posRight = new Vector2(posPlayerCenter.x + 0.6f, posPlayerCenter.y);
-        // Vector2 posDown = new Vector2(posPlayerCenter.x, posPlayerCenter.y - 0.6f);
-        // Vector2 posUp = new Vector2(posPlayerCenter.x, posPlayerCenter.y + 0.6f);
-        // Vector2 posLeft = new Vector2(posPlayerCenter.x - 0.6f, posPlayerCenter.y);
-
-
         //Get the first object hit by the ray, stopping when hitting an object on the layerMask layer(s)
         RaycastHit2D hitRight = Physics2D.Raycast(posPlayerCenter, Vector2.right, laserLength, layerMask: mask);
         RaycastHit2D hitDown = Physics2D.Raycast(posPlayerCenter, Vector2.down, laserLength, layerMask: mask);
         RaycastHit2D hitUp = Physics2D.Raycast(posPlayerCenter, Vector2.up, laserLength, layerMask: mask);
         RaycastHit2D hitLeft = Physics2D.Raycast(posPlayerCenter, Vector2.left, laserLength, layerMask: mask);
-
 
 
         //Get the room fogs we are colliding with
@@ -176,5 +197,4 @@ public class GameplayFogController : MonoBehaviour
         //Debug.DrawLine(posDown, hitDown.point, Color.white);
 
     }
-
 }

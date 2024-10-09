@@ -131,9 +131,6 @@ public class BSPGeneration : MonoBehaviour
         CreateCorridors(dungeon);
         StartCoroutine(CleanUpAndMergeHallways());
 
-
-
-
         // now we can place our player at the start of the dungeon.
         // FOR NOW WE ARE PICKING THE FIRST ROOM IN THE LIST, ARBITRARILY
 
@@ -198,6 +195,12 @@ public class BSPGeneration : MonoBehaviour
         //Debug.Log("Moving the player");
 
         player.transform.position = new Vector3Int(allRooms[0].GetComponent<Room>().originX, allRooms[0].GetComponent<Room>().originY, 0);
+
+        ////Make the starting room visible before the player moves for the first time
+        ////This doesn't work, it shows all the rooms for some reason
+        //StartCoroutine(this.transform.parent.GetComponentInChildren<GameplayFogController>().RoomFog());
+
+        GameObject.Find("Room_Gameplay_0").GetComponentInChildren<SpriteRenderer>().enabled=false;
 
     }
 
@@ -789,7 +792,7 @@ public class BSPGeneration : MonoBehaviour
 
                 BoxCollider2D roomColl = roomObjGameplay.AddComponent<BoxCollider2D>();
                 roomColl.isTrigger = true;
-                roomObjGameplay.AddComponent<RoomFogController>();
+                //roomObjGameplay.AddComponent<RoomFogController>();
 
                 GameObject fogBoxRoom = Instantiate(fogGameplayPrefab, new Vector3Int(rngX, rngY, 0), Quaternion.identity);
                 fogBoxRoom.transform.localScale = new Vector3Int(rngWidth, rngHeight, 0);
