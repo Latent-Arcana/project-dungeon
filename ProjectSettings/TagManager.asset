@@ -11,6 +11,7 @@ TagManager:
   - object
   - corpse
   - projectile
+  - mapMark
   layers:
   - Default
   - TransparentFX
