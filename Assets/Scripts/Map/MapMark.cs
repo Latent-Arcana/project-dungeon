@@ -27,6 +27,10 @@ public class MapMark : MonoBehaviour
         {
             scoreController.SetRoomMark(this.gameObject, collision.gameObject.GetComponentInParent<Room>().roomId);
         }
+
+        else{
+            Debug.Log("What am I doing out here?");
+        }
     }
 
     // private void OnDestroy()

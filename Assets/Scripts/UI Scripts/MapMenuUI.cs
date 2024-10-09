@@ -17,7 +17,6 @@ public class MapMenuUI : MonoBehaviour
     private Button ButtonMarkerDanger;
 
     public event EventHandler<MarkerArgs> OnMarkerChange;
-    public event EventHandler<EventArgs> OnMapToggle;
 
     public class MarkerArgs : EventArgs
     {
@@ -51,7 +50,6 @@ public class MapMenuUI : MonoBehaviour
     private void OnEnable()
     {
         input.OnMapEnter += Event_OnMapEnter;
-
     }
 
     private void OnDisable()

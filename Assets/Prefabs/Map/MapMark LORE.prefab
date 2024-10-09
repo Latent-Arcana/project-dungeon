@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4257940358273511071}
   m_Layer: 0
   m_Name: MapMark LORE
-  m_TagString: Untagged
+  m_TagString: mapMark
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 739125055
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 890408530507c4c44a84699b311924c2, type: 3}
   m_Color: {r: 0, g: 0.5556252, b: 1, a: 1}

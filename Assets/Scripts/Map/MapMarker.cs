@@ -20,61 +20,53 @@ public class MapMarker : MonoBehaviour
     [SerializeField]
     GameObject mapMarkerDanger;
 
-
-    //maybe get rid of this in favor of tagging only within room bounds
-    [Header("Map Bounds")]
-    int xMin = -500;
-    int xMax = -450;
-    int yMin = -500;
-    int yMax = -450;
-
-
     private GameObject selectedPrefab;
 
     private MapMenuUI mapMenuUI;
 
-    private bool mapIsActive = false;
+    private ScoreController scoreController;
+
+    public InputController input;
 
 
     void Awake()
     {
         mapMenuUI = GameObject.Find("MapUI").GetComponent<MapMenuUI>();
         selectedPrefab = mapMarkerSafe;
+        scoreController = GameObject.Find("ScoreController").GetComponent<ScoreController>();
+        input = GameObject.Find("InputController").GetComponent<InputController>();
     }
 
     private void OnEnable()
     {
         mapMenuUI.OnMarkerChange += Map_OnMarkerChange;
-        mapMenuUI.OnMapToggle += Map_OnMapToggle;
     }
 
     private void OnDisable()
     {
         mapMenuUI.OnMarkerChange -= Map_OnMarkerChange;
-        mapMenuUI.OnMapToggle -= Map_OnMapToggle;
     }
 
-    // Update is called once per frame
     void Update()
     {
-
-
         //only perform map actions while in the map interface
-        if (mapIsActive)
+        if (input.currentInputState == InputController.InputState.MapMenu)
         {
             // add the markers
             if (Input.GetKeyUp(KeyCode.Mouse0))
             {
-                //RaycastHit hit;
+                RaycastHit hit;
                 Ray ray = mapCamera.ScreenPointToRay(Input.mousePosition);
-                //Debug.Log(ray.origin);
 
-                //TODO optimize this by checking if you're within a room?
-                //My current way is a little rough
-                if (ray.origin.x > xMin && ray.origin.x < xMax && ray.origin.y > yMin && ray.origin.y < yMax)
+                if (Physics.Raycast(ray, out hit))
                 {
-                    Instantiate(selectedPrefab, new Vector3(ray.origin.x, ray.origin.y, 0f), Quaternion.identity);
+                    //only place a map marker in a room or over an existing map marker
+                    if (hit.collider.gameObject.CompareTag("room") || hit.collider.gameObject.CompareTag("mapMark"))
+                    {
+                        Instantiate(selectedPrefab, new Vector3(ray.origin.x, ray.origin.y, 0f), Quaternion.identity);
+                    }
                 }
+
             }
 
             // delete the markers
@@ -85,15 +77,16 @@ public class MapMarker : MonoBehaviour
 
                 if (Physics.Raycast(ray, out hit))
                 {
-                    Destroy(hit.collider.gameObject);
+                    //only try and remove map markers, not other things you collide with
+                    if (hit.collider.gameObject.CompareTag("mapMark"))
+                    {
+                        //Remove marker from score and Destroy it
+                        scoreController.RemoveRoomMark(hit.collider.gameObject);
+                    }
+
                 }
             }
         }
-    }
-
-    private void Map_OnMapToggle(object sender, EventArgs e)
-    {
-        mapIsActive = !mapIsActive;
     }
 
     private void Map_OnMarkerChange(object sender, MapMenuUI.MarkerArgs e)
