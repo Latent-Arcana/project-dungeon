@@ -5,6 +5,9 @@ using UnityEngine;
 public class GameStats : MonoBehaviour
 {
     
+    ///Saves the stats for the entire run, to display on the Game Over screen
+
+
     public PlayerStatsManager Player_Stats;
     public Inventory Player_Inventory;
 

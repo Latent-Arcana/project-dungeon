@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -7,25 +8,50 @@ using UnityEngine.SceneManagement;
 public class ScoreController : MonoBehaviour
 {
 
-    private int Numerator;
+    /// <summary>
+    /// Handles the stats for the current floor
+    /// Manages the map markers to score them
+    /// Spawns a portal when all rooms have been visited once
+    /// </summary>
 
+    private int Numerator;
     private int Denominator;
 
     private List<GameObject> allRooms;
 
+    private int[] roomsVisited;
     private GameStats gameStats;
-
-    //private Dictionary<int, GameObject> currentScores;
+    private PlayerMovement playerMovement;
 
     private Dictionary<int, GameObject> currentMarks = new();
     private Dictionary<GameObject, int> currentMarksInverse = new();
 
+    void Awake()
+    {
+        playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
+    }
 
     void Start()
     {
         allRooms = GameObject.Find("DungeonGenerator").GetComponent<BSPGeneration>().allRooms;
         gameStats = GameObject.Find("GameStats").GetComponent<GameStats>();
 
+        //rooms visited array
+        roomsVisited = new int[allRooms.Count]; //init to 0's
+        //roomsVisited[0] = 1; //always set first room to 1 just in case
+
+    }
+
+    private void OnEnable()
+    {
+        //subscribe MapController to the PlayerMovement script's OnRoomEnter event
+        playerMovement.OnRoomEnter += Portals_OnRoomEnter;
+
+    }
+
+    private void OnDisable()
+    {
+        playerMovement.OnRoomEnter -= Portals_OnRoomEnter;
     }
 
     void Update()
@@ -36,14 +62,7 @@ public class ScoreController : MonoBehaviour
         {
             StartCoroutine(GameObject.Find("Player").GetComponent<PlayerStats>().PlayerDeath());
         }
-
-        if (Input.GetKeyUp(KeyCode.Keypad8))
-        {
-            SceneManager.LoadScene("Loading");
-        }
-
     }
-
 
     /// <summary>
     /// Add a room marker to the list of markers. If one already exists for a room, delete the game object
@@ -52,7 +71,6 @@ public class ScoreController : MonoBehaviour
     /// <param name="RoomId">Id of the room that the marker was placed in</param>
     public void SetRoomMark(GameObject marker, int RoomId)
     {
-
         //already a merker in room
         if (currentMarks.ContainsKey(RoomId))
         {
@@ -91,13 +109,10 @@ public class ScoreController : MonoBehaviour
         currentMarksInverse.Remove(marker);
 
         Destroy(marker);
-
     }
-
 
     public void ScoreRound()
     {
-
         foreach (GameObject r in allRooms)
         {
             Room room1 = r.GetComponent<Room>();
@@ -157,4 +172,41 @@ public class ScoreController : MonoBehaviour
         SceneManager.LoadScene("GameOver");
 
     }
+
+    /// <summary>
+    /// Thrown by PlayerMovement. Caught here to remove the room from the list of rooms to visit
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void Portals_OnRoomEnter(object sender, PlayerMovement.InputArgs e)
+    {
+        if (e.type == "enter")
+        {
+            roomsVisited[e.roomId] = 1;
+            bool allRoomsAreVisited = true;
+
+            for (int i = 0; i < roomsVisited.Length; i++)
+            {
+                Debug.Log($"Room {i}: {roomsVisited[i]}");
+                if (roomsVisited[i] == 0)  //not visited yet
+                {
+                    allRoomsAreVisited = false;
+                    break;
+                }
+            }
+
+            if (allRoomsAreVisited)
+            {
+                SpawnPortal();
+            }
+        }
+
+    }
+
+    private void SpawnPortal()
+    {
+        //TODO" make portal prefab
+        SceneManager.LoadScene("Loading");
+    }
+
 }
