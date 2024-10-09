@@ -200,7 +200,7 @@ public class BSPGeneration : MonoBehaviour
         ////This doesn't work, it shows all the rooms for some reason
         //StartCoroutine(this.transform.parent.GetComponentInChildren<GameplayFogController>().RoomFog());
 
-        GameObject.Find("Room_Gameplay_0").GetComponentInChildren<SpriteRenderer>().enabled=false;
+        GameObject.Find("Room_Gameplay_0").GetComponentInChildren<SpriteRenderer>().enabled = false;
 
     }
 
@@ -825,13 +825,11 @@ public class BSPGeneration : MonoBehaviour
 
         for (int i = 0; i < allHallways.Count - 1; i++)
         {
-
-            //keep a list of merges so they 
-            Dictionary<Transform, Transform> childrenToMove = new();
-
-            //check if the hallway overlaps with any of the hallways further down the list
+            //check if the hallway overlaps with any of the hallways further down the list, but don't check the combos we already checked
             for (int j = i + 1; j < allHallways.Count; j++)
             {
+
+                bool mergeHallways = false;
 
                 ////for each child (Horizontal or Vertical in hallway i)
                 foreach (Transform child in allHallways[i].transform)
@@ -842,6 +840,8 @@ public class BSPGeneration : MonoBehaviour
 
                         if (child.gameObject.GetComponent<BoxCollider2D>().IsTouching(child2.gameObject.GetComponent<BoxCollider2D>()))
                         {
+                            //Debug.Log($"Merge {child.name} and {child2.name}");
+                            mergeHallways = true;
                             // Transform parent1 = child.gameObject.transform.parent;
                             // Transform parent2 = child2.gameObject.transform.parent;
 
@@ -853,6 +853,20 @@ public class BSPGeneration : MonoBehaviour
                         }
                     }
                 }
+
+                if (mergeHallways)
+                {
+
+                    Transform parent1 = allHallways[i].transform;
+                    //Debug.Log($"Merge into {parent1.gameObject.name}");
+
+                    while (allHallways[j].transform.childCount > 0)
+                    {
+                        //Debug.Log($"There are {allHallways[j].transform.childCount} children to merge");
+                        allHallways[j].transform.GetChild(0).SetParent(parent1);
+                    }
+                }
+
             }
 
             // //merge hallways outside the list of children so we dont accidentally skip any
