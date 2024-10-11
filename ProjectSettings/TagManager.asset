@@ -12,6 +12,7 @@ TagManager:
   - corpse
   - projectile
   - mapMark
+  - portal
   layers:
   - Default
   - TransparentFX

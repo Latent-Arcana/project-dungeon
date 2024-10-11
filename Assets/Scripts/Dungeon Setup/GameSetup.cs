@@ -14,6 +14,9 @@ public class GameSetup : MonoBehaviour
     public ObjectGeneration objectGenerator;
     public MapController mapController;
 
+    public int[] portalSeeds;
+
+    public List<int> seedsInDungeon;
 
     void Awake()
     {
@@ -38,6 +41,8 @@ public class GameSetup : MonoBehaviour
             UnityEngine.Random.InitState(seed);
 
         }
+
+        seedsInDungeon = new() { seed };
 
     }
 
@@ -66,6 +71,19 @@ public class GameSetup : MonoBehaviour
         //bsp
         bspController.StartBspGeneration();
 
+        portalSeeds = new int[bspController.allRooms.Count];
+
+        // for every room, except the starting room, give it a pregenerated portal seed
+        for (int i = 1; i < portalSeeds.Length; ++i)
+        {
+
+            int randSeed = CreateSeed();
+
+            portalSeeds[i] = UnityEngine.Random.Range(1, int.MaxValue);
+
+            seedsInDungeon.Add(randSeed);
+        }
+
         //enemy
 
 
@@ -74,6 +92,28 @@ public class GameSetup : MonoBehaviour
 
         //map
         mapController.FogOfWar();
+    }
+
+    /// <summary>
+    /// Recursive function call to receive a random number that is valid for generating a seed. 
+    /// The seeds need to be unique within the dungeon.
+    /// </summary>
+
+    int CreateSeed()
+    {
+        int randSeed = UnityEngine.Random.Range(1, int.MaxValue);
+
+        if (randSeed == seed)
+        {
+            CreateSeed();
+        }
+
+        else if (seedsInDungeon.Contains(randSeed))
+        {
+            CreateSeed();
+        }
+
+        return randSeed;
     }
 
 

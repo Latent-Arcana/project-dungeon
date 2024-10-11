@@ -21,6 +21,8 @@ public class ObjectGeneration : MonoBehaviour
 
     public GameObject[] unassignedObjects;
 
+    public GameObject portalPrefab;
+
 
     Dictionary<Vector3Int, bool> placedObjects = new Dictionary<Vector3Int, bool>();
 
@@ -38,6 +40,8 @@ public class ObjectGeneration : MonoBehaviour
         {
 
             Room room = roomObj.GetComponent<Room>();
+
+            GeneratePortal(room);
 
 
             switch (room.roomType)
@@ -61,10 +65,28 @@ public class ObjectGeneration : MonoBehaviour
                     break;
 
                 default:
+
+                    Debug.Log("We hit the default room switch case");
+                    //PopulateRoom(safeObjects, room);
+
                     break;
 
             }
 
+        }
+
+    }
+
+
+    public void GeneratePortal(Room room)
+    {
+        if (room.roomId != 0)
+        {
+            Vector3 portalPosition = new Vector3(room.originX, room.originY, 0.0f);
+
+            GameObject portal = GameObject.Instantiate(portalPrefab, portalPosition, Quaternion.identity);
+
+            portal.transform.SetParent(room.gameObject.transform);
         }
 
     }

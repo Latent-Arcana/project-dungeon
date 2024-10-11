@@ -244,7 +244,15 @@ public class InventoryUI : MonoBehaviour
     private void Consume(int index)
     {
         playerInventoryBehavior.Consume(index);
-        DropItem(index);
+        
+        // if the item was equipped, let's unequip it to update the screen
+        if (equipmentToggles[index].value == true)
+        {
+            equipmentToggles[index].SetValueWithoutNotify(false);
+
+        }
+
+        playerInventoryBehavior.RemoveItem(index);
     }
     private void DropItem(int index)
     {

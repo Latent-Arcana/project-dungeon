@@ -187,7 +187,7 @@ public class ScoreController : MonoBehaviour
 
             for (int i = 0; i < roomsVisited.Length; i++)
             {
-                Debug.Log($"Room {i}: {roomsVisited[i]}");
+                //Debug.Log($"Room {i}: {roomsVisited[i]}");
                 if (roomsVisited[i] == 0)  //not visited yet
                 {
                     allRoomsAreVisited = false;
