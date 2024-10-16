@@ -1,6 +1,6 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI%20Toolkit/MenuStyleSheet.uss?fileID=7433441132597879392&amp;guid=8622666c0c77f81419510e23e5912e27&amp;type=3#MenuStyleSheet" />
-    <ui:VisualElement name="Container" class="menu-container-main" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/Rooms/Walls_Testing/dungeon-floor.png?fileID=21300000&amp;guid=fbeb65c950ade98478953810c4543e94&amp;type=3#dungeon-floor&quot;); display: flex; justify-content: center;">
+    <ui:VisualElement name="Container" class="menu-container-main" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/Rooms/Walls_Testing/dungeon-floor.png?fileID=21300000&amp;guid=fbeb65c950ade98478953810c4543e94&amp;type=3#dungeon-floor&quot;); display: flex; justify-content: center; -unity-background-image-tint-color: rgb(0, 0, 0);">
         <ui:Label tabindex="-1" text="CARTOGRAPHER.EXE" parse-escape-sequences="true" display-tooltip-when-elided="true" name="MainMenuTitle" class="text-title-main-menu" style="display: flex;" />
         <ui:VisualElement name="MainContainer" style="flex-grow: 1; display: flex;">
             <ui:VisualElement name="ButtonGroup" class="button-container" style="flex-grow: 1;">

@@ -205,8 +205,17 @@ public class ScoreController : MonoBehaviour
 
     private void SpawnPortal()
     {
-        //TODO" make portal prefab
-        SceneManager.LoadScene("Loading");
-    }
 
+        // SceneManager.LoadScene("Loading");
+
+        foreach (GameObject room in allRooms)
+        {
+            //not every room will have a portal spawn
+            if (room.transform.Find("Portal(Clone)") != null)
+            {
+                room.transform.Find("Portal(Clone)").gameObject.GetComponent<SpriteRenderer>().enabled = true;
+                room.transform.Find("Portal(Clone)").gameObject.GetComponent<BoxCollider2D>().enabled = true;
+            }
+        }
+    }
 }
