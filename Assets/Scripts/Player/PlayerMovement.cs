@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using static BSPGeneration;
 using static DungeonNarrator;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -165,6 +166,10 @@ public class PlayerMovement : MonoBehaviour
                 }
 
             }
+        }
+
+        else if (collision.tag == "portal"){
+            SceneManager.LoadScene("Loading");
         }
 
 

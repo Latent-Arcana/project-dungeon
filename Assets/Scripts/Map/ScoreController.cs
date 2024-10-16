@@ -205,9 +205,6 @@ public class ScoreController : MonoBehaviour
 
     private void SpawnPortal()
     {
-
-        // SceneManager.LoadScene("Loading");
-
         foreach (GameObject room in allRooms)
         {
             //not every room will have a portal spawn
