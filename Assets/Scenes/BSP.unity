@@ -338,11 +338,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78a683c074be3fa46b0777e29836f879, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seed: 783096166
+  seed: 1092424233
   bspController: {fileID: 0}
   dangerGenerator: {fileID: 0}
   objectGenerator: {fileID: 0}
   mapController: {fileID: 0}
+  portalSeeds: 
+  seedsInDungeon: 
 --- !u!1 &333132169
 GameObject:
   m_ObjectHideFlags: 0

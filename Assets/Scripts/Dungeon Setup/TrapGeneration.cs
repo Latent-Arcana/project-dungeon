@@ -46,5 +46,6 @@ public class TrapGeneration : MonoBehaviour
         placedTrap.transform.SetParent(gameplayRoom.transform, true);
 
         placedTrap.GetComponent<TrapBehavior>().roomId = room.roomId;
+        placedTrap.GetComponent<TrapBehavior>().room = room;
     }
 }

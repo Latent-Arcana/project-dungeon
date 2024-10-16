@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 4212856467096571926}
   - component: {fileID: 6176209156950977762}
   - component: {fileID: 6409474464251790136}
-  - component: {fileID: 1675059978392872248}
+  - component: {fileID: -3572694762455679571}
   m_Layer: 0
   m_Name: TEST_TRAP 1
   m_TagString: enemy
@@ -265,7 +265,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1675059978392872248
+--- !u!114 &-3572694762455679571
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -274,10 +274,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 9191118223540507927}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4845f9553eff1c14aa85762039df5d93, type: 3}
+  m_Script: {fileID: 11500000, guid: 943107b5823cd2b4caffedcc38a67b7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   roomId: 0
+  room: {fileID: 0}
   projectilePrefabs:
   - {fileID: 8234369491197853260, guid: 573bc9d4e3cdc434d9e9fb8e4c7f53c7, type: 3}
+  player: {fileID: 0}
+  playerMovement: {fileID: 0}
+  playerInRoom: 0
   Player_Stats: {fileID: 11400000, guid: 49cdfbab4b8796a41af4e48e5ee7d3d5, type: 2}

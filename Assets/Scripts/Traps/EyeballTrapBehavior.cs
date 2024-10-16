@@ -1,53 +1,15 @@
-using System;
-using System.Collections.Generic;
-using System.Data.Common;
-using System.Linq;
-using Unity.IO.LowLevel.Unsafe;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Assertions.Must;
-public class TrapBehavior : MonoBehaviour
+
+
+public class EyeballTrapBehavior : TrapBehavior
 {
 
-    public int roomId;
-
-    public Room room;
-
-    public GameObject[] projectilePrefabs;
-
-    public GameObject player;
-    public PlayerMovement playerMovement;
-    public bool playerInRoom;
-
-    public PlayerStatsManager Player_Stats;
-
-    public void Awake()
-    {
-        player = GameObject.Find("Player");
-
-        playerMovement = player.GetComponent<PlayerMovement>();
-    }
-
-    public void OnEnable()
-    {
-        playerMovement.OnPlayerMoved += Input_OnPlayerMoved;
-        playerMovement.OnRoomEnter += PlayerMovement_OnRoomEnter;
-    }
-
-
-    public void OnDisable()
-    {
-        playerMovement.OnPlayerMoved -= Input_OnPlayerMoved;
-        playerMovement.OnRoomEnter -= PlayerMovement_OnRoomEnter;
-
-    }
-
-    public virtual void Input_OnPlayerMoved(object sender, PlayerMovement.MovementArgs e)
+    public override void Input_OnPlayerMoved(object sender, PlayerMovement.MovementArgs e)
     {
         float spawnChance = UnityEngine.Random.value;
         int prefabChoice = UnityEngine.Random.Range(0, projectilePrefabs.Length);
 
-        if (spawnChance <= 0.85f && playerInRoom)
+        if (spawnChance <= 0.2f && playerInRoom)
         {
             //Debug.Log("spawn chance is " + spawnChance + " and it needed to be lower than 0.85f");
             SpawnProjectile(projectilePrefabs[prefabChoice]);
@@ -56,27 +18,10 @@ public class TrapBehavior : MonoBehaviour
         Physics2D.SyncTransforms();
     }
 
-    public void PlayerMovement_OnRoomEnter(object sender, PlayerMovement.InputArgs e)
-    {
-        if (e.roomId == roomId)
-        {
-            if (e.type == "enter")
-            {
-                //Debug.Log("player is in the same room as trap: " + gameObject.name);
-                playerInRoom = true;
-            }
 
-            else
-            {
-                //Debug.Log("player left the room that trap: " + gameObject.name + " is in");
-                playerInRoom = false;
-            }
-
-        }
-
-    }
-
-    public virtual void SpawnProjectile(GameObject projectile)
+    // The ghosts spawn on top of the trap. They are invisible and they cannot collide
+    // Then they navigate towards the player until they are within 4 tiles
+    public override void SpawnProjectile(GameObject projectile)
     {
 
         Vector3 originPosition = transform.position;
@@ -92,8 +37,6 @@ public class TrapBehavior : MonoBehaviour
                 3 X 4
                 5 6 7
         */
-
-        //Debug.Log("Spawn choice is: " + randomSpawnChoice);
 
         switch (randomSpawnChoice)
         {
@@ -121,7 +64,7 @@ public class TrapBehavior : MonoBehaviour
                 direction = Vector3.right;
                 spawnPosition = originPosition + direction;
                 break;
-                
+
             case 5:
                 direction = Vector3.down + Vector3.left;
                 spawnPosition = originPosition + direction;
@@ -158,11 +101,7 @@ public class TrapBehavior : MonoBehaviour
             projectileBehavior.isAtSpawn = true;
             projectileBehavior.Player_Stats = Player_Stats;
         }
-        // else{
-        //     Debug.Log("did not spawn at " + spawnPosition + " because we ran into " + collision.gameObject.name);
-        // }
 
         return;
     }
-
 }
