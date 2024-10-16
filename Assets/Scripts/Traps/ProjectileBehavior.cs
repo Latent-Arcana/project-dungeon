@@ -76,6 +76,12 @@ public class ProjectileBehavior : EnemyBehavior
             Destroy(gameObject);
         }
 
+        else if (coll.tag == "projectile")
+        {
+            isDestroyed = true;
+            Destroy(gameObject);
+        }
+
         else
         {
             Die();
@@ -98,15 +104,15 @@ public class ProjectileBehavior : EnemyBehavior
 
         SpriteRenderer spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         spriteRenderer.color = new Color(255f, 255f, 255f, 1.0f);
-        yield return new WaitForSeconds(.20f);
+        yield return new WaitForSeconds(.10f);
         spriteRenderer.color = new Color(255f, 255f, 255f, 0.75f);
-        yield return new WaitForSeconds(.20f);
+        yield return new WaitForSeconds(.10f);
         spriteRenderer.color = new Color(255f, 255f, 255f, 0.5f);
-        yield return new WaitForSeconds(.20f);
+        yield return new WaitForSeconds(.10f);
         spriteRenderer.color = new Color(255f, 255f, 255f, 0.25f);
-        yield return new WaitForSeconds(.20f);
+        yield return new WaitForSeconds(.10f);
         spriteRenderer.color = new Color(255f, 255f, 255f, 0.0f);
-        yield return new WaitForSeconds(.20f);
+        yield return new WaitForSeconds(.10f);
 
         yield return new WaitForEndOfFrame();
         Destroy(gameObject);
