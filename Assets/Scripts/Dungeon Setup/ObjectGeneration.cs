@@ -43,7 +43,6 @@ public class ObjectGeneration : MonoBehaviour
 
             GeneratePortal(room);
 
-
             switch (room.roomType)
             {
 
@@ -66,7 +65,7 @@ public class ObjectGeneration : MonoBehaviour
 
                 default:
 
-                    Debug.Log("We hit the default room switch case");
+                    //Debug.Log("We hit the default room switch case in room " + room.roomId);
                     //PopulateRoom(safeObjects, room);
 
                     break;
@@ -103,6 +102,9 @@ public class ObjectGeneration : MonoBehaviour
         if (room.roomType == Enums.RoomType.Lore)
         {
             Enums.RoomSubType subType = GetRandomRoomSubType();
+
+            //Debug.Log(room.roomId + " is a " + room.roomType + " of subtype: " + subType);
+
             roomObjects = objects.Where(x => x.GetComponent<ObjectBehavior>().RoomSubTypes.Contains(subType)).ToList();
         }
 
