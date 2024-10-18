@@ -231,6 +231,7 @@ MonoBehaviour:
   safeObjects:
   - {fileID: 7557685827397718423, guid: 2d300e93018fef349ba212366a793aa9, type: 3}
   - {fileID: 8614793181711624519, guid: 25b108ed0f659a34783fa472f2652adb, type: 3}
+  - {fileID: 8011701790813375566, guid: bf9b61d3070b6b040b71aff27390bfee, type: 3}
   dangerObjects:
   - {fileID: 7557685827397718423, guid: 2d300e93018fef349ba212366a793aa9, type: 3}
   - {fileID: 8614793181711624519, guid: f11740308936372438ec73f866ef1fa1, type: 3}

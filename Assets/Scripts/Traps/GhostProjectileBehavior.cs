@@ -9,7 +9,7 @@ public class GhostProjectileBehavior : ProjectileBehavior
 
     bool awake = false;
 
-    public int moveCountMax = 4;
+    public int moveCountMax;
     public int currentMoveCount = 0;
 
     public override void Move(Vector3 currentPlayerPosition)

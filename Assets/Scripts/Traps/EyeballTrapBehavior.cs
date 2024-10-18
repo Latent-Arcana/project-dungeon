@@ -9,7 +9,7 @@ public class EyeballTrapBehavior : TrapBehavior
         float spawnChance = UnityEngine.Random.value;
         int prefabChoice = UnityEngine.Random.Range(0, projectilePrefabs.Length);
 
-        if (spawnChance <= 0.1f && playerInRoom)
+        if (spawnChance <= 0.2f && playerInRoom)
         {
             SpawnProjectile(projectilePrefabs[prefabChoice]);
         }
@@ -99,6 +99,9 @@ public class EyeballTrapBehavior : TrapBehavior
             projectileBehavior.projectileId = 0;
             projectileBehavior.isAtSpawn = true;
             projectileBehavior.Player_Stats = Player_Stats;
+
+            GhostProjectileBehavior ghostProjectile = projectileBehavior as GhostProjectileBehavior;
+            ghostProjectile.moveCountMax = Random.Range(3, 11);
         }
 
         return;
