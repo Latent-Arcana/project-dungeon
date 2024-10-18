@@ -45,6 +45,12 @@ public class ProjectileBehavior : EnemyBehavior
 
     public override void Input_OnPlayerMoved(object sender, PlayerMovement.MovementArgs e)
     {
+
+        borderPositions[0] = gameObject.transform.position + Vector3.up;
+        borderPositions[1] = gameObject.transform.position + Vector3.down;
+        borderPositions[2] = gameObject.transform.position + Vector3.right;
+        borderPositions[3] = gameObject.transform.position + Vector3.left;
+
         if (gameObject != null && isDestroyed == false)
         {
             //CheckAndAttack(e.prevPosition, e.position, e.intendedDirection);

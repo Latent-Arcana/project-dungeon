@@ -9,9 +9,8 @@ public class EyeballTrapBehavior : TrapBehavior
         float spawnChance = UnityEngine.Random.value;
         int prefabChoice = UnityEngine.Random.Range(0, projectilePrefabs.Length);
 
-        if (spawnChance <= 0.2f && playerInRoom)
+        if (spawnChance <= 0.1f && playerInRoom)
         {
-            //Debug.Log("spawn chance is " + spawnChance + " and it needed to be lower than 0.85f");
             SpawnProjectile(projectilePrefabs[prefabChoice]);
         }
 

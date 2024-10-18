@@ -73,7 +73,7 @@ public class EnemyBehavior : MonoBehaviour
 
         currentRoom = room;
         standingOnCorpse = false;
-
+    
     }
 
     public virtual void OnEnable()
