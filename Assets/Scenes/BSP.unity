@@ -236,6 +236,7 @@ MonoBehaviour:
   - {fileID: 7557685827397718423, guid: 2d300e93018fef349ba212366a793aa9, type: 3}
   - {fileID: 8614793181711624519, guid: f11740308936372438ec73f866ef1fa1, type: 3}
   - {fileID: 8011701790813375566, guid: e2b1e35cc6a19d849917dab13afad87e, type: 3}
+  - {fileID: 7557685827397718423, guid: 0ffba6bb1aeeec14bbca31ab05db66a3, type: 3}
   unassignedObjects: []
   portalPrefab: {fileID: 8384392175852888170, guid: 8a7448e4d1d6e944fa6044bfea670f0d, type: 3}
   objectCountManager: {fileID: 11400000, guid: 646bc53469675104ca92cb146572aa8e, type: 2}
@@ -341,7 +342,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78a683c074be3fa46b0777e29836f879, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seed: 1092424233
+  seed: 35275437
   bspController: {fileID: 0}
   dangerGenerator: {fileID: 0}
   objectGenerator: {fileID: 0}

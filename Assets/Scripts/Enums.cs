@@ -42,7 +42,8 @@ public static class Enums
         Corpse,
         Chair,
         Table,
-        ArmorStand
+        ArmorStand,
+        Glass
     }
 
     public enum PlacementType

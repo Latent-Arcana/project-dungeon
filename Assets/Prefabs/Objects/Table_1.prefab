@@ -282,7 +282,7 @@ MonoBehaviour:
   RoomSubTypes: 0000000005000000
   ObjectType: 8
   PlacementType: 0
-  Width: 1
+  Width: 2
   Height: 1
   lookStrings:
   - NOT IMPLEMENTED

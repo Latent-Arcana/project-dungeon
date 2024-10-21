@@ -176,7 +176,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -293510981
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 92422ebec70dca34482897271a398bc9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -265,7 +265,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -293510981
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e2ae691b04f3166418c3c7ef4da9eed3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -363,7 +363,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RoomTypes: 00000000010000000200000003000000
-  RoomSubTypes: 01000000000000000400000005000000
+  RoomSubTypes: 010000000000000004000000050000000700000006000000
   ObjectType: 3
   PlacementType: 0
   Width: 2

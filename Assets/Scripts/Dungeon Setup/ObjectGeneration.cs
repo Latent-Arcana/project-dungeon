@@ -5,6 +5,7 @@ using UnityEngine;
 using System.Linq;
 using UnityEngine.Tilemaps;
 using System;
+using Unity.Collections;
 
 public class ObjectGeneration : MonoBehaviour
 {
@@ -108,6 +109,16 @@ public class ObjectGeneration : MonoBehaviour
             roomObjects = objects.Where(x => x.GetComponent<ObjectBehavior>().RoomSubTypes.Contains(subType)).ToList();
         }
 
+        else if (room.roomType == Enums.RoomType.Danger)
+        {
+
+            Enums.RoomSubType subType = GetRandomRoomSubType();
+
+
+            roomObjects = objects.Where(x => x.GetComponent<ObjectBehavior>().RoomSubTypes.Contains(subType)).ToList();
+
+        }
+
         else
         {
             roomObjects = objects.ToList();
@@ -151,6 +162,11 @@ public class ObjectGeneration : MonoBehaviour
 
             int numCreated = objectCounter.GetCountByType(objectType);
 
+            if (roomObjectBehavior.ObjectType == Enums.ObjectType.Glass)
+            {
+                Debug.Log("we can create: " + numCreated);
+            }
+
             while (attempt < 100 && numCreated < max)
             {
 
@@ -160,6 +176,11 @@ public class ObjectGeneration : MonoBehaviour
                 // If we can place an object at the point we selected
                 if (position != Vector3Int.zero)
                 {
+
+                    if (roomObjectBehavior.ObjectType == Enums.ObjectType.Glass)
+                    {
+                        Debug.Log("attempting to place glass");
+                    }
 
                     GameObject testObject = Instantiate(roomObject, position, Quaternion.identity);
 
@@ -179,6 +200,11 @@ public class ObjectGeneration : MonoBehaviour
                         testObject.transform.parent = room.gameObject.transform.GetChild(1).transform;
                         ++numCreated;
                         objectCounter.IncreaseCountByType(objectType, 1);
+
+                        if (roomObjectBehavior.ObjectType == Enums.ObjectType.Glass)
+                        {
+                            Debug.Log("placed glass");
+                        }
                     }
 
 
@@ -224,9 +250,9 @@ public class ObjectGeneration : MonoBehaviour
 
         int rand = UnityEngine.Random.Range(0, Enum.GetNames(typeof(Enums.RoomSubType)).Length);
 
-        Enums.RoomSubType loreRoomType = (Enums.RoomSubType)rand;
+        Enums.RoomSubType subType = (Enums.RoomSubType)rand;
 
-        return loreRoomType;
+        return subType;
     }
 
 
@@ -241,6 +267,7 @@ public class ObjectGeneration : MonoBehaviour
         public int armorStandCount;
         public int tableCount;
         public int chairCount;
+        public int glassCount;
 
         public ObjectCounts()
         {
@@ -252,6 +279,7 @@ public class ObjectGeneration : MonoBehaviour
             armorStandCount = 0;
             tableCount = 0;
             chairCount = 0;
+            glassCount = 0;
         }
 
         public void IncreaseCountByType(Enums.ObjectType objectType, int count)
@@ -264,6 +292,7 @@ public class ObjectGeneration : MonoBehaviour
             else if (objectType == Enums.ObjectType.ArmorStand) { armorStandCount += count; }
             else if (objectType == Enums.ObjectType.Table) { tableCount += count; }
             else if (objectType == Enums.ObjectType.Chair) { chairCount += count; }
+            else if (objectType == Enums.ObjectType.Glass) { glassCount += count; }
             else
             {
                 return;
@@ -281,6 +310,7 @@ public class ObjectGeneration : MonoBehaviour
             else if (objectType == Enums.ObjectType.ArmorStand) { return armorStandCount; }
             else if (objectType == Enums.ObjectType.Table) { return tableCount; }
             else if (objectType == Enums.ObjectType.Chair) { return chairCount; }
+            else if (objectType == Enums.ObjectType.Glass) { return glassCount; }
 
             else
             {

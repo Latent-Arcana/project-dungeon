@@ -180,7 +180,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -293510981
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: dce13b0988bc26744a2e7b611410ece2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -278,7 +278,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RoomTypes: 00000000010000000200000003000000
-  RoomSubTypes: 00000000010000000400000005000000
+  RoomSubTypes: 000000000100000004000000050000000700000006000000
   ObjectType: 3
   PlacementType: 0
   Width: 1
