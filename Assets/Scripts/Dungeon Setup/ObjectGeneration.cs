@@ -162,10 +162,10 @@ public class ObjectGeneration : MonoBehaviour
 
             int numCreated = objectCounter.GetCountByType(objectType);
 
-            if (roomObjectBehavior.ObjectType == Enums.ObjectType.Glass)
-            {
-                Debug.Log("we can create: " + numCreated);
-            }
+            // if (roomObjectBehavior.ObjectType == Enums.ObjectType.Glass)
+            // {
+            //     Debug.Log("we can create: " + numCreated);
+            // }
 
             while (attempt < 100 && numCreated < max)
             {
@@ -177,10 +177,10 @@ public class ObjectGeneration : MonoBehaviour
                 if (position != Vector3Int.zero)
                 {
 
-                    if (roomObjectBehavior.ObjectType == Enums.ObjectType.Glass)
-                    {
-                        Debug.Log("attempting to place glass");
-                    }
+                    // if (roomObjectBehavior.ObjectType == Enums.ObjectType.Glass)
+                    // {
+                    //     Debug.Log("attempting to place glass");
+                    // }
 
                     GameObject testObject = Instantiate(roomObject, position, Quaternion.identity);
 
@@ -201,10 +201,10 @@ public class ObjectGeneration : MonoBehaviour
                         ++numCreated;
                         objectCounter.IncreaseCountByType(objectType, 1);
 
-                        if (roomObjectBehavior.ObjectType == Enums.ObjectType.Glass)
-                        {
-                            Debug.Log("placed glass");
-                        }
+                        // if (roomObjectBehavior.ObjectType == Enums.ObjectType.Glass)
+                        // {
+                        //     Debug.Log("placed glass");
+                        // }
                     }
 
 
