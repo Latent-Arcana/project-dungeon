@@ -62,7 +62,8 @@ public class ScoreController : MonoBehaviour
         {
             StartCoroutine(GameObject.Find("Player").GetComponent<PlayerStats>().PlayerDeath());
         }
-        else if(Input.GetKeyUp(KeyCode.Keypad8)){
+        else if (Input.GetKeyUp(KeyCode.Keypad8))
+        {
             SpawnPortal();
         }
     }
@@ -213,9 +214,17 @@ public class ScoreController : MonoBehaviour
             //not every room will have a portal spawn
             if (room.transform.Find("Portal(Clone)") != null)
             {
-                room.transform.Find("Portal(Clone)").gameObject.GetComponent<SpriteRenderer>().enabled = true;
-                room.transform.Find("Portal(Clone)").gameObject.GetComponent<BoxCollider2D>().enabled = true;
+                GameObject portalObject = room.transform.Find("Portal(Clone)").gameObject;
+
+                if (portalObject.transform.position != playerMovement.gameObject.transform.position)
+                {
+                    portalObject.GetComponent<SpriteRenderer>().enabled = true;
+                    portalObject.GetComponent<BoxCollider2D>().enabled = true;
+                }
+
             }
         }
+
+        DungeonNarrator.Dungeon_Narrator.AddDungeonNarratorText("The aether stirs. The portals have opened...");
     }
 }

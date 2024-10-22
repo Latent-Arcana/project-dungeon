@@ -37,12 +37,13 @@ public class ObjectGeneration : MonoBehaviour
 
     public void GenerateObjectPlacements(List<GameObject> rooms)
     {
+
+        GeneratePortal(rooms);
+
         foreach (GameObject roomObj in rooms)
         {
 
             Room room = roomObj.GetComponent<Room>();
-
-            GeneratePortal(room);
 
             switch (room.roomType)
             {
@@ -78,15 +79,34 @@ public class ObjectGeneration : MonoBehaviour
     }
 
 
-    public void GeneratePortal(Room room)
+    public void GeneratePortal(List<GameObject> rooms)
     {
-        if (room.roomId != 0)
+        List<int> portalRoomIndices = new List<int>();
+
+        while (portalRoomIndices.Count < (rooms.Count / 5))
         {
+
+            int randomPortalRoomIndex = UnityEngine.Random.Range(1, rooms.Count);
+            if (!portalRoomIndices.Contains(randomPortalRoomIndex))
+            {
+                portalRoomIndices.Add(randomPortalRoomIndex);
+            }
+        }
+
+
+        for (int i = 0; i < portalRoomIndices.Count; ++i)
+        {
+            int index = portalRoomIndices[i];
+
+            Room room = rooms[i].GetComponent<Room>();
+
             Vector3 portalPosition = new Vector3(room.originX, room.originY, 0.0f);
 
             GameObject portal = GameObject.Instantiate(portalPrefab, portalPosition, Quaternion.identity);
 
             portal.transform.SetParent(room.gameObject.transform);
+
+            Debug.Log("Placed portal in room: " + index);
         }
 
     }
