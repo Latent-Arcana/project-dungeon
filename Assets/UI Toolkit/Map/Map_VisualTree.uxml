@@ -1,11 +1,17 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI%20Toolkit/Map/Map_Style.uss?fileID=7433441132597879392&amp;guid=f3eaeb5b7bebc5c49b89f60ad0ea1b91&amp;type=3#Map_Style" />
-    <ui:VisualElement name="Container" class="containerHiddenDefault" style="flex-grow: 1; flex-direction: row; display: flex;">
-        <ui:VisualElement name="ViewContainer" style="flex-grow: 1; width: 75%;" />
-        <ui:VisualElement name="ButtonContainer" style="flex-grow: 1; width: 25%;">
-            <ui:Button text="Safe" parse-escape-sequences="true" display-tooltip-when-elided="true" name="MapMarkerSafe" />
-            <ui:Button text="Lore" parse-escape-sequences="true" display-tooltip-when-elided="true" name="MapMarkerLore" />
-            <ui:Button text="Danger" parse-escape-sequences="true" display-tooltip-when-elided="true" name="MapMarkerDanger" />
+    <ui:VisualElement name="Container" class="containerHiddenDefault" style="flex-grow: 1; flex-direction: column; display: flex; background-color: rgb(0, 0, 0);">
+        <ui:VisualElement name="ViewContainer" class="map-container-map-view" style="flex-grow: 1; height: 70%;" />
+        <ui:VisualElement name="ButtonContainer" class="map-container-all-buttons" style="flex-grow: 1; flex-direction: row;">
+            <ui:VisualElement class="map-container-button" style="flex-grow: 1;">
+                <ui:Button text="Safe" parse-escape-sequences="true" display-tooltip-when-elided="true" name="MapMarkerSafe" />
+            </ui:VisualElement>
+            <ui:VisualElement class="map-container-button" style="flex-grow: 1;">
+                <ui:Button text="Lore" parse-escape-sequences="true" display-tooltip-when-elided="true" name="MapMarkerLore" />
+            </ui:VisualElement>
+            <ui:VisualElement class="map-container-button" style="flex-grow: 1;">
+                <ui:Button text="Danger" parse-escape-sequences="true" display-tooltip-when-elided="true" name="MapMarkerDanger" />
+            </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

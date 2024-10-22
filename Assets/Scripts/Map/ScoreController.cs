@@ -62,6 +62,9 @@ public class ScoreController : MonoBehaviour
         {
             StartCoroutine(GameObject.Find("Player").GetComponent<PlayerStats>().PlayerDeath());
         }
+        else if(Input.GetKeyUp(KeyCode.Keypad8)){
+            SpawnPortal();
+        }
     }
 
     /// <summary>

@@ -1,3 +1,15 @@
 .containerHiddenDefault {
     display: none;
 }
+
+.map-container-map-view {
+    background-image: url("project://database/Assets/UI%20Toolkit/UI%20Sprites/1920x1080/main.png?fileID=21300000&guid=d036c145d324b5c4c9a0865ee7aac015&type=3#main");
+}
+
+.map-container-all-buttons {
+    background-image: url("project://database/Assets/UI%20Toolkit/UI%20Sprites/1920x1080/stats.png?fileID=21300000&guid=b7cf4759c0257e34cab95541fceebdca&type=3#stats");
+}
+
+.map-container-button {
+    justify-content: center;
+}
