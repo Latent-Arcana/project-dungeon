@@ -118,6 +118,7 @@ GameObject:
   - component: {fileID: 2783835529191084822}
   - component: {fileID: 2609404153136306900}
   - component: {fileID: -4324655053843801933}
+  - component: {fileID: -2326040990566469938}
   m_Layer: 0
   m_Name: Bed_Vertical_1
   m_TagString: object
@@ -180,8 +181,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -293510981
-  m_SortingLayer: 2
-  m_SortingOrder: 0
+  m_SortingLayer: 3
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 0294e95390f8b754a87269c3714caa98, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -285,3 +286,15 @@ MonoBehaviour:
   Height: 1
   lookStrings:
   - NOT IMPLEMENTED
+--- !u!114 &-2326040990566469938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8614793181711624519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd992823418d0434eaa55b69f2902b4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

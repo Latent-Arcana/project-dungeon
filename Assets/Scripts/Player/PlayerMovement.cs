@@ -33,6 +33,9 @@ public class PlayerMovement : MonoBehaviour
 
     public PlayerInventory playerInventory;
 
+    [SerializeField]
+    public PlayerStatsManager Player_Stats;
+
 
     [SerializeField]
     private Sprite rightFacingSprite;
@@ -40,7 +43,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private Sprite leftFacingSprite;
     private bool isRightFacing = true;
-
 
     private SpriteRenderer spriteRenderer;
 
@@ -166,9 +168,27 @@ public class PlayerMovement : MonoBehaviour
                 }
 
             }
+
+            ObjectBehavior objectBehavior = collision.gameObject.GetComponent<ObjectBehavior>();
+
+            if (objectBehavior.ObjectType == Enums.ObjectType.Glass)
+            {
+                player.transform.position += (Vector3)direction;
+                Player_Stats.SetHP(Player_Stats.HP - 1);
+                Dungeon_Narrator.AddDungeonNarratorText($"You take 1 damage from stepping on the glass.");
+            }
+
+            else if (objectBehavior.ObjectType == Enums.ObjectType.Bed)
+            {
+                player.transform.position += (Vector3)direction;
+
+                int healAmount = collision.gameObject.GetComponent<SafeObjectBehavior>().HealPlayer(Player_Stats.HP, Player_Stats.MAX_HP);
+                Player_Stats.SetHP(healAmount);
+            }
         }
 
-        else if (collision.tag == "portal"){
+        else if (collision.tag == "portal")
+        {
             SceneManager.LoadScene("Loading");
         }
 

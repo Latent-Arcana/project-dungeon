@@ -2074,6 +2074,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1311237456}
     - target: {fileID: 3278021294717465607, guid: d757ba61582e1f945a3be705c12a51e8, type: 3}
+      propertyPath: Player_Stats
+      value: 
+      objectReference: {fileID: 11400000, guid: 49cdfbab4b8796a41af4e48e5ee7d3d5, type: 2}
+    - target: {fileID: 3278021294717465607, guid: d757ba61582e1f945a3be705c12a51e8, type: 3}
       propertyPath: leftFacingSprite
       value: 
       objectReference: {fileID: 21300000, guid: 7587ae1d3137f4c4f8772bd065e9d439, type: 3}
