@@ -170,7 +170,7 @@ public class BSPGeneration : MonoBehaviour
             }
             // Danger
 
-            else if (rand < 80)
+            else if (rand < 60)
             {
                 room.roomType = Enums.RoomType.Danger;
                 Trap_Generator.GenerateTrap(allRooms[i]);

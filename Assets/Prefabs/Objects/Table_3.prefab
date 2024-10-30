@@ -138,8 +138,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 8631317258989284018}
   - {fileID: 9095240796079885274}
+  - {fileID: 8631317258989284018}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &344201217202336288
@@ -253,7 +253,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.5, y: 0.5}
+  m_Offset: {x: 0, y: 0.5}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -264,7 +264,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &6497334047318114798
 MonoBehaviour:
@@ -306,9 +306,21 @@ PrefabInstance:
       propertyPath: m_Offset.x
       value: -0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 4376366860525716135, guid: 20905fda6e1ddc44396a1bfebe45e916, type: 3}
+      propertyPath: m_Size.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4376366860525716135, guid: 20905fda6e1ddc44396a1bfebe45e916, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4376366860525716135, guid: 20905fda6e1ddc44396a1bfebe45e916, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 8614793181711624519, guid: 20905fda6e1ddc44396a1bfebe45e916, type: 3}
       propertyPath: m_Name
-      value: Chair_1
+      value: SecondSprite
       objectReference: {fileID: 0}
     - target: {fileID: 9166368073886043533, guid: 20905fda6e1ddc44396a1bfebe45e916, type: 3}
       propertyPath: m_LocalPosition.x
@@ -350,8 +362,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedComponents:
+    - {fileID: 2783835529191084822, guid: 20905fda6e1ddc44396a1bfebe45e916, type: 3}
+    - {fileID: 2609404153136306900, guid: 20905fda6e1ddc44396a1bfebe45e916, type: 3}
+    - {fileID: 4136970132566940281, guid: 20905fda6e1ddc44396a1bfebe45e916, type: 3}
+    m_RemovedGameObjects:
+    - {fileID: 572227746508744076, guid: 20905fda6e1ddc44396a1bfebe45e916, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 20905fda6e1ddc44396a1bfebe45e916, type: 3}

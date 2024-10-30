@@ -1,0 +1,50 @@
+{
+    "weapons": [
+        {
+            "itemID": "006",
+            "itemName": "Falchion",
+            "DropChance": 10
+        },
+        {
+            "itemID": "007",
+            "itemName": "Heavy Mace",
+            "DropChance": 20
+        },
+        {
+            "itemID": "008",
+            "itemName": "Halberd",
+            "DropChance": 5
+        }
+    ],
+    "armor": [
+        {
+            "itemID": "009",
+            "itemName": "Hauberk",
+            "DropChance": 20
+        },
+        {
+            "itemID": "010",
+            "itemName": "Plackart",
+            "DropChance": 10
+        },
+        {
+            "itemID": "011",
+            "itemName": "Laminar Plate Mail",
+            "DropChance": 5
+        }
+    ],
+"consumables": [
+        {
+            "itemID": "012",
+            "itemName": "Vial of Pure Adrenaline",
+            "DropChance": 15
+        },
+        {
+            "itemID": "013",
+            "itemName": "Vial of Pure Stamina",
+            "DropChance": 15
+        }
+    ]
+}
+  
+  

@@ -133,21 +133,19 @@ public class ObjectGeneration : MonoBehaviour
 
         if (room.roomType == Enums.RoomType.Lore)
         {
-            //Debug.Log(room.roomId + " is a " + room.roomType + " of subtype: " + subType);
+            Debug.Log(room.roomId + " is a " + room.roomType + " of subtype: " + subType);
             roomObjects = objects.Where(x => x.GetComponent<ObjectBehavior>().RoomSubTypes.Contains(subType)).ToList();
-        }
 
-        else if (room.roomType == Enums.RoomType.Danger)
-        {
-            roomObjects = objects.Where(x => x.GetComponent<ObjectBehavior>().RoomSubTypes.Contains(subType)).ToList();
+            //Debug.Log("Room " + room.roomId + " is a " + room.roomType + " Room of subtype " + subType.ToString());
         }
 
         else
         {
             roomObjects = objects.ToList();
+
+            Debug.Log("Room " + room.roomId + " is a " + room.roomType);
         }
 
-        Debug.Log("Room " + room.roomId + " is a " + room.roomType + " Room of subtype " + subType.ToString());
 
         // Randomly sort the list before using it so that we don't use the same objects in the same order every time
 
@@ -163,15 +161,16 @@ public class ObjectGeneration : MonoBehaviour
         yield return StartCoroutine(DoPlacementChecks(roomObjects, room));
 
         roomsRemaining--;
-        
+
         Debug.Log("a room finished its placement. There are " + roomsRemaining + " rooms left");
-        
+
         RoomComplete?.Invoke((float)(roomsCount - roomsRemaining) / (float)roomsCount);
-       
-        if(roomsRemaining <= 0){
+
+        if (roomsRemaining <= 0)
+        {
 
             AllRoomsPlacementComplete?.Invoke();
-        
+
         }
 
 

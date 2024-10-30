@@ -26,6 +26,8 @@ public class ScoreController : MonoBehaviour
     private Dictionary<int, GameObject> currentMarks = new();
     private Dictionary<GameObject, int> currentMarksInverse = new();
 
+    bool portalsSpawned = false;
+
     void Awake()
     {
         playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
@@ -186,6 +188,7 @@ public class ScoreController : MonoBehaviour
     {
         if (e.type == "enter")
         {
+
             roomsVisited[e.roomId] = 1;
             bool allRoomsAreVisited = true;
 
@@ -199,7 +202,7 @@ public class ScoreController : MonoBehaviour
                 }
             }
 
-            if (allRoomsAreVisited)
+            if (allRoomsAreVisited && !portalsSpawned)
             {
                 SpawnPortal();
             }
@@ -226,5 +229,7 @@ public class ScoreController : MonoBehaviour
         }
 
         DungeonNarrator.Dungeon_Narrator.AddDungeonNarratorText("The aether stirs. The portals have opened...");
+
+        portalsSpawned = true;
     }
 }

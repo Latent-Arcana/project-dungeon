@@ -1,0 +1,70 @@
+{
+    "weapons": [
+        {
+            "itemID": "014",
+            "itemName": "The Slayer of Dragons",
+            "DropChance": 10
+        },
+        {
+            "itemID": "015",
+            "itemName": "The Almighty Doctrina",
+            "DropChance": 5
+        },
+        {
+            "itemID": "016",
+            "itemName": "The Teeth that Bite Back",
+            "DropChance": 10
+        },
+        {
+            "itemID": "017",
+            "itemName": "The Honour's Lament",
+            "DropChance": 5
+        },
+        {
+            "itemID": "018",
+            "itemName": "The Left Hook, Right Hook",
+            "DropChance": 10
+        }
+    ],
+    "armor": [
+        {
+            "itemID": "019",
+            "itemName": "The Berserk's Armor",
+            "DropChance": 10
+        },
+        {
+            "itemID": "020",
+            "itemName": "The Mark XIV Phebos",
+            "DropChance": 5
+        },
+        {
+            "itemID": "021",
+            "itemName": "The Garon's Fur",
+            "DropChance": 5
+        },
+        {
+            "itemID": "022",
+            "itemName": "The Wailing Fauld",
+            "DropChance": 10
+        },
+        {
+            "itemID": "023",
+            "itemName": "The Golden Belt and Shorts",
+            "DropChance": 10
+        }
+    ],
+"consumables": [
+        {
+            "itemID": "024",
+            "itemName": "Vial of Pure Strength",
+            "DropChance": 10
+        },
+        {
+            "itemID": "025",
+            "itemName": "Vial of Pure Speed",
+            "DropChance": 10
+        }
+    ]
+}
+  
+  

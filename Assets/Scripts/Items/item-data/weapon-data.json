@@ -1,6 +1,7 @@
 {
   "weapons": [
     {
+      "itemID": "001",
       "itemName": "Saber",
       "itemDescription": "A dull steel blade, riddled with scars of battle.",
       "STR": 2,
@@ -11,6 +12,7 @@
       "image": "sabre"
     },
     {
+      "itemID": "002",
       "itemName": "Battle Axe",
       "itemDescription": "A one-handed weapon, rust scattered across the axe-head.",
       "STR": 2,
@@ -21,6 +23,7 @@
       "image": "battle-axe"
     },
     {
+      "itemID": "006",
       "itemName": "Falchion",
       "itemDescription": "A well kept blade, curving at the end to help catch weakpoints.",
       "STR": 1,
@@ -31,6 +34,7 @@
       "image": "falchion"
     },
     {
+      "itemID": "007",
       "itemName": "Heavy Mace",
       "itemDescription": "A heavy ball of iron adorned with spikes, attached to a long metal rod.",
       "STR": 3,
@@ -41,6 +45,7 @@
       "image": "temp_icon"
     },
     {
+      "itemID": "008",
       "itemName": "Halberd",
       "itemDescription": "A lengthy wooden polearm, with a pointed axe attached at the end.",
       "STR": 2,

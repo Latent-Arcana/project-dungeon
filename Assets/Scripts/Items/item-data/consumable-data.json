@@ -1,6 +1,7 @@
 {
   "consumables": [
     {
+      "itemID": "005",
       "itemName": "Elixir of Health",
       "itemDescription": "A crimson bottle that glitters with stardust.",
       "STR": 0,
@@ -13,6 +14,7 @@
       "image": "potion-health-1"
     },
     {
+      "itemID": "024",
       "itemName": "Vial of Pure Strength",
       "itemDescription": "A vial sealed with a red cork. The glowing liquid within feels hot to the touch.",
       "STR": 1,
@@ -25,6 +27,7 @@
       "image": "temp_icon"
     },
     {
+      "itemID": "025",
       "itemName": "Vial of Pure Speed",
       "itemDescription": "A vial sealed with a blue cork. The glowing liquid within rattles with constant energy.",
       "STR": 0,
@@ -37,6 +40,7 @@
       "image": "temp_icon"
     },
     {
+      "itemID": "012",
       "itemName": "Vial of Pure Adrenaline",
       "itemDescription": "A vial sealed with a pink cork. The glowing liquid within spins in a constant vortex.",
       "STR": 0,
@@ -49,6 +53,7 @@
       "image": "temp_icon"
     },
     {
+      "itemID": "013",
       "itemName": "Vial of Pure Stamina",
       "itemDescription": "A vial sealed with an emerald cork. The glowing liquid within moves with a constant ebb and flow.",
       "STR": 0,

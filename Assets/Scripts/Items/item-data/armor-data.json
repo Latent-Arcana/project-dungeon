@@ -1,6 +1,7 @@
 {
   "armor": [
     {
+      "itemID": "003",
       "itemName": "Gambeson Robes",
       "itemDescription": "Priestly robes, the white has been stained and the edges are frayed and bitten by rats.",
       "STR": 0,
@@ -11,6 +12,7 @@
       "image": "temp_icon"
     },
     {
+      "itemID": "004",
       "itemName": "Elk Hide Armor",
       "itemDescription": "A set of tanned elk hide, held together with metal fasteners and stringy sinew.",
       "STR": 0,
@@ -21,6 +23,7 @@
       "image": "temp_icon"
     },
     {
+      "itemID": "009",
       "itemName": "Hauberk",
       "itemDescription": "An aged chain-mail shirt, riddled with battle scars and holes that clearly killed the last owner.",
       "STR": 0,
@@ -31,6 +34,7 @@
       "image": "temp_icon"
     },
     {
+      "itemID": "010",
       "itemName": "Plackart",
       "itemDescription": "A breastplate adorned with aging metallic filigree. One feels an age-lost honor restored when worn.",
       "STR": 0,
@@ -41,6 +45,7 @@
       "image": "temp_icon"
     },
     {
+      "itemID": "011",
       "itemName": "Laminar Plate Mail",
       "itemDescription": "A customized set of overlapping chain-mail and woven plates.",
       "STR": 0,
