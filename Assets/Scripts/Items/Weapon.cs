@@ -13,6 +13,7 @@ public class Weapon : Item
 [Serializable]
 public class WeaponData
 {
+    public string itemID;
     public string itemName;
     public string itemDescription;
     public ItemType itemType; // e.g., "Weapon", "Armor"

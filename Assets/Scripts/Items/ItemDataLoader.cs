@@ -18,9 +18,12 @@ public class ItemLoader : MonoBehaviour
     public TextAsset consumablesFile;
     public TextAsset weaponsFile;
     public TextAsset armorFile;
-
     public TextAsset specialWeaponFile;
     public TextAsset specialArmorFile;
+
+    public TextAsset commonLootFile;
+    public TextAsset uncommonLootFile;
+    public TextAsset epicLootFile;
 
     private List<Item> itemsDatabase = new List<Item>();
 
@@ -32,6 +35,10 @@ public class ItemLoader : MonoBehaviour
     }
 
     public bool hasLoadedSuccessfully = false;
+
+    public Dictionary<string, int> commonLootTable;
+    public Dictionary<string, int> uncommonLootTable;
+    public Dictionary<string, int> epicLootTable;
 
     void Awake()
     {
@@ -70,12 +77,14 @@ public class ItemLoader : MonoBehaviour
             return;
         }
 
-        if(specialArmorFile == null){
+        if (specialArmorFile == null)
+        {
             Debug.LogError("JSON file for special armor was not assigned.");
             return;
         }
 
-        if(specialWeaponFile == null){
+        if (specialWeaponFile == null)
+        {
             Debug.LogError("JSON file for special weapons was not assigned.");
             return;
         }
@@ -94,18 +103,53 @@ public class ItemLoader : MonoBehaviour
         ArmorData[] armorData = JsonUtility.FromJson<ArmorDataArray>(armorJsonString).armor;
         ArmorData[] specialArmorData = JsonUtility.FromJson<ArmorDataArray>(specialArmorJsonString).armor;
 
-        
+
 
 
         CreateArmor(armorData);
         CreateArmor(specialArmorData);
-        
+
         CreateConsumables(consumablesData);
-        
+
         CreateWeapons(weaponsData);
         CreateWeapons(specialWeaponsData);
 
+
+        LoadLootTables();
+
         hasLoadedSuccessfully = true;
+    }
+
+    public void LoadLootTables()
+    {
+
+        // Check for null files and log errors early
+        if (commonLootFile == null)
+        {
+            Debug.LogError("JSON file for common loot table was not assigned.");
+            return;
+        }
+
+        if (uncommonLootFile == null)
+        {
+            Debug.LogError("JSON file for uncommon loot table was not assigned.");
+            return;
+        }
+
+        if (epicLootFile == null)
+        {
+            Debug.LogError("JSON file for epic loot table was not assigned.");
+            return;
+        }
+
+        string uncommonLootJsonString = uncommonLootFile.text;
+        string commonLootJsonString = commonLootFile.text;
+        string epicLootJsonString = epicLootFile.text;
+
+        LootTable commonLootRaw = JsonUtility.FromJson<LootTable>(commonLootJsonString);
+        LootTable uncommonLootRaw = JsonUtility.FromJson<LootTable>(uncommonLootJsonString);
+        LootTable epicLootRaw = JsonUtility.FromJson<LootTable>(epicLootJsonString);
+
     }
 
     private void CreateArmor(ArmorData[] dataArray)
@@ -113,6 +157,7 @@ public class ItemLoader : MonoBehaviour
         foreach (ArmorData data in dataArray)
         {
             Armor armor = ScriptableObject.CreateInstance<Armor>();
+            armor.itemID = data.itemID;
             armor.itemName = data.itemName;
             armor.itemDescription = data.itemDescription;
             armor.AGI = data.AGI;
@@ -138,6 +183,7 @@ public class ItemLoader : MonoBehaviour
         foreach (WeaponData data in dataArray)
         {
             Weapon weapon = ScriptableObject.CreateInstance<Weapon>();
+            weapon.itemID = data.itemID;
             weapon.itemName = data.itemName;
             weapon.itemDescription = data.itemDescription;
             weapon.AGI = data.AGI;
@@ -166,6 +212,7 @@ public class ItemLoader : MonoBehaviour
         foreach (ConsumableData data in dataArray)
         {
             Consumable consumable = ScriptableObject.CreateInstance<Consumable>();
+            consumable.itemID = data.itemID;
             consumable.itemName = data.itemName;
             consumable.itemDescription = data.itemDescription;
             consumable.AGI = data.AGI;

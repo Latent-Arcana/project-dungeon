@@ -17,6 +17,7 @@ public class Consumable : Item
 [Serializable]
 public class ConsumableData
 {
+    public string itemID;
     public string itemName;
     public string itemDescription;
     public ItemType itemType; // e.g., "Weapon", "Armor"

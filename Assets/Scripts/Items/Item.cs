@@ -7,6 +7,7 @@ using static Enums;
 public abstract class Item : ScriptableObject
 {
     [Header("Base Item Information")]
+    public string itemID;
     public string itemName;
     public string itemDescription;
     public ItemType type;
