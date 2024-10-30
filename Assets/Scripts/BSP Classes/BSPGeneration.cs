@@ -157,12 +157,12 @@ public class BSPGeneration : MonoBehaviour
             int rand = UnityEngine.Random.Range(0, 100);
 
 
-            if (rand < 20) // Safe
+            if (rand < 10) // Safe
             {
                 room.roomType = Enums.RoomType.Safe;
             }
 
-            else if (rand < 40) // Lore
+            else if (rand < 50) // Lore
             {
 
                 room.roomType = Enums.RoomType.Lore;
@@ -170,7 +170,7 @@ public class BSPGeneration : MonoBehaviour
             }
             // Danger
 
-            else if (rand < 60)
+            else if (rand < 80)
             {
                 room.roomType = Enums.RoomType.Danger;
                 Trap_Generator.GenerateTrap(allRooms[i]);

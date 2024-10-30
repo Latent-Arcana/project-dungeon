@@ -232,10 +232,14 @@ MonoBehaviour:
   - {fileID: 7557685827397718423, guid: 2d300e93018fef349ba212366a793aa9, type: 3}
   - {fileID: 8614793181711624519, guid: 25b108ed0f659a34783fa472f2652adb, type: 3}
   - {fileID: 8011701790813375566, guid: bf9b61d3070b6b040b71aff27390bfee, type: 3}
+  - {fileID: 8011701790813375566, guid: 22a7fe25a2c05b241a3845c4b066abe0, type: 3}
   dangerObjects:
   - {fileID: 7557685827397718423, guid: 2d300e93018fef349ba212366a793aa9, type: 3}
   - {fileID: 8614793181711624519, guid: f11740308936372438ec73f866ef1fa1, type: 3}
   - {fileID: 8011701790813375566, guid: e2b1e35cc6a19d849917dab13afad87e, type: 3}
+  - {fileID: 8614793181711624519, guid: f2d5c10dce5ac86489719edd75acb5fc, type: 3}
+  - {fileID: 8614793181711624519, guid: 1b13c2b9dfe4ff44481a309f7b81d041, type: 3}
+  - {fileID: 8614793181711624519, guid: 237aa1382a9949e48a1756ae7933a2f2, type: 3}
   - {fileID: 7557685827397718423, guid: 0ffba6bb1aeeec14bbca31ab05db66a3, type: 3}
   unassignedObjects: []
   portalPrefab: {fileID: 8384392175852888170, guid: 8a7448e4d1d6e944fa6044bfea670f0d, type: 3}

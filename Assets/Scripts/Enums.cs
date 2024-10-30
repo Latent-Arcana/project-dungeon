@@ -21,14 +21,13 @@ public static class Enums
 
     public enum RoomSubType
     {
-        Undefined = 0,
         Treasure = 1,
         Library = 2,
-        None = 3,
-        Armory = 4,
-        Dining = 5,
-        Trap = 6,
-        Enemy = 7
+        Armory = 3,
+        Dining = 4,
+        Trap = 5,
+        Enemy = 6,
+        Safe = 7
     }
 
     public enum ObjectType

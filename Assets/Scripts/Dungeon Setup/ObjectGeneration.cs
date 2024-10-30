@@ -6,6 +6,7 @@ using System.Linq;
 using UnityEngine.Tilemaps;
 using System;
 using Unity.Collections;
+using UnityEngine.AI;
 
 public class ObjectGeneration : MonoBehaviour
 {
@@ -60,7 +61,6 @@ public class ObjectGeneration : MonoBehaviour
                 case Enums.RoomType.Safe:
 
                     StartCoroutine(PopulateRoom(safeObjects, room));
-
                     break;
 
                 case Enums.RoomType.Danger:
@@ -129,29 +129,25 @@ public class ObjectGeneration : MonoBehaviour
 
         List<GameObject> roomObjects = new List<GameObject>();
 
+        Enums.RoomSubType subType = GetRandomRoomSubType();
+
         if (room.roomType == Enums.RoomType.Lore)
         {
-            Enums.RoomSubType subType = GetRandomRoomSubType();
-
             //Debug.Log(room.roomId + " is a " + room.roomType + " of subtype: " + subType);
-
             roomObjects = objects.Where(x => x.GetComponent<ObjectBehavior>().RoomSubTypes.Contains(subType)).ToList();
         }
 
         else if (room.roomType == Enums.RoomType.Danger)
         {
-
-            Enums.RoomSubType subType = GetRandomRoomSubType();
-
-
             roomObjects = objects.Where(x => x.GetComponent<ObjectBehavior>().RoomSubTypes.Contains(subType)).ToList();
-
         }
 
         else
         {
             roomObjects = objects.ToList();
         }
+
+        Debug.Log("Room " + room.roomId + " is a " + room.roomType + " Room of subtype " + subType.ToString());
 
         // Randomly sort the list before using it so that we don't use the same objects in the same order every time
 

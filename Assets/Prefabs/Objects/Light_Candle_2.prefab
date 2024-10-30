@@ -277,8 +277,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99c1cc0f00e86b945b9951b3d91d54d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RoomTypes: 00000000
-  RoomSubTypes: 02000000010000000400000005000000
+  RoomTypes: 0000000001000000
+  RoomSubTypes: 020000000100000004000000050000000600000007000000
   ObjectType: 2
   PlacementType: 0
   Width: 1
