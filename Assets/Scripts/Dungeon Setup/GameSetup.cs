@@ -18,6 +18,8 @@ public class GameSetup : MonoBehaviour
 
     public List<int> seedsInDungeon;
 
+    
+
     void Awake()
     {
         mapController = GameObject.Find("MapController").GetComponent<MapController>();

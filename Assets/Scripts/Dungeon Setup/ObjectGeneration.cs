@@ -24,11 +24,17 @@ public class ObjectGeneration : MonoBehaviour
 
     public GameObject portalPrefab;
 
+    private int roomsRemaining;
+    private int roomsCount;
+
 
     Dictionary<Vector3Int, bool> placedObjects = new Dictionary<Vector3Int, bool>();
 
     // This is how we're managing the count of unique instances of objects that have variants
     public ObjectCountManager objectCountManager;
+
+    public static event Action AllRoomsPlacementComplete;
+    public static event Action<float> RoomComplete;
 
     public void Awake()
     {
@@ -37,6 +43,9 @@ public class ObjectGeneration : MonoBehaviour
 
     public void GenerateObjectPlacements(List<GameObject> rooms)
     {
+
+        roomsRemaining = rooms.Count - 1;
+        roomsCount = roomsRemaining;
 
         GeneratePortal(rooms);
 
@@ -50,18 +59,18 @@ public class ObjectGeneration : MonoBehaviour
 
                 case Enums.RoomType.Safe:
 
-                    PopulateRoom(safeObjects, room);
+                    StartCoroutine(PopulateRoom(safeObjects, room));
 
                     break;
 
                 case Enums.RoomType.Danger:
-                    PopulateRoom(dangerObjects, room);
+                    StartCoroutine(PopulateRoom(dangerObjects, room));
 
                     break;
 
                 case Enums.RoomType.Lore:
 
-                    PopulateRoom(loreObjects, room);
+                    StartCoroutine(PopulateRoom(loreObjects, room));
 
                     break;
 
@@ -112,7 +121,7 @@ public class ObjectGeneration : MonoBehaviour
     }
 
 
-    public void PopulateRoom(GameObject[] objects, Room room)
+    public IEnumerator PopulateRoom(GameObject[] objects, Room room)
     {
 
         // Only get subtype if we are dealing with lore rooms for now.
@@ -155,7 +164,19 @@ public class ObjectGeneration : MonoBehaviour
         ObjectCounts objectCounter = new ObjectCounts();
 
 
-        StartCoroutine(DoPlacementChecks(roomObjects, room));
+        yield return StartCoroutine(DoPlacementChecks(roomObjects, room));
+
+        roomsRemaining--;
+        
+        Debug.Log("a room finished its placement. There are " + roomsRemaining + " rooms left");
+        
+        RoomComplete?.Invoke((float)(roomsCount - roomsRemaining) / (float)roomsCount);
+       
+        if(roomsRemaining <= 0){
+
+            AllRoomsPlacementComplete?.Invoke();
+        
+        }
 
 
     }

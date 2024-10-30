@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class InputController : MonoBehaviour
 {
@@ -19,7 +20,9 @@ public class InputController : MonoBehaviour
     public event EventHandler OnInventoryEnter;
     public event EventHandler OnMenuEnter;
 
-    public InputState currentInputState = InputState.Gameplay;
+    public InputState currentInputState = InputState.Loading;
+
+    public GameObject loadingScreen;
 
     // Passing in the dirction to the event will allow us to send movement data to the player and enemies
     public class InputArgs : EventArgs
@@ -30,10 +33,21 @@ public class InputController : MonoBehaviour
     //TODO: implement this in the M and I key if statements, and move enum to the enums file
     public enum InputState
     {
+        Loading,
         Gameplay,
         MapMenu,
         PauseMenu,
         InventoryMenu
+    }
+
+    private void OnEnable(){
+        ObjectGeneration.AllRoomsPlacementComplete += CompletedObjectPlacement;
+    }
+
+    private void OnDisable(){
+
+        ObjectGeneration.AllRoomsPlacementComplete -= CompletedObjectPlacement;
+
     }
 
 
@@ -43,6 +57,19 @@ public class InputController : MonoBehaviour
         player = GameObject.Find("Player");
         playerPosition = player.transform.position;
 
+        loadingScreen = GameObject.Find("Loading");
+
+        movementEnabled = false;
+
+    }
+
+    void CompletedObjectPlacement(){
+        Debug.Log("completed all rooms");
+        currentInputState = InputState.Gameplay;
+
+        loadingScreen.SetActive(false);
+
+        movementEnabled = true;
     }
 
     // Update is called once per frame

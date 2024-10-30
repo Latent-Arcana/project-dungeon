@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
+using System;
 
 public class LoadingScreenUI : MonoBehaviour
 {
@@ -31,15 +33,35 @@ public class LoadingScreenUI : MonoBehaviour
 
     }
 
+    void OnEnable(){
+        ObjectGeneration.RoomComplete += SingleRoomCompleted;
+    }
+
+    void OnDisable(){
+        ObjectGeneration.RoomComplete -= SingleRoomCompleted;
+    }
+
     void Start()
     {
-        loadingOperation = SceneManager.LoadSceneAsync("BSP");
+        if (SceneManager.GetActiveScene().name != "BSP")
+        {
+            loadingOperation = SceneManager.LoadSceneAsync("BSP");
+        }
     }
 
     void Update()
     {
-        progressValue = loadingOperation.progress / 0.9f;
-        loadingText.text = "Loading: " + progressValue * 100 + "%";
+        if (SceneManager.GetActiveScene().name != "BSP")
+        {
+            progressValue = loadingOperation.progress / 0.9f;
+            loadingText.text = "Generating the dungeon: " + progressValue * 100 + "%";
+        }
+    }
+
+    private void SingleRoomCompleted(float percentage){
+
+        loadingText.text = "Generating rooms: " + String.Format("{0:F0}%", percentage * 100);
+
     }
 
 
