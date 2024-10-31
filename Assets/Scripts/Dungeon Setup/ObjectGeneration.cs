@@ -133,7 +133,7 @@ public class ObjectGeneration : MonoBehaviour
 
         if (room.roomType == Enums.RoomType.Lore)
         {
-            Debug.Log(room.roomId + " is a " + room.roomType + " of subtype: " + subType);
+           // Debug.Log(room.roomId + " is a " + room.roomType + " of subtype: " + subType);
             roomObjects = objects.Where(x => x.GetComponent<ObjectBehavior>().RoomSubTypes.Contains(subType)).ToList();
 
             //Debug.Log("Room " + room.roomId + " is a " + room.roomType + " Room of subtype " + subType.ToString());
@@ -143,7 +143,7 @@ public class ObjectGeneration : MonoBehaviour
         {
             roomObjects = objects.ToList();
 
-            Debug.Log("Room " + room.roomId + " is a " + room.roomType);
+            //Debug.Log("Room " + room.roomId + " is a " + room.roomType);
         }
 
 
@@ -162,7 +162,7 @@ public class ObjectGeneration : MonoBehaviour
 
         roomsRemaining--;
 
-        Debug.Log("a room finished its placement. There are " + roomsRemaining + " rooms left");
+        //Debug.Log("a room finished its placement. There are " + roomsRemaining + " rooms left");
 
         RoomComplete?.Invoke((float)(roomsCount - roomsRemaining) / (float)roomsCount);
 

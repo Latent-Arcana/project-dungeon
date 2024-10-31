@@ -1,5 +1,5 @@
 {
-    "weapons": [
+    "loot": [
         {
             "itemID": "006",
             "itemName": "Falchion",
@@ -14,9 +14,7 @@
             "itemID": "008",
             "itemName": "Halberd",
             "DropChance": 5
-        }
-    ],
-    "armor": [
+        },
         {
             "itemID": "009",
             "itemName": "Hauberk",
@@ -31,9 +29,7 @@
             "itemID": "011",
             "itemName": "Laminar Plate Mail",
             "DropChance": 5
-        }
-    ],
-"consumables": [
+        },
         {
             "itemID": "012",
             "itemName": "Vial of Pure Adrenaline",

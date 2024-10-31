@@ -56,9 +56,10 @@ public class GameSetup : MonoBehaviour
 
         // Loading Items from item data, singleton syntax is ItemLoader.Item_Loader
 
-        if (!Item_Loader.hasLoadedSuccessfully)
+        if (!Item_Loader.hasLoadedItemsSuccessfully && !Item_Loader.hasLoadedLootTablesSuccessfully)
         {
             Item_Loader.LoadItemsFromJson();
+            Item_Loader.LoadLootTablesFromJson();
             //Debug.Log("First time loading Item Data");
         }
 

@@ -1,5 +1,5 @@
 {
-    "weapons": [
+    "loot": [
         {
             "itemID": "014",
             "itemName": "The Slayer of Dragons",
@@ -24,9 +24,7 @@
             "itemID": "018",
             "itemName": "The Left Hook, Right Hook",
             "DropChance": 10
-        }
-    ],
-    "armor": [
+        },
         {
             "itemID": "019",
             "itemName": "The Berserk's Armor",
@@ -51,9 +49,7 @@
             "itemID": "023",
             "itemName": "The Golden Belt and Shorts",
             "DropChance": 10
-        }
-    ],
-"consumables": [
+        },
         {
             "itemID": "024",
             "itemName": "Vial of Pure Strength",

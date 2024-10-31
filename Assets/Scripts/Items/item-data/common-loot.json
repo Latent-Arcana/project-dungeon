@@ -1,5 +1,5 @@
 {
-    "weapons": [
+    "loot": [
         {
             "itemID": "001",
             "itemName": "Saber",
@@ -9,9 +9,7 @@
             "itemID": "002",
             "itemName": "Battle Axe",
             "DropChance": 20
-        }
-    ],
-    "armor": [
+        },
         {
             "itemID": "003",          
             "itemName": "Gambeson Robes",
@@ -21,9 +19,7 @@
             "itemID": "004",
             "itemName": "Elk Hide Armor",
             "DropChance": 25
-        }
-    ],
-"consumables": [
+        },
         {
             "itemID": "005",
             "itemName": "Elixir of Health",

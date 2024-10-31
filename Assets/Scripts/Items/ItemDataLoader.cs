@@ -34,11 +34,12 @@ public class ItemLoader : MonoBehaviour
         return itemsDatabase;
     }
 
-    public bool hasLoadedSuccessfully = false;
+    public bool hasLoadedItemsSuccessfully = false;
+    public bool hasLoadedLootTablesSuccessfully = false;
 
-    public Dictionary<string, int> commonLootTable;
-    public Dictionary<string, int> uncommonLootTable;
-    public Dictionary<string, int> epicLootTable;
+    public List<LootItem> commonLootTable = new List<LootItem>();
+    public List<LootItem> uncommonLootTable = new List<LootItem>();
+    public List<LootItem> epicLootTable = new List<LootItem>();
 
     void Awake()
     {
@@ -114,13 +115,10 @@ public class ItemLoader : MonoBehaviour
         CreateWeapons(weaponsData);
         CreateWeapons(specialWeaponsData);
 
-
-        LoadLootTables();
-
-        hasLoadedSuccessfully = true;
+        hasLoadedItemsSuccessfully = true;
     }
 
-    public void LoadLootTables()
+    public void LoadLootTablesFromJson()
     {
 
         // Check for null files and log errors early
@@ -146,10 +144,55 @@ public class ItemLoader : MonoBehaviour
         string commonLootJsonString = commonLootFile.text;
         string epicLootJsonString = epicLootFile.text;
 
-        LootTable commonLootRaw = JsonUtility.FromJson<LootTable>(commonLootJsonString);
-        LootTable uncommonLootRaw = JsonUtility.FromJson<LootTable>(uncommonLootJsonString);
-        LootTable epicLootRaw = JsonUtility.FromJson<LootTable>(epicLootJsonString);
+        LootItemData[] commonLootData = JsonUtility.FromJson<LootItemDataArray>(commonLootJsonString).loot;
+        LootItemData[] uncommonLootData = JsonUtility.FromJson<LootItemDataArray>(uncommonLootJsonString).loot;
+        LootItemData[] epicLootData = JsonUtility.FromJson<LootItemDataArray>(epicLootJsonString).loot;
 
+        commonLootTable = CreateLootTable(commonLootData);
+        uncommonLootTable = CreateLootTable(uncommonLootData);
+        epicLootTable = CreateLootTable(epicLootData);
+
+    }
+
+
+    public List<LootItem> CreateLootTable(LootItemData[] dataArray)
+    {
+
+        List<LootItem> lootTable = new List<LootItem>();
+
+        int currentCount = 0;
+
+        for (int i = 0; i < dataArray.Length; ++i)
+        {
+            string itemID = dataArray[i].itemID;
+            string itemName = dataArray[i].itemName;
+
+
+            if (i == 0)
+            {
+                currentCount = dataArray[i].DropChance;
+
+                int minValue = 1;
+                int maxValue = dataArray[i].DropChance;
+
+                LootItem loot = new LootItem(itemID, itemName, minValue, maxValue);
+
+                lootTable.Add(loot);
+            }
+            else
+            {
+                int minValue = currentCount + 1;
+                currentCount = currentCount + dataArray[i].DropChance;
+                int maxValue = currentCount;
+
+                LootItem loot = new LootItem(itemID, itemName, minValue, maxValue);
+
+                lootTable.Add(loot);
+
+            }
+        }
+
+        return lootTable;
     }
 
     private void CreateArmor(ArmorData[] dataArray)
@@ -310,4 +353,10 @@ public class WeaponsDataArray
 public class ArmorDataArray
 {
     public ArmorData[] armor;
+}
+
+[Serializable]
+public class LootItemDataArray
+{
+    public LootItemData[] loot;
 }
