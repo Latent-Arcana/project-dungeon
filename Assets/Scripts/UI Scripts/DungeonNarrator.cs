@@ -16,6 +16,9 @@ public class DungeonNarrator : MonoBehaviour
 
 
     private UIDocument narrator_doc;
+
+    private VisualElement dungeon_narrator_container;
+
     private TextElement text_narrator_top;
     private TextElement text_narrator;
 
@@ -41,7 +44,7 @@ public class DungeonNarrator : MonoBehaviour
         narrator_doc = this.GetComponent<UIDocument>();
         text_narrator = narrator_doc.rootVisualElement.Q("DungeonNarratorText") as TextElement;
         text_narrator_top = narrator_doc.rootVisualElement.Q("DungeonNarratorTextTop") as TextElement;
-
+        dungeon_narrator_container = narrator_doc.rootVisualElement.Q("DungeonNarratorContainer");
 
         InitializeStatsUI();
 
@@ -97,7 +100,8 @@ public class DungeonNarrator : MonoBehaviour
         hp_text.text += " / " + Player_Stats.MAX_HP;
     }
 
-    private void Stats_MaxHealthChanged(object sender, PlayerStatsManager.Stats_Args e){
+    private void Stats_MaxHealthChanged(object sender, PlayerStatsManager.Stats_Args e)
+    {
         string hp_text_prepend = hp_text.text.Split('/')[0];
 
         hp_text.text = hp_text_prepend + "/ " + e.newValue;
@@ -114,11 +118,13 @@ public class DungeonNarrator : MonoBehaviour
         str_text.text = "STR: " + e.newValue;
     }
 
-    private void Stats_SpeedChanged(object sender, PlayerStatsManager.Stats_Args e){
+    private void Stats_SpeedChanged(object sender, PlayerStatsManager.Stats_Args e)
+    {
         spd_text.text = "SPD: " + e.newValue;
     }
 
-    private void Stats_ArmorPointsChanged(object sender, PlayerStatsManager.Stats_Args e){
+    private void Stats_ArmorPointsChanged(object sender, PlayerStatsManager.Stats_Args e)
+    {
         ap_text.text = "AP: " + e.newValue;
     }
     public void SetDungeonNarratorText(string message)
@@ -148,5 +154,20 @@ public class DungeonNarrator : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Called when in the Map menu, which does not fully cover the Dungeon Narrator
+    /// </summary>
+    public void EnableDungeonNarrator()
+    {
+        dungeon_narrator_container.style.display = DisplayStyle.Flex;
+    }
 
+    /// <summary>
+    /// Called when in the Map menu, which does not fully cover the Dungeon Narrator
+    /// </summary>
+    public void DisableDungeonNarrator()
+    {
+        dungeon_narrator_container.style.display = DisplayStyle.None;
+
+    }
 }

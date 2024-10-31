@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static DungeonNarrator;
 
 public class InputController : MonoBehaviour
 {
@@ -13,6 +14,9 @@ public class InputController : MonoBehaviour
     private bool movementEnabled = true;
 
     private Vector3 playerPosition;
+
+    protected DungeonNarrator dungeonNarrator;
+
 
     // Simple event handler for our input events
     public event EventHandler<InputArgs> OnInput;
@@ -40,11 +44,13 @@ public class InputController : MonoBehaviour
         InventoryMenu
     }
 
-    private void OnEnable(){
+    private void OnEnable()
+    {
         ObjectGeneration.AllRoomsPlacementComplete += CompletedObjectPlacement;
     }
 
-    private void OnDisable(){
+    private void OnDisable()
+    {
 
         ObjectGeneration.AllRoomsPlacementComplete -= CompletedObjectPlacement;
 
@@ -63,7 +69,8 @@ public class InputController : MonoBehaviour
 
     }
 
-    void CompletedObjectPlacement(){
+    void CompletedObjectPlacement()
+    {
         Debug.Log("completed all rooms");
         currentInputState = InputState.Gameplay;
 
@@ -211,6 +218,7 @@ public class InputController : MonoBehaviour
 
     public void OpenMap()
     {
+        Dungeon_Narrator.DisableDungeonNarrator();
         OnMapEnter.Invoke(this, EventArgs.Empty); //throw event to MapMenuUI to toggle UI element
         currentInputState = InputState.MapMenu;
         movementEnabled = false;
@@ -218,6 +226,7 @@ public class InputController : MonoBehaviour
 
     public void CloseMap()
     {
+        Dungeon_Narrator.EnableDungeonNarrator();
         OnMapEnter.Invoke(this, EventArgs.Empty); //throw event to MapMenuUI to toggle UI element
         ReturnToGameplay();
     }

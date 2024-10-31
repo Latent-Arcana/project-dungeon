@@ -4,12 +4,12 @@
 }
 
 .map-container-map-view {
-    background-image: url("project://database/Assets/UI%20Toolkit/UI%20Sprites/1920x1080/main.png?fileID=21300000&guid=d036c145d324b5c4c9a0865ee7aac015&type=3#main");
-    width: 70%;
+    background-image: url("project://database/Assets/UI%20Toolkit/UI%20Sprites/1920x1080/map_menu.png?fileID=21300000&guid=d52a801cd25cb2444b3f4fdaa20446e3&type=3#map_menu");
+    width: 65%;
 }
 
 .map-container-all-buttons {
-    background-image: url("project://database/Assets/UI%20Toolkit/UI%20Sprites/1920x1080/narrator.png?fileID=21300000&guid=be24f955dd5713749b301a8f4f16b70d&type=3#narrator");
+    background-image: url("project://database/Assets/UI%20Toolkit/UI%20Sprites/1920x1080/map_sidebar.png?fileID=21300000&guid=65bf4b8beac3d6d4988d70006691e7b7&type=3#map_sidebar");
     background-color: rgb(0, 0, 0);
 }
 
