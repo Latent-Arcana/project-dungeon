@@ -1,4 +1,27 @@
 .menu-button {
+    margin-right: 0;
+    margin-left: 0;
+    background-image: url("project://database/Assets/Sprites/UI%20Sprites/button-inactive_1908x105.png?fileID=2800000&guid=770883f9c761f5043941a1cf2ae51220&type=3#button-inactive_1908x105");
+    background-color: rgba(0, 0, 0, 0);
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    -unity-font: url("project://database/Assets/Font/Seraphimb1.ttf?fileID=12800000&guid=3f1f980884aaaae4a87358e26cfd514b&type=3#Seraphimb1");
+    -unity-font-definition: initial;
+    color: rgb(255, 255, 255);
+    width: 1150px;
+    -unity-background-scale-mode: scale-to-fit;
+    margin-top: 0;
+    margin-bottom: 0;
+    height: 105px;
+}
+
+.menu-button:hover {
+    background-image: url("project://database/Assets/Sprites/UI%20Sprites/button-active_1908x105.png?fileID=2800000&guid=db24af8061fa47d42a98d45a2bb648d5&type=3#button-active_1908x105");
+}
+
+.inventory-button {
     margin-right: 10px;
     margin-left: 10px;
     background-image: url("project://database/Assets/UI%20Toolkit/UI%20Sprites/1920x1080/drop_item_button.png?fileID=2800000&guid=116ce4fbc613b284dac75e5fd8e99011&type=3#drop_item_button");
@@ -17,12 +40,12 @@
     margin-bottom: 10px;
 }
 
-.menu-button:hover {
+.inventory-button:hover {
     background-image: url("project://database/Assets/Sprites/UI%20Sprites/button-active_1528x85.png?fileID=2800000&guid=4a06f7ce58a970141a5d26d4ff746136&type=3#button-active_1528x85");
 }
 
 .button-container {
-    width: 25%;
+    width: 100%;
     align-items: center;
     align-self: center;
 }

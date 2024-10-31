@@ -18,7 +18,7 @@
                     <ui:Toggle class="inventory-toggle" style="align-items: stretch; flex-direction: row; align-self: center;" />
                 </ui:VisualElement>
                 <ui:VisualElement name="Drop" class="inventory-drop-col" style="flex-grow: 1;">
-                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" class="menu-button" />
+                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" class="inventory-button" />
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="Row1" class="inventory-row" style="flex-grow: 1; flex-direction: row;">
@@ -37,7 +37,7 @@
                     <ui:Toggle class="inventory-toggle" style="align-items: stretch; flex-direction: row; align-self: center;" />
                 </ui:VisualElement>
                 <ui:VisualElement name="Drop" class="inventory-drop-col" style="flex-grow: 1;">
-                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" class="menu-button" />
+                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" class="inventory-button" />
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="Row2" class="inventory-row" style="flex-grow: 1; flex-direction: row;">
@@ -56,7 +56,7 @@
                     <ui:Toggle class="inventory-toggle" style="align-items: stretch; flex-direction: row; align-self: center; background-color: rgba(255, 255, 255, 0);" />
                 </ui:VisualElement>
                 <ui:VisualElement name="Drop" class="inventory-drop-col" style="flex-grow: 1;">
-                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" class="menu-button" />
+                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" class="inventory-button" />
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="Row3" class="inventory-row" style="flex-grow: 1; flex-direction: row; visibility: visible;">
@@ -75,7 +75,7 @@
                     <ui:Toggle class="inventory-toggle" style="align-items: stretch; flex-direction: row; align-self: center;" />
                 </ui:VisualElement>
                 <ui:VisualElement name="Drop" class="inventory-drop-col" style="flex-grow: 1;">
-                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" class="menu-button" />
+                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" class="inventory-button" />
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="Row4" class="inventory-row" style="flex-grow: 1; flex-direction: row;">
@@ -94,7 +94,7 @@
                     <ui:Toggle class="inventory-toggle" style="align-items: stretch; flex-direction: row; align-self: center;" />
                 </ui:VisualElement>
                 <ui:VisualElement name="Drop" class="inventory-drop-col" style="flex-grow: 1;">
-                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" class="menu-button" />
+                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" class="inventory-button" />
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="Row5" class="inventory-row" style="flex-grow: 1; flex-direction: row;">
@@ -113,7 +113,7 @@
                     <ui:Toggle class="inventory-toggle" style="align-items: stretch; flex-direction: row; align-self: center;" />
                 </ui:VisualElement>
                 <ui:VisualElement name="Drop" class="inventory-drop-col" style="flex-grow: 1;">
-                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" class="menu-button" />
+                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" class="inventory-button" />
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="Row6" class="inventory-row" style="flex-grow: 1; flex-direction: row;">
@@ -132,7 +132,7 @@
                     <ui:Toggle class="inventory-toggle" style="align-items: stretch; flex-direction: row; align-self: center;" />
                 </ui:VisualElement>
                 <ui:VisualElement name="Drop" class="inventory-drop-col" style="flex-grow: 1;">
-                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" class="menu-button" />
+                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" class="inventory-button" />
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="Row7" class="inventory-row" style="flex-grow: 1; flex-direction: row;">
@@ -151,7 +151,7 @@
                     <ui:Toggle class="inventory-toggle" style="align-items: stretch; flex-direction: row; align-self: center;" />
                 </ui:VisualElement>
                 <ui:VisualElement name="Drop" class="inventory-drop-col" style="flex-grow: 1;">
-                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" class="menu-button" style="background-color: rgba(188, 188, 188, 0); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0);" />
+                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" class="inventory-button" style="background-color: rgba(188, 188, 188, 0); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0);" />
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="Row8" class="inventory-row" style="flex-grow: 1; flex-direction: row;">
@@ -170,7 +170,7 @@
                     <ui:Toggle class="inventory-toggle" style="align-items: stretch; flex-direction: row; align-self: center;" />
                 </ui:VisualElement>
                 <ui:VisualElement name="Drop" class="inventory-drop-col" style="flex-grow: 1;">
-                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" class="menu-button" />
+                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" class="inventory-button" />
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="Row9" class="inventory-row" style="flex-grow: 1; flex-direction: row;">
@@ -189,7 +189,7 @@
                     <ui:Toggle class="inventory-toggle" style="align-items: stretch; flex-direction: row; align-self: center;" />
                 </ui:VisualElement>
                 <ui:VisualElement name="Drop" class="inventory-drop-col" style="flex-grow: 1;">
-                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" class="menu-button" />
+                    <ui:Button text="Button" parse-escape-sequences="true" display-tooltip-when-elided="true" class="inventory-button" />
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>

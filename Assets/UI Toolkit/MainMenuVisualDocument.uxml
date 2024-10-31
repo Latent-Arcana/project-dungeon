@@ -4,7 +4,7 @@
         <ui:Label tabindex="-1" text="CARTOGRAPHER.EXE" parse-escape-sequences="true" display-tooltip-when-elided="true" name="MainMenuTitle" class="text-title-main-menu" style="display: flex;" />
         <ui:VisualElement name="MainContainer" style="flex-grow: 1; display: flex;">
             <ui:VisualElement name="ButtonGroup" class="button-container" style="flex-grow: 1;">
-                <ui:Button text="START" parse-escape-sequences="true" display-tooltip-when-elided="true" name="PlayButton" class="menu-button" />
+                <ui:Button text="START" parse-escape-sequences="true" display-tooltip-when-elided="true" name="PlayButton" class="menu-button" style="padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0;" />
                 <ui:Button text="OPTIONS" parse-escape-sequences="true" display-tooltip-when-elided="true" name="OptionsButton" class="menu-button" />
                 <ui:Button text="QUIT" parse-escape-sequences="true" display-tooltip-when-elided="true" name="QuitButton" class="menu-button" />
             </ui:VisualElement>
