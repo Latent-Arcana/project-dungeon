@@ -241,6 +241,7 @@ MonoBehaviour:
   - {fileID: 8614793181711624519, guid: 1b13c2b9dfe4ff44481a309f7b81d041, type: 3}
   - {fileID: 8614793181711624519, guid: 237aa1382a9949e48a1756ae7933a2f2, type: 3}
   - {fileID: 7557685827397718423, guid: 0ffba6bb1aeeec14bbca31ab05db66a3, type: 3}
+  - {fileID: 7557685827397718423, guid: 94b6cfd8f312b52409ab93f5c109862c, type: 3}
   unassignedObjects: []
   portalPrefab: {fileID: 8384392175852888170, guid: 8a7448e4d1d6e944fa6044bfea670f0d, type: 3}
   objectCountManager: {fileID: 11400000, guid: 646bc53469675104ca92cb146572aa8e, type: 2}

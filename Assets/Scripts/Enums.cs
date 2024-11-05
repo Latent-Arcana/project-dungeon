@@ -42,7 +42,12 @@ public static class Enums
         Chair,
         Table,
         ArmorStand,
-        Glass
+        Spikes, 
+        Crates,
+        BrokenChair,
+        Furnace,
+        Mushroom,
+        Pile
     }
 
     public enum PlacementType

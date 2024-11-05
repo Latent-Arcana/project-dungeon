@@ -303,7 +303,7 @@ public class ObjectGeneration : MonoBehaviour
         public int armorStandCount;
         public int tableCount;
         public int chairCount;
-        public int glassCount;
+        public int spikesCount;
 
         public ObjectCounts()
         {
@@ -315,7 +315,7 @@ public class ObjectGeneration : MonoBehaviour
             armorStandCount = 0;
             tableCount = 0;
             chairCount = 0;
-            glassCount = 0;
+            spikesCount = 0;
         }
 
         public void IncreaseCountByType(Enums.ObjectType objectType, int count)
@@ -328,7 +328,7 @@ public class ObjectGeneration : MonoBehaviour
             else if (objectType == Enums.ObjectType.ArmorStand) { armorStandCount += count; }
             else if (objectType == Enums.ObjectType.Table) { tableCount += count; }
             else if (objectType == Enums.ObjectType.Chair) { chairCount += count; }
-            else if (objectType == Enums.ObjectType.Glass) { glassCount += count; }
+            else if (objectType == Enums.ObjectType.Spikes) { spikesCount += count; }
             else
             {
                 return;
@@ -346,7 +346,7 @@ public class ObjectGeneration : MonoBehaviour
             else if (objectType == Enums.ObjectType.ArmorStand) { return armorStandCount; }
             else if (objectType == Enums.ObjectType.Table) { return tableCount; }
             else if (objectType == Enums.ObjectType.Chair) { return chairCount; }
-            else if (objectType == Enums.ObjectType.Glass) { return glassCount; }
+            else if (objectType == Enums.ObjectType.Spikes) { return spikesCount; }
 
             else
             {
