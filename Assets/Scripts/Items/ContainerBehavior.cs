@@ -33,10 +33,6 @@ public class ContainerBehavior : MonoBehaviour
         items.Remove(item);
     }
 
-    void AddItem(Item item){
-        items.Add(item);
-    }
-
 
     // DEBUG
     public void ContainerDebugPrint()

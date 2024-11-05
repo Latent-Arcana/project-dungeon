@@ -7,6 +7,7 @@ using static Enums;
 public class ContainerGeneration : MonoBehaviour
 {
     List<Item> itemsDatabase;
+    LootTable lootTable;
 
     public static ContainerGeneration Container_Generator { get; set; }
 
@@ -30,9 +31,12 @@ public class ContainerGeneration : MonoBehaviour
     /// Initalized by Game Setup so that we can use the data loaded by ItemLoader safely without any dependencies between the two singletons
     /// </summary>
     /// <param name="initializationItems"></param>
-    public void InitializeContainerGenerator(List<Item> initializationItems)
+    public void InitializeContainerGenerator(List<Item> initializationItems, LootTable initializationLoot)
     {
+
         itemsDatabase = initializationItems;
+        lootTable = initializationLoot;
+
         return;
     }
 
@@ -48,38 +52,50 @@ public class ContainerGeneration : MonoBehaviour
     public List<Item> GetItems(ObjectType objectType, int maxItemCount)
     {
 
-        int itemCount = 0;
+        int itemCount = UnityEngine.Random.Range(0, maxItemCount + 1);
 
         List<Item> resultItems = new List<Item>();
 
-        List<Item> possibleItems = GetPossibleItems(objectType);
+        List<LootItem> loot = GetLootList(objectType);
 
-        possibleItems.Shuffle(); // let's randomly shuffle our possible items!
-
-        float dropItems = UnityEngine.Random.value;
-
-        if (dropItems >= 0.5f)
+        // IF THE LOOT LIST IS EMPTY, WE JUST SEND AN EMPTY LIST TO THE CONTAINER
+        if (loot.Count != 0)
         {
-            // loop through each possible item and see if we can include that object
-            foreach (Item possibleItem in possibleItems)
+            int currentCount = 0;
+
+            while (currentCount < itemCount)
             {
 
-                float dropChance = UnityEngine.Random.value; // returns float between 0 and 1
+                int lootRoll = UnityEngine.Random.Range(1, 101);
 
-                if (dropChance >= 0.75f && itemCount <= maxItemCount)
+                foreach (LootItem lootItem in loot)
                 {
-                    itemCount++;
-                    resultItems.Add(possibleItem);
+
+                   // Debug.Log(lootItem.itemName + " has range (" + lootItem.minValue + "," + lootItem.maxValue + ") and loot roll is " + lootRoll);
+
+                    if (lootItem.minValue <= lootRoll && lootItem.maxValue >= lootRoll)
+                    {
+                        Item item = itemsDatabase.Where(x => x.itemID == lootItem.itemID).First();
+
+                       // Debug.Log("you rolled a " + lootRoll + " and got a " + lootItem.itemName + " which has min and max range of (" + lootItem.minValue + "," + lootItem.maxValue + ") and an ID of " + lootItem.itemID);
+
+                        resultItems.Add(item);
+
+                        currentCount++;
+                    }
+
+                    else
+                    {
+                       // Debug.Log(lootRoll + " is not between (" + lootItem.minValue + "," + lootItem.maxValue + ")");
+                    }
                 }
             }
-
         }
-
-
 
         return resultItems;
 
     }
+
 
     /// <summary>
     /// This is where we define what kind of objects can have what kinds of items in them
@@ -121,9 +137,64 @@ public class ContainerGeneration : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// This function returns a list of items that correspond to the rarity level relevant to the container being opened
+    /// </summary>
+    /// <param name="objectType"></param>
+    /// <returns></returns>
 
-    public Item GetRandomItem(){
-        
+    private List<LootItem> GetLootList(ObjectType objectType)
+    {
+        float rarityCheck = UnityEngine.Random.value;
+
+        switch (objectType)
+        {
+            case ObjectType.Chest:
+
+                if (rarityCheck < .70f)
+                {
+                    return lootTable.commonLoot;
+                }
+                else if (rarityCheck >= .70f && rarityCheck < .90f)
+                {
+                    return new List<LootItem>();
+                }
+
+                else
+                {
+                    return lootTable.uncommonLoot;
+                }
+
+
+            case ObjectType.Corpse:
+
+                if (rarityCheck < .20f)
+                {
+                    return new List<LootItem>();
+                }
+                else if (rarityCheck >= .20f && rarityCheck < .60f)
+                {
+                    return lootTable.commonLoot;
+                }
+                else if (rarityCheck >= .60f && rarityCheck < .90f)
+                {
+                    return lootTable.uncommonLoot;
+                }
+                else
+                {
+                    return lootTable.epicLoot;
+                }
+
+
+            default:
+                return lootTable.commonLoot;
+        }
+    }
+
+
+    public Item GetRandomItem()
+    {
+
         int randomIndex = UnityEngine.Random.Range(0, itemsDatabase.Count);
 
         return itemsDatabase[randomIndex];

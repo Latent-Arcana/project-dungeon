@@ -52,6 +52,13 @@ public static class Enums
         SideWall
     }
 
+    public enum Rarity
+    {
+        Common,
+        Uncommon,
+        Epic
+    }
+
 
     public enum ItemType
     {
