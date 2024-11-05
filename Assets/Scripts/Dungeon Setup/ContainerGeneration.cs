@@ -52,7 +52,7 @@ public class ContainerGeneration : MonoBehaviour
     public List<Item> GetItems(ObjectType objectType, int maxItemCount)
     {
 
-        int itemCount = UnityEngine.Random.Range(0, maxItemCount + 1);
+        int itemCount = UnityEngine.Random.Range(1, maxItemCount + 1);
 
         List<Item> resultItems = new List<Item>();
 
