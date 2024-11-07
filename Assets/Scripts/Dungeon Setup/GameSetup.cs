@@ -65,10 +65,12 @@ public class GameSetup : MonoBehaviour
 
         List<Item> itemsDatabase = Item_Loader.GetItemsDatabase();
 
+        LootTable lootTable = Item_Loader.GetLootTable();
+
         // Generating container data so we can send information to each container in the game
         // At this point, ContainerBehavior.cs on each individual openable object is what handles grabbing container data for itself
         // The generator produces this via functions within it as a singleton
-        Container_Generator.InitializeContainerGenerator(itemsDatabase);
+        Container_Generator.InitializeContainerGenerator(itemsDatabase, lootTable);
 
 
         //bsp

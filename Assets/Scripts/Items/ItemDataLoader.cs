@@ -34,6 +34,17 @@ public class ItemLoader : MonoBehaviour
         return itemsDatabase;
     }
 
+    public LootTable GetLootTable()
+    {
+        LootTable lootTable = new LootTable();
+
+        lootTable.commonLoot = commonLootTable;
+        lootTable.uncommonLoot = uncommonLootTable;
+        lootTable.epicLoot = epicLootTable;
+
+        return lootTable;
+    }
+
     public bool hasLoadedItemsSuccessfully = false;
     public bool hasLoadedLootTablesSuccessfully = false;
 
@@ -179,6 +190,7 @@ public class ItemLoader : MonoBehaviour
 
                 lootTable.Add(loot);
             }
+
             else
             {
                 int minValue = currentCount + 1;
@@ -190,6 +202,7 @@ public class ItemLoader : MonoBehaviour
                 lootTable.Add(loot);
 
             }
+
         }
 
         return lootTable;
@@ -359,4 +372,11 @@ public class ArmorDataArray
 public class LootItemDataArray
 {
     public LootItemData[] loot;
+}
+
+public class LootTable
+{
+    public List<LootItem> commonLoot;
+    public List<LootItem> uncommonLoot;
+    public List<LootItem> epicLoot;
 }

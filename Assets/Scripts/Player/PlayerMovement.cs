@@ -171,11 +171,11 @@ public class PlayerMovement : MonoBehaviour
 
             ObjectBehavior objectBehavior = collision.gameObject.GetComponent<ObjectBehavior>();
 
-            if (objectBehavior.ObjectType == Enums.ObjectType.Glass)
+            if (objectBehavior.ObjectType == Enums.ObjectType.Spikes)
             {
                 player.transform.position += (Vector3)direction;
                 Player_Stats.SetHP(Player_Stats.HP - 1);
-                Dungeon_Narrator.AddDungeonNarratorText($"You take 1 damage from stepping on the glass.");
+                Dungeon_Narrator.AddDungeonNarratorText($"You take 1 damage from stepping on the spikes.");
             }
 
             else if (objectBehavior.ObjectType == Enums.ObjectType.Bed)

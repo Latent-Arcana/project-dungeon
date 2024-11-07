@@ -43,9 +43,12 @@ public static class Enums
         Table,
         TableAndChair,
         ArmorStand,
-        Glass,
-        Fungus,
-        Crate
+        Spikes, 
+        Crates,
+        BrokenChair,
+        Furnace,
+        Mushroom,
+        Pile
     }
 
     public enum PlacementType
@@ -53,6 +56,13 @@ public static class Enums
         Floor,
         UpperWall,
         SideWall
+    }
+
+    public enum Rarity
+    {
+        Common,
+        Uncommon,
+        Epic
     }
 
 
