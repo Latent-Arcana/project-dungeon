@@ -31,7 +31,7 @@ public class SubTypeBedroom : RoomSubType
           Enums.ObjectType.Chest,
           Enums.ObjectType.Chair,
           Enums.ObjectType.Table,
-          Enums.ObjectType.Crate,
+          Enums.ObjectType.Crates,
           Enums.ObjectType.Debris
      };
 
@@ -42,7 +42,7 @@ public class SubTypeBedroom : RoomSubType
         {Enums.ObjectType.Chest,1},
         {Enums.ObjectType.Chair,1},
         {Enums.ObjectType.Table,1},
-        {Enums.ObjectType.Crate,1},
+        {Enums.ObjectType.Crates,1},
         {Enums.ObjectType.Debris,1}
 
     };

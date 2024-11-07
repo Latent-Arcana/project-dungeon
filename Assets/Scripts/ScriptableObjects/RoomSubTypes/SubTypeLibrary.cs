@@ -31,7 +31,7 @@ public class SubTypeLibrary : RoomSubType
           Enums.ObjectType.Candle,
           Enums.ObjectType.Bookshelf,
           Enums.ObjectType.Debris,
-          Enums.ObjectType.Fungus,
+          Enums.ObjectType.Mushroom,
           Enums.ObjectType.TableAndChair,
           Enums.ObjectType.Chair
      };
@@ -43,7 +43,7 @@ public class SubTypeLibrary : RoomSubType
         {Enums.ObjectType.Bookshelf,5},
         {Enums.ObjectType.Debris,2},
         {Enums.ObjectType.Candle,3},
-        {Enums.ObjectType.Fungus,2},
+        {Enums.ObjectType.Mushroom,2},
         {Enums.ObjectType.TableAndChair,1},
         {Enums.ObjectType.Chair,1}
 
