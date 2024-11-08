@@ -130,22 +130,40 @@ public class ObjectGeneration : MonoBehaviour
     public IEnumerator PopulateRoom(Room room, RoomSubType currentSubType)
     {
 
+        List<GameObject> roomObjects = new List<GameObject>();
 
+        // make sure all required objects get placed
         foreach (Enums.ObjectType objectType in currentSubType.RequiredObjects)
         {
 
-            Debug.Log($"Attempting to place required object: {objectType} for room: {room.roomId}");
-
-            List<GameObject> roomObjects = new List<GameObject>();
-
             roomObjects = objects.Where(x => x.GetComponent<ObjectBehavior>().ObjectType == objectType).ToList();
-
-            Debug.Log("There are " + roomObjects.Count + " objects to use of type " + objectType);
-
 
             yield return StartCoroutine(DoPlacementChecks(roomObjects, room, currentSubType, objectType));
 
         }
+
+        // handle decor objects
+        int randomItemMax = UnityEngine.Random.Range(5, 10);
+
+        for (int i = 0; i < randomItemMax; i++)
+        {
+
+            int randomDecorItemIndex = UnityEngine.Random.Range(0, currentSubType.DecorObjects.Count);
+
+            Enums.ObjectType objectType = currentSubType.DecorObjects[randomDecorItemIndex];
+
+            roomObjects = objects.Where(x => x.GetComponent<ObjectBehavior>().ObjectType == objectType).ToList();
+
+            yield return StartCoroutine(DoPlacementChecks(roomObjects, room, currentSubType, objectType));
+
+        }
+
+
+
+
+
+
+
 
         roomsRemaining--;
 
@@ -169,7 +187,6 @@ public class ObjectGeneration : MonoBehaviour
 
 
         int randomObjectIndex = UnityEngine.Random.Range(0, roomObjectsOfType.Count);
-        Debug.Log(randomObjectIndex);
 
 
         GameObject roomObject = roomObjectsOfType[randomObjectIndex];
@@ -182,7 +199,7 @@ public class ObjectGeneration : MonoBehaviour
         if ((placedObjects.ContainsKey(objectType) && placedObjects[objectType] < currentRoomSubType.MaxAllowed[objectType]) || !placedObjects.ContainsKey(objectType))
         {
 
-            Debug.Log($"Entering while loop to attempt to place {roomObjectBehavior.gameObject.name}");
+            //Debug.Log($"Entering while loop to attempt to place {roomObjectBehavior.gameObject.name}");
 
             while (attempt < 100)
             {
@@ -211,7 +228,6 @@ public class ObjectGeneration : MonoBehaviour
                     {
                         testObject.transform.parent = room.gameObject.transform.GetChild(1).transform;
 
-                        Debug.Log("placed that object. I will now go back and move on to the next required object");
                         // in the case that we don't have an entry for this key we just have to set it to 1 instead of ++
                         if (placedObjects.ContainsKey(objectType))
                         {
@@ -223,6 +239,8 @@ public class ObjectGeneration : MonoBehaviour
                         {
                             placedObjects[objectType] = 1;
                         }
+
+                        attempt += 100; // set attempt beyond our max attempt list
 
                     }
 
