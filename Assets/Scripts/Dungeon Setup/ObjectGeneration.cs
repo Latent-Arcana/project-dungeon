@@ -17,14 +17,19 @@ public class ObjectGeneration : MonoBehaviour
     [SerializeField]
     public GameObject[] objects;
 
-    // public GameObject[] safeObjects;
-
-    // public GameObject[] dangerObjects;
-
-    // public GameObject[] unassignedObjects;
 
     public RoomSubType roomSubType_Bedroom;
     public RoomSubType roomSubType_Library;
+    public RoomSubType roomSubType_Dining;
+    public RoomSubType roomSubType_Armory;
+    public RoomSubType roomSubType_Treasure;
+    public RoomSubType roomSubType_TrapEasy;
+    public RoomSubType roomSubType_TrapHard;
+    public RoomSubType roomSubType_EnemyEasy;
+    public RoomSubType roomSubType_EnemyHard;
+    public RoomSubType roomSubType_Hospital;
+    public RoomSubType roomSubType_Shrine;
+
 
     public GameObject portalPrefab;
 
@@ -345,87 +350,6 @@ public class ObjectGeneration : MonoBehaviour
                 return new FloorPlacementRule();
 
         }
-    }
-
-    private int GetRandomNumberOfObjects(int maxAllowed)
-    {
-
-        return UnityEngine.Random.Range(1, maxAllowed + 1);
-    }
-
-    private Enums.RoomSubType GetRandomRoomSubType()
-    {
-
-        int rand = UnityEngine.Random.Range(0, Enum.GetNames(typeof(Enums.RoomSubType)).Length);
-
-        Enums.RoomSubType subType = (Enums.RoomSubType)rand;
-
-        return subType;
-    }
-
-
-    public class ObjectCounts
-    {
-        // Running totals by object type
-        public int bedCount;
-        public int candleCount;
-        public int chestCount;
-        public int debrisCount;
-        public int bookShelfCount;
-        public int armorStandCount;
-        public int tableCount;
-        public int chairCount;
-        public int spikesCount;
-
-        public ObjectCounts()
-        {
-            bedCount = 0;
-            candleCount = 0;
-            chestCount = 0;
-            debrisCount = 0;
-            bookShelfCount = 0;
-            armorStandCount = 0;
-            tableCount = 0;
-            chairCount = 0;
-            spikesCount = 0;
-        }
-
-        public void IncreaseCountByType(Enums.ObjectType objectType, int count)
-        {
-            if (objectType == Enums.ObjectType.Bed) { bedCount += count; }
-            else if (objectType == Enums.ObjectType.Bookshelf) { bookShelfCount += count; }
-            else if (objectType == Enums.ObjectType.Candle) { candleCount += count; }
-            else if (objectType == Enums.ObjectType.Chest) { chestCount += count; }
-            else if (objectType == Enums.ObjectType.Debris) { debrisCount += count; }
-            else if (objectType == Enums.ObjectType.ArmorStand) { armorStandCount += count; }
-            else if (objectType == Enums.ObjectType.Table) { tableCount += count; }
-            else if (objectType == Enums.ObjectType.Chair) { chairCount += count; }
-            else if (objectType == Enums.ObjectType.Spikes) { spikesCount += count; }
-            else
-            {
-                return;
-            }
-        }
-
-
-        public int GetCountByType(Enums.ObjectType objectType)
-        {
-            if (objectType == Enums.ObjectType.Bed) { return bedCount; }
-            else if (objectType == Enums.ObjectType.Bookshelf) { return bookShelfCount; }
-            else if (objectType == Enums.ObjectType.Candle) { return candleCount; }
-            else if (objectType == Enums.ObjectType.Chest) { return chestCount; }
-            else if (objectType == Enums.ObjectType.Debris) { return debrisCount; }
-            else if (objectType == Enums.ObjectType.ArmorStand) { return armorStandCount; }
-            else if (objectType == Enums.ObjectType.Table) { return tableCount; }
-            else if (objectType == Enums.ObjectType.Chair) { return chairCount; }
-            else if (objectType == Enums.ObjectType.Spikes) { return spikesCount; }
-
-            else
-            {
-                return 1000; // huge number if we don't actually have a maximum defined
-            }
-        }
-
     }
 
 }
