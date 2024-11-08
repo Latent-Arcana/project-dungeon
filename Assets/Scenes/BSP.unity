@@ -216,33 +216,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 081b4cf3329f85147ad6caf15ce84fee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loreObjects:
-  - {fileID: 8614793181711624519, guid: f2d5c10dce5ac86489719edd75acb5fc, type: 3}
-  - {fileID: 8614793181711624519, guid: 237aa1382a9949e48a1756ae7933a2f2, type: 3}
-  - {fileID: 8614793181711624519, guid: 1b13c2b9dfe4ff44481a309f7b81d041, type: 3}
-  - {fileID: 7557685827397718423, guid: 5c6af478757353a46b3a6627ef343d5b, type: 3}
-  - {fileID: 8011701790813375566, guid: 22a7fe25a2c05b241a3845c4b066abe0, type: 3}
-  - {fileID: 7557685827397718423, guid: ba57e161310601b4193cff853d4a7b30, type: 3}
+  objects:
   - {fileID: 8011701790813375566, guid: e2b1e35cc6a19d849917dab13afad87e, type: 3}
-  - {fileID: 8614793181711624519, guid: fa5f47c4d7848ef4ab8057ef628fa213, type: 3}
-  - {fileID: 8614793181711624519, guid: e39ebed07d879a14189c6e635c9fb110, type: 3}
-  - {fileID: 8614793181711624519, guid: 20905fda6e1ddc44396a1bfebe45e916, type: 3}
-  - {fileID: 8614793181711624519, guid: dc8380e97e7d7244594e250f8abdc68b, type: 3}
-  safeObjects:
-  - {fileID: 7557685827397718423, guid: 2d300e93018fef349ba212366a793aa9, type: 3}
   - {fileID: 8614793181711624519, guid: 25b108ed0f659a34783fa472f2652adb, type: 3}
-  - {fileID: 8011701790813375566, guid: bf9b61d3070b6b040b71aff27390bfee, type: 3}
-  - {fileID: 8011701790813375566, guid: 22a7fe25a2c05b241a3845c4b066abe0, type: 3}
-  dangerObjects:
+  - {fileID: 8614793181711624519, guid: f2d5c10dce5ac86489719edd75acb5fc, type: 3}
+  - {fileID: 8614793181711624519, guid: 1b13c2b9dfe4ff44481a309f7b81d041, type: 3}
+  - {fileID: 8614793181711624519, guid: 237aa1382a9949e48a1756ae7933a2f2, type: 3}
+  - {fileID: 8614793181711624519, guid: 20905fda6e1ddc44396a1bfebe45e916, type: 3}
+  - {fileID: 7557685827397718423, guid: 306da939cf47cf4459b09a8611e209c7, type: 3}
+  - {fileID: 7557685827397718423, guid: 5c6af478757353a46b3a6627ef343d5b, type: 3}
+  - {fileID: 7557685827397718423, guid: ba57e161310601b4193cff853d4a7b30, type: 3}
+  - {fileID: 7557685827397718423, guid: 306da939cf47cf4459b09a8611e209c7, type: 3}
   - {fileID: 7557685827397718423, guid: 2d300e93018fef349ba212366a793aa9, type: 3}
   - {fileID: 8614793181711624519, guid: f11740308936372438ec73f866ef1fa1, type: 3}
-  - {fileID: 8011701790813375566, guid: e2b1e35cc6a19d849917dab13afad87e, type: 3}
-  - {fileID: 8614793181711624519, guid: f2d5c10dce5ac86489719edd75acb5fc, type: 3}
-  - {fileID: 8614793181711624519, guid: 1b13c2b9dfe4ff44481a309f7b81d041, type: 3}
-  - {fileID: 8614793181711624519, guid: 237aa1382a9949e48a1756ae7933a2f2, type: 3}
+  - {fileID: 7557685827397718423, guid: 343d7da0ef915864f950ddd941cb1c57, type: 3}
+  - {fileID: 8011701790813375566, guid: 22a7fe25a2c05b241a3845c4b066abe0, type: 3}
+  - {fileID: 8011701790813375566, guid: bf9b61d3070b6b040b71aff27390bfee, type: 3}
+  - {fileID: 7557685827397718423, guid: 4d6130ad5282fac48acbd9c5b085c897, type: 3}
+  - {fileID: 7557685827397718423, guid: 4d471a0f4844c844fb9f8ea152eb3395, type: 3}
+  - {fileID: 7557685827397718423, guid: 7a95854013903d94989cff9e4a3bc866, type: 3}
+  - {fileID: 7557685827397718423, guid: de1c7497beb3f7544afdfb6323dc8f7c, type: 3}
+  - {fileID: 7557685827397718423, guid: 385a32aa9a689d94f8c5955ba931ccb1, type: 3}
   - {fileID: 7557685827397718423, guid: 0ffba6bb1aeeec14bbca31ab05db66a3, type: 3}
   - {fileID: 7557685827397718423, guid: 94b6cfd8f312b52409ab93f5c109862c, type: 3}
-  unassignedObjects: []
+  - {fileID: 8614793181711624519, guid: fa5f47c4d7848ef4ab8057ef628fa213, type: 3}
+  - {fileID: 8614793181711624519, guid: e39ebed07d879a14189c6e635c9fb110, type: 3}
+  - {fileID: 8614793181711624519, guid: dc8380e97e7d7244594e250f8abdc68b, type: 3}
+  roomSubType_Bedroom: {fileID: 11400000, guid: dfabc53f13983894db78db9224012230, type: 2}
+  roomSubType_Library: {fileID: 11400000, guid: bae9291ed53d58b4ea6a59fa93e6a1d3, type: 2}
   portalPrefab: {fileID: 8384392175852888170, guid: 8a7448e4d1d6e944fa6044bfea670f0d, type: 3}
   objectCountManager: {fileID: 11400000, guid: 646bc53469675104ca92cb146572aa8e, type: 2}
 --- !u!114 &32644323

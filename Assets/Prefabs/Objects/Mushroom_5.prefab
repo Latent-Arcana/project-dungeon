@@ -279,8 +279,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RoomTypes: 0000000002000000
   RoomSubTypes: 02000000040000000600000005000000
-  ObjectType: 14
-  PlacementType: 0
+  ObjectType: 15
+  PlacementType: 2
   Width: 1
   Height: 1
   lookStrings:

@@ -16,6 +16,8 @@ public class Room : MonoBehaviour
     [SerializeField]
     Enums.RoomType _roomType;
 
+    Enums.RoomSubType _roomSubType;
+
     public int x
     {
         get { return _x; }
@@ -70,6 +72,11 @@ public class Room : MonoBehaviour
         set { _roomType = value; }
     }
 
+    public Enums.RoomSubType roomSubType
+    {
+        get { return _roomSubType; }
+        set { _roomSubType = value; }
+    }
 
     public void SetupRoom(int x, int y, int width, int height, int originX, int originY, int roomId, ref Partition partitionIn)
     {
@@ -88,6 +95,7 @@ public class Room : MonoBehaviour
         //_roomObject = roomObj;
 
         _roomType = Enums.RoomType.Unassigned;
+        _roomSubType = Enums.RoomSubType.Unassigned;
     }
 
 }

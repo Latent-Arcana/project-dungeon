@@ -15,13 +15,16 @@ public class ObjectGeneration : MonoBehaviour
     [Header("Object Prefabs")]
 
     [SerializeField]
-    public GameObject[] loreObjects;
+    public GameObject[] objects;
 
-    public GameObject[] safeObjects;
+    // public GameObject[] safeObjects;
 
-    public GameObject[] dangerObjects;
+    // public GameObject[] dangerObjects;
 
-    public GameObject[] unassignedObjects;
+    // public GameObject[] unassignedObjects;
+
+    public RoomSubType roomSubType_Bedroom;
+    public RoomSubType roomSubType_Library;
 
     public GameObject portalPrefab;
 
@@ -29,7 +32,7 @@ public class ObjectGeneration : MonoBehaviour
     private int roomsCount;
 
 
-    Dictionary<Vector3Int, bool> placedObjects = new Dictionary<Vector3Int, bool>();
+    Dictionary<Enums.ObjectType, int> placedObjects = new Dictionary<Enums.ObjectType, int>();
 
     // This is how we're managing the count of unique instances of objects that have variants
     public ObjectCountManager objectCountManager;
@@ -50,36 +53,39 @@ public class ObjectGeneration : MonoBehaviour
 
         GeneratePortal(rooms);
 
+
         foreach (GameObject roomObj in rooms)
         {
 
             Room room = roomObj.GetComponent<Room>();
 
-            switch (room.roomType)
+            RoomSubType currentSubType = null;
+
+
+            switch (room.roomSubType)
             {
 
-                case Enums.RoomType.Safe:
+                case Enums.RoomSubType.Library:
 
-                    StartCoroutine(PopulateRoom(safeObjects, room));
+                    currentSubType = roomSubType_Library;
                     break;
 
-                case Enums.RoomType.Danger:
-                    StartCoroutine(PopulateRoom(dangerObjects, room));
+                case Enums.RoomSubType.Bedroom:
 
-                    break;
-
-                case Enums.RoomType.Lore:
-
-                    StartCoroutine(PopulateRoom(loreObjects, room));
-
+                    currentSubType = roomSubType_Bedroom;
                     break;
 
                 default:
-
-                    //Debug.Log("We hit the default room switch case in room " + room.roomId);
-                    //PopulateRoom(safeObjects, room);
-
                     break;
+            }
+
+
+            if (currentSubType != null)
+            {
+
+                Debug.Log(currentSubType.name + " in room " + roomObj.gameObject.name);
+
+                StartCoroutine(PopulateRoom(room, currentSubType));
 
             }
 
@@ -121,44 +127,25 @@ public class ObjectGeneration : MonoBehaviour
     }
 
 
-    public IEnumerator PopulateRoom(GameObject[] objects, Room room)
+    public IEnumerator PopulateRoom(Room room, RoomSubType currentSubType)
     {
 
-        // Only get subtype if we are dealing with lore rooms for now.
-        // TODO: make this more scalable
 
-        List<GameObject> roomObjects = new List<GameObject>();
-
-        Enums.RoomSubType subType = GetRandomRoomSubType();
-
-        if (room.roomType == Enums.RoomType.Lore)
+        foreach (Enums.ObjectType objectType in currentSubType.RequiredObjects)
         {
-           // Debug.Log(room.roomId + " is a " + room.roomType + " of subtype: " + subType);
-            roomObjects = objects.Where(x => x.GetComponent<ObjectBehavior>().RoomSubTypes.Contains(subType)).ToList();
 
-            //Debug.Log("Room " + room.roomId + " is a " + room.roomType + " Room of subtype " + subType.ToString());
+            Debug.Log($"Attempting to place required object: {objectType} for room: {room.roomId}");
+
+            List<GameObject> roomObjects = new List<GameObject>();
+
+            roomObjects = objects.Where(x => x.GetComponent<ObjectBehavior>().ObjectType == objectType).ToList();
+
+            Debug.Log("There are " + roomObjects.Count + " objects to use of type " + objectType);
+
+
+            yield return StartCoroutine(DoPlacementChecks(roomObjects, room, currentSubType, objectType));
+
         }
-
-        else
-        {
-            roomObjects = objects.ToList();
-
-            //Debug.Log("Room " + room.roomId + " is a " + room.roomType);
-        }
-
-
-        // Randomly sort the list before using it so that we don't use the same objects in the same order every time
-
-
-        // TODO:
-        // Go keep track of maxCount outside each individual room object. Otherwise we just start over every time and get the same count each time
-
-        roomObjects.Shuffle();
-
-        ObjectCounts objectCounter = new ObjectCounts();
-
-
-        yield return StartCoroutine(DoPlacementChecks(roomObjects, room));
 
         roomsRemaining--;
 
@@ -177,33 +164,27 @@ public class ObjectGeneration : MonoBehaviour
     }
 
 
-    IEnumerator DoPlacementChecks(List<GameObject> roomObjects, Room room)
+    IEnumerator DoPlacementChecks(List<GameObject> roomObjectsOfType, Room room, RoomSubType currentRoomSubType, Enums.ObjectType objectType)
     {
 
-        ObjectCounts objectCounter = new ObjectCounts();
 
-        foreach (GameObject roomObject in roomObjects)
+        int randomObjectIndex = UnityEngine.Random.Range(0, roomObjectsOfType.Count);
+        Debug.Log(randomObjectIndex);
+
+
+        GameObject roomObject = roomObjectsOfType[randomObjectIndex];
+        ObjectBehavior roomObjectBehavior = roomObject.GetComponent<ObjectBehavior>();
+        PlacementRule placementRule = GetPlacementRuleByObject(roomObjectBehavior);
+
+        int attempt = 0;
+
+        // if the placedObjects list contains the key, but its value for this object type is less than the max allowed
+        if ((placedObjects.ContainsKey(objectType) && placedObjects[objectType] < currentRoomSubType.MaxAllowed[objectType]) || !placedObjects.ContainsKey(objectType))
         {
 
-            ObjectBehavior roomObjectBehavior = roomObject.GetComponent<ObjectBehavior>();
+            Debug.Log($"Entering while loop to attempt to place {roomObjectBehavior.gameObject.name}");
 
-            PlacementRule placementRule = GetPlacementRuleByObject(roomObjectBehavior);
-
-            Enums.ObjectType objectType = roomObjectBehavior.ObjectType;
-
-            int attempt = 0;
-            int maxAllowed = objectCountManager.GetCountAllowedByObjectType(objectType);
-            // max is some amount between 1 and the max allowed of the object type
-            int max = GetRandomNumberOfObjects(maxAllowed);
-
-            int numCreated = objectCounter.GetCountByType(objectType);
-
-            // if (roomObjectBehavior.ObjectType == Enums.ObjectType.Glass)
-            // {
-            //     Debug.Log("we can create: " + numCreated);
-            // }
-
-            while (attempt < 100 && numCreated < max)
+            while (attempt < 100)
             {
 
                 // generate a point and return it if it's valid. otherwise return Vector3Int.zero
@@ -212,11 +193,6 @@ public class ObjectGeneration : MonoBehaviour
                 // If we can place an object at the point we selected
                 if (position != Vector3Int.zero)
                 {
-
-                    // if (roomObjectBehavior.ObjectType == Enums.ObjectType.Glass)
-                    // {
-                    //     Debug.Log("attempting to place glass");
-                    // }
 
                     GameObject testObject = Instantiate(roomObject, position, Quaternion.identity);
 
@@ -234,23 +210,101 @@ public class ObjectGeneration : MonoBehaviour
                     else
                     {
                         testObject.transform.parent = room.gameObject.transform.GetChild(1).transform;
-                        ++numCreated;
-                        objectCounter.IncreaseCountByType(objectType, 1);
 
-                        // if (roomObjectBehavior.ObjectType == Enums.ObjectType.Glass)
-                        // {
-                        //     Debug.Log("placed glass");
-                        // }
+                        Debug.Log("placed that object. I will now go back and move on to the next required object");
+                        // in the case that we don't have an entry for this key we just have to set it to 1 instead of ++
+                        if (placedObjects.ContainsKey(objectType))
+                        {
+                            ++placedObjects[objectType];
+
+                        }
+
+                        else
+                        {
+                            placedObjects[objectType] = 1;
+                        }
+
                     }
-
 
                 }
 
                 attempt++;
 
             }
-
         }
+        // if it doesn't contain the key (implying this is our first attempt at this object type)
+
+
+
+        // foreach (GameObject roomObject in roomObjects)
+        // {
+
+        //     ObjectBehavior roomObjectBehavior = roomObject.GetComponent<ObjectBehavior>();
+
+        //     PlacementRule placementRule = GetPlacementRuleByObject(roomObjectBehavior);
+
+        //     Enums.ObjectType objectType = roomObjectBehavior.ObjectType;
+
+        //     int attempt = 0;
+        //     int maxAllowed = objectCountManager.GetCountAllowedByObjectType(objectType);
+        //     // max is some amount between 1 and the max allowed of the object type
+        //     int max = GetRandomNumberOfObjects(maxAllowed);
+
+        //     int numCreated = objectCounter.GetCountByType(objectType);
+
+        //     // if (roomObjectBehavior.ObjectType == Enums.ObjectType.Glass)
+        //     // {
+        //     //     Debug.Log("we can create: " + numCreated);
+        //     // }
+
+        //     while (attempt < 100 && numCreated < max)
+        //     {
+
+        //         // generate a point and return it if it's valid. otherwise return Vector3Int.zero
+        //         Vector3Int position = placementRule.CanPlaceObject(tilemap, room, roomObjectBehavior.Width, roomObjectBehavior.Height);
+
+        //         // If we can place an object at the point we selected
+        //         if (position != Vector3Int.zero)
+        //         {
+
+        //             // if (roomObjectBehavior.ObjectType == Enums.ObjectType.Glass)
+        //             // {
+        //             //     Debug.Log("attempting to place glass");
+        //             // }
+
+        //             GameObject testObject = Instantiate(roomObject, position, Quaternion.identity);
+
+        //             Collider2D collider = testObject.transform.GetChild(0).GetComponent<Collider2D>();
+
+        //             LayerMask mask = 1 << LayerMask.NameToLayer("ObjectPlacementLayer");
+
+        //             yield return new WaitForFixedUpdate();
+
+        //             if (collider.IsTouchingLayers(mask))
+        //             {
+        //                 Destroy(testObject);
+        //             }
+
+        //             else
+        //             {
+        //                 testObject.transform.parent = room.gameObject.transform.GetChild(1).transform;
+        //                 ++numCreated;
+        //                 objectCounter.IncreaseCountByType(objectType, 1);
+
+        //                 // if (roomObjectBehavior.ObjectType == Enums.ObjectType.Glass)
+        //                 // {
+        //                 //     Debug.Log("placed glass");
+        //                 // }
+        //             }
+
+
+        //         }
+
+        //         attempt++;
+
+        //     }
+
+        // }
 
     }
 

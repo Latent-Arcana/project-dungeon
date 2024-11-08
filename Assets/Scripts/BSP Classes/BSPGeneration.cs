@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -160,31 +161,38 @@ public class BSPGeneration : MonoBehaviour
             if (rand < 10) // Safe
             {
                 room.roomType = Enums.RoomType.Safe;
+                room.roomSubType = GetRandomRoomSubType(room.roomType);
             }
 
             else if (rand < 50) // Lore
             {
 
                 room.roomType = Enums.RoomType.Lore;
+                room.roomSubType = GetRandomRoomSubType(room.roomType);
 
             }
             // Danger
-
-            else if (rand < 60)
-            {
-                room.roomType = Enums.RoomType.Danger;
-                Trap_Generator.GenerateTrap(allRooms[i]);
-            }
-
             else
             {
 
-                // Debug.Log("Room " + allRooms[i].roomId + " is a danger room defined at: (" + allRooms[i].x + ", " + allRooms[i].y + ")");
                 room.roomType = Enums.RoomType.Danger;
-                // Place Enemies
+                room.roomSubType = GetRandomRoomSubType(room.roomType);
+
+
+            }
+
+            if (room.roomSubType == Enums.RoomSubType.TrapEasy || room.roomSubType == Enums.RoomSubType.TrapHard)
+            {
+                Trap_Generator.GenerateTrap(allRooms[i]);
+
+            }
+
+            else if (room.roomSubType == Enums.RoomSubType.EnemyEasy || room.roomSubType == Enums.RoomSubType.EnemyHard)
+            {
                 Danger_Generator.GenerateEnemies(allRooms[i]);
 
             }
+
         }
 
 
@@ -879,6 +887,33 @@ public class BSPGeneration : MonoBehaviour
     }
 
 
+    private Enums.RoomSubType GetRandomRoomSubType(Enums.RoomType roomType)
+    {
+
+        int rand = 0;
+
+        if (roomType == Enums.RoomType.Danger)
+        {
+
+            rand = UnityEngine.Random.Range(200, 204);
+        }
+
+        else if (roomType == Enums.RoomType.Safe)
+        {
+
+            rand = UnityEngine.Random.Range(300, 303);
+        }
+
+        else if (roomType == Enums.RoomType.Lore)
+        {
+            rand = UnityEngine.Random.Range(100, 104);
+        }
+
+        Enums.RoomSubType subType = (Enums.RoomSubType)rand;
+
+        return subType;
+    }
+
     void _DrawPartitionHelper(Partition part)
     {
         UnityEngine.Color color = UnityEngine.Random.ColorHSV(); ;
@@ -957,4 +992,7 @@ public class BSPGeneration : MonoBehaviour
 
         }
     }
+
+
+
 }

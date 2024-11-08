@@ -65,7 +65,7 @@ public class InputController : MonoBehaviour
 
         loadingScreen = GameObject.Find("Loading");
 
-        movementEnabled = false;
+        movementEnabled = true;
 
     }
 
