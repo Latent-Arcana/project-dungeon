@@ -69,15 +69,48 @@ public class ObjectGeneration : MonoBehaviour
 
             switch (room.roomSubType)
             {
-
                 case Enums.RoomSubType.Library:
-
                     currentSubType = roomSubType_Library;
                     break;
 
                 case Enums.RoomSubType.Bedroom:
-
                     currentSubType = roomSubType_Bedroom;
+                    break;
+
+                case Enums.RoomSubType.Armory:
+                    currentSubType = roomSubType_Armory;
+                    break;
+
+                case Enums.RoomSubType.Treasure:
+                    currentSubType = roomSubType_Treasure;
+                    break;
+
+                case Enums.RoomSubType.Dining:
+                    currentSubType = roomSubType_Dining;
+                    break;
+
+                case Enums.RoomSubType.TrapEasy:
+                    currentSubType = roomSubType_TrapEasy;
+                    break;
+
+                case Enums.RoomSubType.TrapHard:
+                    currentSubType = roomSubType_TrapHard;
+                    break;
+
+                case Enums.RoomSubType.EnemyEasy:
+                    currentSubType = roomSubType_EnemyEasy;
+                    break;
+
+                case Enums.RoomSubType.EnemyHard:
+                    currentSubType = roomSubType_EnemyHard;
+                    break;
+
+                case Enums.RoomSubType.Hospital:
+                    currentSubType = roomSubType_Hospital;
+                    break;
+
+                case Enums.RoomSubType.Shrine:
+                    currentSubType = roomSubType_Shrine;
                     break;
 
                 default:

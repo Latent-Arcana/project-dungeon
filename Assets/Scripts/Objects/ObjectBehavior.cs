@@ -4,9 +4,6 @@ using static Enums;
 
 public class ObjectBehavior : MonoBehaviour, ILookable
 {
-    public List<RoomType> RoomTypes;
-
-    public List<Enums.RoomSubType> RoomSubTypes;
 
     public ObjectType ObjectType;
 

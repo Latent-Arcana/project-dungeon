@@ -54,10 +54,10 @@ public static class Enums
         ArmorStand,
         Spikes, 
         Crates,
-        BrokenChair,
         Furnace,
         Mushroom,
-        Pile
+        Pile,
+        Shrine
     }
 
     public enum PlacementType
