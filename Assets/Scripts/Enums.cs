@@ -22,18 +22,18 @@ public static class Enums
     public enum RoomSubType
     {
         Unassigned = 0,
-        
+
         Treasure = 100,
         Library = 101,
         Armory = 102,
         Dining = 103,
-       
+
         TrapEasy = 200,
         TrapHard = 201,
         EnemyEasy = 202,
         EnemyHard = 203,
-        
-        
+
+
         Bedroom = 300,
         Hospital = 301,
         Shrine = 302
@@ -42,22 +42,24 @@ public static class Enums
     public enum ObjectType
     {
         Undefined = 0,
-        Bookshelf,
-        Candle,
-        Debris,
-        Chest,
-        Bed,
-        Corpse,
-        Chair,
-        Table,
-        TableAndChair,
-        ArmorStand,
-        Spikes, 
-        Crates,
-        Furnace,
-        Mushroom,
-        Pile,
-        Shrine
+        Bookshelf = 1,
+        Candle = 2,
+        Debris = 3,
+        Chest = 4,
+        Bed = 5,
+        Corpse = 6,
+        Chair = 7,
+        Table = 8,
+        TableAndChair = 9,
+        ArmorStand = 10,
+        Spikes = 11,
+        Crates = 12,
+        Furnace = 13,
+        Mushroom = 14,
+        Pile = 15,
+        Shrine = 16,
+        BedHospital = 17,
+        Desk = 18,
     }
 
     public enum PlacementType
@@ -83,6 +85,13 @@ public static class Enums
         Consumable,
         Special,
         Book
+    }
+
+    public enum ShrineType
+    {
+        Strength = 1,
+        Speed = 2,
+        Agility = 3
     }
 
 }

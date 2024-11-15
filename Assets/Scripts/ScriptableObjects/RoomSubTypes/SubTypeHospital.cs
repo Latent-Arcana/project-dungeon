@@ -13,9 +13,9 @@ public class SubTypeHospital : RoomSubType
     /// </summary>
     public override List<Enums.ObjectType> RequiredObjects => new()
     {
-        Enums.ObjectType.Bed,
-        Enums.ObjectType.Bed,
-        Enums.ObjectType.Bed,
+        Enums.ObjectType.BedHospital,
+        Enums.ObjectType.BedHospital,
+        Enums.ObjectType.BedHospital,
         Enums.ObjectType.Candle
     };
 
@@ -26,7 +26,7 @@ public class SubTypeHospital : RoomSubType
     public override List<Enums.ObjectType> DecorObjects => new()
      {
           Enums.ObjectType.Candle,
-          Enums.ObjectType.Bed,
+          Enums.ObjectType.BedHospital,
           Enums.ObjectType.Bookshelf,
           Enums.ObjectType.Chair,
           Enums.ObjectType.Furnace,
@@ -40,7 +40,7 @@ public class SubTypeHospital : RoomSubType
     public override Dictionary<Enums.ObjectType, int> MaxAllowed => new()
      {
         {Enums.ObjectType.Candle,4},
-        {Enums.ObjectType.Bed,4},
+        {Enums.ObjectType.BedHospital,4},
         {Enums.ObjectType.Bookshelf,2},
         {Enums.ObjectType.Chair,2},
         {Enums.ObjectType.Furnace,1},

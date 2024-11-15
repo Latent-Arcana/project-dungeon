@@ -65,7 +65,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.5, y: 1}
+  m_Offset: {x: 0.5, y: 1.5}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -76,7 +76,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.5, y: 2.5}
+  m_Size: {x: 1.5, y: 3.5}
   m_EdgeRadius: 0
 --- !u!50 &4082365400571088934
 Rigidbody2D:
@@ -117,10 +117,9 @@ GameObject:
   - component: {fileID: 344201217202336288}
   - component: {fileID: 2783835529191084822}
   - component: {fileID: 2609404153136306900}
-  - component: {fileID: -4324655053843801933}
-  - component: {fileID: -2326040990566469938}
+  - component: {fileID: -2627904784450229958}
   m_Layer: 0
-  m_Name: Bed_Vertical_1
+  m_Name: TableAndChairs_Sidewall_2
   m_TagString: object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -182,8 +181,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -293510981
   m_SortingLayer: 3
-  m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: df935ff9abe7a6642a249a8678d22566, type: 3}
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: f7b088eae8ac3db4eb0171cb909aa3c2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -253,20 +252,20 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.5, y: 1}
+  m_Offset: {x: 0.5, y: 1.5}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
-    oldSize: {x: 1, y: 2}
+    oldSize: {x: 2, y: 3}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 2}
+  m_Size: {x: 1, y: 3}
   m_EdgeRadius: 0
---- !u!114 &-4324655053843801933
+--- !u!114 &-2627904784450229958
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -278,21 +277,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99c1cc0f00e86b945b9951b3d91d54d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ObjectType: 5
-  PlacementType: 1
+  ObjectType: 9
+  PlacementType: 2
   Width: 1
   Height: 2
   lookStrings:
   - NOT IMPLEMENTED
---- !u!114 &-2326040990566469938
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8614793181711624519}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd992823418d0434eaa55b69f2902b4a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
