@@ -157,6 +157,7 @@ public class TrapBehavior : MonoBehaviour
             projectileBehavior.projectileId = 0;
             projectileBehavior.isAtSpawn = true;
             projectileBehavior.Player_Stats = Player_Stats;
+            projectileBehavior.CheckSpawn(playerMovement.transform.position);
         }
         // else{
         //     Debug.Log("did not spawn at " + spawnPosition + " because we ran into " + collision.gameObject.name);

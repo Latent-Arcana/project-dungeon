@@ -18,6 +18,16 @@ public class EyeballTrapBehavior : TrapBehavior
     }
 
 
+     public void PlayerMovement_OnRoomEnter(object sender, PlayerMovement.InputArgs e)
+    {
+        playerInRoom = true; 
+        // For ghosts, we want to send them out in every direction through walls 
+        // Even when the player is in another room
+
+    }
+
+
+
     // The ghosts spawn on top of the trap. They are invisible and they cannot collide
     // Then they navigate towards the player until they are within 4 tiles
     public override void SpawnProjectile(GameObject projectile)
