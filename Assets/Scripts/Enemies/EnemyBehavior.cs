@@ -36,7 +36,6 @@ public class EnemyBehavior : MonoBehaviour
         public string enemyType;
         public int enemyId;
         public string combatText;
-
         public int enemyDamageDealt;
         public int playerDamageDealt;
     }

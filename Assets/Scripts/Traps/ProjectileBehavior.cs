@@ -16,6 +16,16 @@ public class ProjectileBehavior : EnemyBehavior
 
     public bool isDestroyed = false;
 
+    public void CheckSpawn(Vector3 playerPosition)
+    {
+        if (playerPosition == transform.position)
+        {
+            Attack(playerAttacked: false);
+            isDestroyed = true;
+            Destroy(gameObject);
+        }
+    }
+
     public override void CheckAndAttack(Vector3 prevPosition, Vector3 currentPosition, Vector2 intendedDirection)
     {
         foreach (Vector3 position in borderPositions)

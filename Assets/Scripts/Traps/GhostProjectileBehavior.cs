@@ -26,13 +26,13 @@ public class GhostProjectileBehavior : ProjectileBehavior
             float distance = Vector3.Distance(transform.position, currentPlayerPosition);
 
             // If we're just now in range of the player
-            if (distance <= 3.5f && awake == false)
+            if (distance <= 5.5f && awake == false)
             {
                 awake = true;
                 StartCoroutine(FadeInGhost());
             }
 
-            if (distance > 3.5f && awake == true)
+            if (distance > 5.5f && awake == true)
             {
                 awake = false;
                 StartCoroutine(FadeOutGhost(destroyGhost: false));
@@ -48,7 +48,7 @@ public class GhostProjectileBehavior : ProjectileBehavior
 
             Collider2D checkCollision = CheckPosition(potentialPosition);
 
-            if (checkCollision == null)
+            if (checkCollision == null || checkCollision.name == "Main Tilemap")
             {
                 currentMoveCount++;
                 gameObject.transform.position += targetDir;
@@ -148,6 +148,17 @@ public class GhostProjectileBehavior : ProjectileBehavior
         {
             Destroy(gameObject);
         }
+    }
+
+    public override void OnTriggerEnter2D(Collider2D collision)
+    {
+
+        // if (collision.gameObject.tag == "room" && collision.gameObject.GetComponentInParent<Room>() != null && gameObject != null && behaviorState != BehaviorState.Dead)
+        // {
+        //     behaviorState = BehaviorState.Idle;
+        //     currentRoom = collision.gameObject.GetComponentInParent<Room>().roomId;
+        // }
+
     }
 
 }
