@@ -118,6 +118,7 @@ GameObject:
   - component: {fileID: 8965686453867737625}
   - component: {fileID: 887201924762341734}
   - component: {fileID: 3138575990139566628}
+  - component: {fileID: 3717493070590447487}
   m_Layer: 0
   m_Name: Shrine_2
   m_TagString: object
@@ -283,3 +284,16 @@ MonoBehaviour:
   Height: 1
   lookStrings:
   - NOT IMPLEMENTED
+--- !u!114 &3717493070590447487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7557685827397718423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38a389754a50cbb4d92a32f4a9cc396d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shrineType: 2
