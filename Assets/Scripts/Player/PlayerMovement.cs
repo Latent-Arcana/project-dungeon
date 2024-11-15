@@ -185,6 +185,14 @@ public class PlayerMovement : MonoBehaviour
                 int healAmount = collision.gameObject.GetComponent<SafeObjectBehavior>().HealPlayer(Player_Stats.HP, Player_Stats.MAX_HP);
                 Player_Stats.SetHP(healAmount);
             }
+
+            else if(objectBehavior.ObjectType == Enums.ObjectType.Shrine){
+                ShrineBehavior shrineBehavior = collision.gameObject.GetComponent<ShrineBehavior>();
+
+                shrineBehavior.Bless(Player_Stats);
+            }
+
+
         }
 
         else if (collision.tag == "portal")
