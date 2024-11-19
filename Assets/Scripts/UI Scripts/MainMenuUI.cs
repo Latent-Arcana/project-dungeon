@@ -32,15 +32,22 @@ public class MainMenuUI : MonoBehaviour
     private Slider ambientSlider;
     private DropdownField screenResDropdown;
     private Toggle fullScreenToggle;
+
+
     //Audio
     [SerializeField]
     private AudioMixer audioMixer;
-    [SerializeField]
-    private AudioClip audioOpen;
-    [SerializeField]
-    private AudioClip audioClose;
     private AudioSource menuAudio;
     private BackgroundMusicController backgroundMusicController;
+    [SerializeField]
+    private AudioClip audioClip_ButtonOpen;
+    [SerializeField]
+    private AudioClip audioClip_ButtonClose;
+    [SerializeField]
+    private AudioClip audioClip_SelectSlider; //might tie audio to clicking on the vol slider, not sure yet
+    [SerializeField]
+    private AudioClip audioClip_PlayGame;
+
 
     [SerializeField]
     public PlayerStatsManager Player_Stats;
@@ -54,7 +61,7 @@ public class MainMenuUI : MonoBehaviour
         main_document = this.GetComponent<UIDocument>();
 
         //Audio
-        menuAudio = GetComponentInChildren<AudioSource>();
+        menuAudio = GameObject.Find("MenuAudio").GetComponent<AudioSource>();
 
         ////Buttons////  
         //similar to getting an HTML element by #ID
@@ -179,7 +186,7 @@ public class MainMenuUI : MonoBehaviour
 
     private void SaveSettings()
     {
-        PlayAudioClose();
+        PlayAudioClip(audioClip_ButtonClose);
         SaveSystem.SaveOptions(ops);
         ToggleOptions();
     }
@@ -205,7 +212,8 @@ public class MainMenuUI : MonoBehaviour
         }
     }
 
-    private void SetFullScreen(ChangeEvent<bool> evt){
+    private void SetFullScreen(ChangeEvent<bool> evt)
+    {
 
         ops.screenOptions.fullScreen = evt.newValue;
         Screen.SetResolution(Screen.width, Screen.height, evt.newValue);
@@ -215,13 +223,13 @@ public class MainMenuUI : MonoBehaviour
     //Options
     private void GoToOptions()
     {
-        PlayAudioOpen();
+        PlayAudioClip(audioClip_ButtonOpen);
 
         //set sliders to the saved values
         volMusicSlider.SetValueWithoutNotify(ops.musicVolume);
         volEffectsSlider.SetValueWithoutNotify(ops.soundEffectVolume);
         ambientSlider.SetValueWithoutNotify(ops.ambientVolume);
-        
+
         string resString = ops.screenOptions.screenWidth.ToString() + "x" + ops.screenOptions.screenHeight.ToString();
         screenResDropdown.SetValueWithoutNotify(resString);
         fullScreenToggle.SetValueWithoutNotify(ops.screenOptions.fullScreen);
@@ -249,38 +257,34 @@ public class MainMenuUI : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "Main Menu")
         {
             backgroundMusicController.ChangeSongForScene("Loading");
-            PlayAudioOpen();
+            
+            PlayAudioClip(audioClip_PlayGame);
+
             Player_Stats.Initialize(); // Resetting the player's stats to base stats when a new game begins
             Player_Inventory.Reset(); // Resetting the player's inventory and equipment when a new game begins
             SceneManager.LoadScene("Loading");
         }
-        else
+        else //Pause Menu Resum Button
         {
-            PlayAudioClose();
+            PlayAudioClip(audioClip_PlayGame);
+
             TogglePauseMenu();
             input.currentInputState = InputController.InputState.Gameplay; //this is the only place we change the state of the menus outside of input controller, so we manually set the state
             input.ToggleMovement();
-       }
+        }
 
     }
 
     public void QuitGame()
     {
-        PlayAudioClose();
+        PlayAudioClip(audioClip_ButtonClose);
         Debug.Log("Quit Game");
         Application.Quit();
     }
 
-    private void PlayAudioOpen()
+    private void PlayAudioClip(AudioClip clippy)
     {
-        menuAudio.clip = audioOpen;
-        menuAudio.Play();
-    }
-
-
-    private void PlayAudioClose()
-    {
-        menuAudio.clip = audioClose;
+        menuAudio.clip = clippy;
         menuAudio.Play();
     }
 
