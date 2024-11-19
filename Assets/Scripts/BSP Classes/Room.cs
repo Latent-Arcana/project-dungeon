@@ -16,6 +16,7 @@ public class Room : MonoBehaviour
     [SerializeField]
     Enums.RoomType _roomType;
 
+    [SerializeField]
     Enums.RoomSubType _roomSubType;
 
     public int x
