@@ -196,13 +196,6 @@ public class ObjectGeneration : MonoBehaviour
 
         }
 
-
-
-
-
-
-
-
         roomsRemaining--;
 
         //Debug.Log("a room finished its placement. There are " + roomsRemaining + " rooms left");
@@ -288,81 +281,9 @@ public class ObjectGeneration : MonoBehaviour
 
             }
         }
-        // if it doesn't contain the key (implying this is our first attempt at this object type)
-
-
-
-        // foreach (GameObject roomObject in roomObjects)
-        // {
-
-        //     ObjectBehavior roomObjectBehavior = roomObject.GetComponent<ObjectBehavior>();
-
-        //     PlacementRule placementRule = GetPlacementRuleByObject(roomObjectBehavior);
-
-        //     Enums.ObjectType objectType = roomObjectBehavior.ObjectType;
-
-        //     int attempt = 0;
-        //     int maxAllowed = objectCountManager.GetCountAllowedByObjectType(objectType);
-        //     // max is some amount between 1 and the max allowed of the object type
-        //     int max = GetRandomNumberOfObjects(maxAllowed);
-
-        //     int numCreated = objectCounter.GetCountByType(objectType);
-
-        //     // if (roomObjectBehavior.ObjectType == Enums.ObjectType.Glass)
-        //     // {
-        //     //     Debug.Log("we can create: " + numCreated);
-        //     // }
-
-        //     while (attempt < 100 && numCreated < max)
-        //     {
-
-        //         // generate a point and return it if it's valid. otherwise return Vector3Int.zero
-        //         Vector3Int position = placementRule.CanPlaceObject(tilemap, room, roomObjectBehavior.Width, roomObjectBehavior.Height);
-
-        //         // If we can place an object at the point we selected
-        //         if (position != Vector3Int.zero)
-        //         {
-
-        //             // if (roomObjectBehavior.ObjectType == Enums.ObjectType.Glass)
-        //             // {
-        //             //     Debug.Log("attempting to place glass");
-        //             // }
-
-        //             GameObject testObject = Instantiate(roomObject, position, Quaternion.identity);
-
-        //             Collider2D collider = testObject.transform.GetChild(0).GetComponent<Collider2D>();
-
-        //             LayerMask mask = 1 << LayerMask.NameToLayer("ObjectPlacementLayer");
-
-        //             yield return new WaitForFixedUpdate();
-
-        //             if (collider.IsTouchingLayers(mask))
-        //             {
-        //                 Destroy(testObject);
-        //             }
-
-        //             else
-        //             {
-        //                 testObject.transform.parent = room.gameObject.transform.GetChild(1).transform;
-        //                 ++numCreated;
-        //                 objectCounter.IncreaseCountByType(objectType, 1);
-
-        //                 // if (roomObjectBehavior.ObjectType == Enums.ObjectType.Glass)
-        //                 // {
-        //                 //     Debug.Log("placed glass");
-        //                 // }
-        //             }
-
-
-        //         }
-
-        //         attempt++;
-
-        //     }
-
-        // }
 
     }
+
 
     private PlacementRule GetPlacementRuleByObject(ObjectBehavior roomObject)
     {

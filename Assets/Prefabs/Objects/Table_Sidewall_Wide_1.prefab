@@ -278,7 +278,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ObjectType: 8
-  PlacementType: 0
+  PlacementType: 2
   Width: 1
   Height: 2
   lookStrings:
