@@ -13,6 +13,7 @@ public class ObjectBehavior : MonoBehaviour, ILookable
 
     public int Height;
 
+    public Sprite flippedSprite;
 
     public string[] lookStrings;
 

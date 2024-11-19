@@ -216,7 +216,6 @@ public class ObjectGeneration : MonoBehaviour
     IEnumerator DoPlacementChecks(List<GameObject> roomObjectsOfType, Room room, RoomSubType currentRoomSubType, Enums.ObjectType objectType)
     {
 
-
         int randomObjectIndex = UnityEngine.Random.Range(0, roomObjectsOfType.Count);
 
 
@@ -257,6 +256,22 @@ public class ObjectGeneration : MonoBehaviour
 
                     else
                     {
+
+                        // Let's do our test on the sprite to make sure it's flipped in the correct direction
+                        SideWallPlacementRule sideWallPlacement = placementRule as SideWallPlacementRule;
+
+                        if(sideWallPlacement != null){
+                            Tuple<bool, bool> leftOrRight = sideWallPlacement.LeftOrRightWall(tilemap, position, roomObjectBehavior.Width, roomObjectBehavior.Height);
+
+                            if(!leftOrRight.Item1 && leftOrRight.Item2){ // The objects are all left by default, so if we're on the right side wall we flip
+                                //testObject.GetComponent<SpriteRenderer>().flipX = true;
+                                if(roomObjectBehavior.flippedSprite != null){
+                                    testObject.GetComponent<SpriteRenderer>().sprite = roomObjectBehavior.flippedSprite;
+                                }
+                            }
+
+                        }
+                        
                         testObject.transform.parent = room.gameObject.transform.GetChild(1).transform;
 
                         // in the case that we don't have an entry for this key we just have to set it to 1 instead of ++
@@ -283,6 +298,7 @@ public class ObjectGeneration : MonoBehaviour
         }
 
     }
+
 
 
     private PlacementRule GetPlacementRuleByObject(ObjectBehavior roomObject)

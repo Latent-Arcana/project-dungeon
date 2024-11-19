@@ -281,5 +281,6 @@ MonoBehaviour:
   PlacementType: 2
   Width: 1
   Height: 1
+  flippedSprite: {fileID: 21300000, guid: 25ddfa3cc040cbf4bb00f4a32e5a9e69, type: 3}
   lookStrings:
   - There doesn't appear to be anything on this desk.
