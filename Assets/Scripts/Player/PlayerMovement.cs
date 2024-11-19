@@ -178,12 +178,22 @@ public class PlayerMovement : MonoBehaviour
                 Dungeon_Narrator.AddDungeonNarratorText($"You take 1 damage from stepping on the spikes.");
             }
 
-            else if (objectBehavior.ObjectType == Enums.ObjectType.Bed)
+            else if (objectBehavior.ObjectType == Enums.ObjectType.BedHospital)
             {
                 player.transform.position += (Vector3)direction;
 
                 int healAmount = collision.gameObject.GetComponent<SafeObjectBehavior>().HealPlayer(Player_Stats.HP, Player_Stats.MAX_HP);
                 Player_Stats.SetHP(healAmount);
+            }
+
+            else if(objectBehavior.ObjectType == Enums.ObjectType.Bed){
+                
+                player.transform.position += (Vector3)direction;
+
+                int buffAmount = collision.gameObject.GetComponent<SafeObjectBehavior>().BuffPlayer(Player_Stats.MAX_HP);
+                int tempMax = Player_Stats.MAX_HP;
+                Player_Stats.SetMaxHP(buffAmount);
+                Player_Stats.SetHP(Player_Stats.MAX_HP - tempMax);
             }
 
             else if(objectBehavior.ObjectType == Enums.ObjectType.Shrine){

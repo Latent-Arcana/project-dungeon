@@ -282,6 +282,7 @@ MonoBehaviour:
   PlacementType: 1
   Width: 1
   Height: 2
+  flippedSprite: {fileID: 0}
   lookStrings:
   - NOT IMPLEMENTED
 --- !u!114 &-2326040990566469938

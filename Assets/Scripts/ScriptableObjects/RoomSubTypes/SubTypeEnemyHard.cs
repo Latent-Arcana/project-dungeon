@@ -27,7 +27,7 @@ public class SubTypeEnemyHard : RoomSubType
         Enums.ObjectType.Debris,
         Enums.ObjectType.Mushroom,
         Enums.ObjectType.Chest,
-        Enums.ObjectType.Bed,
+        //Enums.ObjectType.Bed,
         Enums.ObjectType.TableAndChair,
         Enums.ObjectType.Crates,
         Enums.ObjectType.Furnace
@@ -44,7 +44,7 @@ public class SubTypeEnemyHard : RoomSubType
         {Enums.ObjectType.Debris,2},
         {Enums.ObjectType.Mushroom,4},
         {Enums.ObjectType.Chest,2},
-        {Enums.ObjectType.Bed,1},
+        //{Enums.ObjectType.Bed,1},
         {Enums.ObjectType.TableAndChair,1},
         {Enums.ObjectType.Crates,2},
         {Enums.ObjectType.Furnace,1}

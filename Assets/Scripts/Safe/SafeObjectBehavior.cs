@@ -5,12 +5,13 @@ using UnityEngine;
 
 public class SafeObjectBehavior : MonoBehaviour
 {
+    bool alreadyBuffedPlayer = false;
     bool alreadyHealedPlayer = false;
     public int HealPlayer(int currentHP, int maximumHP)
     {
         if (!alreadyHealedPlayer)
         {
-            int healAmount = (maximumHP / 2) + currentHP;
+            int healAmount = (maximumHP / 6) + currentHP;
 
             healAmount = Math.Min(healAmount, maximumHP);
 
@@ -27,6 +28,28 @@ public class SafeObjectBehavior : MonoBehaviour
             DungeonNarrator.Dungeon_Narrator.AddDungeonNarratorText($"You feel restless. The bed is cold.");
 
             return currentHP;
+        }
+    }
+
+    public int BuffPlayer(int currentMaxHP)
+    {
+        if (!alreadyBuffedPlayer)
+        {
+            int buffPlayerAmount = UnityEngine.Random.Range(2, 11) + currentMaxHP;
+
+            alreadyBuffedPlayer = true;
+
+            DungeonNarrator.Dungeon_Narrator.AddDungeonNarratorText($"The bed gives you a sense of warmth...");
+
+            return buffPlayerAmount;
+
+        }
+
+        else
+        {
+            DungeonNarrator.Dungeon_Narrator.AddDungeonNarratorText($"You feel restless. The bed is cold.");
+
+            return currentMaxHP;
         }
     }
 }
