@@ -270,9 +270,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: f7f206a5337464844b44955228165480, type: 2}
-  mainMenuMusic: {fileID: 8300000, guid: 7ccb8ff0dddc8b847983cc9a8a772a4b, type: 3}
-  levelMusic: {fileID: 8300000, guid: 2fa8cb04c4fc632448d1a5c2675acc50, type: 3}
-  gameOverMusic: {fileID: 8300000, guid: 122fd66fae63d634ba9ffdb84407292f, type: 3}
+  mainMenuMusic: {fileID: 8300000, guid: 3d04a6ec9f73b59428812db1198f1978, type: 3}
+  levelMusic:
+  - {fileID: 8300000, guid: 7ccb8ff0dddc8b847983cc9a8a772a4b, type: 3}
+  - {fileID: 8300000, guid: 2fa8cb04c4fc632448d1a5c2675acc50, type: 3}
+  - {fileID: 8300000, guid: 122fd66fae63d634ba9ffdb84407292f, type: 3}
+  gameOverMusic: {fileID: 8300000, guid: c94bd88bcdeeadc4ca3925d8e1d25434, type: 3}
 --- !u!1 &8428759403118509146
 GameObject:
   m_ObjectHideFlags: 0

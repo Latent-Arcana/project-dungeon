@@ -121,7 +121,7 @@ public class ObjectGeneration : MonoBehaviour
             if (currentSubType != null)
             {
 
-                Debug.Log(currentSubType.name + " in room " + roomObj.gameObject.name);
+                //Debug.Log(currentSubType.name + " in room " + roomObj.gameObject.name);
 
                 StartCoroutine(PopulateRoom(room, currentSubType));
 
@@ -159,7 +159,7 @@ public class ObjectGeneration : MonoBehaviour
 
             portal.transform.SetParent(room.gameObject.transform);
 
-            Debug.Log("Placed portal in room: " + index);
+            //Debug.Log("Placed portal in room: " + index);
         }
 
     }

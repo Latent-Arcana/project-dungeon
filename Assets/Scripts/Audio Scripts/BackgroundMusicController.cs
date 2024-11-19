@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
 using Unity.Mathematics;
+using System;
 
 public class BackgroundMusicController : MonoBehaviour
 {
@@ -18,8 +19,10 @@ public class BackgroundMusicController : MonoBehaviour
     //Clips
     [SerializeField]
     private AudioClip mainMenuMusic;
+
     [SerializeField]
-    private AudioClip levelMusic;
+    private List<AudioClip> levelMusic;
+
     [SerializeField]
     private AudioClip gameOverMusic;
 
@@ -42,7 +45,7 @@ public class BackgroundMusicController : MonoBehaviour
     public void ChangeSongForScene(string newSceneName)
     {
         //save the current volume level so we don't have to load it from the save ops
-        audioMixer.GetFloat("MixerMusicVolume", out currentMixerVolumeDb);
+        //audioMixer.GetFloat("MixerMusicVolume", out currentMixerVolumeDb);
 
         backgroundAudio.Stop();
 
@@ -57,7 +60,7 @@ public class BackgroundMusicController : MonoBehaviour
         }
         else if (newSceneName == "Loading")
         {
-            backgroundAudio.clip = levelMusic;
+            backgroundAudio.clip = GetRandomLevelTrack();
         }
 
         //start playing new audio clip
@@ -68,96 +71,47 @@ public class BackgroundMusicController : MonoBehaviour
         }
 
         //temp, set audio back to good volume
-        audioMixer.SetFloat("MixerMusicVolume", currentMixerVolumeDb);
+        //audioMixer.SetFloat("MixerMusicVolume", currentMixerVolumeDb);
     }
 
 
 
-    ////StartCoroutine(StartFade(newSceneName));
-    private IEnumerator StartFade(string newSceneName)
-    {
+    // ////StartCoroutine(StartFade(newSceneName));
+    // private IEnumerator StartFade(string newSceneName)
+    // {
 
+    //     backgroundAudio.Stop();
 
+    //     //change audio clip song
+    //     if (newSceneName == "Main Menu")
+    //     {
+    //         backgroundAudio.clip = mainMenuMusic;
+    //     }
+    //     // else if (newSceneName == "BSP")
+    //     // {
+    //     //     backgroundAudio.clip = levelMusic;
+    //     // }
+    //     else if (newSceneName == "GameOver")
+    //     {
+    //         backgroundAudio.clip = gameOverMusic;
+    //     }
+    //     else if (newSceneName == "Loading")
+    //     {
+    //         backgroundAudio.clip = GetRandomLevelTrack();
+    //     }
 
+    //     //start playing new audio clip
+    //     // except for BSP, which should already be playing from Loading
+    //     if (newSceneName != "BSP")
+    //     {
+    //         backgroundAudio.Play();
+    //     }
 
-        // float currentTime = 0;
-        // float currentVol;
+    //     //temp, set audio back to good volume
+    //     audioMixer.SetFloat("MixerMusicVolume", currentMixerVolumeDb);
 
-        // // // fade OUT
-        // audioMixer.GetFloat("MixerMusicVolume", out currentMixerVolumeDb); //store to fade back in later
-
-        // //get the current volume setting and convert to non-decimal
-        // audioMixer.GetFloat("MixerMusicVolume", out currentVol);
-        // currentVol = Mathf.Pow(10, currentVol / 20);
-
-        // float targetValue = Mathf.Clamp(0, 0.0001f, 1);
-
-
-        // Debug.Log($"Fading from {currentVol} to {targetValue}");
-
-        // while (currentTime < fadeOutDuration)
-        // {
-        //     currentTime += Time.deltaTime;
-        //     float newVol = Mathf.Lerp(currentVol, targetValue, currentTime / fadeOutDuration);
-
-        //     Debug.Log($"New Volume {newVol} at time {currentTime}");
-        //     audioMixer.SetFloat("MixerMusicVolume", Mathf.Log10(newVol) * 20);
-        //     yield return null;
-        // }
-
-        backgroundAudio.Stop();
-
-        //change audio clip song
-        if (newSceneName == "Main Menu")
-        {
-            backgroundAudio.clip = mainMenuMusic;
-        }
-        // else if (newSceneName == "BSP")
-        // {
-        //     backgroundAudio.clip = levelMusic;
-        // }
-        else if (newSceneName == "GameOver")
-        {
-            backgroundAudio.clip = gameOverMusic;
-        }
-        else if (newSceneName == "Loading")
-        {
-            backgroundAudio.clip = levelMusic;
-        }
-
-        //start playing new audio clip
-        // except for BSP, which should already be playing from Loading
-        if (newSceneName != "BSP")
-        {
-            backgroundAudio.Play();
-        }
-
-        //temp, set audio back to good volume
-        audioMixer.SetFloat("MixerMusicVolume", currentMixerVolumeDb);
-
-        // //fade back to previously set volume
-
-        // currentTime = 0;
-        // audioMixer.GetFloat("MixerMusicVolume", out currentVol);
-
-        // currentVol = Mathf.Pow(10, currentVol / 20);
-        // targetValue = Mathf.Clamp(ConvertVolumeToPercent(currentMixerVolumeDb), 0.0001f, 1);
-
-        // Debug.Log($"Fading from {currentVol} to {targetValue}");
-
-        // while (currentTime < fadeInDuration)
-        // {
-        //     currentTime += Time.deltaTime;
-        //     float newVol = Mathf.Lerp(currentVol, targetValue, currentTime / fadeInDuration);
-
-        //     Debug.Log($"New Volume {newVol} at time {currentTime}");
-
-        //     audioMixer.SetFloat("MixerMusicVolume", Mathf.Log10(newVol) * 20);
-        //     yield return null;
-        // }
-
-        yield break;
-    }
+    //     yield break;
+    // }
 
 
     /// <summary>
@@ -178,6 +132,11 @@ public class BackgroundMusicController : MonoBehaviour
     private float ConvertVolumeToPercent(float vol)
     {
         return Mathf.Pow(10, vol / 20);
+    }
+
+    private AudioClip GetRandomLevelTrack(){
+        int a = UnityEngine.Random.Range(0,levelMusic.Count);
+        return levelMusic[a];
     }
 
 }
