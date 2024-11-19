@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -590,6 +591,8 @@ public class BSPGeneration : MonoBehaviour
                     //Set the tile to flooring
                     mainTilemap.SetTileFlags(start, TileFlags.None);
                     mainTilemap.SetTile(start, gameplayFloorHallwayTile);
+                    Matrix4x4 matrix = Matrix4x4.TRS(Vector3.zero, Quaternion.identity, Vector3.one);
+                    mainTilemap.SetTransformMatrix(start, matrix);
 
                     //and the map tiles
                     mainTilemap.SetTileFlags(start + new Vector3Int(-mapOffset, -mapOffset, 0), TileFlags.None);
@@ -619,6 +622,8 @@ public class BSPGeneration : MonoBehaviour
                     //Set the tile to flooring
                     mainTilemap.SetTileFlags(start, TileFlags.None);
                     mainTilemap.SetTile(start, gameplayFloorHallwayTile);
+                     Matrix4x4 matrix = Matrix4x4.TRS(Vector3.zero, Quaternion.identity, Vector3.one);
+                    mainTilemap.SetTransformMatrix(start, matrix);
 
                     //and the map tiles
                     mainTilemap.SetTileFlags(start + new Vector3Int(-mapOffset, -mapOffset, 0), TileFlags.None);
@@ -660,6 +665,8 @@ public class BSPGeneration : MonoBehaviour
                     //gameplay tiles
                     mainTilemap.SetTileFlags(start, TileFlags.None);
                     mainTilemap.SetTile(start, gameplayFloorHallwayTile);
+                     Matrix4x4 matrix = Matrix4x4.TRS(Vector3.zero, Quaternion.identity, Vector3.one);
+                    mainTilemap.SetTransformMatrix(start, matrix);
 
                     //map tiles
                     mainTilemap.SetTileFlags(start + new Vector3Int(-mapOffset, -mapOffset, 0), TileFlags.None);
@@ -688,6 +695,8 @@ public class BSPGeneration : MonoBehaviour
                     //gameplay tiles
                     mainTilemap.SetTileFlags(start, TileFlags.None);
                     mainTilemap.SetTile(start, gameplayFloorHallwayTile);
+                    Matrix4x4 matrix = Matrix4x4.TRS(Vector3.zero, Quaternion.identity, Vector3.one);
+                    mainTilemap.SetTransformMatrix(start, matrix);
 
                     //map tiles
                     mainTilemap.SetTileFlags(start + new Vector3Int(-mapOffset, -mapOffset, 0), TileFlags.None);
@@ -711,6 +720,8 @@ public class BSPGeneration : MonoBehaviour
 
                 mainTilemap.SetTileFlags(position, TileFlags.None);
                 mainTilemap.SetTile(position, gameplayFloorTile);
+                Matrix4x4 matrix = Matrix4x4.TRS(Vector3.zero, Quaternion.identity, Vector3.one);
+                mainTilemap.SetTransformMatrix(position, matrix);
 
                 mainTilemap.SetTileFlags(position + new Vector3Int(-mapOffset, -mapOffset, 0), TileFlags.None);
                 mainTilemap.SetTile(position + new Vector3Int(-mapOffset, -mapOffset, 0), mapFloorAndWallTile);
