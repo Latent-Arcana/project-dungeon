@@ -256,14 +256,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0.875, w: 0}
     pivot: {x: 0, y: 0}
-    oldSize: {x: 2, y: 3}
+    oldSize: {x: 1, y: 3}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 3}
+  m_Size: {x: 1.5, y: 3}
   m_EdgeRadius: 0
 --- !u!114 &-2627904784450229958
 MonoBehaviour:
@@ -281,6 +281,6 @@ MonoBehaviour:
   PlacementType: 2
   Width: 1
   Height: 3
-  flippedSprite: {fileID: 21300000, guid: 56e13807d4a6eb046a688423ca70c06e, type: 3}
+  flippedSprite: {fileID: 21300000, guid: f8f1d81a61f3f82489bf50ab57f10cb4, type: 3}
   lookStrings:
   - NOT IMPLEMENTED

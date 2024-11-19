@@ -264,7 +264,6 @@ public class ObjectGeneration : MonoBehaviour
                             Tuple<bool, bool> leftOrRight = sideWallPlacement.LeftOrRightWall(tilemap, position, roomObjectBehavior.Width, roomObjectBehavior.Height);
 
                             if(!leftOrRight.Item1 && leftOrRight.Item2){ // The objects are all left by default, so if we're on the right side wall we flip
-                                //testObject.GetComponent<SpriteRenderer>().flipX = true;
                                 if(roomObjectBehavior.flippedSprite != null){
                                     testObject.GetComponent<SpriteRenderer>().sprite = roomObjectBehavior.flippedSprite;
                                 }
