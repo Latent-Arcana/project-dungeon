@@ -378,7 +378,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78a683c074be3fa46b0777e29836f879, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seed: 237100372
+  seed: 1588958828
   bspController: {fileID: 0}
   dangerGenerator: {fileID: 0}
   objectGenerator: {fileID: 0}
@@ -1534,7 +1534,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a2821344c63ee42aba52eba094039c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  laserLength: 20
+  laserLength: 100
 --- !u!1 &1010613873
 GameObject:
   m_ObjectHideFlags: 0
