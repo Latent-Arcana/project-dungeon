@@ -9,44 +9,54 @@ using UnityEngine.UIElements;
 public class InventoryUI : MonoBehaviour
 {
 
-    ////Objects////
+
+
+    //// UI Objects ////
     private UIDocument main_document;
     private VisualElement parentContainer;
+    private VisualElement table;
+    private List<VisualElement> rows;
+    private List<Toggle> equipmentToggles = new List<Toggle>();
 
+
+    //// Controllers /////
     private InputController input;
 
 
-    private VisualElement table;
-
-    private List<VisualElement> rows;
-
-    // private VisualElement row_1, row_4;
-
+    //// Inventory /////
     public PlayerInventory playerInventoryBehavior;
-
     [SerializeField]
     public Inventory player_inventory;
-
     private List<Item> inventory;
-    private List<Toggle> equipmentToggles = new List<Toggle>();
+
+
+    ///// Audio ////
+    private MenuAudioController menuAudioController;
+
+
 
     private void Awake()
     {
 
+        //controllers
         input = GameObject.Find("InputController").GetComponent<InputController>();
 
+        //UI
         main_document = this.GetComponent<UIDocument>();
-
         parentContainer = main_document.rootVisualElement.Q("Container");
-
         table = main_document.rootVisualElement.Q("Table");
-
         rows = table.Children().ToList();
 
+        //inventory
         playerInventoryBehavior = GameObject.Find("Player").GetComponent<PlayerInventory>();
-
         inventory = playerInventoryBehavior.inventory.items;
 
+        //audio
+        menuAudioController = GameObject.Find("MenuAudio").GetComponent<MenuAudioController>();
+
+
+
+        //assign button/toggle callbacks
         int tempCounter = 0;
 
         foreach (var row in rows)
@@ -67,7 +77,6 @@ public class InventoryUI : MonoBehaviour
 
             equipmentToggles.Add(togg); // there should be 10 of these
 
-
             butt.text = "drop";
             int j = tempCounter;
             butt.clicked += () => DropItem(j);
@@ -75,8 +84,6 @@ public class InventoryUI : MonoBehaviour
             tempCounter++;
 
         }
-
-
     }
 
 
@@ -107,25 +114,11 @@ public class InventoryUI : MonoBehaviour
         inventory = playerInventoryBehavior.inventory.items;
 
         //loop through items table
-
-        //foreach (Item item in items)
         for (i = 0; i < 10; i++)
         {
 
             if (i < inventory.Count)
             {
-
-                // only show the EQUIP button if the item is equippable
-                // if (inventory[i].type != Enums.ItemType.Armor && inventory[i].type != Enums.ItemType.Weapon)
-                // {
-                //     equipmentToggles[i].visible = false;
-                // }
-
-                // // only show the EQUIP button if the item is equippable
-                // if (inventory[i].type == Enums.ItemType.Armor || inventory[i].type == Enums.ItemType.Weapon)
-                // {
-                //     equipmentToggles[i].visible = true;
-                // }
 
                 rows[i].style.visibility = Visibility.Visible;
 
@@ -154,14 +147,11 @@ public class InventoryUI : MonoBehaviour
                 }
 
             }
-            else
+
+            else //no inventory item to show in the row, so hide it
             {
                 rows[i].style.visibility = Visibility.Hidden;
 
-                //equipmentToggles[i].visible = false;
-
-                //assign empty img ?
-                //Sprite sprt = Resources.Load<Sprite>(inventory[i].image);
                 rows[i].Q("Icon").Children().First().Children().First().style.backgroundImage = null;
 
                 TextElement nameText = rows[i].Q("Name").Children().First() as TextElement;
@@ -244,7 +234,7 @@ public class InventoryUI : MonoBehaviour
     private void Consume(int index)
     {
         playerInventoryBehavior.Consume(index);
-        
+
         // if the item was equipped, let's unequip it to update the screen
         if (equipmentToggles[index].value == true)
         {
@@ -256,6 +246,9 @@ public class InventoryUI : MonoBehaviour
     }
     private void DropItem(int index)
     {
+
+        menuAudioController.PlayAudioClip("ButtonClose");
+
         // if the item was equipped, let's unequip it to update the screen
         if (equipmentToggles[index].value == true)
         {

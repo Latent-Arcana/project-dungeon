@@ -286,6 +286,7 @@ GameObject:
   m_Component:
   - component: {fileID: 282348256461409292}
   - component: {fileID: 8841806541704912307}
+  - component: {fileID: 1154449332286725602}
   m_Layer: 0
   m_Name: MenuAudio
   m_TagString: music
@@ -404,6 +405,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1154449332286725602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6876319250261900421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6398b3af1c8d755459f2fb3ae8bf9a85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioMixer: {fileID: 24100000, guid: f7f206a5337464844b44955228165480, type: 2}
+  audioClip_ButtonOpen: {fileID: 8300000, guid: 408034fa19fbe8a41b8a056c0f161d8a, type: 3}
+  audioClip_ButtonClose: {fileID: 8300000, guid: d1b1a40d7d5eceb42a064283e0f9fd2d, type: 3}
+  audioClip_SelectSlider: {fileID: 8300000, guid: 12ff2a0fc20c9134e91a0c5581ee68ed, type: 3}
+  audioClip_PlayGame: {fileID: 8300000, guid: f076cf1ebaaee284aa3afc500813b8c6, type: 3}
 --- !u!1 &8428759403118509146
 GameObject:
   m_ObjectHideFlags: 0

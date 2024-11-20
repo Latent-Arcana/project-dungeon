@@ -21,6 +21,7 @@ public class GameOverUI : MonoBehaviour
 
     //// Music ////
     private BackgroundMusicController backgroundMusicController;
+    private MenuAudioController menuAudioController;
 
 
     private void Awake()
@@ -45,7 +46,7 @@ public class GameOverUI : MonoBehaviour
 
         // Audio
         backgroundMusicController = GameObject.Find("BackgroundAudio").GetComponent<BackgroundMusicController>();
-
+        menuAudioController = GameObject.Find("MenuAudio").GetComponent<MenuAudioController>();
 
     }
 
@@ -69,20 +70,21 @@ public class GameOverUI : MonoBehaviour
 
     public void QuitGame()
     {
-        //PlayAudioClose();
+        menuAudioController.PlayAudioClip("ButtonClose");
         Debug.Log("Quit Game");
         Application.Quit();
     }
 
     public void ReturnToMenu()
     {
-        //backgroundMusicController.ChangeSongForScene("Main Menu");
+        menuAudioController.PlayAudioClip("ButtonClose");
         gameStats.NewGame();
         SceneManager.LoadScene("Main Menu");
     }
 
     public void StartNewGame()
     {
+        menuAudioController.PlayAudioClip("PlayGame");
         backgroundMusicController.ChangeSongForScene("Loading");
         gameStats.NewGame();
         SceneManager.LoadScene("Loading");

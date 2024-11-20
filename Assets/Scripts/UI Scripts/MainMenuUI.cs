@@ -37,16 +37,10 @@ public class MainMenuUI : MonoBehaviour
     //Audio
     [SerializeField]
     private AudioMixer audioMixer;
-    private AudioSource menuAudio;
+
     private BackgroundMusicController backgroundMusicController;
-    [SerializeField]
-    private AudioClip audioClip_ButtonOpen;
-    [SerializeField]
-    private AudioClip audioClip_ButtonClose;
-    [SerializeField]
-    private AudioClip audioClip_SelectSlider; //might tie audio to clicking on the vol slider, not sure yet
-    [SerializeField]
-    private AudioClip audioClip_PlayGame;
+    private MenuAudioController menuAudioController;
+
 
 
     [SerializeField]
@@ -61,7 +55,10 @@ public class MainMenuUI : MonoBehaviour
         main_document = this.GetComponent<UIDocument>();
 
         //Audio
-        menuAudio = GameObject.Find("MenuAudio").GetComponent<AudioSource>();
+        backgroundMusicController = GameObject.Find("BackgroundAudio").GetComponent<BackgroundMusicController>();
+        menuAudioController = GameObject.Find("MenuAudio").GetComponent<MenuAudioController>();
+
+
 
         ////Buttons////  
         //similar to getting an HTML element by #ID
@@ -186,7 +183,7 @@ public class MainMenuUI : MonoBehaviour
 
     private void SaveSettings()
     {
-        PlayAudioClip(audioClip_ButtonClose);
+        menuAudioController.PlayAudioClip("ButtonClose");
         SaveSystem.SaveOptions(ops);
         ToggleOptions();
     }
@@ -223,7 +220,7 @@ public class MainMenuUI : MonoBehaviour
     //Options
     private void GoToOptions()
     {
-        PlayAudioClip(audioClip_ButtonOpen);
+        menuAudioController.PlayAudioClip("ButtonOpen");
 
         //set sliders to the saved values
         volMusicSlider.SetValueWithoutNotify(ops.musicVolume);
@@ -257,16 +254,16 @@ public class MainMenuUI : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "Main Menu")
         {
             backgroundMusicController.ChangeSongForScene("Loading");
-            
-            PlayAudioClip(audioClip_PlayGame);
+
+            menuAudioController.PlayAudioClip("PlayGame");
 
             Player_Stats.Initialize(); // Resetting the player's stats to base stats when a new game begins
             Player_Inventory.Reset(); // Resetting the player's inventory and equipment when a new game begins
             SceneManager.LoadScene("Loading");
         }
-        else //Pause Menu Resum Button
+        else //Pause Menu Resume Button
         {
-            PlayAudioClip(audioClip_PlayGame);
+            menuAudioController.PlayAudioClip("ButtonClose");
 
             TogglePauseMenu();
             input.currentInputState = InputController.InputState.Gameplay; //this is the only place we change the state of the menus outside of input controller, so we manually set the state
@@ -277,15 +274,9 @@ public class MainMenuUI : MonoBehaviour
 
     public void QuitGame()
     {
-        PlayAudioClip(audioClip_ButtonClose);
+        menuAudioController.PlayAudioClip("ButtonClose");
         Debug.Log("Quit Game");
         Application.Quit();
-    }
-
-    private void PlayAudioClip(AudioClip clippy)
-    {
-        menuAudio.clip = clippy;
-        menuAudio.Play();
     }
 
     /// <summary>
