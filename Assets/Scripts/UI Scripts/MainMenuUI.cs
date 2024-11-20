@@ -30,7 +30,7 @@ public class MainMenuUI : MonoBehaviour
     private Slider volMusicSlider;
     private Slider volEffectsSlider;
     private Slider ambientSlider;
-    private DropdownField screenResDropdown;
+    //private DropdownField screenResDropdown;
     private Toggle fullScreenToggle;
 
 
@@ -81,7 +81,7 @@ public class MainMenuUI : MonoBehaviour
         volMusicSlider = main_document.rootVisualElement.Q("VolumeMusicSlider") as Slider;
         volEffectsSlider = main_document.rootVisualElement.Q("VolumeSoundEffectsSlider") as Slider;
         ambientSlider = main_document.rootVisualElement.Q("VolumeAmbientSlider") as Slider;
-        screenResDropdown = main_document.rootVisualElement.Q("ResolutionDropdown") as DropdownField;
+        //screenResDropdown = main_document.rootVisualElement.Q("ResolutionDropdown") as DropdownField;
         fullScreenToggle = main_document.rootVisualElement.Q("FullScreen") as Toggle;
 
         ////Events////
@@ -99,7 +99,7 @@ public class MainMenuUI : MonoBehaviour
 
 
         //Dropdowns
-        screenResDropdown.RegisterCallback<ChangeEvent<string>>(OnScreenResolutionChanged);
+        //screenResDropdown.RegisterCallback<ChangeEvent<string>>(OnScreenResolutionChanged);
 
         //Toggles
         fullScreenToggle.RegisterCallback<ChangeEvent<bool>>(SetFullScreen);
@@ -227,8 +227,8 @@ public class MainMenuUI : MonoBehaviour
         volEffectsSlider.SetValueWithoutNotify(ops.soundEffectVolume);
         ambientSlider.SetValueWithoutNotify(ops.ambientVolume);
 
-        string resString = ops.screenOptions.screenWidth.ToString() + "x" + ops.screenOptions.screenHeight.ToString();
-        screenResDropdown.SetValueWithoutNotify(resString);
+        //string resString = ops.screenOptions.screenWidth.ToString() + "x" + ops.screenOptions.screenHeight.ToString();
+        //screenResDropdown.SetValueWithoutNotify(resString);
         fullScreenToggle.SetValueWithoutNotify(ops.screenOptions.fullScreen);
 
         //show options menu

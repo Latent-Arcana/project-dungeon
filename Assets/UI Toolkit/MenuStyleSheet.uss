@@ -10,7 +10,7 @@
     -unity-font: url("project://database/Assets/Font/Seraphimb1.ttf?fileID=12800000&guid=3f1f980884aaaae4a87358e26cfd514b&type=3#Seraphimb1");
     -unity-font-definition: initial;
     color: rgb(255, 255, 255);
-    width: 1150px;
+    width: 1908px;
     -unity-background-scale-mode: scale-to-fit;
     margin-top: 0;
     margin-bottom: 0;
@@ -19,6 +19,39 @@
 
 .menu-button:hover {
     background-image: url("project://database/Assets/Sprites/UI%20Sprites/button-active_1908x105.png?fileID=2800000&guid=db24af8061fa47d42a98d45a2bb648d5&type=3#button-active_1908x105");
+}
+
+.menu-button:active {
+    background-image: url("project://database/Assets/Sprites/UI%20Sprites/button-clicked.png?fileID=2800000&guid=fd538e44da5e6df4999af4c8926b349c&type=3#button-clicked");
+    color: rgb(125, 211, 208);
+}
+
+.menu-pause-button {
+    margin-right: 0;
+    margin-left: 0;
+    background-image: url("project://database/Assets/Sprites/UI%20Sprites/button-inactive_1528x85.png?fileID=2800000&guid=022ba9a05a03cea4ca8b7fae6612fa5b&type=3#button-inactive_1528x85");
+    background-color: rgba(0, 0, 0, 0);
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    -unity-font: url("project://database/Assets/Font/Seraphimb1.ttf?fileID=12800000&guid=3f1f980884aaaae4a87358e26cfd514b&type=3#Seraphimb1");
+    -unity-font-definition: initial;
+    color: rgb(255, 255, 255);
+    width: 1150px;
+    -unity-background-scale-mode: scale-to-fit;
+    margin-top: 0;
+    margin-bottom: 0;
+    height: auto;
+}
+
+.menu-pause-button:hover {
+    background-image: url("project://database/Assets/Sprites/UI%20Sprites/button-active_1528x85.png?fileID=2800000&guid=4a06f7ce58a970141a5d26d4ff746136&type=3#button-active_1528x85");
+}
+
+.menu-pause-button:active {
+    background-image: url("project://database/Assets/Sprites/UI%20Sprites/button-clicked.png?fileID=2800000&guid=fd538e44da5e6df4999af4c8926b349c&type=3#button-clicked");
+    color: rgb(125, 211, 208);
 }
 
 .inventory-button {
@@ -56,7 +89,7 @@
 }
 
 .menu-container-pause {
-    -unity-background-image-tint-color: rgb(164, 109, 109);
+    -unity-background-image-tint-color: rgb(0, 0, 0);
     width: 70%;
     align-items: center;
     justify-content: center;
@@ -84,6 +117,8 @@
     font-size: 32px;
     color: rgb(255, 255, 255);
     -unity-text-align: upper-center;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .text-body-main-menu {
