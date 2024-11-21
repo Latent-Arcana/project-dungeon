@@ -10,12 +10,14 @@ public class InputController : MonoBehaviour
 {
 
     private GameObject player;
-
     private bool movementEnabled = true;
-
     private Vector3 playerPosition;
 
     protected DungeonNarrator dungeonNarrator;
+
+
+    ///// Audio ////
+    private MenuAudioController menuAudioController;
 
 
     // Simple event handler for our input events
@@ -54,6 +56,11 @@ public class InputController : MonoBehaviour
 
         ObjectGeneration.AllRoomsPlacementComplete -= CompletedObjectPlacement;
 
+    }
+
+    private void Awake()
+    {
+        menuAudioController = GameObject.Find("MenuAudio").GetComponent<MenuAudioController>();
     }
 
 
@@ -199,12 +206,14 @@ public class InputController : MonoBehaviour
     //Functions to toggle game state, UI elements, and movement
     public void ReturnToGameplay()
     {
+        menuAudioController.PlayAudioClip("ButtonClose");
         currentInputState = InputState.Gameplay;
         movementEnabled = true;
     }
 
     public void PauseGame()
     {
+        menuAudioController.PlayAudioClip("ButtonOpen");
         OnMenuEnter.Invoke(this, EventArgs.Empty); //throw event to InventoryUI to toggle UI element
         currentInputState = InputState.PauseMenu;
         movementEnabled = false;
@@ -212,12 +221,14 @@ public class InputController : MonoBehaviour
 
     public void ClosePauseMenu()
     {
+        menuAudioController.PlayAudioClip("ButtonClose");
         OnMenuEnter.Invoke(this, EventArgs.Empty); //throw event to InventoryUI to toggle UI element
         ReturnToGameplay();
     }
 
     public void OpenMap()
     {
+        menuAudioController.PlayAudioClip("ButtonOpen");
         Dungeon_Narrator.DisableDungeonNarrator();
         OnMapEnter.Invoke(this, EventArgs.Empty); //throw event to MapMenuUI to toggle UI element
         currentInputState = InputState.MapMenu;
@@ -226,6 +237,7 @@ public class InputController : MonoBehaviour
 
     public void CloseMap()
     {
+        menuAudioController.PlayAudioClip("ButtonClose");
         Dungeon_Narrator.EnableDungeonNarrator();
         OnMapEnter.Invoke(this, EventArgs.Empty); //throw event to MapMenuUI to toggle UI element
         ReturnToGameplay();
@@ -233,6 +245,7 @@ public class InputController : MonoBehaviour
 
     public void OpenInventory()
     {
+        menuAudioController.PlayAudioClip("ButtonOpen");
         OnInventoryEnter.Invoke(this, EventArgs.Empty); //throw event to InventoryUI to toggle UI element
         currentInputState = InputState.InventoryMenu;
         movementEnabled = false;
@@ -241,6 +254,7 @@ public class InputController : MonoBehaviour
 
     public void CloseInventory()
     {
+        menuAudioController.PlayAudioClip("ButtonClose");
         OnInventoryEnter.Invoke(this, EventArgs.Empty); //throw event to InventoryUI to toggle UI element
         ReturnToGameplay();
     }
