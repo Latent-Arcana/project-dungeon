@@ -13,6 +13,7 @@ TagManager:
   - projectile
   - mapMark
   - portal
+  - floorCover
   layers:
   - Default
   - TransparentFX

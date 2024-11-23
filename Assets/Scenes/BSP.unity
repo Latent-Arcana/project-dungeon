@@ -137,6 +137,7 @@ GameObject:
   - component: {fileID: 32644321}
   - component: {fileID: 32644323}
   - component: {fileID: 32644324}
+  - component: {fileID: 32644325}
   m_Layer: 0
   m_Name: DungeonGenerator
   m_TagString: Untagged
@@ -303,6 +304,23 @@ MonoBehaviour:
   trapPrefabs:
   - {fileID: 9191118223540507927, guid: 85b6bec990b392d4b83ecaa6303ddea4, type: 3}
   - {fileID: 9191118223540507927, guid: ea770c32dd84bdc4888fa2ebe8ccd451, type: 3}
+--- !u!114 &32644325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 32644317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed0e65e6d43a6e34ba88b84abec9697e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  noiseScale: 0.5
+  mossPrefabs:
+  - {fileID: 8011701790813375566, guid: 1fe524ef9f7470943977a31e734d264e, type: 3}
+  - {fileID: 8011701790813375566, guid: 6500f31ed3d6c654982f5d85ca8c89c3, type: 3}
+  - {fileID: 8011701790813375566, guid: b4cb40acf5afa294c8b4e07c7951d644, type: 3}
 --- !u!1 &182280302
 GameObject:
   m_ObjectHideFlags: 0
@@ -378,11 +396,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78a683c074be3fa46b0777e29836f879, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seed: 1588958828
+  seed: 0
   bspController: {fileID: 0}
   dangerGenerator: {fileID: 0}
   objectGenerator: {fileID: 0}
   mapController: {fileID: 0}
+  floorCoverGenerator: {fileID: 0}
   portalSeeds: 
   seedsInDungeon: 
 --- !u!1 &339782759
@@ -416,10 +435,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: f7f206a5337464844b44955228165480, type: 2}
-  audioClip_ButtonOpen: {fileID: 0}
-  audioClip_ButtonClose: {fileID: 0}
-  audioClip_SelectSlider: {fileID: 0}
-  audioClip_PlayGame: {fileID: 0}
   Player_Stats: {fileID: 11400000, guid: 49cdfbab4b8796a41af4e48e5ee7d3d5, type: 2}
   Player_Inventory: {fileID: 11400000, guid: 28215ae7375c4ab42862dc3518774c71, type: 2}
 --- !u!114 &339782761

@@ -13,6 +13,7 @@ public class GameSetup : MonoBehaviour
     public EnemyGeneration dangerGenerator;
     public ObjectGeneration objectGenerator;
     public MapController mapController;
+    public FloorCoveringGeneration floorCoverGenerator;
 
     public int[] portalSeeds;
 
@@ -28,6 +29,7 @@ public class GameSetup : MonoBehaviour
         dangerGenerator = Dungeon_Generator.GetComponent<EnemyGeneration>();
         objectGenerator = Dungeon_Generator.GetComponent<ObjectGeneration>();
         bspController = Dungeon_Generator.GetComponent<BSPGeneration>();
+        floorCoverGenerator = Dungeon_Generator.GetComponent<FloorCoveringGeneration>();
 
         // EVEN NOW THE EVIL SEED OF WHAT YOU'VE DONE, GERMINATES WITHIN YOU!!!!1
         // (Seed generation based on what you enter in the editor)
@@ -94,6 +96,10 @@ public class GameSetup : MonoBehaviour
 
         //objects
         objectGenerator.GenerateObjectPlacements(bspController.allRooms);
+
+        //floor covering
+        floorCoverGenerator.GenerateGroundCover(bspController.allRooms);
+
 
         //map
         mapController.FogOfWar();
