@@ -193,7 +193,7 @@ public class PlayerMovement : MonoBehaviour
                 int buffAmount = collision.gameObject.GetComponent<SafeObjectBehavior>().BuffPlayer(Player_Stats.MAX_HP);
                 int tempMax = Player_Stats.MAX_HP;
                 Player_Stats.SetMaxHP(buffAmount);
-                Player_Stats.SetHP(Player_Stats.MAX_HP - tempMax);
+                Player_Stats.SetHP(Player_Stats.HP + (Player_Stats.MAX_HP - tempMax));
             }
 
             else if(objectBehavior.ObjectType == Enums.ObjectType.Shrine){

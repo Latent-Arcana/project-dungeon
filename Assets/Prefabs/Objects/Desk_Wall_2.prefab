@@ -278,8 +278,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ObjectType: 18
-  PlacementType: 0
+  PlacementType: 1
   Width: 1
   Height: 1
+  flippedSprite: {fileID: 0}
   lookStrings:
   - There doesn't appear to be anything on this desk.
