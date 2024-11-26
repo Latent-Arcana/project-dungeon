@@ -38,7 +38,8 @@ public class SubTypeEnemyEasy : RoomSubType
         {Enums.ObjectType.Candle,2},
         {Enums.ObjectType.ArmorStand,1},
         {Enums.ObjectType.Debris,2},
-        {Enums.ObjectType.Mushroom,4}
+        {Enums.ObjectType.Mushroom,4},
+        {Enums.ObjectType.Spikes,2}
 
     };
 

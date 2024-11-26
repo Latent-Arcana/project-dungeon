@@ -47,7 +47,8 @@ public class SubTypeEnemyHard : RoomSubType
         //{Enums.ObjectType.Bed,1},
         {Enums.ObjectType.TableAndChair,1},
         {Enums.ObjectType.Crates,2},
-        {Enums.ObjectType.Furnace,1}
+        {Enums.ObjectType.Furnace,1},
+        {Enums.ObjectType.Spikes,3}
     };
 
 

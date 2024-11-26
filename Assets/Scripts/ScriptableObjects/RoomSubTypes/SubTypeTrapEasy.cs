@@ -37,7 +37,8 @@ public class SubTypeTrapEasy : RoomSubType
         {Enums.ObjectType.Bookshelf,2},
         {Enums.ObjectType.Debris,3},
         {Enums.ObjectType.Crates,3},
-        {Enums.ObjectType.Mushroom,2}
+        {Enums.ObjectType.Mushroom,2},
+        {Enums.ObjectType.Spikes,2}
     };
 
 

@@ -269,10 +269,10 @@ MonoBehaviour:
   roomSubType_Dining: {fileID: 11400000, guid: c93183e6fa93d2441ab381525a4c6b43, type: 2}
   roomSubType_Armory: {fileID: 11400000, guid: 14c9d793ad7b0e04f959d3ddae867854, type: 2}
   roomSubType_Treasure: {fileID: 11400000, guid: 9cd9bb067c10e3f4a974c70598646088, type: 2}
-  roomSubType_TrapEasy: {fileID: 11400000, guid: ca4b7fd051811704481701c3c3260e77, type: 2}
-  roomSubType_TrapHard: {fileID: 11400000, guid: 16d100019332cc0469f2ae4c3ae95cc4, type: 2}
-  roomSubType_EnemyEasy: {fileID: 11400000, guid: d0c5acb591f5a84408e71ecea2c73643, type: 2}
-  roomSubType_EnemyHard: {fileID: 11400000, guid: e7d7c84eb9704484799908d15f46f97a, type: 2}
+  roomSubType_TrapEasy: {fileID: 11400000, guid: b58f1893413f5ca4d8f508628adf660e, type: 2}
+  roomSubType_TrapHard: {fileID: 11400000, guid: 8d8246f7f275f5a41bbefb412cbc5d31, type: 2}
+  roomSubType_EnemyEasy: {fileID: 11400000, guid: ee33862cd0666274bb3cee26179b9da6, type: 2}
+  roomSubType_EnemyHard: {fileID: 11400000, guid: 35f19c19db3199043846e545ec5d3e8b, type: 2}
   roomSubType_Hospital: {fileID: 11400000, guid: 3f7b8921b40dcc141bb788b06c17bdd4, type: 2}
   roomSubType_Shrine: {fileID: 11400000, guid: 2f575c71907b9e94c9fe8309393245e8, type: 2}
   portalPrefab: {fileID: 8384392175852888170, guid: 8a7448e4d1d6e944fa6044bfea670f0d, type: 3}
@@ -403,7 +403,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78a683c074be3fa46b0777e29836f879, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seed: 0
+  seed: 1980686591
   bspController: {fileID: 0}
   dangerGenerator: {fileID: 0}
   objectGenerator: {fileID: 0}

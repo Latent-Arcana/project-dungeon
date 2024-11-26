@@ -313,8 +313,6 @@ public class PlayerMovement : MonoBehaviour
         // so we check to make sure it is still existing before invoking the event to prevent error
         if (collision.gameObject.tag == "room" && collision.gameObject.GetComponentInParent<Room>() != null && player.gameObject != null)
         {
-            Dungeon_Narrator.AddDungeonNarratorText("You entered " + collision.gameObject.GetComponentInParent<Room>().name);
-
             OnRoomEnter.Invoke(this, new InputArgs
             {
                 type = "exit",
@@ -324,18 +322,6 @@ public class PlayerMovement : MonoBehaviour
 
         else if (collision.gameObject.tag == "hallway")
         {
-
-            // Vector2 checkPosition = (Vector2)player.transform.position + new Vector2(0.5f, 0.5f);
-            // Collider2D[] collision2 = Physics2D.OverlapCircleAll(checkPosition, 0.1f);
-
-            // OnRoomEnter.Invoke(this, new InputArgs
-            // {
-            //     type = "hallway",
-            //     room1Id = collision.gameObject.GetComponent<Hallway>().room1Id,
-            //     room2Id = collision.gameObject.GetComponent<Hallway>().room2Id
-            // });
-
-
             SpriteRenderer[] ar = collision.gameObject.GetComponentsInChildren<SpriteRenderer>();
             foreach (SpriteRenderer r in ar)
             {
