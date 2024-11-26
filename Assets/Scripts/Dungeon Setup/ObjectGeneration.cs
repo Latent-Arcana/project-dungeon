@@ -36,9 +36,6 @@ public class ObjectGeneration : MonoBehaviour
     private int roomsRemaining;
     private int roomsCount;
 
-
-    Dictionary<Enums.ObjectType, int> placedObjects = new Dictionary<Enums.ObjectType, int>();
-
     // This is how we're managing the count of unique instances of objects that have variants
     public ObjectCountManager objectCountManager;
 
@@ -170,6 +167,10 @@ public class ObjectGeneration : MonoBehaviour
 
         List<GameObject> roomObjects = new List<GameObject>();
 
+        if (room.roomId == 12)
+        {
+            Debug.Log("Required Objects");
+        }
         // make sure all required objects get placed
         foreach (Enums.ObjectType objectType in currentSubType.RequiredObjects)
         {
@@ -182,6 +183,11 @@ public class ObjectGeneration : MonoBehaviour
 
         // handle decor objects
         int randomItemMax = UnityEngine.Random.Range(5, 10);
+
+        if (room.roomId == 12)
+        {
+            Debug.Log("Decor Objects");
+        }
 
         for (int i = 0; i < randomItemMax; i++)
         {
@@ -215,6 +221,7 @@ public class ObjectGeneration : MonoBehaviour
 
     IEnumerator DoPlacementChecks(List<GameObject> roomObjectsOfType, Room room, RoomSubType currentRoomSubType, Enums.ObjectType objectType)
     {
+        Dictionary<Enums.ObjectType, int> placedObjects = new Dictionary<Enums.ObjectType, int>();
 
         int randomObjectIndex = UnityEngine.Random.Range(0, roomObjectsOfType.Count);
 
@@ -240,6 +247,10 @@ public class ObjectGeneration : MonoBehaviour
                 // If we can place an object at the point we selected
                 if (position != Vector3Int.zero)
                 {
+                    if (room.roomId == 12)
+                    {
+                        Debug.Log($"Attempting to place {roomObject.name} at {position}.");
+                    }
 
                     GameObject testObject = Instantiate(roomObject, position, Quaternion.identity);
 
@@ -260,17 +271,20 @@ public class ObjectGeneration : MonoBehaviour
                         // Let's do our test on the sprite to make sure it's flipped in the correct direction
                         SideWallPlacementRule sideWallPlacement = placementRule as SideWallPlacementRule;
 
-                        if(sideWallPlacement != null){
+                        if (sideWallPlacement != null)
+                        {
                             Tuple<bool, bool> leftOrRight = sideWallPlacement.LeftOrRightWall(tilemap, position, roomObjectBehavior.Width, roomObjectBehavior.Height);
 
-                            if(!leftOrRight.Item1 && leftOrRight.Item2){ // The objects are all left by default, so if we're on the right side wall we flip
-                                if(roomObjectBehavior.flippedSprite != null){
+                            if (!leftOrRight.Item1 && leftOrRight.Item2)
+                            { // The objects are all left by default, so if we're on the right side wall we flip
+                                if (roomObjectBehavior.flippedSprite != null)
+                                {
                                     testObject.GetComponent<SpriteRenderer>().sprite = roomObjectBehavior.flippedSprite;
                                 }
                             }
 
                         }
-                        
+
                         testObject.transform.parent = room.gameObject.transform.GetChild(1).transform;
 
                         // in the case that we don't have an entry for this key we just have to set it to 1 instead of ++

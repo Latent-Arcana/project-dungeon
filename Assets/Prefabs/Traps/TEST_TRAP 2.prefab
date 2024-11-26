@@ -286,4 +286,4 @@ MonoBehaviour:
   player: {fileID: 0}
   playerMovement: {fileID: 0}
   playerInRoom: 0
-  Player_Stats: {fileID: 0}
+  Player_Stats: {fileID: 11400000, guid: 49cdfbab4b8796a41af4e48e5ee7d3d5, type: 2}
