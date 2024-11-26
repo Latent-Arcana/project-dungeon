@@ -1,7 +1,7 @@
 .menu-button {
     margin-right: 0;
     margin-left: 0;
-    background-image: url("project://database/Assets/Sprites/UI%20Sprites/button-inactive_1908x105.png?fileID=2800000&guid=770883f9c761f5043941a1cf2ae51220&type=3#button-inactive_1908x105");
+    background-image: url("project://database/Assets/Sprites/UI%20Sprites/button-inactive_1528x85.png?fileID=2800000&guid=022ba9a05a03cea4ca8b7fae6612fa5b&type=3#button-inactive_1528x85");
     background-color: rgba(0, 0, 0, 0);
     border-left-color: rgba(0, 0, 0, 0);
     border-right-color: rgba(0, 0, 0, 0);
@@ -10,7 +10,7 @@
     -unity-font: url("project://database/Assets/Font/Seraphimb1.ttf?fileID=12800000&guid=3f1f980884aaaae4a87358e26cfd514b&type=3#Seraphimb1");
     -unity-font-definition: initial;
     color: rgb(255, 255, 255);
-    width: 1908px;
+    width: 1528px;
     -unity-background-scale-mode: scale-to-fit;
     margin-top: 0;
     margin-bottom: 0;
@@ -18,18 +18,18 @@
 }
 
 .menu-button:hover {
-    background-image: url("project://database/Assets/Sprites/UI%20Sprites/button-active_1908x105.png?fileID=2800000&guid=db24af8061fa47d42a98d45a2bb648d5&type=3#button-active_1908x105");
+    background-image: url("project://database/Assets/Sprites/UI%20Sprites/button-active_1528x85.png?fileID=2800000&guid=4a06f7ce58a970141a5d26d4ff746136&type=3#button-active_1528x85");
 }
 
 .menu-button:active {
-    background-image: url("project://database/Assets/Sprites/UI%20Sprites/button-clicked-1908x106.94.png?fileID=2800000&guid=090713ca51cd5d440abc2ff6f1c0737c&type=3#button-clicked-1908x106.94");
+    background-image: url("project://database/Assets/Sprites/UI%20Sprites/button-clicked-1528x85.png?fileID=2800000&guid=419ffeafacd3d1249981398e69d7629b&type=3#button-clicked-1528x85");
     color: rgb(125, 211, 208);
 }
 
 .menu-pause-button {
     margin-right: 0;
     margin-left: 0;
-    background-image: url("project://database/Assets/Sprites/UI%20Sprites/button-inactive_1528x85.png?fileID=2800000&guid=022ba9a05a03cea4ca8b7fae6612fa5b&type=3#button-inactive_1528x85");
+    background-image: url("project://database/Assets/Sprites/UI%20Sprites/button-inactive-1150x63.png?fileID=2800000&guid=94d5c3186afbe9a43be5fd263353e823&type=3#button-inactive-1150x63");
     background-color: rgba(0, 0, 0, 0);
     border-left-color: rgba(0, 0, 0, 0);
     border-right-color: rgba(0, 0, 0, 0);
@@ -42,15 +42,15 @@
     -unity-background-scale-mode: scale-to-fit;
     margin-top: 0;
     margin-bottom: 0;
-    height: auto;
+    height: 63px;
 }
 
 .menu-pause-button:hover {
-    background-image: url("project://database/Assets/Sprites/UI%20Sprites/button-active_1528x85.png?fileID=2800000&guid=4a06f7ce58a970141a5d26d4ff746136&type=3#button-active_1528x85");
+    background-image: url("project://database/Assets/Sprites/UI%20Sprites/button-hover-1150x63.png?fileID=2800000&guid=ae98b22ecad881c4bb1e39ffc1d49fab&type=3#button-hover-1150x63");
 }
 
 .menu-pause-button:active {
-    background-image: url("project://database/Assets/Sprites/UI%20Sprites/button-clicked.png?fileID=2800000&guid=fd538e44da5e6df4999af4c8926b349c&type=3#button-clicked");
+    background-image: url("project://database/Assets/Sprites/UI%20Sprites/button-clicked-1150x63.png?fileID=2800000&guid=621ffa52a0e0e674d9d80e6dc06407f7&type=3#button-clicked-1150x63");
     color: rgb(125, 211, 208);
 }
 
@@ -90,11 +90,11 @@
 
 .menu-container-pause {
     -unity-background-image-tint-color: rgb(0, 0, 0);
-    width: 70%;
+    width: 100%;
     align-items: center;
     justify-content: center;
     align-self: center;
-    height: auto;
+    height: 100%;
     margin-top: 50px;
     margin-bottom: 50px;
 }
