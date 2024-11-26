@@ -24,7 +24,7 @@
       "permanent": 0,
       "useVerb": "drink",
       "uses": 1,
-      "image": "temp_icon"
+      "image": "potion-strength"
     },
     {
       "itemID": "025",
@@ -37,7 +37,7 @@
       "permanent": 0,
       "useVerb": "drink",
       "uses": 1,
-      "image": "temp_icon"
+      "image": "potion-speed"
     },
     {
       "itemID": "012",
@@ -50,7 +50,7 @@
       "permanent": 0,
       "useVerb": "drink",
       "uses": 1,
-      "image": "temp_icon"
+      "image": "potion-adrenaline"
     },
     {
       "itemID": "013",
@@ -63,7 +63,7 @@
       "permanent": 1,
       "useVerb": "drink",
       "uses": 1,
-      "image": "temp_icon"
+      "image": "potion-stamina"
     }
   ]
 }

@@ -9,7 +9,7 @@
       "AGI": 1,
       "HP": 0,
       "AP": 0,
-      "image": "temp_icon"
+      "image": "gambeson_robe"
     },
     {
       "itemID": "004",
@@ -20,7 +20,7 @@
       "AGI": 1,
       "HP": 0,
       "AP": 1,
-      "image": "temp_icon"
+      "image": "elk_hide_armor"
     },
     {
       "itemID": "009",
@@ -31,7 +31,7 @@
       "AGI": 0,
       "HP": 2,
       "AP": 2,
-      "image": "temp_icon"
+      "image": "hauberk"
     },
     {
       "itemID": "010",
@@ -42,7 +42,7 @@
       "AGI": 0,
       "HP": 4,
       "AP": 2,
-      "image": "temp_icon"
+      "image": "plackart"
     },
     {
       "itemID": "011",
@@ -53,7 +53,7 @@
       "AGI": 0,
       "HP": 5,
       "AP": 2,
-      "image": "temp_icon"
+      "image": "laminar-plate"
     }
   ]
 }

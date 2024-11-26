@@ -42,7 +42,7 @@
       "AGI": 0,
       "HP": 0,
       "AP": 0,
-      "image": "temp_icon"
+      "image": "mace"
     },
     {
       "itemID": "008",
@@ -53,7 +53,7 @@
       "AGI": 1,
       "HP": 0,
       "AP": 0,
-      "image": "temp_icon"
+      "image": "halberd"
     }
   ]
 }

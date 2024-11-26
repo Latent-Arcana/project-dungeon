@@ -22,7 +22,7 @@
 }
 
 .menu-button:active {
-    background-image: url("project://database/Assets/Sprites/UI%20Sprites/button-clicked.png?fileID=2800000&guid=fd538e44da5e6df4999af4c8926b349c&type=3#button-clicked");
+    background-image: url("project://database/Assets/Sprites/UI%20Sprites/button-clicked-1908x106.94.png?fileID=2800000&guid=090713ca51cd5d440abc2ff6f1c0737c&type=3#button-clicked-1908x106.94");
     color: rgb(125, 211, 208);
 }
 
@@ -67,7 +67,7 @@
     -unity-font-definition: initial;
     color: rgb(255, 255, 255);
     max-width: none;
-    width: 100%;
+    width: 256px;
     -unity-background-scale-mode: scale-to-fit;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -143,6 +143,16 @@
     -unity-font: url("project://database/Assets/Font/Seraphimb1.ttf?fileID=12800000&guid=3f1f980884aaaae4a87358e26cfd514b&type=3#Seraphimb1");
 }
 
+.inventory-text-header {
+    -unity-font-definition: initial;
+    -unity-font: url("project://database/Assets/Font/Seraphimb1.ttf?fileID=12800000&guid=3f1f980884aaaae4a87358e26cfd514b&type=3#Seraphimb1");
+    font-size: 32px;
+    color: rgb(255, 255, 255);
+    -unity-text-align: upper-left;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
 .inventory-text {
     -unity-font: url("project://database/Assets/Font/Seraphimb1.ttf?fileID=12800000&guid=3f1f980884aaaae4a87358e26cfd514b&type=3#Seraphimb1");
     -unity-font-definition: initial;
@@ -160,7 +170,7 @@
 }
 
 .inventory-icon-col {
-    width: 5%;
+    width: 50px;
 }
 
 .inventory-icon-background {
@@ -176,7 +186,7 @@
 }
 
 .inventory-item-name-col {
-    width: 40%;
+    width: 300px;
     background-image: url("project://database/Assets/UI%20Toolkit/UI%20Sprites/1920x1080/item_text_border.png?fileID=2800000&guid=15cb80a8e6430204da3fe5a27c0f3f85&type=3#item_text_border");
     -unity-background-scale-mode: scale-to-fit;
     background-position: left;
@@ -184,16 +194,19 @@
 }
 
 .inventory-item-stats-col {
-    width: 20%;
+    width: 200px;
     -unity-text-align: middle-left;
 }
 
 .inventory-equip-col {
     align-self: center;
+    width: 200px;
 }
 
 .inventory-drop-col {
     align-self: center;
+    width: 200px;
+    align-items: center;
 }
 
 .inventory-row {
