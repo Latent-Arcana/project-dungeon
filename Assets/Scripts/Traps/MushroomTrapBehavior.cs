@@ -9,7 +9,7 @@ public class MushroomTrapBehavior : TrapBehavior
 
         if (spawnChance <= 0.2f && playerInRoom)
         {
-           // SpawnProjectile(projectilePrefabs[prefabChoice]);
+            SpawnProjectile(projectilePrefabs[prefabChoice]);
         }
 
         Physics2D.SyncTransforms();
@@ -127,21 +127,26 @@ public class MushroomTrapBehavior : TrapBehavior
         }
 
 
-        // Now lets's do the check to see if this spawn point is even valid
-        Vector2 checkPosition = (Vector2)spawnPosition;
-        LayerMask mask = LayerMask.GetMask("Default"); // we only care about colliding on default for now, but we should add in other layers here if needed
-        Collider2D collision = Physics2D.OverlapCircle(checkPosition, 0.1f, mask);
-
-        if (collision == null || collision.tag == "enemy")
+        for (int i = 0; i < 8; i++)
         {
-            GameObject proj = Instantiate(projectile, spawnPosition, Quaternion.identity);
-            ProjectileBehavior projectileBehavior = proj.GetComponent<ProjectileBehavior>();
-            projectileBehavior.directionOfTravel = direction;
-            projectileBehavior.trap = gameObject;
-            projectileBehavior.projectileId = 0;
-            projectileBehavior.isAtSpawn = true;
-            projectileBehavior.Player_Stats = Player_Stats;
+            // Now lets's do the check to see if this spawn point is even valid
+            Vector2 checkPosition = (Vector2)spawnPositions[i];
+            LayerMask mask = LayerMask.GetMask("Default"); // we only care about colliding on default for now, but we should add in other layers here if needed
+            Collider2D collision = Physics2D.OverlapCircle(checkPosition, 0.1f, mask);
+
+            if (collision == null || collision.tag == "enemy")
+            {
+                GameObject proj = Instantiate(projectile, spawnPositions[i], Quaternion.identity);
+                ProjectileBehavior projectileBehavior = proj.GetComponent<ProjectileBehavior>();
+                projectileBehavior.directionOfTravel = directions[i];
+                projectileBehavior.trap = gameObject;
+                projectileBehavior.projectileId = 0;
+                projectileBehavior.isAtSpawn = true;
+                projectileBehavior.Player_Stats = Player_Stats;
+            }
+
         }
+
 
         return;
     }
