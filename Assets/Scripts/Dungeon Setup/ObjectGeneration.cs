@@ -131,7 +131,7 @@ public class ObjectGeneration : MonoBehaviour
 
     }
 
-
+    // We do portal generation first so that we don't end up with a room we can't spawn portals in
     public void GeneratePortal(List<GameObject> rooms)
     {
         List<int> portalRoomIndices = new List<int>();
