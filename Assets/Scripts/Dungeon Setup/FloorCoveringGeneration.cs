@@ -64,13 +64,9 @@ public class FloorCoveringGeneration : MonoBehaviour
 
         LayerMask mask = LayerMask.GetMask("Default"); //we only care about colliding on default for now, but we should add in other layers here if needed
 
-        Collider2D collision = Physics2D.OverlapCircle((Vector2)instance.Position, 0.1f, mask);
-
-        if (collision != null && collision.tag == "object")
-        {
-            SpriteRenderer sr = cover.GetComponent<SpriteRenderer>();
-            sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 0.5f);
-        }
+        SpriteRenderer sr = cover.GetComponent<SpriteRenderer>();
+        sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 0.40f);
+        
     }
 
 
