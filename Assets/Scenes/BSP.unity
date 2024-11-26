@@ -304,6 +304,7 @@ MonoBehaviour:
   trapPrefabs:
   - {fileID: 9191118223540507927, guid: 85b6bec990b392d4b83ecaa6303ddea4, type: 3}
   - {fileID: 9191118223540507927, guid: ea770c32dd84bdc4888fa2ebe8ccd451, type: 3}
+  - {fileID: 9191118223540507927, guid: 0041833261b077445abf8685b5a3ddc8, type: 3}
 --- !u!114 &32644325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -403,7 +404,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78a683c074be3fa46b0777e29836f879, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seed: 1980686591
+  seed: 0
   bspController: {fileID: 0}
   dangerGenerator: {fileID: 0}
   objectGenerator: {fileID: 0}
