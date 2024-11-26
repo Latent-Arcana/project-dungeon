@@ -75,7 +75,7 @@ public class EnemyBehavior : MonoBehaviour
     
     }
 
-    public virtual void OnEnable()
+    public virtual void OnEnable() 
     {
         playerMovement.OnPlayerMoved += Input_OnPlayerMoved;
         playerMovement.OnRoomEnter += PlayerMovement_OnRoomEnter;
@@ -282,7 +282,7 @@ public class EnemyBehavior : MonoBehaviour
         int _playerDamageDealt = (-1 * (Player_Stats.STR + UnityEngine.Random.Range(1, 3))) + enemyStats.AP;
 
         // FACTOR IN AGI/DODGE
-        int _playerHitChance = UnityEngine.Random.Range(1, 100); // TODO: Revisit to see if we want to do -X to 100 instead of 1 to 100
+        int _playerHitChance = UnityEngine.Random.Range(1, 100);
         int _enemyHitChance = UnityEngine.Random.Range(1, 100);
 
         int _enemyHitThreshold = Player_Stats.AGI * 5;
@@ -305,7 +305,6 @@ public class EnemyBehavior : MonoBehaviour
         }
 
 
-        // TODO: QUIT PRINTING WHEN YOU DONT NEED TO AFTER ENEMY DEATH
         if (playerAttacked)
         {
 
