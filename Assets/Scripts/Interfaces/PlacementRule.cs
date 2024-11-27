@@ -135,8 +135,6 @@ public class FloorPlacementRule : PlacementRule
         // We have to check every single point on the floor to make sure it's actually floor
         for (int i = 0; i < width; ++i)
         {
-
-
             Vector3Int widthOffset = new Vector3Int(i, 0, 0);
 
             for (int j = 0; j < height; ++j)
@@ -165,7 +163,7 @@ public class FloorPlacementRule : PlacementRule
 
     public override Vector3Int GetPointInRoom(Room room, int objectWidth, int objectHeight)
     {
-        Vector3Int position = new Vector3Int(UnityEngine.Random.Range(room.x + 1, room.x + room.width - objectWidth), UnityEngine.Random.Range(room.y + 1, room.y + room.height - objectHeight), 0);
+        Vector3Int position = new Vector3Int(UnityEngine.Random.Range(room.x + 1, room.x + room.width - objectWidth), UnityEngine.Random.Range(room.y + 1, room.y + room.height - objectHeight), 0);        
 
         return position;
     }

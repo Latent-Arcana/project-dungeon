@@ -39,6 +39,7 @@ public class ObjectGeneration : MonoBehaviour
     // This is how we're managing the count of unique instances of objects that have variants
     public ObjectCountManager objectCountManager;
 
+
     public static event Action AllRoomsPlacementComplete;
     public static event Action<float> RoomComplete;
 
@@ -165,29 +166,22 @@ public class ObjectGeneration : MonoBehaviour
     public IEnumerator PopulateRoom(Room room, RoomSubType currentSubType)
     {
 
+        Dictionary<Enums.ObjectType, int> placedObjects = new Dictionary<Enums.ObjectType, int>();
+
         List<GameObject> roomObjects = new List<GameObject>();
 
-        if (room.roomId == 12)
-        {
-            Debug.Log("Required Objects");
-        }
         // make sure all required objects get placed
         foreach (Enums.ObjectType objectType in currentSubType.RequiredObjects)
         {
 
             roomObjects = objects.Where(x => x.GetComponent<ObjectBehavior>().ObjectType == objectType).ToList();
 
-            yield return StartCoroutine(DoPlacementChecks(roomObjects, room, currentSubType, objectType));
+            yield return StartCoroutine(DoPlacementChecks(roomObjects, room, currentSubType, objectType, placedObjects));
 
         }
 
         // handle decor objects
         int randomItemMax = UnityEngine.Random.Range(5, 10);
-
-        if (room.roomId == 12)
-        {
-            Debug.Log("Decor Objects");
-        }
 
         for (int i = 0; i < randomItemMax; i++)
         {
@@ -198,13 +192,17 @@ public class ObjectGeneration : MonoBehaviour
 
             roomObjects = objects.Where(x => x.GetComponent<ObjectBehavior>().ObjectType == objectType).ToList();
 
-            yield return StartCoroutine(DoPlacementChecks(roomObjects, room, currentSubType, objectType));
+            yield return StartCoroutine(DoPlacementChecks(roomObjects, room, currentSubType, objectType, placedObjects));
 
         }
 
-        roomsRemaining--;
+        Debug.Log("--------------" + room.roomId + "-----------");
 
-        //Debug.Log("a room finished its placement. There are " + roomsRemaining + " rooms left");
+        foreach(KeyValuePair<Enums.ObjectType, int> pair in placedObjects){
+            Debug.Log("Key: " + pair.Key + "  Value: " + pair.Value);
+        }
+
+        roomsRemaining--;
 
         RoomComplete?.Invoke((float)(roomsCount - roomsRemaining) / (float)roomsCount);
 
@@ -219,9 +217,8 @@ public class ObjectGeneration : MonoBehaviour
     }
 
 
-    IEnumerator DoPlacementChecks(List<GameObject> roomObjectsOfType, Room room, RoomSubType currentRoomSubType, Enums.ObjectType objectType)
+    IEnumerator DoPlacementChecks(List<GameObject> roomObjectsOfType, Room room, RoomSubType currentRoomSubType, Enums.ObjectType objectType, Dictionary<Enums.ObjectType, int> placedObjects)
     {
-        Dictionary<Enums.ObjectType, int> placedObjects = new Dictionary<Enums.ObjectType, int>();
 
         int randomObjectIndex = UnityEngine.Random.Range(0, roomObjectsOfType.Count);
 
@@ -247,10 +244,6 @@ public class ObjectGeneration : MonoBehaviour
                 // If we can place an object at the point we selected
                 if (position != Vector3Int.zero)
                 {
-                    if (room.roomId == 12)
-                    {
-                        Debug.Log($"Attempting to place {roomObject.name} at {position}.");
-                    }
 
                     GameObject testObject = Instantiate(roomObject, position, Quaternion.identity);
 
