@@ -6,7 +6,7 @@ using static BSPGeneration;
 [System.Serializable]
 public class Room : MonoBehaviour
 {
-
+    [SerializeField]
     private int _x, _y, _width, _height, _originX, _originY, _roomId;
 
     GameObject _roomObject;
