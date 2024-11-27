@@ -136,6 +136,7 @@ public class FloorPlacementRule : PlacementRule
         for (int i = 0; i < width; ++i)
         {
 
+
             Vector3Int widthOffset = new Vector3Int(i, 0, 0);
 
             for (int j = 0; j < height; ++j)

@@ -267,7 +267,7 @@ MonoBehaviour:
   roomSubType_Bedroom: {fileID: 11400000, guid: dfabc53f13983894db78db9224012230, type: 2}
   roomSubType_Library: {fileID: 11400000, guid: bae9291ed53d58b4ea6a59fa93e6a1d3, type: 2}
   roomSubType_Dining: {fileID: 11400000, guid: c93183e6fa93d2441ab381525a4c6b43, type: 2}
-  roomSubType_Armory: {fileID: 11400000, guid: 14c9d793ad7b0e04f959d3ddae867854, type: 2}
+  roomSubType_Armory: {fileID: 11400000, guid: 90637d01949a89242a2931f710606718, type: 2}
   roomSubType_Treasure: {fileID: 11400000, guid: 9cd9bb067c10e3f4a974c70598646088, type: 2}
   roomSubType_TrapEasy: {fileID: 11400000, guid: b58f1893413f5ca4d8f508628adf660e, type: 2}
   roomSubType_TrapHard: {fileID: 11400000, guid: 8d8246f7f275f5a41bbefb412cbc5d31, type: 2}

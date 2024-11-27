@@ -75,33 +75,49 @@ public class ProjectileBehavior : EnemyBehavior
     {
         Physics2D.SyncTransforms();
 
-        Vector3 targetPosition = directionOfTravel + gameObject.transform.position;
+        // Check current projectile's position (after player has already moved, maybe on top of us?)
+        Collider2D coll = CheckPosition(gameObject.transform.position);
 
-        Collider2D coll = CheckPosition(targetPosition);
-
-        if (coll == null)
-        {
-            gameObject.transform.position += directionOfTravel;
-            Physics2D.SyncTransforms();
-        }
-
-        else if (coll.name == "Player")
+        if (coll != null && coll.name == "Player")
         {
             Attack(playerAttacked: false);
             isDestroyed = true;
             Destroy(gameObject);
         }
 
-        else if (coll.tag == "projectile")
-        {
-            isDestroyed = true;
-            Destroy(gameObject);
-        }
-
+        // otherwise let's continue and check the position we're trying to move to
         else
         {
-            Die();
+            Vector3 targetPosition = directionOfTravel + gameObject.transform.position;
+
+            coll = CheckPosition(targetPosition);
+
+            if (coll == null)
+            {
+                gameObject.transform.position += directionOfTravel;
+                Physics2D.SyncTransforms();
+            }
+
+            else if (coll.name == "Player")
+            {
+                Attack(playerAttacked: false);
+                isDestroyed = true;
+                Destroy(gameObject);
+            }
+
+            else if (coll.tag == "projectile")
+            {
+                isDestroyed = true;
+                Destroy(gameObject);
+            }
+
+            else
+            {
+                Die();
+            }
         }
+
+
 
     }
 
