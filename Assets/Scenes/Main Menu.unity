@@ -368,10 +368,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: f7f206a5337464844b44955228165480, type: 2}
-  audioClip_ButtonOpen: {fileID: 8300000, guid: d1b1a40d7d5eceb42a064283e0f9fd2d, type: 3}
-  audioClip_ButtonClose: {fileID: 8300000, guid: 408034fa19fbe8a41b8a056c0f161d8a, type: 3}
-  audioClip_SelectSlider: {fileID: 8300000, guid: 12ff2a0fc20c9134e91a0c5581ee68ed, type: 3}
-  audioClip_PlayGame: {fileID: 8300000, guid: f076cf1ebaaee284aa3afc500813b8c6, type: 3}
   Player_Stats: {fileID: 11400000, guid: 49cdfbab4b8796a41af4e48e5ee7d3d5, type: 2}
   Player_Inventory: {fileID: 11400000, guid: 28215ae7375c4ab42862dc3518774c71, type: 2}
 --- !u!1660057539 &9223372036854775807
