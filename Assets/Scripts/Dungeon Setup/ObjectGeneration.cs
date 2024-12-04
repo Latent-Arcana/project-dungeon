@@ -196,11 +196,6 @@ public class ObjectGeneration : MonoBehaviour
 
         }
 
-        Debug.Log("--------------" + room.roomId + "-----------");
-
-        foreach(KeyValuePair<Enums.ObjectType, int> pair in placedObjects){
-            Debug.Log("Key: " + pair.Key + "  Value: " + pair.Value);
-        }
 
         roomsRemaining--;
 
