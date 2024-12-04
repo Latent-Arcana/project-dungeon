@@ -174,7 +174,8 @@ public class PlayerMovement : MonoBehaviour
                         container.RemoveItem(item);
                     }
                 }
-
+                //check to see if the sprite needs to be swapped to open-empty or open-full
+                container.SwapSprite();
             }
 
             ObjectBehavior objectBehavior = collision.gameObject.GetComponent<ObjectBehavior>();
@@ -280,6 +281,9 @@ public class PlayerMovement : MonoBehaviour
             EnemyCorpseBehavior corpse = collision.gameObject.GetComponent<EnemyCorpseBehavior>();
             if (corpse)
             {
+
+                //if we want to sprite swap for full/empty enemy corpses like we do with chests, do it around here
+
                 if (corpse.items.Count == 0)
                 {
                     Dungeon_Narrator.AddDungeonNarratorText("There's nothing on this body...");

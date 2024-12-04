@@ -117,10 +117,9 @@ GameObject:
   - component: {fileID: 3354927704216351639}
   - component: {fileID: 8965686453867737625}
   - component: {fileID: 887201924762341734}
-  - component: {fileID: -3746593738110737672}
-  - component: {fileID: -2318600335106797390}
+  - component: {fileID: 3138575990139566628}
   m_Layer: 0
-  m_Name: Chest_Front_2
+  m_Name: Debris_Small_2
   m_TagString: object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -181,9 +180,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -293510981
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 7571ca3b26f29e34a816e19346bd3a4d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d95b319f9c2f8f249bdb588fe2d1b902, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -266,21 +265,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &-3746593738110737672
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7557685827397718423}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa5d3ba2b7d82e74babbf9b713e26f81, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxItemCount: 2
-  items: []
---- !u!114 &-2318600335106797390
+--- !u!114 &3138575990139566628
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -292,11 +277,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99c1cc0f00e86b945b9951b3d91d54d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RoomTypes: 00000000
-  RoomSubTypes: 01000000
-  ObjectType: 4
+  ObjectType: 3
   PlacementType: 0
   Width: 1
   Height: 1
+  flippedSprite: {fileID: 0}
   lookStrings:
   - NOT IMPLEMENTED
