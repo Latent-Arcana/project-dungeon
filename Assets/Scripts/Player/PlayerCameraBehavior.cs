@@ -16,6 +16,12 @@ public class PlayerCameraBehavior : MonoBehaviour
     private Camera mapCamera;
     private Camera mainCamera;
 
+    [SerializeField]
+    public float xOffset;
+
+    [SerializeField]
+    public float yOffset;
+
 
     void Awake()
     {
@@ -61,8 +67,8 @@ public class PlayerCameraBehavior : MonoBehaviour
     {
         if (_CameraFollowPlayer)
         {
-            float playerX = player.transform.position.x;
-            float playerY = player.transform.position.y;
+            float playerX = player.transform.position.x + xOffset;
+            float playerY = player.transform.position.y + yOffset;
             float cameraZ = this.gameObject.transform.position.z;
 
             this.gameObject.transform.position = new Vector3(playerX, playerY, cameraZ);

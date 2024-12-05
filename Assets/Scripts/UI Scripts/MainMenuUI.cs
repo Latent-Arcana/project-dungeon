@@ -211,7 +211,6 @@ public class MainMenuUI : MonoBehaviour
 
     private void SetFullScreen(ChangeEvent<bool> evt)
     {
-
         ops.screenOptions.fullScreen = evt.newValue;
         Screen.SetResolution(Screen.width, Screen.height, evt.newValue);
     }

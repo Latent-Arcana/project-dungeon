@@ -700,6 +700,8 @@ MonoBehaviour:
   _CameraFollowPlayer: 1
   _PlayerCameraZoom: 1
   input: {fileID: 0}
+  xOffset: 4
+  yOffset: 0
 --- !u!1 &613920989
 GameObject:
   m_ObjectHideFlags: 0
