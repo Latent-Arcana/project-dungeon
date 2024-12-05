@@ -94,4 +94,13 @@ public static class Enums
         Agility = 3
     }
 
+    public enum WeaponType{
+        LightSlash,
+        HeavySlash,
+        HeavyBlunt,
+        HeavySpecial,
+        LightSpecial,
+        MiscSpecial
+    }
+
 }

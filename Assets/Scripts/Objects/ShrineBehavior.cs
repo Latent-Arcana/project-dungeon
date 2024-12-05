@@ -24,16 +24,20 @@ public class ShrineBehavior : MonoBehaviour
             case Enums.ShrineType.Strength:
 
                 Player_Stats.SetSTR(Player_Stats.STR + 1);
+                DungeonNarrator.Dungeon_Narrator.AddDungeonNarratorText("Val-gro-dal grants you strength.");
 
                 break;
 
             case Enums.ShrineType.Speed:
                 Player_Stats.SetSPD(Player_Stats.SPD + 1);
+                DungeonNarrator.Dungeon_Narrator.AddDungeonNarratorText("Zixithisus grants you speed.");
+
 
                 break;
 
             case Enums.ShrineType.Agility:
                 Player_Stats.SetAGI(Player_Stats.AGI + 1);
+                DungeonNarrator.Dungeon_Narrator.AddDungeonNarratorText("Al'qunaq grants you agility.");
 
                 break;
         }

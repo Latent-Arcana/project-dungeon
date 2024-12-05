@@ -9,8 +9,8 @@ public class MushroomProjectileBehavior : ProjectileBehavior
 
     public override void Attack(bool playerAttacked)
     {
-        Player_Stats.SetHP(Player_Stats.HP - 2);
-        Dungeon_Narrator.AddDungeonNarratorText($"The electric bolt shocked you for 2 damage.");
+        Player_Stats.SetHP(Player_Stats.HP - 3);
+        Dungeon_Narrator.AddDungeonNarratorText($"The mushroom's toxic gas chokes you for 3 damage.");
     }
 
 }

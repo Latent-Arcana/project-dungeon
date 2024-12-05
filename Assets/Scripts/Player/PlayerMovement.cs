@@ -1,9 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 using static BSPGeneration;
 using static DungeonNarrator;
 using UnityEngine.SceneManagement;
@@ -16,6 +14,13 @@ public class PlayerMovement : MonoBehaviour
     public PlayerCameraBehavior playerCameraBehavior;
 
     public InputController input;
+
+    public event EventHandler<StatBuffArgs> BuffStatsEvent;
+
+    public class StatBuffArgs : EventArgs
+    {
+        public Enums.ShrineType buffType;
+    }
 
     public event EventHandler<InputArgs> OnRoomEnter;
 
@@ -187,8 +192,9 @@ public class PlayerMovement : MonoBehaviour
                 Player_Stats.SetHP(healAmount);
             }
 
-            else if(objectBehavior.ObjectType == Enums.ObjectType.Bed){
-                
+            else if (objectBehavior.ObjectType == Enums.ObjectType.Bed)
+            {
+
                 player.transform.position += (Vector3)direction;
 
                 int buffAmount = collision.gameObject.GetComponent<SafeObjectBehavior>().BuffPlayer(Player_Stats.MAX_HP);
@@ -197,9 +203,12 @@ public class PlayerMovement : MonoBehaviour
                 Player_Stats.SetHP(Player_Stats.HP + (Player_Stats.MAX_HP - tempMax));
             }
 
-            else if(objectBehavior.ObjectType == Enums.ObjectType.Shrine){
+            else if (objectBehavior.ObjectType == Enums.ObjectType.Shrine)
+            {
                 ShrineBehavior shrineBehavior = collision.gameObject.GetComponent<ShrineBehavior>();
 
+                BuffStatsEvent.Invoke(this, new StatBuffArgs { buffType = shrineBehavior.shrineType });
+                
                 shrineBehavior.Bless(Player_Stats);
             }
 
