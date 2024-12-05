@@ -7,7 +7,7 @@ public class Weapon : Item
 {
     [Header("Weapon Properties")]
     public int AP;
-    public string useVerb;
+    public WeaponType weaponType;
 }
 
 [Serializable]
@@ -23,5 +23,5 @@ public class WeaponData
     public int AGI;
     public int HP;
     public int AP;
-    public string useVerb; 
+    public string weaponType;
 }

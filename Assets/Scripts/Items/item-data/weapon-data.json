@@ -9,6 +9,7 @@
       "AGI": 0,
       "HP": 0,
       "AP": 0,
+      "weaponType": "LightSlash",
       "image": "sabre"
     },
     {
@@ -20,6 +21,7 @@
       "AGI": 0,
       "HP": 0,
       "AP": 0,
+      "weaponType": "HeavySlash",
       "image": "battle-axe"
     },
     {
@@ -31,6 +33,7 @@
       "AGI": 1,
       "HP": 0,
       "AP": 0,
+      "weaponType": "LightSlash",
       "image": "falchion"
     },
     {
@@ -42,6 +45,7 @@
       "AGI": 0,
       "HP": 0,
       "AP": 0,
+      "weaponType": "HeavyBlunt",
       "image": "mace"
     },
     {
@@ -53,6 +57,7 @@
       "AGI": 1,
       "HP": 0,
       "AP": 0,
+      "weaponType": "HeavySlash",
       "image": "halberd"
     }
   ]

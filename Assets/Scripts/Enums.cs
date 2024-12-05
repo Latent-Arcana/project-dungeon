@@ -95,12 +95,13 @@ public static class Enums
     }
 
     public enum WeaponType{
+        Default,
         LightSlash,
         HeavySlash,
         HeavyBlunt,
         HeavySpecial,
         LightSpecial,
-        MiscSpecial
+        MiscSpecial,
     }
 
 }

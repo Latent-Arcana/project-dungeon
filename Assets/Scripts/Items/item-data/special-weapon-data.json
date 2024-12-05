@@ -9,6 +9,7 @@
       "AGI": -5,
       "HP": 0,
       "AP": 0,
+      "weaponType": "HeavySlash",
       "image": "the-slayer-of-dragons"
     },
     {
@@ -20,6 +21,7 @@
       "AGI": 1,
       "HP": 0,
       "AP": 1,
+      "weaponType": "HeavySlash",
       "image": "the-almighty-doctrina"
     },
     {
@@ -31,6 +33,7 @@
       "AGI": 0,
       "HP": 0,
       "AP": 0,
+      "weaponType": "LightSlash",
       "image": "the-teeth-that-bite-back"
     },
     {
@@ -42,6 +45,7 @@
       "AGI": 2,
       "HP": 0,
       "AP": 0,
+      "weaponType": "LightSlash",
       "image": "the-honours-lament"
     },
     {
@@ -53,6 +57,7 @@
       "AGI": 6,
       "HP": 0,
       "AP": 0,
+      "weaponType": "MiscSpecial",
       "image": "the-left-hook-right-hook"
     }
   ]

@@ -245,7 +245,19 @@ public class ItemLoader : MonoBehaviour
             weapon.AGI = data.AGI;
             weapon.SPD = data.SPD;
             weapon.STR = data.STR;
-            weapon.useVerb = data.useVerb;
+            
+            // are you confused yet?
+            weapon.weaponType = data.weaponType switch
+            {
+                "HeavySlash" => Enums.WeaponType.HeavySlash,
+                "LightSlash" => Enums.WeaponType.LightSlash,
+                "HeavyBlunt" => Enums.WeaponType.HeavyBlunt,
+                "HeavySpecial" => Enums.WeaponType.HeavySpecial,
+                "LightSpecial" => Enums.WeaponType.LightSpecial,
+                "MiscSpecial" => Enums.WeaponType.MiscSpecial,
+                _ => Enums.WeaponType.Default,
+            };
+
             weapon.HP = data.HP;
             weapon.AP = data.AP;
             weapon.type = Enums.ItemType.Weapon;

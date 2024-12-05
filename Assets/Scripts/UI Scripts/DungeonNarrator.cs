@@ -155,6 +155,13 @@ public class DungeonNarrator : MonoBehaviour
     }
 
     /// <summary>
+    /// Called to enable unique logic based on the weapons that are being used during combat
+    /// </summary>
+    public void AddWeaponText(Enums.WeaponType weaponType, Enums.ItemType itemType){
+
+    }
+
+    /// <summary>
     /// Called when in the Map menu, which does not fully cover the Dungeon Narrator
     /// </summary>
     public void EnableDungeonNarrator()
