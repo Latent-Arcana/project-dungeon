@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using static Enums;
 
@@ -71,22 +72,25 @@ public class ContainerGeneration : MonoBehaviour
                 foreach (LootItem lootItem in loot)
                 {
 
-                   // Debug.Log(lootItem.itemName + " has range (" + lootItem.minValue + "," + lootItem.maxValue + ") and loot roll is " + lootRoll);
+                    // Debug.Log(lootItem.itemName + " has range (" + lootItem.minValue + "," + lootItem.maxValue + ") and loot roll is " + lootRoll);
 
                     if (lootItem.minValue <= lootRoll && lootItem.maxValue >= lootRoll)
                     {
                         Item item = itemsDatabase.Where(x => x.itemID == lootItem.itemID).First();
 
-                       // Debug.Log("you rolled a " + lootRoll + " and got a " + lootItem.itemName + " which has min and max range of (" + lootItem.minValue + "," + lootItem.maxValue + ") and an ID of " + lootItem.itemID);
+                       // Should remove duplicates so we don't have a bunch of the same thing every time 
 
-                        resultItems.Add(item);
+                        if (!resultItems.Contains(item))
+                        {
+                            resultItems.Add(item); 
+                        }
 
                         currentCount++;
                     }
 
                     else
                     {
-                       // Debug.Log(lootRoll + " is not between (" + lootItem.minValue + "," + lootItem.maxValue + ")");
+                        // Debug.Log(lootRoll + " is not between (" + lootItem.minValue + "," + lootItem.maxValue + ")");
                     }
                 }
             }
