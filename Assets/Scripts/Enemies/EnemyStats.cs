@@ -1,9 +1,9 @@
 public class EnemyStats
 {
-    protected string _type;
+    protected Enums.EnemyType _type;
     protected int _HP, _SPD, _AGI, _STR, _AP;
 
-    public string EnemyType
+    public Enums.EnemyType EnemyType
     {
         get { return _type; }
         set { _type = value; }
@@ -40,7 +40,7 @@ public class EnemyStats
     }
 
 
-    public EnemyStats(string type, int HP, int SPD, int AGI, int STR, int AP)
+    public EnemyStats(Enums.EnemyType type, int HP, int SPD, int AGI, int STR, int AP)
     {
         _type = type;
         _HP = HP;

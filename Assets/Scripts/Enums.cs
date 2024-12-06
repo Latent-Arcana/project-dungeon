@@ -104,4 +104,12 @@ public static class Enums
         MiscSpecial,
     }
 
+    public enum EnemyType {
+        Skeleton,
+        Kobold,
+        Goblin,
+        Bugbear,
+        Spirit
+    }
+
 }

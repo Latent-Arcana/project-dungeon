@@ -18,6 +18,7 @@ public class EnemyBehavior : MonoBehaviour
     public PlayerStatsManager Player_Stats;
     protected string type;
     private PlayerMovement playerMovement;
+    private PlayerInventory playerInventory;
     protected InputController input;
     protected DungeonNarrator dungeonNarrator;
     public int room;
@@ -72,10 +73,12 @@ public class EnemyBehavior : MonoBehaviour
 
         currentRoom = room;
         standingOnCorpse = false;
-    
+
+        playerInventory = GameObject.Find("Player").GetComponent<PlayerInventory>();
+
     }
 
-    public virtual void OnEnable() 
+    public virtual void OnEnable()
     {
         playerMovement.OnPlayerMoved += Input_OnPlayerMoved;
         playerMovement.OnRoomEnter += PlayerMovement_OnRoomEnter;
@@ -163,7 +166,7 @@ public class EnemyBehavior : MonoBehaviour
 
     public virtual void AssignStats()
     {
-        enemyStats = new EnemyStats("skeleton", 5, 1, 2, 1, 1);
+        enemyStats = new EnemyStats(Enums.EnemyType.Skeleton, 5, 1, 2, 1, 1);
     }
 
     public virtual void Move(Vector3 currentPlayerPosition)
@@ -290,7 +293,6 @@ public class EnemyBehavior : MonoBehaviour
 
         if (_playerHitChance <= _playerHitThreshold)
         {
-            Debug.Log($"the player missed, after rolling a {_playerHitChance} against an AGI threshold of {_playerHitThreshold}");
             // PLAYER MISSED ENEMY
             playerMissed = true;
             Dungeon_Narrator.AddDungeonNarratorText($"The {enemyStats.EnemyType} dodged your attack!");
@@ -298,7 +300,6 @@ public class EnemyBehavior : MonoBehaviour
 
         if (_enemyHitChance <= _enemyHitThreshold)
         {
-            Debug.Log($"the enemy missed, after rolling a {_enemyHitChance} against an AGI threshold of {_enemyHitThreshold}");
             // ENEMY MISSED PLAYER
             enemyMissed = true;
             Dungeon_Narrator.AddDungeonNarratorText("You dodged the enemy's attack!");
@@ -307,6 +308,16 @@ public class EnemyBehavior : MonoBehaviour
 
         if (playerAttacked)
         {
+
+            // Set up the player weapon information so we can print the right text later
+            int playerWeaponIndex = playerInventory.GetEquippedWeapon();
+            Enums.WeaponType playerWeaponType = Enums.WeaponType.Default;
+
+            if (playerWeaponIndex >= 0)
+            {
+                Weapon playerWeapon = playerInventory.inventory.items[playerWeaponIndex] as Weapon;
+                playerWeaponType = playerWeapon.weaponType;
+            }
 
             // if the enemy attacks first
             if (enemyStats.SPD > Player_Stats.SPD)
@@ -323,14 +334,15 @@ public class EnemyBehavior : MonoBehaviour
                     // if the enemy was reduced to 0 HP, they die
                     if (enemyStats.HP <= 0)
                     {
-                        Dungeon_Narrator.AddDungeonNarratorText($"You attacked the {enemyStats.EnemyType} for {Mathf.Abs(_playerDamageDealt)} damage");
+                        Dungeon_Narrator.AddPlayerAttackText(playerWeaponType, enemyStats.EnemyType, Mathf.Abs(_playerDamageDealt));
                         Die();
                     }
 
                     else
                     {
-                        Dungeon_Narrator.AddDungeonNarratorText($"The {enemyStats.EnemyType} attacked you for {Mathf.Abs(_enemyDamageDealt)} damage.");
-                        Dungeon_Narrator.AddDungeonNarratorText($"You attacked the {enemyStats.EnemyType} for {Mathf.Abs(_playerDamageDealt)} damage");
+                        Dungeon_Narrator.AddEnemyAttackText(enemyStats.EnemyType, Mathf.Abs(_enemyDamageDealt));
+                        Dungeon_Narrator.AddPlayerAttackText(playerWeaponType, enemyStats.EnemyType, Mathf.Abs(_playerDamageDealt));
+
                     }
                 }
 
@@ -347,21 +359,20 @@ public class EnemyBehavior : MonoBehaviour
                     // if the enemy was reduced to 0 HP, they die
                     if (enemyStats.HP <= 0)
                     {
-                        Dungeon_Narrator.AddDungeonNarratorText($"You attacked the {enemyStats.EnemyType} for {Mathf.Abs(_playerDamageDealt)} damage");
+                        Dungeon_Narrator.AddPlayerAttackText(playerWeaponType, enemyStats.EnemyType, Mathf.Abs(_playerDamageDealt));
                         Die();
                     }
 
                     else
                     {
-                        Dungeon_Narrator.AddDungeonNarratorText($"You attacked the {enemyStats.EnemyType} for {Mathf.Abs(_playerDamageDealt)} damage");
-
+                        Dungeon_Narrator.AddPlayerAttackText(playerWeaponType, enemyStats.EnemyType, Mathf.Abs(_playerDamageDealt));
                     }
                 }
 
                 if (!enemyMissed && behaviorState != BehaviorState.Dead)
                 {
                     Player_Stats.SetHP(Player_Stats.HP + _enemyDamageDealt);
-                    Dungeon_Narrator.AddDungeonNarratorText($"The {enemyStats.EnemyType} attacked you for {Mathf.Abs(_enemyDamageDealt)} damage.");
+                    Dungeon_Narrator.AddEnemyAttackText(enemyStats.EnemyType, Mathf.Abs(_enemyDamageDealt));
 
                 }
             }
@@ -372,7 +383,7 @@ public class EnemyBehavior : MonoBehaviour
         {
             if (!enemyMissed)
             {
-                Dungeon_Narrator.AddDungeonNarratorText($"The {enemyStats.EnemyType} attacked you for {Mathf.Abs(_enemyDamageDealt)} damage.");
+                Dungeon_Narrator.AddEnemyAttackText(enemyStats.EnemyType, Mathf.Abs(_enemyDamageDealt));
                 Player_Stats.SetHP(Player_Stats.HP + _enemyDamageDealt);
             }
 

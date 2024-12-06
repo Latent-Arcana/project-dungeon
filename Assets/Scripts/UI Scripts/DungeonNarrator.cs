@@ -157,7 +157,82 @@ public class DungeonNarrator : MonoBehaviour
     /// <summary>
     /// Called to enable unique logic based on the weapons that are being used during combat
     /// </summary>
-    public void AddWeaponText(Enums.WeaponType weaponType, Enums.ItemType itemType){
+    public void AddPlayerAttackText(Enums.WeaponType weaponType, Enums.EnemyType enemyType, int damageDealt)
+    {
+
+        string damageVerb;
+        float damageVerbChoice = UnityEngine.Random.value;
+
+        switch (weaponType)
+        {
+            case Enums.WeaponType.Default:
+                damageVerb = "attack";
+                break;
+            case Enums.WeaponType.HeavySlash:
+                damageVerb = damageVerbChoice > 0.5f ? "slash" : "cut";
+                break;
+            case Enums.WeaponType.HeavyBlunt:
+                damageVerb = damageVerbChoice > 0.5f ? "bludgeon" : "bash";
+                break;
+            case Enums.WeaponType.LightSlash:
+                damageVerb = damageVerbChoice > 0.5f ? "slice" : "lacerate";
+                break;
+            case Enums.WeaponType.HeavySpecial:
+                damageVerb = damageVerbChoice > 0.5f ? "cleave" : "split open";
+                break;
+            case Enums.WeaponType.LightSpecial:
+                damageVerb = damageVerbChoice > 0.5f ? "stab" : "puncture";
+                break;
+            case Enums.WeaponType.MiscSpecial:
+                damageVerb = damageVerbChoice > 0.5f ? "jab" : "punch";
+                break;
+            default:
+                damageVerb = "attack";
+                break;
+        }
+
+
+        AddDungeonNarratorText($"You {damageVerb} the {enemyType} for {damageDealt} points of damage.");
+    }
+
+    public void AddEnemyAttackText(Enums.EnemyType enemyType, int damageDealt)
+    {
+
+        string damageVerb, enemyWeaponName;
+        float damageVerbChoice = UnityEngine.Random.value;
+
+        switch (enemyType)
+        {
+            case Enums.EnemyType.Skeleton:
+                damageVerb = damageVerbChoice > 0.5f ? "jabs" : "skewers";
+                enemyWeaponName = "rusty spear";
+                break;
+            case Enums.EnemyType.Kobold:
+                damageVerb = damageVerbChoice > 0.5f ? "pokes" : "bites";
+                enemyWeaponName = damageVerbChoice > 0.5f ? "shoddy dagger" : "jagged teeth";
+                break;
+            case Enums.EnemyType.Goblin:
+                damageVerb = damageVerbChoice > 0.5f ? "cuts" : "grazes";
+                enemyWeaponName = "cracked scimitar";
+
+                break;
+            case Enums.EnemyType.Bugbear:
+                damageVerb = damageVerbChoice > 0.5f ? "gores" : "scratches";
+                enemyWeaponName = damageVerbChoice > 0.5f ? "hulking cleaver" : "sharp claws";
+
+                break;
+            case Enums.EnemyType.Spirit:
+                damageVerb = damageVerbChoice > 0.5f ? "saps" : "frightens";
+                enemyWeaponName = damageVerbChoice > 0.5f ? "spectral claws" : "horrible visage";
+
+                break;
+            default:
+                damageVerb = "attacks";
+                enemyWeaponName = "weapon";
+                break;
+        }
+
+        AddDungeonNarratorText($"The {enemyType} {damageVerb} you with its {enemyWeaponName} for {damageDealt} points of damage.");
 
     }
 
