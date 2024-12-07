@@ -99,7 +99,7 @@ public class GhostProjectileBehavior : ProjectileBehavior
     {
         if (awake)
         {
-            Player_Stats.SetHP(Player_Stats.HP - 3);
+            Player_Stats.SetHP(Player_Stats.HP - 3, sourceObject: gameObject);
             Dungeon_Narrator.AddDungeonNarratorText($"The ghost moves through you, dealing 3 points of damage.");
         }
 

@@ -153,7 +153,7 @@ public class PlayerInventory : MonoBehaviour
         }
         else
         {
-            Player_Stats.SetHP(item.HP + Player_Stats.HP);
+            Player_Stats.SetHP(item.HP + Player_Stats.HP, sourceObject: gameObject);
 
         }
 

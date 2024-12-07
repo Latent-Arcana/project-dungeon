@@ -97,11 +97,16 @@ public class PlayerStatsManager : ScriptableObject
         _AP = BASE_AP;
     }
 
-    public void SetHP(int newValue)
+    public void SetHP(int newValue, GameObject sourceObject)
     {
         int temp = _HP;
         _HP = newValue;
         OnHealthChanged.Invoke(this, new Stats_Args { newValue = newValue, oldValue = temp });
+
+        // In this case we know the player is about to die
+        if(newValue <= 0){
+            DungeonNarrator.Dungeon_Narrator.AddPlayerDeathText(sourceObject);
+        }
     }
 
     public void SetAGI(int newValue)

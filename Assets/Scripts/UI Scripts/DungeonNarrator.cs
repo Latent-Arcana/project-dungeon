@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.UI;
@@ -155,7 +156,7 @@ public class DungeonNarrator : MonoBehaviour
     }
 
     /// <summary>
-    /// Called to enable unique logic based on the weapons that are being used during combat
+    /// Called to enable unique logic for combat text based on the weapons that are being used during combat
     /// </summary>
     public void AddPlayerAttackText(Enums.WeaponType weaponType, Enums.EnemyType enemyType, int damageDealt)
     {
@@ -195,6 +196,9 @@ public class DungeonNarrator : MonoBehaviour
         AddDungeonNarratorText($"You {damageVerb} the {enemyType} for {damageDealt} points of damage.");
     }
 
+    /// <summary>
+    /// Called to enable unique logic for combat text based on the weapons that are being used during combat
+    /// </summary>
     public void AddEnemyAttackText(Enums.EnemyType enemyType, int damageDealt)
     {
 
@@ -236,6 +240,85 @@ public class DungeonNarrator : MonoBehaviour
 
     }
 
+
+    /// <summary>
+    /// Take in a source object to determine what type of death the player experienced. Print text based on what killed them.
+    /// </summary>
+    /// <param name="sourceObject"></param>
+    public void AddPlayerDeathText(GameObject sourceObject)
+    {
+
+        ObjectBehavior objectData = sourceObject.GetComponent<ObjectBehavior>();
+        EnemyBehavior enemyData = sourceObject.GetComponent<EnemyBehavior>();
+        ProjectileBehavior projectileData = sourceObject.GetComponent<ProjectileBehavior>();
+
+        if (objectData != null)
+        {
+            if (objectData.ObjectType == Enums.ObjectType.Spikes)
+            {
+                AddDungeonNarratorText($"You were impaled by the spikes. You die.");
+            }
+            else
+            {
+                AddDungeonNarratorText($"You were killed by: {objectData.ObjectType}");
+            }
+        }
+
+        else if (enemyData != null)
+        {
+            switch (enemyData.enemyStats.EnemyType)
+            {
+                case Enums.EnemyType.Kobold:
+                    AddDungeonNarratorText($"You were torn apart by the kobold.");
+                    break;
+                case Enums.EnemyType.Goblin:
+                    AddDungeonNarratorText($"The goblin fatally stabbed you.");
+                    break;
+                case Enums.EnemyType.Bugbear:
+                    AddDungeonNarratorText($"The bugbear struck you down.");
+                    break;
+                case Enums.EnemyType.Spirit:
+                    AddDungeonNarratorText($"The spirit sapped your life away.");
+                    break;
+                case Enums.EnemyType.Skeleton:
+                    AddDungeonNarratorText($"The skeleton cut you down.");
+                    break;
+
+                default:
+                    AddDungeonNarratorText($"The {enemyData.enemyStats.EnemyType} struck you down.");
+                    break;
+            }
+        }
+
+        else if (projectileData != null)
+        {
+            GhostProjectileBehavior ghostProjectileData = projectileData as GhostProjectileBehavior;
+            MushroomProjectileBehavior mushroomProjectileData = projectileData as MushroomProjectileBehavior;
+            TeslaProjectileBehavior teslaProjectileData = projectileData as TeslaProjectileBehavior;
+
+            if (ghostProjectileData != null)
+            {
+                AddDungeonNarratorText($"The spirit sapped your life away.");
+            }
+
+            else if (mushroomProjectileData != null)
+            {
+                AddDungeonNarratorText($"You choke to death on the mushroom's toxic gas.");
+
+            }
+            else if (teslaProjectileData != null)
+            {
+                AddDungeonNarratorText($"You were shocked to death by the electric bolt.");
+
+            }
+            else
+            {
+                AddDungeonNarratorText($"You were killed by: {projectileData.gameObject.name}");
+            }
+
+        }
+
+    }
     /// <summary>
     /// Called when in the Map menu, which does not fully cover the Dungeon Narrator
     /// </summary>
