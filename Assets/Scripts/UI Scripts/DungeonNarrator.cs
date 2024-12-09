@@ -163,6 +163,7 @@ public class DungeonNarrator : MonoBehaviour
 
         string damageVerb;
         float damageVerbChoice = UnityEngine.Random.value;
+        string pointsText = damageDealt == 1 ? "point" : "points";
 
         switch (weaponType)
         {
@@ -193,7 +194,7 @@ public class DungeonNarrator : MonoBehaviour
         }
 
 
-        AddDungeonNarratorText($"You {damageVerb} the {enemyType} for {damageDealt} points of damage.");
+        AddDungeonNarratorText($"You {damageVerb} the {enemyType} for {damageDealt} {pointsText} of damage.");
     }
 
     /// <summary>
@@ -204,6 +205,8 @@ public class DungeonNarrator : MonoBehaviour
 
         string damageVerb, enemyWeaponName;
         float damageVerbChoice = UnityEngine.Random.value;
+
+        string pointsText = damageDealt == 1 ? "point" : "points";
 
         switch (enemyType)
         {
@@ -236,10 +239,9 @@ public class DungeonNarrator : MonoBehaviour
                 break;
         }
 
-        AddDungeonNarratorText($"The {enemyType} {damageVerb} you with its {enemyWeaponName} for {damageDealt} points of damage.");
+        AddDungeonNarratorText($"The {enemyType} {damageVerb} you with its {enemyWeaponName} for {damageDealt} {pointsText} of damage.");
 
     }
-
 
     /// <summary>
     /// Take in a source object to determine what type of death the player experienced. Print text based on what killed them.
@@ -319,6 +321,455 @@ public class DungeonNarrator : MonoBehaviour
         }
 
     }
+
+    /// <summary>
+    /// Use unique text based on the type of enemy and the type of weapon that killed them
+    /// </summary>
+    /// <param name="enemyType"></param>
+    /// <param name="weaponType"></param>
+    public void AddEnemyDeathText(Enums.EnemyType enemyType, Enums.WeaponType weaponType)
+    {
+
+        string killVerb;
+        string deathClause;
+
+        switch (weaponType)
+        {
+            case Enums.WeaponType.Default:
+                killVerb = "kill";
+                break;
+            case Enums.WeaponType.LightSlash:
+                killVerb = "pierce";
+                break;
+            case Enums.WeaponType.HeavySlash:
+                killVerb = "slash";
+                break;
+            case Enums.WeaponType.HeavyBlunt:
+                killVerb = "crush";
+                break;
+            case Enums.WeaponType.HeavySpecial:
+                killVerb = "cleave";
+                break;
+            case Enums.WeaponType.LightSpecial:
+                killVerb = "stab";
+                break;
+            case Enums.WeaponType.MiscSpecial:
+                killVerb = "punch";
+                break;
+            default:
+                killVerb = "kill";
+                break;
+        }
+
+        switch (enemyType)
+        {
+            case Enums.EnemyType.Skeleton:
+
+                if (weaponType == Enums.WeaponType.HeavySlash || weaponType == Enums.WeaponType.HeavySpecial)
+                {
+                    deathClause = " in half.";
+                }
+                else if (weaponType == Enums.WeaponType.HeavyBlunt || weaponType == Enums.WeaponType.MiscSpecial)
+                {
+                    deathClause = " into dust.";
+                }
+                else if (weaponType == Enums.WeaponType.LightSlash || weaponType == Enums.WeaponType.LightSpecial)
+                {
+                    deathClause = "'s bones. It crumbles to the floor.";
+                }
+                else
+                {
+                    deathClause = "";
+                }
+                break;
+
+            case Enums.EnemyType.Kobold:
+
+                if (weaponType == Enums.WeaponType.HeavySlash || weaponType == Enums.WeaponType.HeavySpecial)
+                {
+                    deathClause = " in half.";
+                }
+                else if (weaponType == Enums.WeaponType.HeavyBlunt || weaponType == Enums.WeaponType.MiscSpecial)
+                {
+                    deathClause = " into a bloody mess.";
+                }
+                else if (weaponType == Enums.WeaponType.LightSlash || weaponType == Enums.WeaponType.LightSpecial)
+                {
+                    deathClause = "'s scaly armor. It falls to the floor, shrieking.";
+                }
+                else
+                {
+                    deathClause = "";
+                }
+                break;
+
+            case Enums.EnemyType.Goblin:
+
+                if (weaponType == Enums.WeaponType.HeavySlash || weaponType == Enums.WeaponType.HeavySpecial)
+                {
+                    deathClause = " in half.";
+                }
+                else if (weaponType == Enums.WeaponType.HeavyBlunt || weaponType == Enums.WeaponType.MiscSpecial)
+                {
+                    deathClause = " into a bloody mess.";
+                }
+                else if (weaponType == Enums.WeaponType.LightSlash || weaponType == Enums.WeaponType.LightSpecial)
+                {
+                    deathClause = "'s tattered armor. It falls to the floor.";
+                }
+                else
+                {
+                    deathClause = "";
+                }
+
+                break;
+            case Enums.EnemyType.Bugbear:
+                if (weaponType == Enums.WeaponType.HeavySlash || weaponType == Enums.WeaponType.HeavySpecial)
+                {
+                    deathClause = " in half.";
+                }
+                else if (weaponType == Enums.WeaponType.HeavyBlunt || weaponType == Enums.WeaponType.MiscSpecial)
+                {
+                    deathClause = " into a bloody mess.";
+                }
+                else if (weaponType == Enums.WeaponType.LightSlash || weaponType == Enums.WeaponType.LightSpecial)
+                {
+                    deathClause = "'s furry hide. It collapses with a loud crash.";
+                }
+                else
+                {
+                    deathClause = "";
+                }
+                break;
+
+            case Enums.EnemyType.Spirit:
+
+                if (weaponType == Enums.WeaponType.HeavySlash || weaponType == Enums.WeaponType.HeavySpecial)
+                {
+                    deathClause = " in half.";
+                }
+                else if (weaponType == Enums.WeaponType.HeavyBlunt || weaponType == Enums.WeaponType.MiscSpecial)
+                {
+                    deathClause = " into a bloody mess.";
+                }
+                else if (weaponType == Enums.WeaponType.LightSlash || weaponType == Enums.WeaponType.LightSpecial)
+                {
+                    deathClause = "'s furry hide. It collapses with a loud crash.";
+                }
+                else
+                {
+                    deathClause = "";
+                }
+
+                break;
+            default:
+                killVerb = "kill";
+                deathClause = "";
+                break;
+        }
+
+        AddDungeonNarratorText($"You {killVerb} the {enemyType}{deathClause}");
+
+    }
+
+    /// <summary>
+    /// Use unique text based on the enemy type for how the enemy misses the player
+    /// </summary>
+    /// <param name="enemyType"></param>
+    public void AddEnemyMissText(Enums.EnemyType enemyType)
+    {
+
+        string missClause;
+
+        switch (enemyType)
+        {
+            case Enums.EnemyType.Skeleton:
+                missClause = "'s rusty spear deflects off of your armor.";
+                break;
+            case Enums.EnemyType.Kobold:
+                missClause = "'s snarling teeth fail to penetrate your armor.";
+                break;
+            case Enums.EnemyType.Goblin:
+                missClause = "'s cracked scimitar bounces off of your armor.";
+                break;
+            case Enums.EnemyType.Bugbear:
+                missClause = "'s hulking cleaver narrowly misses you.";
+                break;
+            case Enums.EnemyType.Spirit:
+                missClause = "'s spectral claws dissipate before hitting you.";
+                break;
+            default:
+                missClause = " misses you.";
+                break;
+        }
+
+        AddDungeonNarratorText($"The {enemyType}{missClause}");
+
+    }
+
+
+    /// <summary>
+    /// Use unique text based on the enemy type and weapon type for how the enemy misses the player
+    /// </summary>
+    /// <param name="enemyType"></param>
+    /// <param name="weaponType"></param>
+    public void AddPlayerMissText(Enums.EnemyType enemyType, Enums.WeaponType weaponType)
+    {
+
+        string weaponDescriptor;
+        string enemyDescriptor;
+        string missClause;
+
+        switch (weaponType)
+        {
+            case Enums.WeaponType.Default:
+                weaponDescriptor = "weapon";
+                break;
+            case Enums.WeaponType.LightSlash:
+                weaponDescriptor = "sword";
+                break;
+            case Enums.WeaponType.HeavySlash:
+                weaponDescriptor = "weapon's edge";
+                break;
+            case Enums.WeaponType.HeavyBlunt:
+                weaponDescriptor = "mace";
+                break;
+            case Enums.WeaponType.HeavySpecial:
+                weaponDescriptor = "heavy blade";
+                break;
+            case Enums.WeaponType.LightSpecial:
+                weaponDescriptor = "blade";
+                break;
+            case Enums.WeaponType.MiscSpecial:
+                weaponDescriptor = "fist";
+                break;
+            default:
+                weaponDescriptor = "weapon";
+                break;
+        }
+
+        switch (enemyType)
+        {
+            case Enums.EnemyType.Skeleton:
+
+                if (weaponType == Enums.WeaponType.HeavySlash || weaponType == Enums.WeaponType.HeavySpecial)
+                {
+                    missClause = " skids across ";
+                    enemyDescriptor = "'s ribs";
+                }
+                else if (weaponType == Enums.WeaponType.HeavyBlunt || weaponType == Enums.WeaponType.MiscSpecial)
+                {
+                    missClause = " swings past ";
+                    enemyDescriptor = "'s skull";
+                }
+                else if (weaponType == Enums.WeaponType.LightSlash || weaponType == Enums.WeaponType.LightSpecial)
+                {
+                    missClause = " clangs against";
+                    enemyDescriptor = "'s bones";
+                }
+                else
+                {
+                    enemyDescriptor = "";
+                    missClause = " misses";
+                }
+                break;
+
+            case Enums.EnemyType.Kobold:
+
+                if (weaponType == Enums.WeaponType.HeavySlash || weaponType == Enums.WeaponType.HeavySpecial)
+                {
+                    missClause = " skids across ";
+                    enemyDescriptor = "'s scales";
+                }
+                else if (weaponType == Enums.WeaponType.HeavyBlunt || weaponType == Enums.WeaponType.MiscSpecial)
+                {
+                    missClause = " swings past ";
+                    enemyDescriptor = "'s small frame";
+                }
+                else if (weaponType == Enums.WeaponType.LightSlash || weaponType == Enums.WeaponType.LightSpecial)
+                {
+                    missClause = " clangs against";
+                    enemyDescriptor = "'s scaly armor";
+                }
+                else
+                {
+                    enemyDescriptor = "";
+                    missClause = " misses";
+                }
+                break;
+
+            case Enums.EnemyType.Goblin:
+
+                if (weaponType == Enums.WeaponType.HeavySlash || weaponType == Enums.WeaponType.HeavySpecial)
+                {
+                    missClause = " skids across ";
+                    enemyDescriptor = "'s tattered armor";
+                }
+                else if (weaponType == Enums.WeaponType.HeavyBlunt || weaponType == Enums.WeaponType.MiscSpecial)
+                {
+                    missClause = " swings past ";
+                    enemyDescriptor = "'s head";
+                }
+                else if (weaponType == Enums.WeaponType.LightSlash || weaponType == Enums.WeaponType.LightSpecial)
+                {
+                    missClause = " clangs against";
+                    enemyDescriptor = "'s jagged blade";
+                }
+                else
+                {
+                    enemyDescriptor = "";
+                    missClause = " misses";
+                }
+                break;
+            case Enums.EnemyType.Bugbear:
+                if (weaponType == Enums.WeaponType.HeavySlash || weaponType == Enums.WeaponType.HeavySpecial)
+                {
+                    missClause = " skids across ";
+                    enemyDescriptor = "'s furry hide";
+                }
+                else if (weaponType == Enums.WeaponType.HeavyBlunt || weaponType == Enums.WeaponType.MiscSpecial)
+                {
+                    missClause = " swings past ";
+                    enemyDescriptor = "'s legs";
+                }
+                else if (weaponType == Enums.WeaponType.LightSlash || weaponType == Enums.WeaponType.LightSpecial)
+                {
+                    missClause = " clangs against";
+                    enemyDescriptor = "'s claws";
+                }
+                else
+                {
+                    enemyDescriptor = "";
+                    missClause = " misses";
+                }
+                break;
+
+            case Enums.EnemyType.Spirit:
+
+                if (weaponType == Enums.WeaponType.HeavySlash || weaponType == Enums.WeaponType.HeavySpecial)
+                {
+                    missClause = " slides through ";
+                    enemyDescriptor = "'s ethereal figure";
+                }
+                else if (weaponType == Enums.WeaponType.HeavyBlunt || weaponType == Enums.WeaponType.MiscSpecial)
+                {
+                    missClause = " swings past ";
+                    enemyDescriptor = "'s glowing shape";
+                }
+                else if (weaponType == Enums.WeaponType.LightSlash || weaponType == Enums.WeaponType.LightSpecial)
+                {
+                    missClause = " clangs against";
+                    enemyDescriptor = "'s glowing claws";
+                }
+                else
+                {
+                    enemyDescriptor = "";
+                    missClause = " misses";
+                }
+                break;
+            default:
+                weaponDescriptor = "weapon";
+                missClause = " misses";
+                enemyDescriptor = "";
+                break;
+        }
+
+        AddDungeonNarratorText($"Your {weaponDescriptor}{missClause} the {enemyType}{enemyDescriptor}.");
+
+    }
+
+
+    public void AddPotionConsumeText(Consumable potion)
+    {
+
+        string potionBuffPointsText = $"You drink the {potion.itemName}. You gain ";
+
+        List<string> potionBuffs = new List<string>();
+
+        if (potion.AGI > 0)
+        {
+            if (potion.AGI == 1)
+            {
+                potionBuffs.Add(potion.AGI + " point of Agility");
+
+            }
+            else
+            {
+                potionBuffs.Add(potion.AGI + " points of Agility");
+
+            }
+        }
+
+        if (potion.STR > 0)
+        {
+            if (potion.STR == 1)
+            {
+                potionBuffs.Add(potion.STR + " point of Strength");
+
+            }
+            else
+            {
+                potionBuffs.Add(potion.STR + " points of Strength");
+
+            }
+        }
+
+        if (potion.SPD > 0)
+        {
+            if (potion.SPD == 1)
+            {
+                potionBuffs.Add(potion.SPD + " point of Speed");
+
+            }
+            else
+            {
+                potionBuffs.Add(potion.SPD + " points of Speed");
+
+            }
+        }
+
+        if (potion.HP > 0)
+        {
+            if (potion.permanent)
+            {
+                potionBuffs.Add(potion.HP + " points of Max HP permanently");
+            }
+            else
+            {
+                potionBuffs.Add(potion.HP + " points of HP");
+            }
+        }
+
+        if(potionBuffs.Count == 1){
+            AddDungeonNarratorText(potionBuffPointsText + potionBuffs[0] + ".");
+        }
+
+        else if (potionBuffs.Count == 2)
+        {
+            AddDungeonNarratorText(potionBuffPointsText + potionBuffs[0] + " and " + potionBuffs[1] + ".");
+        }
+
+        else
+        {
+            string narratorText = potionBuffPointsText;
+            
+            for(int i = 0; i < potionBuffs.Count; ++i){
+                if(i == potionBuffs.Count - 2) // if we're the second to last, we use an oxford comma
+                {
+                    narratorText += potionBuffs[i] + ", and ";
+                }
+                else {
+                    narratorText += potionBuffs[i] + ", ";
+                }
+            }
+
+            AddDungeonNarratorText(narratorText + ".");
+
+        }
+
+    }
+
+
     /// <summary>
     /// Called when in the Map menu, which does not fully cover the Dungeon Narrator
     /// </summary>

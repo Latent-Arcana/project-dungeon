@@ -291,34 +291,33 @@ public class EnemyBehavior : MonoBehaviour
         int _enemyHitThreshold = Player_Stats.AGI * 5;
         int _playerHitThreshold = enemyStats.AGI * 5;
 
+        // Set up the player weapon information so we can print the right text later
+        int playerWeaponIndex = playerInventory.GetEquippedWeapon();
+        Enums.WeaponType playerWeaponType = Enums.WeaponType.Default;
+
+        if (playerWeaponIndex >= 0)
+        {
+            Weapon playerWeapon = playerInventory.inventory.items[playerWeaponIndex] as Weapon;
+            playerWeaponType = playerWeapon.weaponType;
+        }
+
         if (_playerHitChance <= _playerHitThreshold)
         {
             // PLAYER MISSED ENEMY
             playerMissed = true;
-            Dungeon_Narrator.AddDungeonNarratorText($"The {enemyStats.EnemyType} dodged your attack!");
+            Dungeon_Narrator.AddPlayerMissText(enemyStats.EnemyType, playerWeaponType);
         }
 
         if (_enemyHitChance <= _enemyHitThreshold)
         {
             // ENEMY MISSED PLAYER
             enemyMissed = true;
-            Dungeon_Narrator.AddDungeonNarratorText("You dodged the enemy's attack!");
+            Dungeon_Narrator.AddEnemyMissText(enemyStats.EnemyType);
         }
 
 
         if (playerAttacked)
         {
-
-            // Set up the player weapon information so we can print the right text later
-            int playerWeaponIndex = playerInventory.GetEquippedWeapon();
-            Enums.WeaponType playerWeaponType = Enums.WeaponType.Default;
-
-            if (playerWeaponIndex >= 0)
-            {
-                Weapon playerWeapon = playerInventory.inventory.items[playerWeaponIndex] as Weapon;
-                playerWeaponType = playerWeapon.weaponType;
-            }
-
             // if the enemy attacks first
             if (enemyStats.SPD > Player_Stats.SPD)
             {
@@ -334,8 +333,7 @@ public class EnemyBehavior : MonoBehaviour
                     // if the enemy was reduced to 0 HP, they die
                     if (enemyStats.HP <= 0)
                     {
-                        Dungeon_Narrator.AddPlayerAttackText(playerWeaponType, enemyStats.EnemyType, Mathf.Abs(_playerDamageDealt));
-                        Die();
+                        Die(playerWeaponType);
                     }
 
                     else
@@ -359,8 +357,7 @@ public class EnemyBehavior : MonoBehaviour
                     // if the enemy was reduced to 0 HP, they die
                     if (enemyStats.HP <= 0)
                     {
-                        Dungeon_Narrator.AddPlayerAttackText(playerWeaponType, enemyStats.EnemyType, Mathf.Abs(_playerDamageDealt));
-                        Die();
+                        Die(playerWeaponType);
                     }
 
                     else
@@ -391,10 +388,10 @@ public class EnemyBehavior : MonoBehaviour
 
     }
 
-    public virtual void Die()
+    public virtual void Die(Enums.WeaponType killedByWeapon)
     {
 
-        Dungeon_Narrator.AddDungeonNarratorText($"The {enemyStats.EnemyType} died.");
+        Dungeon_Narrator.AddEnemyDeathText(enemyStats.EnemyType, killedByWeapon);
 
         behaviorState = BehaviorState.Dead;
 
@@ -428,10 +425,6 @@ public class EnemyBehavior : MonoBehaviour
                 }
             }
         }
-
-
-
-
     }
 
     public Collider2D CheckPosition(Vector3 checkPosition)

@@ -75,7 +75,7 @@ public class PlayerInventory : MonoBehaviour
 
     public void Consume(int index)
     {
-        Debug.Log("consume the " + inventory.items[index].itemName);
+        DungeonNarrator.Dungeon_Narrator.AddPotionConsumeText(inventory.items[index] as Consumable);
         EquipStatsChange(inventory.items[index]);
     }
 

@@ -113,7 +113,7 @@ public class ProjectileBehavior : EnemyBehavior
 
             else
             {
-                Die();
+                Die(Enums.WeaponType.Default);
             }
         }
 
@@ -121,7 +121,7 @@ public class ProjectileBehavior : EnemyBehavior
 
     }
 
-    public override void Die()
+    public override void Die(Enums.WeaponType killedByWeapon) // for projectiles we don't actually get killed by a weapon so it doesn't matter
     {
         if (gameObject != null && isDestroyed == false)
         {

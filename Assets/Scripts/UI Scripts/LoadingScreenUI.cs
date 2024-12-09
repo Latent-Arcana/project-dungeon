@@ -13,8 +13,7 @@ public class LoadingScreenUI : MonoBehaviour
 
     //// Container ////
     private VisualElement loadingContainer;
-    private VisualElement loadingAnimation;
-
+    
     //// Text ////
     private TextElement loadingText;
     float progressValue = 0f;
@@ -22,17 +21,12 @@ public class LoadingScreenUI : MonoBehaviour
     // Scene Stuff
     private AsyncOperation loadingOperation;
 
-    public Sprite[] animationFrames;
-    int animationTick = 0;
-    int spriteIndex = 0;
-
     void Awake()
     {
         loading_document = this.GetComponent<UIDocument>();
         //laoding screen should be enabled by default, on the highest UI layer
 
         loadingText = loading_document.rootVisualElement.Q("LoadingText") as TextElement;
-        loadingAnimation = loading_document.rootVisualElement.Q("LoadingAnimation") as VisualElement;
         loadingContainer = loading_document.rootVisualElement.Q("Container");
 
         loadingContainer.style.display = DisplayStyle.Flex;
@@ -57,21 +51,6 @@ public class LoadingScreenUI : MonoBehaviour
 
     void Update()
     {
-        ++animationTick;
-
-        if(animationTick % 45 == 0){
-
-            loadingAnimation.style.backgroundImage = null;
-
-            loadingAnimation.style.backgroundImage = animationFrames[spriteIndex].texture;
-
-            spriteIndex++;
-
-            if(spriteIndex >= animationFrames.Length){
-                spriteIndex = 0;
-            }
-
-        } 
 
         if (SceneManager.GetActiveScene().name != "BSP")
         {
