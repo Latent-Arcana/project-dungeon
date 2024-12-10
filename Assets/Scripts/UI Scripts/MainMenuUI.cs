@@ -149,10 +149,10 @@ public class MainMenuUI : MonoBehaviour
         Screen.SetResolution(ops.screenOptions.screenWidth, ops.screenOptions.screenHeight, ops.screenOptions.fullScreen);
 
 
-        if (SceneManager.GetActiveScene().name == "Main Menu")
-        {
-            backgroundMusicController.ChangeSongForScene("Main Menu");
-        }
+        // if (SceneManager.GetActiveScene().name == "Main Menu")
+        // {
+        //     backgroundMusicController.ChangeSongForScene("Main Menu");
+        // }
     }
 
     //Volume Settings
@@ -258,7 +258,7 @@ public class MainMenuUI : MonoBehaviour
 
             Player_Stats.Initialize(); // Resetting the player's stats to base stats when a new game begins
             Player_Inventory.Reset(); // Resetting the player's inventory and equipment when a new game begins
-            SceneManager.LoadScene("Loading");
+            SceneManager.LoadScene("BSP");
         }
         else //Pause Menu Resume Button
         {

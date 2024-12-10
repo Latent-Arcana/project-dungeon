@@ -1,0 +1,3 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/UI%20Sprites/start-screen.png?fileID=2800000&amp;guid=65547d30317ec2d489331eb5fcbd3868&amp;type=3#start-screen&quot;); -unity-background-scale-mode: scale-to-fit;" />
+</ui:UXML>

@@ -78,6 +78,7 @@ public class GameOverUI : MonoBehaviour
     public void ReturnToMenu()
     {
         menuAudioController.PlayAudioClip("ButtonClose");
+        backgroundMusicController.ChangeSongForScene("Main Menu");
         gameStats.NewGame();
         SceneManager.LoadScene("Main Menu");
     }
@@ -87,6 +88,6 @@ public class GameOverUI : MonoBehaviour
         menuAudioController.PlayAudioClip("PlayGame");
         backgroundMusicController.ChangeSongForScene("Loading");
         gameStats.NewGame();
-        SceneManager.LoadScene("Loading");
+        SceneManager.LoadScene("BSP");
     }
 }

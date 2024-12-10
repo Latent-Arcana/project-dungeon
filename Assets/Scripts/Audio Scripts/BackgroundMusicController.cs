@@ -44,9 +44,7 @@ public class BackgroundMusicController : MonoBehaviour
 
     public void ChangeSongForScene(string newSceneName)
     {
-        //save the current volume level so we don't have to load it from the save ops
-        //audioMixer.GetFloat("MixerMusicVolume", out currentMixerVolumeDb);
-
+        //stop current song
         backgroundAudio.Stop();
 
         //change audio clip song
@@ -64,14 +62,7 @@ public class BackgroundMusicController : MonoBehaviour
         }
 
         //start playing new audio clip
-        // except for BSP, which should already be playing from Loading
-        if (newSceneName != "BSP")
-        {
-            backgroundAudio.Play();
-        }
-
-        //temp, set audio back to good volume
-        //audioMixer.SetFloat("MixerMusicVolume", currentMixerVolumeDb);
+        backgroundAudio.Play();
     }
 
 
