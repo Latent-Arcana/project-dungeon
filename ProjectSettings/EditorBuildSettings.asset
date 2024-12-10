@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Loading.unity
-    guid: 5eb23319067b0bd43b230b98d0fb32ad
+    path: Assets/Scenes/Splash Screen.unity
+    guid: da3413dbd9f73c24cb20e63519192e42
   - enabled: 1
     path: Assets/Scenes/Main Menu.unity
     guid: 928fb240f161aad44bd7a2924ef13e5e
@@ -17,7 +17,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameOver.unity
     guid: 0b9a78967e235e04ab08256b2bcf9e6c
-  - enabled: 0
-    path: Assets/Scenes/Icon_Testing.unity
-    guid: 88d33185e452a334cbeb92f7c3d64600
   m_configObjects: {}
