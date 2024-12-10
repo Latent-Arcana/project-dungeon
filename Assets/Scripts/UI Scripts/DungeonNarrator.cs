@@ -668,7 +668,7 @@ public class DungeonNarrator : MonoBehaviour
                 }
                 break;
             default:
-                weaponDescriptor = "weapon";
+                weaponDescriptor = "attack";
                 missClause = " misses";
                 enemyDescriptor = "";
                 break;
