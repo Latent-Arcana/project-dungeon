@@ -14,29 +14,24 @@ public class PlayerAnimationBehavior : MonoBehaviour
         playerMovement = gameObject.GetComponent<PlayerMovement>();
         animator = gameObject.GetComponentInChildren<Animator>();
     }
-    void OnEnable()
-    {
-        playerMovement.BuffStatsEvent += BuffStats;
-    }
-    void OnDisable()
-    {
-        playerMovement.BuffStatsEvent -= BuffStats;
-    }
 
-    private void BuffStats(object sender, PlayerMovement.StatBuffArgs e)
+    public void Sleep(){
+        animator.Play("sleep");
+        StartCoroutine(ResetToIdle("sleep"));
+    }
+    public void BuffStats(Enums.ShrineType buffType)
     {
-        Debug.Log(e.buffType.ToString());
 
         string animationName = "None";
 
-        if (e.buffType == Enums.ShrineType.Agility)
+        if (buffType == Enums.ShrineType.Agility)
         {
             animationName = "agility-buff";
         }
-        else if(e.buffType == Enums.ShrineType.Speed){
+        else if(buffType == Enums.ShrineType.Speed){
             animationName = "speed-buff";
         }
-        else if(e.buffType == Enums.ShrineType.Strength){
+        else if(buffType == Enums.ShrineType.Strength){
             animationName = "strength-buff";
         }
 

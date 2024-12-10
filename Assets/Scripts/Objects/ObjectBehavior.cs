@@ -15,6 +15,8 @@ public class ObjectBehavior : MonoBehaviour, ILookable
 
     public Sprite flippedSprite;
 
+    public bool flipped;
+
     public string[] lookStrings;
 
     public string Look()

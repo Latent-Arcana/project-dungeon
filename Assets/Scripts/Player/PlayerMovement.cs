@@ -5,6 +5,7 @@ using UnityEngine;
 using static BSPGeneration;
 using static DungeonNarrator;
 using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -14,13 +15,6 @@ public class PlayerMovement : MonoBehaviour
     public PlayerCameraBehavior playerCameraBehavior;
 
     public InputController input;
-
-    public event EventHandler<StatBuffArgs> BuffStatsEvent;
-
-    public class StatBuffArgs : EventArgs
-    {
-        public Enums.ShrineType buffType;
-    }
 
     public event EventHandler<InputArgs> OnRoomEnter;
 
@@ -51,8 +45,8 @@ public class PlayerMovement : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;
 
+    private PlayerAnimationBehavior playerAnimationBehavior;
 
-    //public Vector2 moveDirection = Vector2.zero;
 
     void Awake()
     {
@@ -66,6 +60,7 @@ public class PlayerMovement : MonoBehaviour
 
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
 
+        playerAnimationBehavior = gameObject.transform.GetComponentInChildren<PlayerAnimationBehavior>();
     }
 
 
@@ -156,12 +151,12 @@ public class PlayerMovement : MonoBehaviour
                         {
                             playerInventory.inventory.items.Add(item);
                             itemsToRemove.Add(item);
-                            Dungeon_Narrator.AddDungeonNarratorText("You picked up the " + item.itemName);
+                            Dungeon_Narrator.AddDungeonNarratorText("You picked up the " + item.itemName + ".");
                         }
 
                         else
                         {
-                            Dungeon_Narrator.AddDungeonNarratorText("You do not have space to pick up the " + item.itemName);
+                            Dungeon_Narrator.AddDungeonNarratorText("You do not have space to pick up the " + item.itemName + ".");
                         }
                     }
 
@@ -188,7 +183,14 @@ public class PlayerMovement : MonoBehaviour
             {
                 player.transform.position += (Vector3)direction;
 
-                int healAmount = collision.gameObject.GetComponent<SafeObjectBehavior>().HealPlayer(Player_Stats.HP, Player_Stats.MAX_HP);
+                SafeObjectBehavior bedBehavior = collision.gameObject.GetComponent<SafeObjectBehavior>();
+
+                if (!bedBehavior.alreadyHealedPlayer)
+                {
+                    playerAnimationBehavior.Sleep();
+                }
+
+                int healAmount = bedBehavior.HealPlayer(Player_Stats.HP, Player_Stats.MAX_HP);
                 Player_Stats.SetHP(healAmount, collision.gameObject);
             }
 
@@ -197,7 +199,15 @@ public class PlayerMovement : MonoBehaviour
 
                 player.transform.position += (Vector3)direction;
 
-                int buffAmount = collision.gameObject.GetComponent<SafeObjectBehavior>().BuffPlayer(Player_Stats.MAX_HP);
+                SafeObjectBehavior bedBehavior = collision.gameObject.GetComponent<SafeObjectBehavior>();
+
+                if (!bedBehavior.alreadyBuffedPlayer)
+                {
+                    playerAnimationBehavior.Sleep();
+
+                }
+
+                int buffAmount = bedBehavior.BuffPlayer(Player_Stats.MAX_HP);
                 int tempMax = Player_Stats.MAX_HP;
                 Player_Stats.SetMaxHP(buffAmount);
                 Player_Stats.SetHP(Player_Stats.HP + (Player_Stats.MAX_HP - tempMax), sourceObject: collision.gameObject);
@@ -207,9 +217,12 @@ public class PlayerMovement : MonoBehaviour
             {
                 ShrineBehavior shrineBehavior = collision.gameObject.GetComponent<ShrineBehavior>();
 
-                BuffStatsEvent.Invoke(this, new StatBuffArgs { buffType = shrineBehavior.shrineType });
-                
-                shrineBehavior.Bless(Player_Stats);
+                if (!shrineBehavior.hasTriggered)
+                {
+                    playerAnimationBehavior.BuffStats(shrineBehavior.shrineType);
+                    shrineBehavior.Bless(Player_Stats);
+                }
+
             }
 
 

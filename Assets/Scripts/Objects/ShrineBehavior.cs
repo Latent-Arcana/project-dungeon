@@ -8,7 +8,7 @@ public class ShrineBehavior : MonoBehaviour
     [SerializeField]
     public Enums.ShrineType shrineType;
 
-    private bool hasTriggered = false;
+    public bool hasTriggered = false;
 
 
     public void Bless(PlayerStatsManager Player_Stats)

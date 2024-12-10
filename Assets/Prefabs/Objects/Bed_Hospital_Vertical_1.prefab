@@ -297,3 +297,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd992823418d0434eaa55b69f2902b4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  alreadyBuffedPlayer: 0
+  alreadyHealedPlayer: 0
+  usedSprite: {fileID: 21300000, guid: ff3420bdb2888134c8c0813047ef271e, type: 3}

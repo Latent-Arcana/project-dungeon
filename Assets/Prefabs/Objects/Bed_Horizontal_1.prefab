@@ -297,3 +297,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd992823418d0434eaa55b69f2902b4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  alreadyBuffedPlayer: 0
+  alreadyHealedPlayer: 0
+  usedSprite: {fileID: 21300000, guid: 5e9262aa1b99b114d8b665fb00f5ad67, type: 3}
+  mirroredUsedSprite: {fileID: 21300000, guid: c7b0d7974e4c72d48957b62ed79979c8, type: 3}

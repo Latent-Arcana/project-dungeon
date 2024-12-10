@@ -379,7 +379,7 @@ public class DungeonNarrator : MonoBehaviour
                 }
                 else
                 {
-                    deathClause = "";
+                    deathClause = ".";
                 }
                 break;
 
@@ -399,7 +399,7 @@ public class DungeonNarrator : MonoBehaviour
                 }
                 else
                 {
-                    deathClause = "";
+                    deathClause = ".";
                 }
                 break;
 
@@ -419,7 +419,7 @@ public class DungeonNarrator : MonoBehaviour
                 }
                 else
                 {
-                    deathClause = "";
+                    deathClause = ".";
                 }
 
                 break;
@@ -438,7 +438,7 @@ public class DungeonNarrator : MonoBehaviour
                 }
                 else
                 {
-                    deathClause = "";
+                    deathClause = ".";
                 }
                 break;
 
@@ -458,13 +458,13 @@ public class DungeonNarrator : MonoBehaviour
                 }
                 else
                 {
-                    deathClause = "";
+                    deathClause = ".";
                 }
 
                 break;
             default:
                 killVerb = "kill";
-                deathClause = "";
+                deathClause = ".";
                 break;
         }
 

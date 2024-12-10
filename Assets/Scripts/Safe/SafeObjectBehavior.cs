@@ -5,8 +5,12 @@ using UnityEngine;
 
 public class SafeObjectBehavior : MonoBehaviour
 {
-    bool alreadyBuffedPlayer = false;
-    bool alreadyHealedPlayer = false;
+    public bool alreadyBuffedPlayer = false;
+    public bool alreadyHealedPlayer = false;
+
+    [SerializeField]
+    public Sprite usedSprite;
+    public Sprite mirroredUsedSprite;
     public int HealPlayer(int currentHP, int maximumHP)
     {
         if (!alreadyHealedPlayer)
@@ -18,6 +22,14 @@ public class SafeObjectBehavior : MonoBehaviour
             alreadyHealedPlayer = true;
 
             DungeonNarrator.Dungeon_Narrator.AddDungeonNarratorText($"You rest and feel rejuvenated...");
+
+            SpriteRenderer sr = gameObject.GetComponent<SpriteRenderer>();
+            ObjectBehavior objectBehavior = gameObject.GetComponent<ObjectBehavior>();
+            
+            Debug.Log(objectBehavior.flipped);
+
+            sr.sprite = objectBehavior.flipped ? mirroredUsedSprite : usedSprite;
+            sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 0.75f);
 
             return healAmount;
 
@@ -40,6 +52,15 @@ public class SafeObjectBehavior : MonoBehaviour
             alreadyBuffedPlayer = true;
 
             DungeonNarrator.Dungeon_Narrator.AddDungeonNarratorText($"The bed gives you a sense of warmth...");
+
+            SpriteRenderer sr = gameObject.GetComponent<SpriteRenderer>();
+            ObjectBehavior objectBehavior = gameObject.GetComponent<ObjectBehavior>();
+            
+            Debug.Log(objectBehavior.flipped);
+
+            sr.sprite = objectBehavior.flipped ? mirroredUsedSprite : usedSprite;
+            sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 0.75f);
+
 
             return buffPlayerAmount;
 
