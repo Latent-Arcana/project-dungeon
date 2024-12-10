@@ -17,6 +17,7 @@ public class GameOverUI : MonoBehaviour
 
     //// Text ////
     private TextElement statsText;
+    private TextElement killedByText;
     private GameStats gameStats;
 
     //// Music ////
@@ -31,6 +32,7 @@ public class GameOverUI : MonoBehaviour
 
         //Text
         statsText = main_document.rootVisualElement.Q("StatsText") as TextElement;
+        killedByText = main_document.rootVisualElement.Q("KilledByText") as TextElement;
         gameStats = GameObject.Find("GameStats").GetComponent<GameStats>();
 
         ////Buttons////  
@@ -61,10 +63,13 @@ public class GameOverUI : MonoBehaviour
         int denom = gameStats.GetDenominator();
         int roomsVisited = gameStats.GetRoomsVisited(); //currently not being incremented anywhere
 
+        killedByText.text = gameStats.GetDeathText();
+
         statsText.text = @$"Final Stats: \n
         Total rooms marked correctly: {num}/{denom}\n
         Total rooms visited: {roomsVisited}\n
         ";
+
     }
 
 

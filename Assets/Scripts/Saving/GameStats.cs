@@ -18,6 +18,8 @@ public class GameStats : MonoBehaviour
 
     private int RoomsVisited;
 
+    private string DeathText;
+
     /// <summary>
     /// Sets the final game score to be displayed on the Game Over screen
     /// </summary>
@@ -69,6 +71,14 @@ public class GameStats : MonoBehaviour
     public int GetDenominator()
     {
         return Denominator;
+    }
+
+    public void SetDeathText(string deathText){
+        DeathText = deathText;
+    }
+
+    public string GetDeathText(){
+        return DeathText;
     }
 
 

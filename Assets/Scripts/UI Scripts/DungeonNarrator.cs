@@ -29,6 +29,16 @@ public class DungeonNarrator : MonoBehaviour
     private TextElement spd_text;
     private TextElement str_text;
 
+    private GameStats gameStats;
+
+    private string deathText;
+
+    void Start()
+    {
+        gameStats = GameObject.Find("GameStats").GetComponent<GameStats>();
+
+    }
+
     private void Awake()
     {
         if (Dungeon_Narrator != null && Dungeon_Narrator != this)
@@ -258,11 +268,11 @@ public class DungeonNarrator : MonoBehaviour
         {
             if (objectData.ObjectType == Enums.ObjectType.Spikes)
             {
-                AddDungeonNarratorText($"You were impaled by the spikes. You die.");
+                deathText = $"They were impaled by spikes.";
             }
             else
             {
-                AddDungeonNarratorText($"You were killed by: {objectData.ObjectType}");
+                deathText = $"They were killed by: {objectData.ObjectType}";
             }
         }
 
@@ -271,23 +281,23 @@ public class DungeonNarrator : MonoBehaviour
             switch (enemyData.enemyStats.EnemyType)
             {
                 case Enums.EnemyType.Kobold:
-                    AddDungeonNarratorText($"You were torn apart by the kobold.");
+                    deathText = $"They were torn apart by a kobold.";
                     break;
                 case Enums.EnemyType.Goblin:
-                    AddDungeonNarratorText($"The goblin fatally stabbed you.");
+                    deathText = $"A goblin fatally stabbed them.";
                     break;
                 case Enums.EnemyType.Bugbear:
-                    AddDungeonNarratorText($"The bugbear struck you down.");
+                    deathText = $"A bugbear struck them down.";
                     break;
                 case Enums.EnemyType.Spirit:
-                    AddDungeonNarratorText($"The spirit sapped your life away.");
+                    deathText = $"A spirit sapped their life away.";
                     break;
                 case Enums.EnemyType.Skeleton:
-                    AddDungeonNarratorText($"The skeleton cut you down.");
+                    deathText = $"A skeleton cut them down.";
                     break;
 
                 default:
-                    AddDungeonNarratorText($"The {enemyData.enemyStats.EnemyType} struck you down.");
+                    deathText = $"The {enemyData.enemyStats.EnemyType} struck them down.";
                     break;
             }
         }
@@ -300,25 +310,27 @@ public class DungeonNarrator : MonoBehaviour
 
             if (ghostProjectileData != null)
             {
-                AddDungeonNarratorText($"The spirit sapped your life away.");
+                deathText = $"The spirit sapped their life away.";
             }
 
             else if (mushroomProjectileData != null)
             {
-                AddDungeonNarratorText($"You choke to death on the mushroom's toxic gas.");
+                deathText = $"They choked to death on toxic gas.";
 
             }
             else if (teslaProjectileData != null)
             {
-                AddDungeonNarratorText($"You were shocked to death by the electric bolt.");
+                deathText = $"They were shocked to death by an electric bolt.";
 
             }
             else
             {
-                AddDungeonNarratorText($"You were killed by: {projectileData.gameObject.name}");
+               deathText = $"They were killed by: {projectileData.gameObject.name}";
             }
 
         }
+
+        gameStats.SetDeathText("This cartographer has gone off map. " + deathText);
 
     }
 
