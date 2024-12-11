@@ -325,7 +325,7 @@ public class DungeonNarrator : MonoBehaviour
             }
             else
             {
-               deathText = $"They were killed by: {projectileData.gameObject.name}";
+                deathText = $"They were killed by: {projectileData.gameObject.name}";
             }
 
         }
@@ -752,7 +752,8 @@ public class DungeonNarrator : MonoBehaviour
             }
         }
 
-        if(potionBuffs.Count == 1){
+        if (potionBuffs.Count == 1)
+        {
             AddDungeonNarratorText(potionBuffPointsText + potionBuffs[0] + ".");
         }
 
@@ -764,13 +765,15 @@ public class DungeonNarrator : MonoBehaviour
         else
         {
             string narratorText = potionBuffPointsText;
-            
-            for(int i = 0; i < potionBuffs.Count; ++i){
-                if(i == potionBuffs.Count - 2) // if we're the second to last, we use an oxford comma
+
+            for (int i = 0; i < potionBuffs.Count; ++i)
+            {
+                if (i == potionBuffs.Count - 2) // if we're the second to last, we use an oxford comma
                 {
                     narratorText += potionBuffs[i] + ", and ";
                 }
-                else {
+                else
+                {
                     narratorText += potionBuffs[i] + ", ";
                 }
             }
@@ -781,6 +784,51 @@ public class DungeonNarrator : MonoBehaviour
 
     }
 
+    public void AddWeaponEquipText(Weapon weapon)
+    {
+        string splitNameArticle = weapon.itemName.Split(" ")[0];
+
+        if (splitNameArticle != null && splitNameArticle == "The")
+        {
+            AddDungeonNarratorText("You equip " + weapon.itemName + ".");
+        }
+
+        AddDungeonNarratorText("You equip the " + weapon.itemName + ".");
+    }
+
+    public void AddWeaponUnequipText(Weapon weapon)
+    {
+
+        string splitNameArticle = weapon.itemName.Split(" ")[0];
+
+        if (splitNameArticle != null && splitNameArticle == "The")
+        {
+            AddDungeonNarratorText("You put away " + weapon.itemName + ".");
+        }
+
+        AddDungeonNarratorText("You put away the " + weapon.itemName + ".");
+    }
+
+    public void AddArmorEquipText(Armor armor)
+    {
+        string splitNameArticle = armor.itemName.Split(" ")[0];
+
+        if (splitNameArticle != null && splitNameArticle == "The")
+        {
+            AddDungeonNarratorText("You put on " + armor.itemName + ".");
+        }
+        AddDungeonNarratorText("You put on the " + armor.itemName + ".");
+    }
+    public void AddArmorUnequipText(Armor armor)
+    {
+        string splitNameArticle = armor.itemName.Split(" ")[0];
+
+        if (splitNameArticle != null && splitNameArticle == "The")
+        {
+            AddDungeonNarratorText("You take off " + armor.itemName + ".");
+        }
+        AddDungeonNarratorText("You take off the " + armor.itemName + ".");
+    }
 
     /// <summary>
     /// Called when in the Map menu, which does not fully cover the Dungeon Narrator

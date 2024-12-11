@@ -29,7 +29,7 @@ public class SafeObjectBehavior : MonoBehaviour
             Debug.Log(objectBehavior.flipped);
 
             sr.sprite = objectBehavior.flipped ? mirroredUsedSprite : usedSprite;
-            sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 0.75f);
+            sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 0.45f);
 
             return healAmount;
 
@@ -59,7 +59,7 @@ public class SafeObjectBehavior : MonoBehaviour
             Debug.Log(objectBehavior.flipped);
 
             sr.sprite = objectBehavior.flipped ? mirroredUsedSprite : usedSprite;
-            sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 0.75f);
+            sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 0.45f);
 
 
             return buffPlayerAmount;

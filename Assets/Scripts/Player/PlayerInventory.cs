@@ -91,9 +91,11 @@ public class PlayerInventory : MonoBehaviour
         // if we're handling armor
         if (inventory.items[index].type == Enums.ItemType.Armor)
         {
-
             inventory.equippedArmor = index;
             EquipStatsChange(inventory.items[index]);
+
+            DungeonNarrator.Dungeon_Narrator.AddArmorEquipText(inventory.items[index] as Armor);
+
         }
 
 
@@ -102,6 +104,8 @@ public class PlayerInventory : MonoBehaviour
         {
             inventory.equippedWeapon = index;
             EquipStatsChange(inventory.items[index]);
+
+            DungeonNarrator.Dungeon_Narrator.AddWeaponEquipText(inventory.items[index] as Weapon);
         }
 
     }
@@ -110,12 +114,16 @@ public class PlayerInventory : MonoBehaviour
     {
         if (index == inventory.equippedArmor)
         {
+            DungeonNarrator.Dungeon_Narrator.AddArmorUnequipText(inventory.items[index] as Armor);
+
             UnequipStatsChange(inventory.items[index]);
             inventory.equippedArmor = -1;
         }
 
         else if (index == inventory.equippedWeapon)
         {
+            DungeonNarrator.Dungeon_Narrator.AddWeaponUnequipText(inventory.items[index] as Weapon);
+
             UnequipStatsChange(inventory.items[index]);
             inventory.equippedWeapon = -1;
         }
