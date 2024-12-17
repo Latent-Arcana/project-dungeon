@@ -16,7 +16,8 @@ public class GameOverUI : MonoBehaviour
     private Button NewGameButton;
 
     //// Text ////
-    private TextElement statsText;
+    private TextElement statsText1;
+    private TextElement statsText2;
     private TextElement killedByText;
     private GameStats gameStats;
 
@@ -31,7 +32,9 @@ public class GameOverUI : MonoBehaviour
         main_document = this.GetComponent<UIDocument>();
 
         //Text
-        statsText = main_document.rootVisualElement.Q("StatsText") as TextElement;
+        statsText1 = main_document.rootVisualElement.Q("StatsText") as TextElement;
+        statsText2 = main_document.rootVisualElement.Q("StatsText_2") as TextElement;
+
         killedByText = main_document.rootVisualElement.Q("KilledByText") as TextElement;
         gameStats = GameObject.Find("GameStats").GetComponent<GameStats>();
 
@@ -65,11 +68,8 @@ public class GameOverUI : MonoBehaviour
 
         killedByText.text = gameStats.GetDeathText();
 
-        statsText.text = @$"Final Stats: \n
-        Total rooms marked correctly: {num}/{denom}\n
-        Total rooms visited: {roomsVisited}\n
-        ";
-
+        statsText1.text = @$"Total rooms marked correctly: {num}/{denom}";
+        statsText2.text = @$"Total rooms visited: {roomsVisited}";
     }
 
 

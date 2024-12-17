@@ -212,7 +212,7 @@ public class ScoreController : MonoBehaviour
         ScoreRound();
 
         //pass the stats to the object that won't be destroyed
-        gameStats.SetScore(Numerator, Denominator);
+        gameStats.AddToScore(Numerator, Denominator);
 
         GameObject.Find("BackgroundAudio").GetComponent<BackgroundMusicController>().ChangeSongForScene("GameOver");
 

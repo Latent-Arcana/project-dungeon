@@ -31,6 +31,12 @@ public class GameStats : MonoBehaviour
         Denominator = denominator;
     }
 
+    public void AddToScore(int numerator, int denominator)
+    {
+        Numerator += numerator;
+        Denominator += denominator;
+    }
+
     /// <summary>
     /// Sets the total number of rooms viisted to be displayed on the Game Over screen
     /// </summary>
