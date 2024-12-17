@@ -130,15 +130,15 @@
 .text-title-gameover {
     color: rgb(255, 255, 255);
     -unity-text-align: upper-center;
-    font-size: 32px;
+    font-size: 132px;
     -unity-font-definition: initial;
     -unity-font: url("project://database/Assets/Font/Seraphimb1.ttf?fileID=12800000&guid=3f1f980884aaaae4a87358e26cfd514b&type=3#Seraphimb1");
 }
 
 .text-body-gameover {
-    color: rgb(255, 255, 255);
+    color: rgb(112, 112, 112);
     -unity-text-align: upper-left;
-    font-size: 16px;
+    font-size: 20px;
     -unity-font-definition: initial;
     -unity-font: url("project://database/Assets/Font/Seraphimb1.ttf?fileID=12800000&guid=3f1f980884aaaae4a87358e26cfd514b&type=3#Seraphimb1");
 }
@@ -259,4 +259,8 @@
 }
 
 .unity-base-field {
+}
+
+.gameover-container-stats {
+    height: 50%;
 }

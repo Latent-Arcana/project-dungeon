@@ -230,7 +230,7 @@ public class PlayerMovement : MonoBehaviour
 
         else if (collision.tag == "portal")
         {
-            SceneManager.LoadScene("Loading");
+            SceneManager.LoadScene("BSP");
         }
 
 
