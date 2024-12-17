@@ -257,77 +257,51 @@ public class DungeonNarrator : MonoBehaviour
     /// Take in a source object to determine what type of death the player experienced. Print text based on what killed them.
     /// </summary>
     /// <param name="sourceObject"></param>
-    public void AddPlayerDeathText(GameObject sourceObject)
+    public void AddPlayerDeathText(string killedBy)
     {
+        string deathText;
 
-        ObjectBehavior objectData = sourceObject.GetComponent<ObjectBehavior>();
-        EnemyBehavior enemyData = sourceObject.GetComponent<EnemyBehavior>();
-        ProjectileBehavior projectileData = sourceObject.GetComponent<ProjectileBehavior>();
-
-        if (objectData != null)
+        switch (killedBy)
         {
-            if (objectData.ObjectType == Enums.ObjectType.Spikes)
-            {
+            case "Spikes":
                 deathText = $"They were impaled by spikes.";
-            }
-            else
-            {
-                deathText = $"They were killed by: {objectData.ObjectType}";
-            }
-        }
+                break;
 
-        else if (enemyData != null)
-        {
-            switch (enemyData.enemyStats.EnemyType)
-            {
-                case Enums.EnemyType.Kobold:
-                    deathText = $"They were torn apart by a kobold.";
-                    break;
-                case Enums.EnemyType.Goblin:
-                    deathText = $"A goblin fatally stabbed them.";
-                    break;
-                case Enums.EnemyType.Bugbear:
-                    deathText = $"A bugbear struck them down.";
-                    break;
-                case Enums.EnemyType.Spirit:
-                    deathText = $"A spirit sapped their life away.";
-                    break;
-                case Enums.EnemyType.Skeleton:
-                    deathText = $"A skeleton cut them down.";
-                    break;
+            case "Kobold":
+                deathText = $"They were torn apart by a kobold.";
+                break;
 
-                default:
-                    deathText = $"The {enemyData.enemyStats.EnemyType} struck them down.";
-                    break;
-            }
-        }
+            case "Skeleton":
+                deathText = $"A skeleton cut them down.";
+                break;
 
-        else if (projectileData != null)
-        {
-            GhostProjectileBehavior ghostProjectileData = projectileData as GhostProjectileBehavior;
-            MushroomProjectileBehavior mushroomProjectileData = projectileData as MushroomProjectileBehavior;
-            TeslaProjectileBehavior teslaProjectileData = projectileData as TeslaProjectileBehavior;
+            case "Goblin":
+                deathText = $"A goblin fatally stabbed them.";
+                break;
 
-            if (ghostProjectileData != null)
-            {
-                deathText = $"The spirit sapped their life away.";
-            }
+            case "Bugbear":
+                deathText = $"A bugbear struck them down.";
+                break;
 
-            else if (mushroomProjectileData != null)
-            {
-                deathText = $"They choked to death on toxic gas.";
+            case "Spirit":
+                deathText = $"A spirit sapped their life away.";
+                break;
 
-            }
-            else if (teslaProjectileData != null)
-            {
+            case "Ghost":
+                deathText = $"A ghost took their soul.";
+                break;
+            
+            case "Tesla":
                 deathText = $"They were shocked to death by an electric bolt.";
+                break;
 
-            }
-            else
-            {
-                deathText = $"They were killed by: {projectileData.gameObject.name}";
-            }
+            case "Gas":
+                deathText = $"They chocked to death on toxic gas.";
+                break;
 
+            default:
+                deathText = $"They were killed by: {killedBy}";
+                break;
         }
 
         gameStats.SetDeathText("This cartographer has gone off map. " + deathText);

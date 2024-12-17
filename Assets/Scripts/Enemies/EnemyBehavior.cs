@@ -323,7 +323,7 @@ public class EnemyBehavior : MonoBehaviour
             {
                 if (!enemyMissed)
                 {
-                    Player_Stats.SetHP(Player_Stats.HP + _enemyDamageDealt, sourceObject: gameObject);
+                    Player_Stats.SetHP(Player_Stats.HP + _enemyDamageDealt, sourceObjectName: enemyStats.EnemyType.ToSafeString());
                 }
 
                 if (!playerMissed)
@@ -368,7 +368,7 @@ public class EnemyBehavior : MonoBehaviour
 
                 if (!enemyMissed && behaviorState != BehaviorState.Dead)
                 {
-                    Player_Stats.SetHP(Player_Stats.HP + _enemyDamageDealt, sourceObject: gameObject);
+                    Player_Stats.SetHP(Player_Stats.HP + _enemyDamageDealt,  sourceObjectName: enemyStats.EnemyType.ToSafeString());
                     Dungeon_Narrator.AddEnemyAttackText(enemyStats.EnemyType, Mathf.Abs(_enemyDamageDealt));
 
                 }
@@ -381,7 +381,7 @@ public class EnemyBehavior : MonoBehaviour
             if (!enemyMissed)
             {
                 Dungeon_Narrator.AddEnemyAttackText(enemyStats.EnemyType, Mathf.Abs(_enemyDamageDealt));
-                Player_Stats.SetHP(Player_Stats.HP + _enemyDamageDealt, sourceObject: gameObject);
+                Player_Stats.SetHP(Player_Stats.HP + _enemyDamageDealt, sourceObjectName: enemyStats.EnemyType.ToSafeString());
             }
 
         }

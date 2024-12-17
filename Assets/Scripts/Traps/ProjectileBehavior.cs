@@ -153,7 +153,7 @@ public class ProjectileBehavior : EnemyBehavior
 
     public override void Attack(bool playerAttacked)
     {
-        Player_Stats.SetHP(Player_Stats.HP - 2, sourceObject: gameObject);
+        Player_Stats.SetHP(Player_Stats.HP - 2, sourceObjectName: gameObject.name);
         Dungeon_Narrator.AddDungeonNarratorText($"You took 2 points of damage from the trap projectile.");
     }
 

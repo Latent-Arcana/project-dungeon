@@ -97,7 +97,7 @@ public class PlayerStatsManager : ScriptableObject
         _AP = BASE_AP;
     }
 
-    public void SetHP(int newValue, GameObject sourceObject)
+    public void SetHP(int newValue, string sourceObjectName)
     {
         int temp = _HP;
         _HP = newValue;
@@ -105,7 +105,7 @@ public class PlayerStatsManager : ScriptableObject
 
         // In this case we know the player is about to die
         if(newValue <= 0){
-            DungeonNarrator.Dungeon_Narrator.AddPlayerDeathText(sourceObject);
+            DungeonNarrator.Dungeon_Narrator.AddPlayerDeathText(sourceObjectName);
         }
     }
 
