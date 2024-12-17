@@ -788,12 +788,20 @@ public class DungeonNarrator : MonoBehaviour
     {
         string splitNameArticle = weapon.itemName.Split(" ")[0];
 
-        if (splitNameArticle != null && splitNameArticle == "The")
+        if (splitNameArticle != null)
         {
-            AddDungeonNarratorText("You equip " + weapon.itemName + ".");
+            if (splitNameArticle == "The")
+            {
+                AddDungeonNarratorText("You equip " + weapon.itemName + ".");
+            }
+
+            else
+            {
+                AddDungeonNarratorText("You equip the " + weapon.itemName + ".");
+            }
         }
 
-        AddDungeonNarratorText("You equip the " + weapon.itemName + ".");
+
     }
 
     public void AddWeaponUnequipText(Weapon weapon)
@@ -801,35 +809,74 @@ public class DungeonNarrator : MonoBehaviour
 
         string splitNameArticle = weapon.itemName.Split(" ")[0];
 
-        if (splitNameArticle != null && splitNameArticle == "The")
-        {
-            AddDungeonNarratorText("You put away " + weapon.itemName + ".");
-        }
 
-        AddDungeonNarratorText("You put away the " + weapon.itemName + ".");
+        if (splitNameArticle != null)
+        {
+            if (splitNameArticle == "The")
+            {
+                AddDungeonNarratorText("You put away " + weapon.itemName + ".");
+            }
+
+            else
+            {
+                AddDungeonNarratorText("You put away the " + weapon.itemName + ".");
+            }
+        }
     }
 
     public void AddArmorEquipText(Armor armor)
     {
         string splitNameArticle = armor.itemName.Split(" ")[0];
 
-        if (splitNameArticle != null && splitNameArticle == "The")
+        if (splitNameArticle != null)
         {
-            AddDungeonNarratorText("You put on " + armor.itemName + ".");
+            if (splitNameArticle == "The")
+            {
+                AddDungeonNarratorText("You put on " + armor.itemName + ".");
+            }
+            else
+            {
+                AddDungeonNarratorText("You put on the " + armor.itemName + ".");
+            }
         }
-        AddDungeonNarratorText("You put on the " + armor.itemName + ".");
+
     }
     public void AddArmorUnequipText(Armor armor)
     {
         string splitNameArticle = armor.itemName.Split(" ")[0];
 
-        if (splitNameArticle != null && splitNameArticle == "The")
+        if (splitNameArticle != null)
         {
-            AddDungeonNarratorText("You take off " + armor.itemName + ".");
+            if (splitNameArticle == "The")
+            {
+                AddDungeonNarratorText("You take off " + armor.itemName + ".");
+            }
+            else
+            {
+                AddDungeonNarratorText("You take off the " + armor.itemName + ".");
+            }
         }
-        AddDungeonNarratorText("You take off the " + armor.itemName + ".");
     }
 
+    public void AddItemDropText(Item item)
+    {
+
+        string splitNameArticle = item.itemName.Split(" ")[0];
+
+        if (splitNameArticle != null)
+        {
+            if (splitNameArticle == "The")
+            {
+                AddDungeonNarratorText("You drop " + item.itemName + ".");
+            }
+
+            else
+            {
+                AddDungeonNarratorText("You drop the " + item.itemName + ".");
+            }
+        }
+
+    }
     /// <summary>
     /// Called when in the Map menu, which does not fully cover the Dungeon Narrator
     /// </summary>

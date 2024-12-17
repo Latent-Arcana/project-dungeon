@@ -110,6 +110,14 @@ public class PlayerInventory : MonoBehaviour
 
     }
 
+    public void HandleDropItemNarration(int index){
+
+        Item droppedItem = inventory.items[index];
+
+        DungeonNarrator.Dungeon_Narrator.AddItemDropText(droppedItem);
+
+    }
+
     public void HandleUnequip(int index)
     {
         if (index == inventory.equippedArmor)

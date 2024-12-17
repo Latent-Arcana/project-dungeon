@@ -249,9 +249,12 @@ public class InventoryUI : MonoBehaviour
 
         menuAudioController.PlayAudioClip("ButtonClose");
 
+        playerInventoryBehavior.HandleDropItemNarration(index);
+
         // if the item was equipped, let's unequip it to update the screen
         if (equipmentToggles[index].value == true)
         {
+            
             equipmentToggles[index].SetValueWithoutNotify(false);
 
             playerInventoryBehavior.UnequipStatsChange(inventory[index]);
