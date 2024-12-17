@@ -17,7 +17,8 @@ public class SplashScreenUIController : MonoBehaviour
     public bool fadingInAnyKeyText = true;
     public bool beginTransition = false;
     public bool screenFadeCompleted = false;
-    public float elapsedTime = 0f;
+    public float textFadeElapsedTime = 0f;
+    public float screenFadeElapsedTime = 0f;
     public float fadeTextDuration = 2.5f;
 
     public float fadeInDuration = 3f;
@@ -35,6 +36,7 @@ public class SplashScreenUIController : MonoBehaviour
         main_document = this.GetComponent<UIDocument>();
 
         anyKeyText = main_document.rootVisualElement.Q("AnyKeyText") as Label;
+        anyKeyText.style.opacity = 1;
 
         screenOverlay = main_document.rootVisualElement.Q("ScreenOverlay");
         screenOverlay.style.opacity = 1;
@@ -55,14 +57,14 @@ public class SplashScreenUIController : MonoBehaviour
 
     void Update()
     {
+        FadeAnyKeyText();
+
         if (!screenFadeCompleted)
         {
             FadeScreenOnStart();
         }
         else
         {
-            FadeAnyKeyText();
-
             if (Input.anyKeyDown && beginTransition == false)
             {
                 beginTransition = true;
@@ -74,8 +76,8 @@ public class SplashScreenUIController : MonoBehaviour
 
     private void FadeScreenOnStart()
     {
-        elapsedTime += Time.deltaTime;
-        float normalizedTime = Mathf.Clamp01(elapsedTime / fadeInDuration);
+        screenFadeElapsedTime += Time.deltaTime;
+        float normalizedTime = Mathf.Clamp01(screenFadeElapsedTime / fadeInDuration);
 
         // Gradually fade out the overlay
         screenOverlay.style.opacity = Mathf.Lerp(1, 0, normalizedTime);
@@ -84,17 +86,17 @@ public class SplashScreenUIController : MonoBehaviour
         if (normalizedTime >= 1f)
         {
             screenFadeCompleted = true;
-            elapsedTime = 0f; // Reset for the next effect
+            screenFadeElapsedTime = 0f; // Reset for the next effect
         }
     }
 
     private void FadeAnyKeyText()
     {
-        elapsedTime += Time.deltaTime;
-        float normalizedTime = (elapsedTime % fadeTextDuration) / fadeTextDuration;
+        textFadeElapsedTime += Time.deltaTime;
+        float normalizedTime = (textFadeElapsedTime % fadeTextDuration) / fadeTextDuration;
 
         // Calculate alpha based on whether fading in or out
-        float alpha = fadingInAnyKeyText ? Mathf.Lerp(0, 1, normalizedTime) : Mathf.Lerp(1, 0, normalizedTime);
+        float alpha = 0.5f + 0.5f * Mathf.Sin((textFadeElapsedTime / fadeTextDuration) * Mathf.PI * 2);
 
         // Switch fading direction at the halfway point
         if (normalizedTime >= 0.5f && fadingInAnyKeyText) fadingInAnyKeyText = false;
