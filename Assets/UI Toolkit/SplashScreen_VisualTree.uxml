@@ -1,6 +1,5 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="project://database/Assets/UI%20Toolkit/SplashScreen_StyleSheet.uss?fileID=7433441132597879392&amp;guid=808cf1817b580d948934a1bb4c9e1aa0&amp;type=3#SplashScreen_StyleSheet" />
     <ui:VisualElement style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/UI%20Sprites/start-screen.png?fileID=2800000&amp;guid=65547d30317ec2d489331eb5fcbd3868&amp;type=3#start-screen&quot;); -unity-background-scale-mode: scale-to-fit;">
-        <ui:Label tabindex="-1" text="Press any key to continue..." parse-escape-sequences="true" display-tooltip-when-elided="true" class="any-key-text" />
+        <ui:Label tabindex="-1" text="Press any key to continue..." parse-escape-sequences="true" display-tooltip-when-elided="true" name="AnyKeyText" class="any-key-text" style="-unity-text-align: upper-center; top: 550px; -unity-font-definition: initial; -unity-font: url(&quot;project://database/Assets/Font/Seraphimb1.ttf?fileID=12800000&amp;guid=3f1f980884aaaae4a87358e26cfd514b&amp;type=3#Seraphimb1&quot;); color: rgb(255, 255, 255); font-size: 50px;" />
     </ui:VisualElement>
 </ui:UXML>

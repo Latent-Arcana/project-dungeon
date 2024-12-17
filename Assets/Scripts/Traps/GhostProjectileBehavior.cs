@@ -99,7 +99,7 @@ public class GhostProjectileBehavior : ProjectileBehavior
     {
         if (awake)
         {
-            Player_Stats.SetHP(Player_Stats.HP - 3, sourceObject: gameObject);
+            Player_Stats.SetHP(Player_Stats.HP - 3, sourceObjectName: "Ghost");
             Dungeon_Narrator.AddDungeonNarratorText($"Your stamina is drained by the spirit's ice-cold spectral claws.");
         }
 
