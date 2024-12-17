@@ -146,8 +146,7 @@ public class MainMenuUI : MonoBehaviour
         audioMixer.SetFloat("MixerAmbientVolume", ConvertVolumeToDb(ops.ambientVolume));
 
 
-        Screen.SetResolution(ops.screenOptions.screenWidth, ops.screenOptions.screenHeight, ops.screenOptions.fullScreen);
-
+       // Screen.SetResolution(ops.screenOptions.screenWidth, ops.screenOptions.screenHeight, ops.screenOptions.fullScreen);
 
         // if (SceneManager.GetActiveScene().name == "Main Menu")
         // {

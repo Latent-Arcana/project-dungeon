@@ -21,7 +21,7 @@ public class SplashScreenUIController : MonoBehaviour
     public float screenFadeElapsedTime = 0f;
     public float fadeTextDuration = 2.5f;
 
-    public float fadeInDuration = 3f;
+    public float fadeInDuration = 1.5f;
     public float fadeOutDuration = 1.5f;
 
     private BackgroundMusicController backgroundMusicController;
