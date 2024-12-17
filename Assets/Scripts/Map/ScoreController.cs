@@ -106,15 +106,57 @@ public class ScoreController : MonoBehaviour
     /// </summary>
     public void RemoveRoomMark(GameObject marker)
     {
+
+        MapMark mark = marker.GetComponent<MapMark>();
+
+        if (!mark.wasRemoved)
+        {
+            string clipName = "";
+            mark.wasRemoved = true;
+            Animator animator = marker.GetComponent<Animator>();
+
+            switch (mark.roomType)
+            {
+                case Enums.RoomType.Danger:
+                    clipName = "danger-icon-animation-wipe";
+                    break;
+
+                case Enums.RoomType.Safe:
+                    clipName = "safe-icon-animation-wipe";
+                    break;
+
+                case Enums.RoomType.Lore:
+                    clipName = "lore-icon-animation-wipe";
+                    break;
+            }
+
+            animator.Play(clipName);
+            StartCoroutine(RemoveMarkAfterAnimation(marker, animator, clipName));
+
+        }
+    }
+
+    private IEnumerator RemoveMarkAfterAnimation(GameObject marker, Animator animator, string animationName)
+    {
+
         int removeFromRoom = currentMarksInverse[marker];
 
         Debug.Log("RemoveRoomMark: Removing existing mark for room" + removeFromRoom);
+
+        // Wait for the duration of the animation
+        float animationLength = animator.runtimeAnimatorController.animationClips.First(clip => clip.name == animationName).length / 3;
+        yield return new WaitForSeconds(animationLength);
+
+        Debug.Log("waiting for animation");
 
         //remove it from the dictionary(x2)
         currentMarks.Remove(removeFromRoom);
         currentMarksInverse.Remove(marker);
 
+        //marker.SetActive(false);
+
         Destroy(marker);
+
     }
 
     public void ScoreRound()

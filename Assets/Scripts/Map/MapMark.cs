@@ -12,9 +12,12 @@ public class MapMark : MonoBehaviour
     [SerializeField]
     public Enums.RoomType roomType;
 
+    public bool wasRemoved;
+
     void Awake()
     {
         scoreController = GameObject.Find("ScoreController").GetComponent<ScoreController>();
+        wasRemoved = false;
 
     }
 

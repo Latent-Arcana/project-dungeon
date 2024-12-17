@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Xml.Schema;
 using UnityEngine;
+using UnityEngine.Animations;
 using UnityEngine.UIElements;
 
 public class MapMarker : MonoBehaviour
@@ -68,21 +70,33 @@ public class MapMarker : MonoBehaviour
                     {
                         GameObject placedMarker = Instantiate(selectedPrefab, new Vector3(ray.origin.x, ray.origin.y, 0f), Quaternion.identity);
                         Animator markerAnimator = placedMarker.GetComponent<Animator>();
-                        
-                        if(markerAnimator != null){                            
-                            switch(selectedIndex){
+
+                        string clipName;
+
+                        if (markerAnimator != null)
+                        {
+                            switch (selectedIndex)
+                            {
                                 case 0:
-                                    markerAnimator.Play("safe-icon-place");
+                                    clipName = "safe-icon-place";
                                     break;
                                 case 1:
-                                    markerAnimator.Play("lore-icon-place");
+                                    clipName = "lore-icon-place";
                                     break;
                                 case 2:
-                                    markerAnimator.Play("danger-icon-place");
+                                    clipName = "danger-icon-place";
                                     break;
                                 default:
+                                    clipName = null;
                                     break;
                             }
+
+                            if (clipName != null)
+                            {
+                                markerAnimator.Play(clipName);
+                                //StartCoroutine(ResetToIdle(markerAnimator, clipName));
+                            }
+
                         }
                     }
                 }
@@ -103,10 +117,19 @@ public class MapMarker : MonoBehaviour
                         //Remove marker from score and Destroy it
                         scoreController.RemoveRoomMark(hit.collider.gameObject);
                     }
-
                 }
             }
         }
+    }
+
+    private IEnumerator ResetToIdle(Animator animator, string animationName)
+    {
+        // Wait for the duration of the animation
+        float animationLength = animator.runtimeAnimatorController.animationClips.First(clip => clip.name == animationName).length / 3;
+        yield return new WaitForSeconds(animationLength);
+
+        // Play the idle state or any default animation
+        animator.Play("None");
     }
 
     private void Map_OnMarkerChange(object sender, MapMenuUI.MarkerArgs e)
