@@ -273,7 +273,6 @@ GameObject:
   - component: {fileID: 1934379852}
   - component: {fileID: 1934379851}
   - component: {fileID: 1934379853}
-  - component: {fileID: 1934379854}
   m_Layer: 5
   m_Name: Splash UI
   m_TagString: Untagged
@@ -324,20 +323,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28eb83c5a98aee84288daa258f48c867, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingInAnyKeyText: 1
+  screenFadeCompleted: 0
+  elapsedTime: 0
+  fadeDuration: 3
   audioMixer: {fileID: 24100000, guid: f7f206a5337464844b44955228165480, type: 2}
---- !u!114 &1934379854
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1934379850}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fdc9979ba7353b4c976844f39627af8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  main_document: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
