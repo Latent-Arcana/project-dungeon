@@ -47,6 +47,10 @@ public class PlayerMovement : MonoBehaviour
 
     private PlayerAnimationBehavior playerAnimationBehavior;
 
+    private MenuAudioController menuAudioController;
+    private BackgroundMusicController backgroundMusicController;
+    private AmbientAudioController ambientAudioController;
+
 
     void Awake()
     {
@@ -61,6 +65,10 @@ public class PlayerMovement : MonoBehaviour
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
 
         playerAnimationBehavior = gameObject.transform.GetComponentInChildren<PlayerAnimationBehavior>();
+
+        menuAudioController = GameObject.Find("Audio").GetComponentInChildren<MenuAudioController>();
+        backgroundMusicController = GameObject.Find("Audio").GetComponentInChildren<BackgroundMusicController>();
+        ambientAudioController = GameObject.Find("Audio").GetComponentInChildren<AmbientAudioController>();
     }
 
 
@@ -144,6 +152,8 @@ public class PlayerMovement : MonoBehaviour
                 }
                 else
                 {
+                    ambientAudioController.PlayAudioClip("Chest");
+
                     List<Item> itemsToRemove = new List<Item>();
                     foreach (Item item in container.items)
                     {
@@ -187,6 +197,7 @@ public class PlayerMovement : MonoBehaviour
 
                 if (!bedBehavior.alreadyHealedPlayer)
                 {
+                    ambientAudioController.PlayAudioClip("Rest");
                     playerAnimationBehavior.Sleep();
                 }
 
@@ -203,6 +214,7 @@ public class PlayerMovement : MonoBehaviour
 
                 if (!bedBehavior.alreadyBuffedPlayer)
                 {
+                    ambientAudioController.PlayAudioClip("Rest");
                     playerAnimationBehavior.Sleep();
 
                 }
@@ -219,6 +231,7 @@ public class PlayerMovement : MonoBehaviour
 
                 if (!shrineBehavior.hasTriggered)
                 {
+                    ambientAudioController.PlayAudioClip("Bless");
                     playerAnimationBehavior.BuffStats(shrineBehavior.shrineType);
                     shrineBehavior.Bless(Player_Stats);
                 }
@@ -230,6 +243,8 @@ public class PlayerMovement : MonoBehaviour
 
         else if (collision.tag == "portal")
         {
+            backgroundMusicController.StopAudio();
+            ambientAudioController.PlayAudioClip("Portal");
             SceneManager.LoadScene("BSP");
         }
 

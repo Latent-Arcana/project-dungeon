@@ -228,7 +228,7 @@ public class InputController : MonoBehaviour
 
     public void OpenMap()
     {
-        menuAudioController.PlayAudioClip("ButtonOpen");
+        menuAudioController.PlayAudioClip("MapOpen");
         Dungeon_Narrator.DisableDungeonNarrator();
         OnMapEnter.Invoke(this, EventArgs.Empty); //throw event to MapMenuUI to toggle UI element
         currentInputState = InputState.MapMenu;
@@ -237,10 +237,12 @@ public class InputController : MonoBehaviour
 
     public void CloseMap()
     {
-        menuAudioController.PlayAudioClip("ButtonClose");
+        menuAudioController.PlayAudioClip("MapClose");
         Dungeon_Narrator.EnableDungeonNarrator();
         OnMapEnter.Invoke(this, EventArgs.Empty); //throw event to MapMenuUI to toggle UI element
-        ReturnToGameplay();
+        //ReturnToGameplay();
+        currentInputState = InputState.Gameplay;
+        movementEnabled = true;
     }
 
     public void OpenInventory()

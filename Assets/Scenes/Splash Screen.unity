@@ -324,9 +324,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadingInAnyKeyText: 1
+  beginTransition: 0
   screenFadeCompleted: 0
-  elapsedTime: 0
-  fadeDuration: 3
+  textFadeElapsedTime: 0
+  screenFadeElapsedTime: 0
+  fadeTextDuration: 2.5
+  fadeInDuration: 1.5
+  fadeOutDuration: 1.5
   audioMixer: {fileID: 24100000, guid: f7f206a5337464844b44955228165480, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

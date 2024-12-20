@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4893191129990216252}
   - component: {fileID: 4155817698765993271}
+  - component: {fileID: 6258907684656900437}
   m_Layer: 0
   m_Name: AmbientAudio
   m_TagString: Untagged
@@ -46,7 +47,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -128,6 +129,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6258907684656900437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 647394671457228074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d55c04ff731249940ad9127ce7159f24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioMixer: {fileID: 24100000, guid: f7f206a5337464844b44955228165480, type: 2}
+  ambientAudioSource: {fileID: 4155817698765993271}
+  audioClip_Portal: {fileID: 8300000, guid: f076cf1ebaaee284aa3afc500813b8c6, type: 3}
+  audioClip_Chest: {fileID: 8300000, guid: 9be41fa5af0a61b4c90b8c1a4b2ee1d1, type: 3}
+  audioClip_Rest: {fileID: 8300000, guid: bdb480e7f5f91a34d9fe763fbf4a6cf4, type: 3}
+  audioClip_Bless: {fileID: 8300000, guid: a74d74ee1d4abd648ad72f6117ada57e, type: 3}
 --- !u!1 &6669139830876356605
 GameObject:
   m_ObjectHideFlags: 0
@@ -422,6 +441,8 @@ MonoBehaviour:
   audioClip_ButtonClose: {fileID: 8300000, guid: d1b1a40d7d5eceb42a064283e0f9fd2d, type: 3}
   audioClip_SelectSlider: {fileID: 8300000, guid: 12ff2a0fc20c9134e91a0c5581ee68ed, type: 3}
   audioClip_PlayGame: {fileID: 8300000, guid: f076cf1ebaaee284aa3afc500813b8c6, type: 3}
+  audioClip_ScrollOpen: {fileID: 8300000, guid: b71674c9f1cb9cb4fb7c40c35e0128c3, type: 3}
+  audioClip_ScrollClose: {fileID: 8300000, guid: 8103140a7d84b8147948c2c0647d4aab, type: 3}
 --- !u!1 &8428759403118509146
 GameObject:
   m_ObjectHideFlags: 0

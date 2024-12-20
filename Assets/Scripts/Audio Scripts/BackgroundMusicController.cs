@@ -29,18 +29,47 @@ public class BackgroundMusicController : MonoBehaviour
     //Sound numbers
     float currentMixerVolume, currentMixerVolumeDb;
     float fadeOutDuration = .1f;
-    float fadeInDuration = 1f;
+    float fadeInDuration = 4f;
+    float volumeOriginalSetting = 0f;
+
+
+    Coroutine fadeOutProcess;
 
     //Scene
     private Scene currentScene;
 
+    bool beginFadeOutAudio = false;
 
     void Awake()
     {
         backgroundAudio = GetComponent<AudioSource>();
-
     }
 
+    void OnEnable()
+    {
+        ObjectGeneration.RoomComplete += UpdateAudioLevelDuringLoad;
+        ObjectGeneration.AllRoomsPlacementComplete += SwapAudioOnBSPLoad;
+    }
+
+    void OnDisable()
+    {
+        ObjectGeneration.RoomComplete -= UpdateAudioLevelDuringLoad;
+        ObjectGeneration.AllRoomsPlacementComplete -= SwapAudioOnBSPLoad;
+    }
+
+     private void SwapAudioOnBSPLoad()
+    {
+        StopCoroutine(fadeOutProcess);
+        Debug.Log("Stopped coroutine. Volume set to: " + volumeOriginalSetting);
+        backgroundAudio.volume = volumeOriginalSetting;
+        ChangeSongForScene("BSP");
+
+        beginFadeOutAudio = false;
+    }
+    
+    public void StopAudio(){
+        backgroundAudio.Stop();
+    }
 
     public void ChangeSongForScene(string newSceneName)
     {
@@ -56,13 +85,40 @@ public class BackgroundMusicController : MonoBehaviour
         {
             backgroundAudio.clip = gameOverMusic;
         }
-        else if (newSceneName == "Loading")
+        else if (newSceneName == "BSP")
         {
             backgroundAudio.clip = GetRandomLevelTrack();
         }
 
         //start playing new audio clip
         backgroundAudio.Play();
+    }
+
+    void UpdateAudioLevelDuringLoad(float percentage)
+    {
+        if(percentage >= .80f && beginFadeOutAudio == false){
+            Debug.Log("setting volume OG to: " + backgroundAudio.volume);
+            beginFadeOutAudio = true;
+            volumeOriginalSetting = backgroundAudio.volume;
+            fadeOutProcess = StartCoroutine(FadeOutAudio());
+        }
+    }
+
+    private IEnumerator FadeOutAudio()
+    {
+        //backgroundAudio.volume = 0f;
+        //backgroundAudio.Play();
+
+        float elapsedTime = 0f;
+        while (elapsedTime < fadeInDuration)
+        {
+            backgroundAudio.volume = Mathf.Lerp(volumeOriginalSetting, 0f, elapsedTime / fadeInDuration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        backgroundAudio.volume = 0f; // Ensure volume is fully set to 1 at the end
+
     }
 
 
@@ -125,8 +181,9 @@ public class BackgroundMusicController : MonoBehaviour
         return Mathf.Pow(10, vol / 20);
     }
 
-    private AudioClip GetRandomLevelTrack(){
-        int a = UnityEngine.Random.Range(0,levelMusic.Count);
+    private AudioClip GetRandomLevelTrack()
+    {
+        int a = UnityEngine.Random.Range(0, levelMusic.Count);
         return levelMusic[a];
     }
 

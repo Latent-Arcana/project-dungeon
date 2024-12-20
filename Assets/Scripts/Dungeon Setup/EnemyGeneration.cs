@@ -25,7 +25,7 @@ public class EnemyGeneration : MonoBehaviour
 
         Room room = roomObject.GetComponent<Room>();
 
-        int randEnemyPreset = UnityEngine.Random.Range(0, 100);
+        int randEnemyPreset = UnityEngine.Random.Range(0, enemyPrefabs.Length);
 
         int randEnemyCount = UnityEngine.Random.Range(1, 3);
 
@@ -43,14 +43,7 @@ public class EnemyGeneration : MonoBehaviour
             {
                 enemyMap.Add(position, true);
 
-                if (randEnemyPreset < 75)
-                {
-                    PlaceEnemy(enemyPrefabs[0], position, roomObject, i);
-                }
-                else
-                {
-                    PlaceEnemy(enemyPrefabs[1], position, roomObject, i);
-                }
+                PlaceEnemy(enemyPrefabs[randEnemyPreset], position, roomObject, i);
 
             }
         }

@@ -304,7 +304,7 @@ public class DungeonNarrator : MonoBehaviour
                 break;
         }
 
-        gameStats.SetDeathText("This cartographer has gone off map. " + deathText);
+        gameStats.SetDeathText("This cartographer was lost... " + deathText);
 
     }
 

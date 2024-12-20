@@ -104,7 +104,6 @@ public class MainMenuUI : MonoBehaviour
         //Toggles
         fullScreenToggle.RegisterCallback<ChangeEvent<bool>>(SetFullScreen);
 
-
         if (SceneManager.GetActiveScene().name != "Main Menu")
         {
 
@@ -127,6 +126,8 @@ public class MainMenuUI : MonoBehaviour
         {
             input.OnMenuEnter += Event_OnMenuEnter;
         }
+
+
     }
 
     private void OnDisable()
@@ -135,6 +136,7 @@ public class MainMenuUI : MonoBehaviour
         {
             input.OnMenuEnter -= Event_OnMenuEnter;
         }
+
     }
 
     private void Start()
@@ -146,7 +148,7 @@ public class MainMenuUI : MonoBehaviour
         audioMixer.SetFloat("MixerAmbientVolume", ConvertVolumeToDb(ops.ambientVolume));
 
 
-       // Screen.SetResolution(ops.screenOptions.screenWidth, ops.screenOptions.screenHeight, ops.screenOptions.fullScreen);
+        // Screen.SetResolution(ops.screenOptions.screenWidth, ops.screenOptions.screenHeight, ops.screenOptions.fullScreen);
 
         // if (SceneManager.GetActiveScene().name == "Main Menu")
         // {
@@ -251,7 +253,7 @@ public class MainMenuUI : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name == "Main Menu")
         {
-            backgroundMusicController.ChangeSongForScene("Loading");
+            //backgroundMusicController.ChangeSongForScene("Loading");
 
             menuAudioController.PlayAudioClip("PlayGame");
 
