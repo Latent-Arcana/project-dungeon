@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
@@ -20,10 +21,16 @@ public class PlayerStats : MonoBehaviour
 
     private InputController input;
 
+    private Animator playerAnimator;
+
+    private bool playerDied = false;
+
     void Awake()
     {
         scoreController = GameObject.Find("ScoreController").GetComponent<ScoreController>();
         input = GameObject.Find("InputController").GetComponent<InputController>();
+        playerAnimator = gameObject.GetComponentInChildren<Animator>();
+
     }
 
     void OnEnable()
@@ -38,12 +45,77 @@ public class PlayerStats : MonoBehaviour
 
     private void Stats_ModifyHP(object sender, Stats_Args e)
     {
-        if (e.newValue <= 0 && !DEBUG_GOD_MODE)
+
+        if (e.newValue < e.oldValue && !DEBUG_GOD_MODE)
+        {
+            StartCoroutine(IncomingDamageAnimationHandler(e.newValue));
+        }
+
+    }
+
+    public IEnumerator IncomingDamageAnimationHandler(int newValue)
+    {
+
+        if (playerDied) { yield break; }
+
+        // if the player died
+        if (newValue <= 0)
         {
 
-            HandlePlayerDeath();
+            playerDied = true;
+            input.enabled = false;
+
+            SpriteRenderer spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+
+            PlayerMovement playerMovement = gameObject.GetComponent<PlayerMovement>();
+
+
+            spriteRenderer.color = new Color(0, 0, 0, 0);
+
+            string animationName = "player-death-animation";
+
+            if (!playerMovement.isRightFacing) // if the player is facing left, die with the left animation
+            {
+                animationName = "player-death-animation-mirrored";
+            }
+
+            playerMovement.enabled = false;
+
+
+            Debug.Log("Killing player now.");
+
+            playerAnimator.Play(animationName);
+
+            Debug.Log("Kill Played.");
+
+
+            float animationLength = playerAnimator.runtimeAnimatorController.animationClips.First(clip => clip.name == animationName).length;
+
+            Debug.Log("Waiting");
+            yield return new WaitForSeconds(animationLength);
+
+            playerAnimator.Play("Idle");
+
+            Debug.Log("setting final score");
+            scoreController.SetFinalScore();
+
         }
-        StartCoroutine(IncomingDamageFlash());
+
+        // the player is still alive but took damage
+        else
+        {
+            string animationName = "player-damage-slash-2";
+            Debug.Log("player is taking damage here");
+
+            if (!playerDied) { playerAnimator.Play(animationName); }
+            float animationLength = playerAnimator.runtimeAnimatorController.animationClips.First(clip => clip.name == animationName).length / 2;
+
+            yield return new WaitForSeconds(animationLength);
+
+
+            if (!playerDied) { playerAnimator.Play("Idle"); }
+        }
+
     }
 
     public IEnumerator IncomingDamageFlash()
@@ -51,42 +123,6 @@ public class PlayerStats : MonoBehaviour
         gameObject.GetComponent<SpriteRenderer>().color = UnityEngine.Color.black;
         yield return new WaitForSeconds(.05f);
         gameObject.GetComponent<SpriteRenderer>().color = UnityEngine.Color.white;
-    }
-
-    public void HandlePlayerDeath()
-    {
-        SpriteRenderer spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-
-        Animator playerAnimator = gameObject.GetComponentInChildren<Animator>();
-
-        PlayerMovement playerMovement = gameObject.GetComponent<PlayerMovement>();
-
-        if (playerAnimator != null && playerMovement != null)
-        {
-            spriteRenderer.color = new Color(0, 0, 0, 0);
-            if (playerMovement.isRightFacing)
-            {
-                StartCoroutine(PlayerDeath(playerAnimator, "player-death-animation"));
-            }
-            else
-            {
-                StartCoroutine(PlayerDeath(playerAnimator, "player-death-animation-mirrored"));
-            }
-
-
-        }
-    }
-
-    public IEnumerator PlayerDeath(Animator playerAnimator, string animationName)
-    {
-        playerAnimator.Play(animationName);
-
-        float animationLength = playerAnimator.runtimeAnimatorController.animationClips.First(clip => clip.name == animationName).length;
-        input.ToggleMovement();
-
-        yield return new WaitForSeconds(animationLength);
-
-        scoreController.SetFinalScore();
     }
 
 }

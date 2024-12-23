@@ -62,7 +62,7 @@ public class ScoreController : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.Keypad9))
         {
-            GameObject.Find("Player").GetComponent<PlayerStats>().HandlePlayerDeath();
+            //GameObject.Find("Player").GetComponentInChildren<PlayerStats>().HandlePlayerDeath();
         }
         else if (Input.GetKeyUp(KeyCode.Keypad8))
         {

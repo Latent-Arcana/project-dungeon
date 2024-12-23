@@ -269,4 +269,8 @@ public class InputController : MonoBehaviour
         movementEnabled = !movementEnabled;
     }
 
+    public void PlayerInputDeath(){
+        movementEnabled = false;
+    }
+
 }

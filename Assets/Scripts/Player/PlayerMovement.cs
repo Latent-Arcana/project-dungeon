@@ -51,7 +51,6 @@ public class PlayerMovement : MonoBehaviour
     private BackgroundMusicController backgroundMusicController;
     private AmbientAudioController ambientAudioController;
 
-
     void Awake()
     {
         player = gameObject;
