@@ -65,8 +65,18 @@ public class MapMarker : MonoBehaviour
 
                 if (Physics.Raycast(ray, out hit))
                 {
+                    bool isDiscoveredRoom = false;
                     //only place a map marker in a room or over an existing map marker
-                    if (hit.collider.gameObject.CompareTag("room") || hit.collider.gameObject.CompareTag("mapMark"))
+                   
+                    Room roomData = hit.collider.gameObject.GetComponentInParent<Room>(); // the room object is actually on the parent of the map object
+                    Debug.Log("getting the parent of " + hit.collider.gameObject.name);
+                    
+                    // We also only want to place the marker if the room has been discovered
+                    if(roomData != null){
+                        isDiscoveredRoom = roomData.discovered;
+                    }
+
+                    if (isDiscoveredRoom || hit.collider.gameObject.CompareTag("mapMark"))
                     {
                         GameObject placedMarker = Instantiate(selectedPrefab, new Vector3(ray.origin.x, ray.origin.y, 0f), Quaternion.identity);
                         Animator markerAnimator = placedMarker.GetComponent<Animator>();
@@ -78,13 +88,13 @@ public class MapMarker : MonoBehaviour
                             switch (selectedIndex)
                             {
                                 case 0:
-                                    clipName = "safe-icon-place";
+                                    clipName = "safe-animation-mark";
                                     break;
                                 case 1:
-                                    clipName = "lore-icon-place";
+                                    clipName = "lore-animation-mark";
                                     break;
                                 case 2:
-                                    clipName = "danger-icon-place";
+                                    clipName = "danger-animation-mark";
                                     break;
                                 default:
                                     clipName = null;

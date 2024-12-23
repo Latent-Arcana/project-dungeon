@@ -41,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField]
     private Sprite leftFacingSprite;
-    private bool isRightFacing = true;
+    public bool isRightFacing = true;
 
     private SpriteRenderer spriteRenderer;
 
@@ -274,6 +274,8 @@ public class PlayerMovement : MonoBehaviour
                 type = "enter",
                 roomId = collision.gameObject.GetComponentInParent<Room>().roomId
             });
+
+            collision.gameObject.GetComponentInParent<Room>().discovered = true;
         }
 
         else if (collision.gameObject.tag == "hallway")

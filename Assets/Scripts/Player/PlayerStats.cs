@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -40,7 +41,7 @@ public class PlayerStats : MonoBehaviour
         if (e.newValue <= 0 && !DEBUG_GOD_MODE)
         {
 
-            StartCoroutine(PlayerDeath());
+            HandlePlayerDeath();
         }
         StartCoroutine(IncomingDamageFlash());
     }
@@ -52,25 +53,40 @@ public class PlayerStats : MonoBehaviour
         gameObject.GetComponent<SpriteRenderer>().color = UnityEngine.Color.white;
     }
 
-    public IEnumerator PlayerDeath()
+    public void HandlePlayerDeath()
     {
         SpriteRenderer spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+
+        Animator playerAnimator = gameObject.GetComponentInChildren<Animator>();
+
+        PlayerMovement playerMovement = gameObject.GetComponent<PlayerMovement>();
+
+        if (playerAnimator != null && playerMovement != null)
+        {
+            spriteRenderer.color = new Color(0, 0, 0, 0);
+            if (playerMovement.isRightFacing)
+            {
+                StartCoroutine(PlayerDeath(playerAnimator, "player-death-animation"));
+            }
+            else
+            {
+                StartCoroutine(PlayerDeath(playerAnimator, "player-death-animation-mirrored"));
+            }
+
+
+        }
+    }
+
+    public IEnumerator PlayerDeath(Animator playerAnimator, string animationName)
+    {
+        playerAnimator.Play(animationName);
+
+        float animationLength = playerAnimator.runtimeAnimatorController.animationClips.First(clip => clip.name == animationName).length;
         input.ToggleMovement();
-        spriteRenderer.color = new Color(255f, 255f, 255f, 1.0f);
-        spriteRenderer.flipY = true;
-        yield return new WaitForSeconds(.20f);
-        spriteRenderer.color = new Color(255f, 255f, 255f, 0.75f);
-        spriteRenderer.flipY = true;
-        yield return new WaitForSeconds(.20f);
-        spriteRenderer.color = new Color(255f, 255f, 255f, 0.5f);
-        spriteRenderer.flipY = true;
-        yield return new WaitForSeconds(.20f);
-        spriteRenderer.color = new Color(255f, 255f, 255f, 0.25f);
-        spriteRenderer.flipY = true;
-        yield return new WaitForSeconds(.20f);
-        spriteRenderer.color = new Color(255f, 255f, 255f, 0.0f);
-        spriteRenderer.flipY = true;
-        yield return new WaitForSeconds(.20f);
+
+        yield return new WaitForSeconds(animationLength);
+
         scoreController.SetFinalScore();
     }
+
 }

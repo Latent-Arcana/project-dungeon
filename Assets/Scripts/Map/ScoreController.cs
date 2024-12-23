@@ -62,7 +62,7 @@ public class ScoreController : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.Keypad9))
         {
-            StartCoroutine(GameObject.Find("Player").GetComponent<PlayerStats>().PlayerDeath());
+            GameObject.Find("Player").GetComponent<PlayerStats>().HandlePlayerDeath();
         }
         else if (Input.GetKeyUp(KeyCode.Keypad8))
         {
@@ -118,15 +118,15 @@ public class ScoreController : MonoBehaviour
             switch (mark.roomType)
             {
                 case Enums.RoomType.Danger:
-                    clipName = "danger-icon-animation-wipe";
+                    clipName = "danger-animation-erase";
                     break;
 
                 case Enums.RoomType.Safe:
-                    clipName = "safe-icon-animation-wipe";
+                    clipName = "safe-animation-erase";
                     break;
 
                 case Enums.RoomType.Lore:
-                    clipName = "lore-icon-animation-wipe";
+                    clipName = "lore-animation-erase";
                     break;
             }
 
@@ -141,6 +141,10 @@ public class ScoreController : MonoBehaviour
 
         int removeFromRoom = currentMarksInverse[marker];
 
+        //remove it from the dictionary(x2)
+        currentMarks.Remove(removeFromRoom);
+        currentMarksInverse.Remove(marker);
+
         Debug.Log("RemoveRoomMark: Removing existing mark for room" + removeFromRoom);
 
         // Wait for the duration of the animation
@@ -148,10 +152,6 @@ public class ScoreController : MonoBehaviour
         yield return new WaitForSeconds(animationLength);
 
         Debug.Log("waiting for animation");
-
-        //remove it from the dictionary(x2)
-        currentMarks.Remove(removeFromRoom);
-        currentMarksInverse.Remove(marker);
 
         //marker.SetActive(false);
 
