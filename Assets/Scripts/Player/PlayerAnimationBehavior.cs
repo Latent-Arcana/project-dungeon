@@ -9,13 +9,22 @@ public class PlayerAnimationBehavior : MonoBehaviour
     public PlayerMovement playerMovement;
     public Animator animator;
 
-    void OnAwake()
+    private bool playerDied = false;
+
+    private ScoreController scoreController;
+    private InputController input;
+
+    void Awake()
     {
         playerMovement = gameObject.GetComponent<PlayerMovement>();
         animator = gameObject.GetComponentInChildren<Animator>();
+
+        scoreController = GameObject.Find("ScoreController").GetComponent<ScoreController>();
+        input = GameObject.Find("InputController").GetComponent<InputController>();
     }
 
-    public void Sleep(){
+    public void Sleep()
+    {
         animator.Play("sleep");
         StartCoroutine(ResetToIdle("sleep"));
     }
@@ -28,10 +37,12 @@ public class PlayerAnimationBehavior : MonoBehaviour
         {
             animationName = "agility-buff";
         }
-        else if(buffType == Enums.ShrineType.Speed){
+        else if (buffType == Enums.ShrineType.Speed)
+        {
             animationName = "speed-buff";
         }
-        else if(buffType == Enums.ShrineType.Strength){
+        else if (buffType == Enums.ShrineType.Strength)
+        {
             animationName = "strength-buff";
         }
 
@@ -42,7 +53,7 @@ public class PlayerAnimationBehavior : MonoBehaviour
     }
 
 
-     private IEnumerator ResetToIdle(string animationName)
+    private IEnumerator ResetToIdle(string animationName)
     {
         // Wait for the duration of the animation
         float animationLength = animator.runtimeAnimatorController.animationClips.First(clip => clip.name == animationName).length;
@@ -52,16 +63,78 @@ public class PlayerAnimationBehavior : MonoBehaviour
         animator.Play("None");
     }
 
-
-    // Start is called before the first frame update
-    void Start()
+    public void HandleDamageAnimations(int newValue)
     {
+
+        StartCoroutine(IncomingDamageAnimationHandler(newValue));
+    }
+
+    private IEnumerator IncomingDamageAnimationHandler(int newValue)
+    {
+
+        if (playerDied) { yield break; }
+
+        // if the player died
+        if (newValue <= 0)
+        {
+
+            playerDied = true;
+            input.enabled = false;
+
+            SpriteRenderer spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+
+            PlayerMovement playerMovement = gameObject.GetComponent<PlayerMovement>();
+
+
+            spriteRenderer.color = new Color(0, 0, 0, 0);
+
+            string animationName = "player-death-animation";
+
+            if (!playerMovement.isRightFacing) // if the player is facing left, die with the left animation
+            {
+                animationName = "player-death-animation-mirrored";
+            }
+
+            playerMovement.enabled = false;
+
+
+            animator.Play(animationName);
+
+
+            float animationLength = animator.runtimeAnimatorController.animationClips.First(clip => clip.name == animationName).length;
+
+            yield return new WaitForSeconds(animationLength);
+
+            animator.Play("Idle");
+
+            scoreController.SetFinalScore();
+
+        }
+
+        // the player is still alive but took damage
+        else
+        {
+            string animationName;
+
+            float slashChoice = UnityEngine.Random.value;
+
+            if (slashChoice > .5f)
+            {
+                animationName = "player-damage-slash-1";
+            }
+            else
+            {
+                animationName = "player-damage-slash-2";
+            }
+
+            if (!playerDied) { animator.Play(animationName); }
+            float animationLength = animator.runtimeAnimatorController.animationClips.First(clip => clip.name == animationName).length / 2;
+
+            yield return new WaitForSeconds(animationLength);
+
+            if (!playerDied) { animator.Play("Idle"); } // we have to do this because coroutines are annoying and I don't want to re-code the animation system right now
+        }
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 }
