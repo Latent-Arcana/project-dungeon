@@ -31,7 +31,7 @@ public class PlayerAnimationBehavior : MonoBehaviour
     public void BuffStats(Enums.ShrineType buffType)
     {
 
-        string animationName = "None";
+        string animationName = "Idle";
 
         if (buffType == Enums.ShrineType.Agility)
         {
@@ -60,7 +60,7 @@ public class PlayerAnimationBehavior : MonoBehaviour
         yield return new WaitForSeconds(animationLength);
 
         // Play the idle state or any default animation
-        animator.Play("None");
+        animator.Play("Idle");
     }
 
     public void HandleDamageAnimations(int newValue)
@@ -114,18 +114,7 @@ public class PlayerAnimationBehavior : MonoBehaviour
         // the player is still alive but took damage
         else
         {
-            string animationName;
-
-            float slashChoice = UnityEngine.Random.value;
-
-            if (slashChoice > .5f)
-            {
-                animationName = "player-damage-slash-1";
-            }
-            else
-            {
-                animationName = "player-damage-slash-2";
-            }
+            string animationName = "incoming-damage";
 
             if (!playerDied) { animator.Play(animationName); }
             float animationLength = animator.runtimeAnimatorController.animationClips.First(clip => clip.name == animationName).length / 2;

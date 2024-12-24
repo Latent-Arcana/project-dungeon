@@ -43,6 +43,8 @@ public class EnemyBehavior : MonoBehaviour
 
     public EnemyStats enemyStats;
 
+    private EnemyAnimationBehavior animationBehavior;
+
     public BehaviorState behaviorState;
 
     public enum BehaviorState
@@ -75,6 +77,8 @@ public class EnemyBehavior : MonoBehaviour
         standingOnCorpse = false;
 
         playerInventory = GameObject.Find("Player").GetComponent<PlayerInventory>();
+
+        animationBehavior = gameObject.GetComponent<EnemyAnimationBehavior>();
 
     }
 
@@ -329,7 +333,8 @@ public class EnemyBehavior : MonoBehaviour
                 if (!playerMissed)
                 {
                     enemyStats.HP += _playerDamageDealt;
-                    StartCoroutine(IncomingDamageFlash());
+                    animationBehavior.HandleDamageAnimations();
+                   // StartCoroutine(IncomingDamageFlash());
                     // if the enemy was reduced to 0 HP, they die
                     if (enemyStats.HP <= 0)
                     {
@@ -351,7 +356,8 @@ public class EnemyBehavior : MonoBehaviour
                 if (!playerMissed)
                 {
                     enemyStats.HP += _playerDamageDealt;
-                    StartCoroutine(IncomingDamageFlash());
+                    //StartCoroutine(IncomingDamageFlash());
+                    animationBehavior.HandleDamageAnimations();
 
 
                     // if the enemy was reduced to 0 HP, they die
@@ -398,7 +404,7 @@ public class EnemyBehavior : MonoBehaviour
 
         gameObject.GetComponent<SpriteRenderer>().enabled = false;
 
-        GameObject corpse = gameObject.transform.GetChild(1).gameObject; // the Enemy Corpse object
+        GameObject corpse = gameObject.transform.GetChild(2).gameObject; // the Enemy Corpse object
 
 
         // check to see if we're standing on a corpse. If not, it's easy
