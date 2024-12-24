@@ -6,15 +6,12 @@ using UnityEngine;
 
 public class EnemyAnimationBehavior : MonoBehaviour
 {
-
     public Animator animator;
 
     void Awake()
     {
-
         animator = gameObject.GetComponentInChildren<Animator>();
     }
-
 
 
     public void HandleDamageAnimations()
