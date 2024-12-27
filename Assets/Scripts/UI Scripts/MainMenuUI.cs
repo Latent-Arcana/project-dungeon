@@ -18,12 +18,15 @@ public class MainMenuUI : MonoBehaviour
     private Button PlayButton;
     private Button QuitButton;
     private Button OptionsButton;
+    private Button HelpButton;
     private Button BackButton;
+    private Button BackButton_help;
 
     ////Containers////
     private VisualElement optionsContainer;
     private VisualElement mainContainer;
     private VisualElement parentContainer;
+    private VisualElement helpContainer;
 
     //// Options
     private SaveOptions ops;
@@ -38,7 +41,6 @@ public class MainMenuUI : MonoBehaviour
     [SerializeField]
     private AudioMixer audioMixer;
 
-    private BackgroundMusicController backgroundMusicController;
     private MenuAudioController menuAudioController;
 
 
@@ -55,10 +57,7 @@ public class MainMenuUI : MonoBehaviour
         main_document = this.GetComponent<UIDocument>();
 
         //Audio
-        backgroundMusicController = GameObject.Find("BackgroundAudio").GetComponent<BackgroundMusicController>();
         menuAudioController = GameObject.Find("MenuAudio").GetComponent<MenuAudioController>();
-
-
 
         ////Buttons////  
         //similar to getting an HTML element by #ID
@@ -66,15 +65,23 @@ public class MainMenuUI : MonoBehaviour
         QuitButton = main_document.rootVisualElement.Q("QuitButton") as Button;
         OptionsButton = main_document.rootVisualElement.Q("OptionsButton") as Button;
         BackButton = main_document.rootVisualElement.Q("BackButton") as Button;
+        BackButton_help = main_document.rootVisualElement.Q("BackButtonHelp") as Button;
+        HelpButton = main_document.rootVisualElement.Q("HelpButton") as Button;
 
         //// Containers ////
         optionsContainer = main_document.rootVisualElement.Q("OptionsContainer");
         mainContainer = main_document.rootVisualElement.Q("MainContainer");
         parentContainer = main_document.rootVisualElement.Q("Container");
+        helpContainer = main_document.rootVisualElement.Q("PlayingTheGame");
 
-        //Shouldn't have to init these but they were null otherwise
+        Debug.Log($"Main Container is {mainContainer}");
+
+        Debug.Log($"Help Container is {helpContainer}");
+
+        //Make sure that we have just the main container showing
         mainContainer.style.display = DisplayStyle.Flex;
         optionsContainer.style.display = DisplayStyle.None;
+        helpContainer.style.display = DisplayStyle.None;
 
         //// Options ////
         ops = SaveSystem.LoadOptions();
@@ -91,6 +98,8 @@ public class MainMenuUI : MonoBehaviour
         QuitButton.clicked += QuitGame;
         OptionsButton.clicked += GoToOptions;
         BackButton.clicked += SaveSettings;
+        BackButton_help.clicked += HelpMenu;
+        HelpButton.clicked += HelpMenu;
 
         //Sliders
         volMusicSlider.RegisterCallback<ChangeEvent<float>>(SetMusicVolume);
@@ -114,10 +123,6 @@ public class MainMenuUI : MonoBehaviour
             input = GameObject.Find("InputController").GetComponent<InputController>();
         }
 
-        else
-        {
-            backgroundMusicController = GameObject.Find("BackgroundAudio").GetComponent<BackgroundMusicController>();
-        }
     }
 
     private void OnEnable()
@@ -147,13 +152,8 @@ public class MainMenuUI : MonoBehaviour
         audioMixer.SetFloat("MixerMusicVolume", ConvertVolumeToDb(ops.musicVolume));
         audioMixer.SetFloat("MixerAmbientVolume", ConvertVolumeToDb(ops.ambientVolume));
 
-
         // Screen.SetResolution(ops.screenOptions.screenWidth, ops.screenOptions.screenHeight, ops.screenOptions.fullScreen);
 
-        // if (SceneManager.GetActiveScene().name == "Main Menu")
-        // {
-        //     backgroundMusicController.ChangeSongForScene("Main Menu");
-        // }
     }
 
     //Volume Settings
@@ -187,6 +187,19 @@ public class MainMenuUI : MonoBehaviour
         menuAudioController.PlayAudioClip("ButtonClose");
         SaveSystem.SaveOptions(ops);
         ToggleOptions();
+    }
+
+    private void HelpMenu()
+    {
+        menuAudioController.PlayAudioClip("ButtonClose");
+        ToggleHelp();
+    }
+
+    private void ToggleHelp()
+    {
+        mainContainer.style.display = (mainContainer.style.display == DisplayStyle.Flex) ? DisplayStyle.None : DisplayStyle.Flex;
+        helpContainer.style.display = (helpContainer.style.display == DisplayStyle.Flex) ? DisplayStyle.None : DisplayStyle.Flex;
+
     }
 
     private void OnScreenResolutionChanged(ChangeEvent<string> evt)
@@ -253,9 +266,7 @@ public class MainMenuUI : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name == "Main Menu")
         {
-            //backgroundMusicController.ChangeSongForScene("Loading");
-
-            menuAudioController.PlayAudioClip("PlayGame");
+            menuAudioController.PlayAudioClip("ButtonClose");
 
             Player_Stats.Initialize(); // Resetting the player's stats to base stats when a new game begins
             Player_Inventory.Reset(); // Resetting the player's inventory and equipment when a new game begins

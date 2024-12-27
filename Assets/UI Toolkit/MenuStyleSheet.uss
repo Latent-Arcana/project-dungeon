@@ -19,6 +19,7 @@
 
 .menu-button:hover {
     background-image: url("project://database/Assets/Sprites/UI%20Sprites/button-active_1528x85.png?fileID=2800000&guid=4a06f7ce58a970141a5d26d4ff746136&type=3#button-active_1528x85");
+    color: rgb(125, 211, 208);
 }
 
 .menu-button:active {
@@ -47,6 +48,7 @@
 
 .menu-pause-button:hover {
     background-image: url("project://database/Assets/Sprites/UI%20Sprites/button-hover-1150x63.png?fileID=2800000&guid=ae98b22ecad881c4bb1e39ffc1d49fab&type=3#button-hover-1150x63");
+    color: rgb(125, 211, 208);
 }
 
 .menu-pause-button:active {
@@ -71,10 +73,17 @@
     -unity-background-scale-mode: scale-to-fit;
     margin-top: 10px;
     margin-bottom: 10px;
+    height: 48px;
 }
 
 .inventory-button:hover {
-    background-image: url("project://database/Assets/Sprites/UI%20Sprites/button-active_1528x85.png?fileID=2800000&guid=4a06f7ce58a970141a5d26d4ff746136&type=3#button-active_1528x85");
+    background-image: url("project://database/Assets/UI%20Toolkit/UI%20Sprites/1920x1080/drop-item-button-hover.png?fileID=2800000&guid=9dc32c629135b314aa26c49a98752988&type=3#drop-item-button-hover");
+    color: rgb(125, 211, 208);
+}
+
+.inventory-button:active {
+    background-image: url("project://database/Assets/UI%20Toolkit/UI%20Sprites/1920x1080/drop_item_button.png?fileID=2800000&guid=116ce4fbc613b284dac75e5fd8e99011&type=3#drop_item_button");
+    color: rgb(125, 211, 208);
 }
 
 .button-container {
@@ -97,6 +106,13 @@
     height: 100%;
     margin-top: 50px;
     margin-bottom: 50px;
+    background-color: rgb(0, 0, 0);
+    margin-right: 50px;
+    margin-left: 50px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    padding-right: 50px;
+    padding-left: 50px;
 }
 
 .options-container {
