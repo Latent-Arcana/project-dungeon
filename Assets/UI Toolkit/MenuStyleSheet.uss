@@ -149,8 +149,10 @@
     font-size: 32px;
     color: rgb(255, 255, 255);
     -unity-text-align: upper-left;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-right: 0;
+    padding-left: 0;
 }
 
 .inventory-text {
