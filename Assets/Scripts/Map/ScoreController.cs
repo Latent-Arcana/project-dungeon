@@ -64,7 +64,7 @@ public class ScoreController : MonoBehaviour
         {
             //GameObject.Find("Player").GetComponentInChildren<PlayerStats>().HandlePlayerDeath();
         }
-        else if (Input.GetKeyUp(KeyCode.Keypad8))
+        else if (Input.GetKeyUp(KeyCode.P))
         {
             SpawnPortal();
         }
@@ -263,15 +263,44 @@ public class ScoreController : MonoBehaviour
 
                 if (portalObject.transform.position != playerMovement.gameObject.transform.position)
                 {
-                    portalObject.GetComponent<SpriteRenderer>().enabled = true;
-                    portalObject.GetComponent<BoxCollider2D>().enabled = true;
-                }
+                    StartCoroutine(FadeInPortal(portalObject));
 
+                }
             }
         }
 
         DungeonNarrator.Dungeon_Narrator.AddDungeonNarratorText("The aether stirs. The portals have opened...");
 
         portalsSpawned = true;
+    }
+
+
+    private IEnumerator FadeInPortal(GameObject portalObject)
+    {
+        portalObject.GetComponent<BoxCollider2D>().enabled = true;
+        SpriteRenderer sr = portalObject.GetComponent<SpriteRenderer>();
+
+        sr.enabled = true;
+
+        yield return new WaitForSeconds(.1f);
+        sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, .1f);
+        yield return new WaitForSeconds(.1f);
+        sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, .2f);
+        yield return new WaitForSeconds(.1f);
+        sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, .3f);
+        yield return new WaitForSeconds(.1f);
+        sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, .4f);
+        yield return new WaitForSeconds(.1f);
+        sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, .5f);
+        yield return new WaitForSeconds(.1f);
+        sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, .6f);
+        yield return new WaitForSeconds(.1f);
+        sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, .7f);
+        yield return new WaitForSeconds(.1f);
+        sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, .8f);
+        yield return new WaitForSeconds(.1f);
+        sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, .9f);
+        yield return new WaitForSeconds(.1f);
+        sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 1f);
     }
 }

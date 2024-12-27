@@ -41,7 +41,6 @@ public class FloorCoveringGeneration : MonoBehaviour
                         GameObject selectedPrefab = mossPrefabs[UnityEngine.Random.Range(0, mossPrefabs.Length)];
                         Quaternion randomRotation = Quaternion.Euler(0, 0, UnityEngine.Random.Range(0, 4) * 90);
                         mossInstances.Add(new FloorCoveringInstanceData(selectedPrefab, pos, randomRotation, floorCover.transform));
-                        //Instantiate(selectedPrefab, pos, randomRotation);
                     }
                 }
             }
