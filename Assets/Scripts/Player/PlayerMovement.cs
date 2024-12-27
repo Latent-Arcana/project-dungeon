@@ -145,14 +145,14 @@ public class PlayerMovement : MonoBehaviour
             ContainerBehavior container = collision.gameObject.GetComponent<ContainerBehavior>();
             if (container)
             {
+                ambientAudioController.PlayAudioClip("Chest");
+
                 if (container.items.Count == 0)
                 {
                     Dungeon_Narrator.AddDungeonNarratorText("There's nothing in there...");
                 }
                 else
                 {
-                    ambientAudioController.PlayAudioClip("Chest");
-
                     List<Item> itemsToRemove = new List<Item>();
                     foreach (Item item in container.items)
                     {
