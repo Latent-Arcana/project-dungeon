@@ -28,9 +28,9 @@ public class FloorCoveringGeneration : MonoBehaviour
             GameObject floorCover = new GameObject("FloorCover");
             floorCover.transform.parent = room.gameObject.transform.GetChild(1).transform;
 
-            for (int x = room.x; x < (room.x + room.width); x++)
+            for (int x = room.x + 1; x < (room.x + room.width) - 1; x++)
             {
-                for (int y = room.y; y < (room.y + room.height); y++)
+                for (int y = room.y + 1; y < (room.y + room.height) - 1; y++)
                 {
                     float sample = Mathf.PerlinNoise(x * noiseScale, y * noiseScale);
 
