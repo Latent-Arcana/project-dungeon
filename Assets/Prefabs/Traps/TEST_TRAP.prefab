@@ -251,8 +251,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -293510981
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 13807fad4ac260243b83794def594180, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -278,7 +278,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomId: 0
+  room: {fileID: 0}
   projectilePrefabs:
   - {fileID: 7807064749165640543, guid: 3e2b048a8b96ba648a638195848e12c9, type: 3}
   - {fileID: 6944768765336641834, guid: d578309a14685f64b9318950b4681123, type: 3}
+  player: {fileID: 0}
+  playerMovement: {fileID: 0}
+  playerInRoom: 0
   Player_Stats: {fileID: 11400000, guid: 49cdfbab4b8796a41af4e48e5ee7d3d5, type: 2}
