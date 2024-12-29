@@ -28,7 +28,7 @@ public class BackgroundMusicController : MonoBehaviour
 
     //Sound numbers
     float currentMixerVolume, currentMixerVolumeDb;
-    float fadeOutDuration = .1f;
+    float fadeOutDuration = 5f;
     float fadeInDuration = 4f;
     float volumeOriginalSetting = 0f;
 
@@ -57,7 +57,7 @@ public class BackgroundMusicController : MonoBehaviour
         ObjectGeneration.AllRoomsPlacementComplete -= SwapAudioOnBSPLoad;
     }
 
-     private void SwapAudioOnBSPLoad()
+    private void SwapAudioOnBSPLoad()
     {
         StopCoroutine(fadeOutProcess);
         Debug.Log("Stopped coroutine. Volume set to: " + volumeOriginalSetting);
@@ -66,8 +66,9 @@ public class BackgroundMusicController : MonoBehaviour
 
         beginFadeOutAudio = false;
     }
-    
-    public void StopAudio(){
+
+    public void StopAudio()
+    {
         backgroundAudio.Stop();
     }
 
@@ -91,12 +92,13 @@ public class BackgroundMusicController : MonoBehaviour
         }
 
         //start playing new audio clip
-        backgroundAudio.Play();
+        StartCoroutine(FadeInAudio());
     }
 
     void UpdateAudioLevelDuringLoad(float percentage)
     {
-        if(percentage >= .80f && beginFadeOutAudio == false){
+        if (percentage >= .80f && beginFadeOutAudio == false)
+        {
             Debug.Log("setting volume OG to: " + backgroundAudio.volume);
             beginFadeOutAudio = true;
             volumeOriginalSetting = backgroundAudio.volume;
@@ -117,7 +119,24 @@ public class BackgroundMusicController : MonoBehaviour
             yield return null;
         }
 
-        backgroundAudio.volume = 0f; // Ensure volume is fully set to 1 at the end
+        backgroundAudio.volume = 0f; // Ensure volume is fully set to 0 at the end
+
+    }
+
+    private IEnumerator FadeInAudio()
+    {
+        float volumeStartOnFadeIn = backgroundAudio.volume;
+        backgroundAudio.volume = 0;
+        backgroundAudio.Play();
+        float elapsedTime = 0f;
+        while (elapsedTime < fadeOutDuration)
+        {
+            backgroundAudio.volume = Mathf.Lerp(0, volumeStartOnFadeIn, elapsedTime / fadeOutDuration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        backgroundAudio.volume = volumeStartOnFadeIn; // Ensure volume is fully set to the original at the end
 
     }
 
