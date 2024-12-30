@@ -184,7 +184,7 @@ public class ScoreController : MonoBehaviour
 
                 // we have a pin but the room is unassigned
                 // We don't care what we marked the room, we're just going to give them this free point
-                if(room1.roomType == Enums.RoomType.Unassigned){
+                else if(room1.roomType == Enums.RoomType.Unassigned){
                     Numerator++;
                     Denominator++;
                 }
@@ -212,7 +212,7 @@ public class ScoreController : MonoBehaviour
         Debug.Log($"Current Score: {Numerator}/{Denominator}");
 
         //pass the stats to the object that won't be destroyed
-        gameStats.AddToScore(Numerator, Denominator); // TODO: REVISIT
+        gameStats.AddToScore(Numerator, Denominator);
 
         gameStats.UpdateCurrentRoomAndDungeonData();
 

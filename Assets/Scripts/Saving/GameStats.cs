@@ -110,6 +110,9 @@ public class GameStats : MonoBehaviour
 
     public void UpdateCurrentRoomAndDungeonData()
     {
+
+        Debug.Log("Numerator is: " + GetNumerator());
+        Debug.Log("Denominator is: " + GetDenominator());
         // get numerator and denominator data so we can update the current run
         if (GetNumerator() == GetDenominator()) // TODO: REVISIT
         {
@@ -119,11 +122,14 @@ public class GameStats : MonoBehaviour
         IncrementDungeonsVisited(); // we know we're going to increment this any time we swap portals (DO THIS ON DEATH TOO)
 
         SetRoomsSuccessfullyMapped(GetNumerator()); // set how many room we've visited
+
+        Debug.Log("We just set the rooms succesfully mapped to: " + currentRunData.roomsMappedSuccessfully + " with numerator: " + GetNumerator());
     }
 
 
     public void SaveStats()
     {
+        Debug.Log("SAVING PLAYER DATA");
         ExplorationData loadedData = SaveSystem.LoadPlayerSaveData();
 
         if (loadedData != null)
@@ -152,7 +158,7 @@ public class GameStats : MonoBehaviour
 
     public void SetRoomsSuccessfullyMapped(int roomsCount)
     {
-        currentRunData.roomsMappedSuccessfully += roomsCount;
+        currentRunData.roomsMappedSuccessfully = roomsCount;
     }
 
     public void IncrementCartographersLost()
@@ -163,7 +169,6 @@ public class GameStats : MonoBehaviour
     public void IncrementEnemiesKilled()
     {
         currentRunData.enemiesKilled++;
-        Debug.Log(currentRunData.enemiesKilled);
     }
 
 
