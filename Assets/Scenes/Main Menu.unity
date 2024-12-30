@@ -289,7 +289,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainMenuAudio: {fileID: 8428759403118509146, guid: cfd9ad998059d914e810ac2d37cb6fb6, type: 3}
-  gameScoreController: {fileID: 1522855409419736890, guid: 606ddb800c28f59499b39f916ef64815, type: 3}
+  gameStats: {fileID: 1522855409419736890, guid: 606ddb800c28f59499b39f916ef64815, type: 3}
   itemDataLoader: {fileID: 4801144799437301872, guid: 876626ac45d45c54ca0959db52952de5, type: 3}
 --- !u!4 &1263041886
 Transform:

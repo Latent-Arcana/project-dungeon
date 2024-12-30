@@ -10,7 +10,7 @@ public class DontDestroyGenerator : MonoBehaviour
     GameObject mainMenuAudio;
 
     [SerializeField]
-    GameObject gameScoreController;
+    GameObject gameStats;
 
     [SerializeField]
     GameObject itemDataLoader;
@@ -49,7 +49,7 @@ public class DontDestroyGenerator : MonoBehaviour
 
             if (GameObject.Find("GameStats") == null)
             {
-                GameObject obj = Instantiate(gameScoreController);
+                GameObject obj = Instantiate(gameStats);
                 obj.name = "GameStats";
             }
         }
