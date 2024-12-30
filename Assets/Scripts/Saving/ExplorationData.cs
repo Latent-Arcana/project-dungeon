@@ -19,4 +19,21 @@ public class ExplorationData
         enemiesKilled = _enemiesKilled;
     }
 
+    public ExplorationData(){
+        dungeonsFullyMapped = 0;
+        roomsMappedSuccessfully = 0;
+        dungeonsVisited = 0;
+        cartographersLost = 0;
+        enemiesKilled = 0;
+    }
+
+    public void IncrementPlayerSavedData(ExplorationData currentRun){
+        dungeonsFullyMapped += currentRun.dungeonsFullyMapped;
+        roomsMappedSuccessfully += currentRun.roomsMappedSuccessfully;
+        dungeonsVisited += currentRun.dungeonsVisited;
+        cartographersLost += currentRun.cartographersLost;
+        enemiesKilled += currentRun.enemiesKilled;
+
+    }
+
 }

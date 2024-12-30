@@ -44,7 +44,6 @@ public class MainMenuUI : MonoBehaviour
     private MenuAudioController menuAudioController;
 
 
-
     [SerializeField]
     public PlayerStatsManager Player_Stats;
 
@@ -122,7 +121,6 @@ public class MainMenuUI : MonoBehaviour
             //player only exists in gameplay
             input = GameObject.Find("InputController").GetComponent<InputController>();
         }
-
     }
 
     private void OnEnable()
@@ -266,6 +264,7 @@ public class MainMenuUI : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name == "Main Menu")
         {
+
             menuAudioController.PlayAudioClip("ButtonClose");
 
             Player_Stats.Initialize(); // Resetting the player's stats to base stats when a new game begins

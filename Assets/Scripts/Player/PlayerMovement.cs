@@ -51,6 +51,8 @@ public class PlayerMovement : MonoBehaviour
     private BackgroundMusicController backgroundMusicController;
     private AmbientAudioController ambientAudioController;
 
+    private GameStats gameStats;
+
     void Awake()
     {
         player = gameObject;
@@ -68,6 +70,10 @@ public class PlayerMovement : MonoBehaviour
         menuAudioController = GameObject.Find("Audio").GetComponentInChildren<MenuAudioController>();
         backgroundMusicController = GameObject.Find("Audio").GetComponentInChildren<BackgroundMusicController>();
         ambientAudioController = GameObject.Find("Audio").GetComponentInChildren<AmbientAudioController>();
+    }
+
+    void Start(){
+        gameStats = GameObject.Find("GameStats").GetComponent<GameStats>();
     }
 
 
@@ -274,7 +280,18 @@ public class PlayerMovement : MonoBehaviour
                 roomId = collision.gameObject.GetComponentInParent<Room>().roomId
             });
 
-            collision.gameObject.GetComponentInParent<Room>().discovered = true;
+
+            Room collisionRoom = collision.gameObject.GetComponentInParent<Room>();
+
+            if (!collisionRoom.discovered)
+            {
+                collisionRoom.discovered = true;
+               
+                if (gameStats != null)
+                {
+                    gameStats.IncrementRoomsVisited();
+                }
+            }
         }
 
         else if (collision.gameObject.tag == "hallway")

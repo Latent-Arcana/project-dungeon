@@ -21,6 +21,8 @@ public class EnemyBehavior : MonoBehaviour
     private PlayerInventory playerInventory;
     protected InputController input;
     protected DungeonNarrator dungeonNarrator;
+
+    protected GameStats gameStats;
     public int room;
     public int currentRoom;
     public int id;
@@ -79,6 +81,8 @@ public class EnemyBehavior : MonoBehaviour
         playerInventory = GameObject.Find("Player").GetComponent<PlayerInventory>();
 
         animationBehavior = gameObject.GetComponent<EnemyAnimationBehavior>();
+
+        gameStats = GameObject.Find("GameStats").GetComponent<GameStats>();
 
     }
 
@@ -400,6 +404,8 @@ public class EnemyBehavior : MonoBehaviour
         Dungeon_Narrator.AddEnemyDeathText(enemyStats.EnemyType, killedByWeapon);
 
         behaviorState = BehaviorState.Dead;
+
+        gameStats.IncrementEnemiesKilled();
 
 
         gameObject.GetComponent<SpriteRenderer>().enabled = false;

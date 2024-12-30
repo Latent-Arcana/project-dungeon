@@ -178,6 +178,12 @@ public class ScoreController : MonoBehaviour
                     Denominator++;
                 }
 
+                // we have a pin but the room is unassigned
+                // We don't care what we marked the room, we're just going to give them this free point
+                if(room1.roomType == Enums.RoomType.Unassigned){
+                    Numerator++;
+                    Denominator++;
+                }
                 //pin is wrong
                 else
                 {
@@ -200,6 +206,7 @@ public class ScoreController : MonoBehaviour
         }
 
         Debug.Log($"Current Score: {Numerator}/{Denominator}");
+
     }
 
     /// <summary>
@@ -270,6 +277,9 @@ public class ScoreController : MonoBehaviour
         }
 
         DungeonNarrator.Dungeon_Narrator.AddDungeonNarratorText("The aether stirs. The portals have opened...");
+
+        ScoreRound(); // let's score the round so we can actually do what we need to do
+        gameStats.UpdateCurrentRoomAndDungeonData();
 
         portalsSpawned = true;
     }

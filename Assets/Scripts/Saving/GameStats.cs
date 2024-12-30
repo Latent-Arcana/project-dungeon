@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameStats : MonoBehaviour
 {
-    
+
     ///Saves the stats for the entire run, to display on the Game Over screen
 
 
@@ -20,6 +20,21 @@ public class GameStats : MonoBehaviour
 
     private string DeathText;
 
+
+    ExplorationData currentRunData;
+
+
+    void Awake()
+    {
+        InitializeCurrentRunData();
+    }
+
+    public void InitializeCurrentRunData()
+    {
+        currentRunData = new ExplorationData();
+    }
+
+
     /// <summary>
     /// Sets the final game score to be displayed on the Game Over screen
     /// </summary>
@@ -29,6 +44,7 @@ public class GameStats : MonoBehaviour
     {
         Numerator = numerator;
         Denominator = denominator;
+
     }
 
     public void AddToScore(int numerator, int denominator)
@@ -45,13 +61,16 @@ public class GameStats : MonoBehaviour
         RoomsVisited = roomsVisited;
     }
 
-    public void NewGame(){
-        SetScore(0,0);
+    public void NewGame()
+    {
+        SetScore(0, 0);
         SetRoomsVisited(0);
         InitializePlayer(); // TODO: Continue to extend
+        InitializeCurrentRunData();
     }
 
-    public void InitializePlayer(){
+    public void InitializePlayer()
+    {
         Player_Stats.Initialize();
         Player_Inventory.Reset();
     }
@@ -79,12 +98,64 @@ public class GameStats : MonoBehaviour
         return Denominator;
     }
 
-    public void SetDeathText(string deathText){
+    public void SetDeathText(string deathText)
+    {
         DeathText = deathText;
     }
 
-    public string GetDeathText(){
+    public string GetDeathText()
+    {
         return DeathText;
+    }
+
+    public void UpdateCurrentRoomAndDungeonData()
+    {
+        // get numerator and denominator data so we can update the current run
+        if (GetNumerator() == GetDenominator())
+        {
+            IncrementFullyMappedDungeons();
+        }
+
+        IncrementDungeonsVisited(); // we know we're going to increment this any time we swap portals
+
+        SetRoomsSuccessfullyMapped(GetNumerator()); // set how many room we've visited
+    }
+
+
+    public void DEBUG_PrintStats()
+    {
+        Debug.Log("Dungeons fully mapped: " + currentRunData.dungeonsFullyMapped);
+        Debug.Log("Dungeons Visited: " + currentRunData.dungeonsVisited);
+        Debug.Log("Succesfully Mapped Rooms: " + currentRunData.roomsMappedSuccessfully);
+        Debug.Log("Enemies Killed: " + currentRunData.enemiesKilled);
+        Debug.Log("Deaths: " + currentRunData.cartographersLost);
+    }
+
+
+    public void IncrementFullyMappedDungeons()
+    {
+        currentRunData.dungeonsFullyMapped++;
+    }
+
+    public void IncrementDungeonsVisited()
+    {
+        currentRunData.dungeonsVisited++;
+    }
+
+    public void SetRoomsSuccessfullyMapped(int roomsCount)
+    {
+        currentRunData.roomsMappedSuccessfully += roomsCount;
+    }
+
+    public void IncrementCartographersLost()
+    {
+        currentRunData.cartographersLost++;
+    }
+
+    public void IncrementEnemiesKilled()
+    {
+        currentRunData.enemiesKilled++;
+        Debug.Log(currentRunData.enemiesKilled);
     }
 
 

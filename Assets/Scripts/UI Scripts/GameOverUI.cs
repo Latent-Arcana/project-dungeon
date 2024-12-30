@@ -57,6 +57,7 @@ public class GameOverUI : MonoBehaviour
 
     void Start()
     {
+        gameStats.UpdateCurrentRoomAndDungeonData();
         SetGameStatText();
     }
 
@@ -70,6 +71,12 @@ public class GameOverUI : MonoBehaviour
 
         statsText1.text = @$"Total rooms marked correctly: {num}/{denom}";
         statsText2.text = @$"Total rooms visited: {roomsVisited}";
+
+        // we know we've died at this point
+        gameStats.IncrementCartographersLost();
+
+        gameStats.DEBUG_PrintStats();
+
     }
 
 
