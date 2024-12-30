@@ -57,7 +57,6 @@ public class GameOverUI : MonoBehaviour
 
     void Start()
     {
-        gameStats.UpdateCurrentRoomAndDungeonData();
         SetGameStatText();
     }
 

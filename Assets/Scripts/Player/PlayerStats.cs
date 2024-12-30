@@ -51,6 +51,10 @@ public class PlayerStats : MonoBehaviour
 
     }
 
+    public void DEBUG_DIE(){
+        playerAnimationBehavior.HandleDamageAnimations(20000);
+    }
+
 
     public IEnumerator IncomingDamageFlash()
     {

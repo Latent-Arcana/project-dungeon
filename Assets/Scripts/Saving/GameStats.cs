@@ -8,8 +8,8 @@ public class GameStats : MonoBehaviour
     ///Saves the stats for the entire run, to display on the Game Over screen
 
 
-    public PlayerStatsManager Player_Stats;
-    public Inventory Player_Inventory;
+    public PlayerStatsManager Player_Stats; // scriptable object (persistent, until game over)
+    public Inventory Player_Inventory; // scriptable object (persistent, until game over)
 
     [SerializeField]
     private int Numerator;
@@ -26,7 +26,7 @@ public class GameStats : MonoBehaviour
 
     void Awake()
     {
-        InitializeCurrentRunData();
+        NewGame();
     }
 
     public void InitializeCurrentRunData()
@@ -36,7 +36,7 @@ public class GameStats : MonoBehaviour
 
 
     /// <summary>
-    /// Sets the final game score to be displayed on the Game Over screen
+    /// Sets score to the given values
     /// </summary>
     /// <param name="numerator">Total number of correct room tags</param>
     /// <param name="denominator">Total number of rooms</param>
@@ -47,9 +47,10 @@ public class GameStats : MonoBehaviour
 
     }
 
-    public void AddToScore(int numerator)
+    public void AddToScore(int numerator, int denominator)
     {
         Numerator += numerator;
+        Denominator += denominator;
     }
 
     /// <summary>
@@ -110,12 +111,12 @@ public class GameStats : MonoBehaviour
     public void UpdateCurrentRoomAndDungeonData()
     {
         // get numerator and denominator data so we can update the current run
-        if (GetNumerator() == GetDenominator())
+        if (GetNumerator() == GetDenominator()) // TODO: REVISIT
         {
             IncrementFullyMappedDungeons();
         }
 
-        IncrementDungeonsVisited(); // we know we're going to increment this any time we swap portals
+        IncrementDungeonsVisited(); // we know we're going to increment this any time we swap portals (DO THIS ON DEATH TOO)
 
         SetRoomsSuccessfullyMapped(GetNumerator()); // set how many room we've visited
     }

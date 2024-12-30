@@ -73,9 +73,9 @@ public class MainMenuUI : MonoBehaviour
         parentContainer = main_document.rootVisualElement.Q("Container");
         helpContainer = main_document.rootVisualElement.Q("PlayingTheGame");
 
-        Debug.Log($"Main Container is {mainContainer}");
+       // Debug.Log($"Main Container is {mainContainer}");
 
-        Debug.Log($"Help Container is {helpContainer}");
+       // Debug.Log($"Help Container is {helpContainer}");
 
         //Make sure that we have just the main container showing
         mainContainer.style.display = DisplayStyle.Flex;

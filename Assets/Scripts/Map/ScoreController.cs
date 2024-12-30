@@ -64,9 +64,9 @@ public class ScoreController : MonoBehaviour
     {
         //TODO: Delete all this, it's DEBUG
 
-        if (Input.GetKeyUp(KeyCode.Keypad9))
+        if (Input.GetKeyUp(KeyCode.Delete))
         {
-            //GameObject.Find("Player").GetComponentInChildren<PlayerStats>().HandlePlayerDeath();
+            GameObject.Find("Player").GetComponentInChildren<PlayerStats>().DEBUG_DIE();
         }
         else if (Input.GetKeyUp(KeyCode.P))
         {
@@ -211,6 +211,11 @@ public class ScoreController : MonoBehaviour
 
         Debug.Log($"Current Score: {Numerator}/{Denominator}");
 
+        //pass the stats to the object that won't be destroyed
+        gameStats.AddToScore(Numerator, Denominator); // TODO: REVISIT
+
+        gameStats.UpdateCurrentRoomAndDungeonData();
+
     }
 
     /// <summary>
@@ -222,9 +227,6 @@ public class ScoreController : MonoBehaviour
         //Score current round
         ScoreRound();
 
-        //pass the stats to the object that won't be destroyed
-        gameStats.AddToScore(Numerator);
-
         GameObject.Find("BackgroundAudio").GetComponent<BackgroundMusicController>().ChangeSongForScene("GameOver");
 
         //call game over scene
@@ -234,7 +236,6 @@ public class ScoreController : MonoBehaviour
 
     private void Portals_OnPortalEntered(object sender, EventArgs e){
         ScoreRound();
-        gameStats.UpdateCurrentRoomAndDungeonData();
     }
 
     /// <summary>

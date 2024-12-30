@@ -200,10 +200,6 @@ public class BSPGeneration : MonoBehaviour
 
         GameObject.Find("Room_Gameplay_0").GetComponentInChildren<SpriteRenderer>().enabled = false;
 
-
-        // let's set the score too
-        GameObject.Find("GameStats").GetComponent<GameStats>().SetScore(0, allRooms.Count);
-
     }
 
 
