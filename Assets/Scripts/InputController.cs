@@ -164,8 +164,9 @@ public class InputController : MonoBehaviour
             else if (currentInputState == InputState.MapMenu)
             {
                 //close map but dont return to gameplay
-                OnMapEnter.Invoke(this, EventArgs.Empty); //throw event to MapMenuUI to toggle UI element
+                //OnMapEnter.Invoke(this, EventArgs.Empty); //throw event to MapMenuUI to toggle UI element
 
+                CloseMap();
                 //open Inv
                 OpenInventory();
             }
