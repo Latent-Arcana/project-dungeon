@@ -152,6 +152,8 @@ public class MainMenuUI : MonoBehaviour
 
         // Screen.SetResolution(ops.screenOptions.screenWidth, ops.screenOptions.screenHeight, ops.screenOptions.fullScreen);
 
+        SaveSystem.PrintPlayerSaveData();
+
     }
 
     //Volume Settings

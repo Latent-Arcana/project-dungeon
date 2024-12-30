@@ -75,7 +75,7 @@ public class GameOverUI : MonoBehaviour
         // we know we've died at this point
         gameStats.IncrementCartographersLost();
 
-        gameStats.DEBUG_PrintStats();
+        gameStats.SaveStats();
 
     }
 

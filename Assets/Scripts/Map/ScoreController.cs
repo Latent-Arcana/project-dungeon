@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,11 +50,14 @@ public class ScoreController : MonoBehaviour
         //subscribe MapController to the PlayerMovement script's OnRoomEnter event
         playerMovement.OnRoomEnter += Portals_OnRoomEnter;
 
+        playerMovement.PortalEntered += Portals_OnPortalEntered;
+
     }
 
     private void OnDisable()
     {
         playerMovement.OnRoomEnter -= Portals_OnRoomEnter;
+        playerMovement.PortalEntered -= Portals_OnPortalEntered;
     }
 
     void Update()
@@ -219,13 +223,18 @@ public class ScoreController : MonoBehaviour
         ScoreRound();
 
         //pass the stats to the object that won't be destroyed
-        gameStats.AddToScore(Numerator, Denominator);
+        gameStats.AddToScore(Numerator);
 
         GameObject.Find("BackgroundAudio").GetComponent<BackgroundMusicController>().ChangeSongForScene("GameOver");
 
         //call game over scene
         SceneManager.LoadScene("GameOver");
 
+    }
+
+    private void Portals_OnPortalEntered(object sender, EventArgs e){
+        ScoreRound();
+        gameStats.UpdateCurrentRoomAndDungeonData();
     }
 
     /// <summary>
@@ -277,9 +286,6 @@ public class ScoreController : MonoBehaviour
         }
 
         DungeonNarrator.Dungeon_Narrator.AddDungeonNarratorText("The aether stirs. The portals have opened...");
-
-        ScoreRound(); // let's score the round so we can actually do what we need to do
-        gameStats.UpdateCurrentRoomAndDungeonData();
 
         portalsSpawned = true;
     }

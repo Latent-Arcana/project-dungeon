@@ -22,6 +22,8 @@ public class PlayerMovement : MonoBehaviour
 
     public event EventHandler OnContainerOpen;
 
+    public event EventHandler PortalEntered;
+
     public event EventHandler OnPlayerTookDamage;
     public class MovementArgs : EventArgs
     {
@@ -250,6 +252,9 @@ public class PlayerMovement : MonoBehaviour
         {
             backgroundMusicController.StopAudio();
             ambientAudioController.PlayAudioClip("Portal");
+
+            PortalEntered.Invoke(this, EventArgs.Empty);
+
             SceneManager.LoadScene("BSP");
         }
 

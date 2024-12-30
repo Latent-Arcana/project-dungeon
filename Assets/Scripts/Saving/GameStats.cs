@@ -47,10 +47,9 @@ public class GameStats : MonoBehaviour
 
     }
 
-    public void AddToScore(int numerator, int denominator)
+    public void AddToScore(int numerator)
     {
         Numerator += numerator;
-        Denominator += denominator;
     }
 
     /// <summary>
@@ -122,13 +121,21 @@ public class GameStats : MonoBehaviour
     }
 
 
-    public void DEBUG_PrintStats()
+    public void SaveStats()
     {
-        Debug.Log("Dungeons fully mapped: " + currentRunData.dungeonsFullyMapped);
-        Debug.Log("Dungeons Visited: " + currentRunData.dungeonsVisited);
-        Debug.Log("Succesfully Mapped Rooms: " + currentRunData.roomsMappedSuccessfully);
-        Debug.Log("Enemies Killed: " + currentRunData.enemiesKilled);
-        Debug.Log("Deaths: " + currentRunData.cartographersLost);
+        ExplorationData loadedData = SaveSystem.LoadPlayerSaveData();
+
+        if (loadedData != null)
+        {
+            loadedData.IncrementPlayerSavedData(currentRunData);
+            SaveSystem.SaveExplorationData(loadedData);
+        }
+
+        else{
+            SaveSystem.SaveExplorationData(currentRunData);
+        }
+
+
     }
 
 

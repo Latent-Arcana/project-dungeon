@@ -19,7 +19,7 @@ public class SaveSystem : MonoBehaviour
         //SaveOptions data = new(options); //is this needed? could I just pass options into the serializer?
         //formatter.Serialize(stream, data);
 
-        formatter.Serialize(stream,options);
+        formatter.Serialize(stream, options);
         stream.Close();
 
 
@@ -27,16 +27,17 @@ public class SaveSystem : MonoBehaviour
         // string path = Application.persistentDataPath + optionsFileName;
         // string json = JsonUtility.ToJson(options);
 
-        
+
 
         Debug.Log("File saved to: " + path);
 
 
     }
 
-    public static void SaveExplorationData(ExplorationData data){
+    public static void SaveExplorationData(ExplorationData data)
+    {
 
-         //Binary 
+        //Binary 
         BinaryFormatter formatter = new();
         string path = Application.persistentDataPath + explorationDataFileName;
         FileStream stream = new(path, FileMode.Create);
@@ -48,6 +49,41 @@ public class SaveSystem : MonoBehaviour
 
         Debug.Log("File saved to: " + path);
 
+
+    }
+
+    public static void PrintPlayerSaveData()
+    {
+        ExplorationData data = LoadPlayerSaveData();
+
+        if (data != null)
+        {
+            Debug.Log("PlayerData DungeonsVisited: " + data.dungeonsVisited);
+            Debug.Log("PlayerData DungeonsFullyMapped: " + data.dungeonsFullyMapped);
+            Debug.Log("PlayerData EnemiesKilled: " + data.enemiesKilled);
+            Debug.Log("PlayerData RoomsMapped: " + data.roomsMappedSuccessfully);
+            Debug.Log("PlayerData Deaths: " + data.cartographersLost);
+        }
+
+
+    }
+
+    public static ExplorationData LoadPlayerSaveData()
+    {
+        string path = Application.persistentDataPath + explorationDataFileName;
+        if (File.Exists(path))
+        {
+            //Binary 
+            BinaryFormatter formatter = new();
+            FileStream stream = new(path, FileMode.Open);
+            ExplorationData data = formatter.Deserialize(stream) as ExplorationData;
+            stream.Close();
+            return data;
+        }
+        else
+        {
+            return null;
+        }
 
     }
 
@@ -71,7 +107,7 @@ public class SaveSystem : MonoBehaviour
 
             //Create a default settings object instead
             ScreenOptions screenOptionsDefault = new ScreenOptions(640, 480, false);
-            SaveOptions data = new(.50f, .50f,.50f, screenOptionsDefault);
+            SaveOptions data = new(.50f, .50f, .50f, screenOptionsDefault);
 
             return data;
         }
