@@ -10,6 +10,8 @@ Shader "Custom/FogEffectWithPerlinNoiseFalloff"
         _FogDensity ("Fog Density", Float) = 0.5 // Controls the overall density of the fog
         _FogOpacity ("Fog Opacity", Float) = 0.6 // Controls the opacity of the fog effect
         _FalloffFactor ("Falloff Factor", Float) = 2.0 // Controls how quickly the fog fades
+        _RandomSeed ("Random Seed", Float) = 0.0 // Random seed set by the script
+
     }
     SubShader
     {
@@ -43,6 +45,18 @@ Shader "Custom/FogEffectWithPerlinNoiseFalloff"
             float _FogDensity;
             float _FogOpacity;
             float _FalloffFactor;
+            float _RandomSeed; // Seed set once at runtime
+
+
+             // Random number generator (global, single value for the entire shader)
+             float globalRandomSeed;
+
+             // Random number generator using time as a seed
+             float generateGlobalRandomSeed(float time)
+             {
+                 return frac(sin(time * 12.9898) * 43758.5453);
+             }
+            
 
             // Simple Perlin noise function (2D) with time offset based on UV coordinates
             float perlinNoise(float2 uv, float timeOffset)
@@ -53,7 +67,7 @@ Shader "Custom/FogEffectWithPerlinNoiseFalloff"
             }
 
             // Map the Perlin noise value to a fog-like color and opacity with falloff
-            fixed4 mapNoiseToFog(float noiseValue, float falloff)
+            fixed4 mapNoiseToFog(float noiseValue, float falloff, int index)
             {
                 // Smooth out the noise to create a softer, more fog-like appearance
                 float fogValue = (noiseValue - floor(noiseValue)) * 0.5 + 0.5; // Normalize to [0, 1]
@@ -67,8 +81,36 @@ Shader "Custom/FogEffectWithPerlinNoiseFalloff"
                 // Introduce opacity to make the fog transparent
                 float opacity = lerp(0.0, 1.0, fogValue * _FogOpacity);
 
+                float rOffset, gOffset, bOffset;
+
+                if(index == 1){ // RED
+                    rOffset = 0;
+                    gOffset = -.1;
+                    bOffset = -.1;
+                }
+
+                else if(index == 2){ // BLUE
+                    rOffset = -.1;
+                    gOffset = -.1;
+                    bOffset = 0;
+                }
+
+                else if(index == 3){ // GREEN
+                    rOffset = -.05;
+                    gOffset = 0;
+                    bOffset = 0;
+                }
+
+                else { // PURPLE
+                    rOffset = 0;
+                    gOffset = -.1;
+                    bOffset = 0;
+                }
+
+
+
                 // Adjust the RGB channels for a dynamic fog color effect
-                return fixed4(fogValue, (fogValue * 0.8) - .1, (fogValue * 0.5) - .1, opacity); // Gradual transition to darker shades
+                return fixed4(fogValue + rOffset, (fogValue * 0.8) + gOffset, (fogValue * 0.5) + bOffset, opacity); // Gradual transition to darker shades
             }
 
             v2f vert(appdata v)
@@ -81,18 +123,21 @@ Shader "Custom/FogEffectWithPerlinNoiseFalloff"
 
             fixed4 frag(v2f i) : SV_Target
             {
-                // Pixelate the UV coordinates by scaling them and rounding them to grid steps
-                float2 pixelatedUV = floor(i.uv * _PixelSize) / _PixelSize;
+               // Pixelate the UV coordinates by scaling them and rounding them to grid steps
+               float2 pixelatedUV = floor(i.uv * _PixelSize) / _PixelSize;
 
-                // Calculate a time offset based on the pixel's UV coordinates for a smooth delay
-                float timeOffset = dot(pixelatedUV, float2(12.9898, 78.233)); // Create a unique time offset based on UV coordinates
+               // Convert the random seed into an index between 1 and 4
+               int randomIndex = int(floor(frac(_RandomSeed) * 4.0)) + 1; // Seed ensures consistent result
 
-                // Generate Perlin noise value based on pixelated UV coordinates, time, and delay
-                float noiseValue = perlinNoise(pixelatedUV * _NoiseScale, timeOffset);  // Scale UV for larger/smaller noise patterns
-                noiseValue = (noiseValue - floor(noiseValue)) * 0.5 + 0.5;  // Normalize to [0, 1]
+               // Calculate a time offset based on the pixel's UV coordinates for a smooth delay
+               float timeOffset = dot(pixelatedUV, float2(12.9898, 78.233)); // Create a unique time offset based on UV coordinates
 
-                // Apply falloff and map the noise value to a fog-like effect with smooth color transitions
-                return mapNoiseToFog(noiseValue, _FalloffFactor);
+               // Generate Perlin noise value based on pixelated UV coordinates, time, and delay
+               float noiseValue = (sin(pixelatedUV.x * 12.9898 + pixelatedUV.y * 78.233 + (_Time.y + timeOffset) * _SlowTimeFactor * _Speed) * 43758.5453);
+               noiseValue = (noiseValue - floor(noiseValue)) * 0.5 + 0.5;  // Normalize to [0, 1]
+
+               // Apply falloff and map the noise value to a fog-like effect with smooth color transitions and global offsets
+               return mapNoiseToFog(noiseValue, _FalloffFactor, randomIndex);
             }
             ENDCG
         }
