@@ -121,6 +121,8 @@ public class GameStats : MonoBehaviour
 
         IncrementDungeonsVisited(); // we know we're going to increment this any time we swap portals (DO THIS ON DEATH TOO)
 
+        UpdateVisitedDungeonsList();
+
         SetRoomsSuccessfullyMapped(GetNumerator()); // set how many room we've visited
 
         Debug.Log("We just set the rooms succesfully mapped to: " + currentRunData.roomsMappedSuccessfully + " with numerator: " + GetNumerator());
@@ -171,5 +173,16 @@ public class GameStats : MonoBehaviour
         currentRunData.enemiesKilled++;
     }
 
+    public void UpdateVisitedDungeonsList(){
+        GameSetup gameSetup = GameObject.Find("GameSetup").GetComponent<GameSetup>();
+
+        int currentSeed = gameSetup.seed;
+
+        Debug.Log("Current seed is: " + currentSeed);
+
+        if(!currentRunData.visitedDungeons.Contains(currentSeed)){
+            currentRunData.visitedDungeons.Add(currentSeed);
+        }
+    }
 
 }

@@ -7,8 +7,16 @@ using Unity.VisualScripting;
 
 public class GameSetup : MonoBehaviour
 {
+    [Header("DEBUG")]
     [SerializeField]
+    [Tooltip("Set DEBUG_SeedGen to true if you want to use the same seed over and over.")]
+    public bool DEBUG_SeedGen;
+
+    [SerializeField]
+    [Tooltip("If you want to use the same seed over and over (DEBUG_SeedGen), remember to set the seed value here")]
     public int seed = 0;
+
+    [Header("GAMEPLAY")]
     public BSPGeneration bspController;
     public EnemyGeneration dangerGenerator;
     public ObjectGeneration objectGenerator;
@@ -19,7 +27,10 @@ public class GameSetup : MonoBehaviour
 
     public List<int> seedsInDungeon;
 
-    
+
+    public ExplorationData loadedExplorationData;
+
+    public List<int> seedsInSaveData;
 
     void Awake()
     {
@@ -31,22 +42,30 @@ public class GameSetup : MonoBehaviour
         bspController = Dungeon_Generator.GetComponent<BSPGeneration>();
         floorCoverGenerator = Dungeon_Generator.GetComponent<FloorCoveringGeneration>();
 
+
         // EVEN NOW THE EVIL SEED OF WHAT YOU'VE DONE, GERMINATES WITHIN YOU!!!!1
         // (Seed generation based on what you enter in the editor)
 
-        if (seed == 0)
+        loadedExplorationData = SaveSystem.LoadPlayerSaveData();
+        if (loadedExplorationData != null)
         {
-            seed = UnityEngine.Random.Range(1, int.MaxValue);
+            seedsInSaveData = loadedExplorationData.visitedDungeons;
 
-            UnityEngine.Random.InitState(seed);
         }
-        else
+
+        if (!DEBUG_SeedGen)
+        {
+            seed = CreateSeed();
+        }
+        
+        else // if we want to regenerate the same seed over and over ( debug seedgen is true)
         {
             UnityEngine.Random.InitState(seed);
-
         }
 
         seedsInDungeon = new() { seed };
+
+
 
     }
 
@@ -86,7 +105,7 @@ public class GameSetup : MonoBehaviour
 
             int randSeed = CreateSeed();
 
-            portalSeeds[i] = UnityEngine.Random.Range(1, int.MaxValue);
+            portalSeeds[i] = UnityEngine.Random.Range(1, 10000);
 
             seedsInDungeon.Add(randSeed);
         }
@@ -112,15 +131,19 @@ public class GameSetup : MonoBehaviour
 
     int CreateSeed()
     {
-        int randSeed = UnityEngine.Random.Range(1, int.MaxValue);
+        int randSeed = UnityEngine.Random.Range(1, 10000);
 
         if (randSeed == seed)
         {
             CreateSeed();
         }
 
-        else if (seedsInDungeon.Contains(randSeed))
+        else if (seedsInDungeon != null && seedsInDungeon.Contains(randSeed))
         {
+            CreateSeed();
+        }
+
+        else if(seedsInSaveData != null && seedsInSaveData.Contains(randSeed)){
             CreateSeed();
         }
 

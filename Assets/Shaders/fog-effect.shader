@@ -89,9 +89,9 @@ Shader "Custom/FogEffectWithPerlinNoiseFalloff"
                     bOffset = -.1;
                 }
 
-                else if(index == 2){ // BLUE
-                    rOffset = -.1;
-                    gOffset = -.1;
+                else if(index == 2){ // WHITE
+                    rOffset = 0;
+                    gOffset = 0;
                     bOffset = 0;
                 }
 
@@ -101,10 +101,16 @@ Shader "Custom/FogEffectWithPerlinNoiseFalloff"
                     bOffset = 0;
                 }
 
-                else { // PURPLE
+                 else if(index == 4){ // ORANGE
                     rOffset = 0;
-                    gOffset = -.1;
-                    bOffset = 0;
+                    gOffset = -.01;
+                    bOffset = -.025;
+                }
+
+                else { // PURPLE
+                    rOffset = -.01;
+                    gOffset = -.4;
+                    bOffset = .001;
                 }
 
 
@@ -126,8 +132,8 @@ Shader "Custom/FogEffectWithPerlinNoiseFalloff"
                // Pixelate the UV coordinates by scaling them and rounding them to grid steps
                float2 pixelatedUV = floor(i.uv * _PixelSize) / _PixelSize;
 
-               // Convert the random seed into an index between 1 and 4
-               int randomIndex = int(floor(frac(_RandomSeed) * 4.0)) + 1; // Seed ensures consistent result
+               // Convert the random seed into an index between 1 and 5
+               int randomIndex = int(floor(frac(_RandomSeed) * 5.0)) + 1; // Seed ensures consistent result
 
                // Calculate a time offset based on the pixel's UV coordinates for a smooth delay
                float timeOffset = dot(pixelatedUV, float2(12.9898, 78.233)); // Create a unique time offset based on UV coordinates

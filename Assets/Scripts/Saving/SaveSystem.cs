@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using Unity.VisualScripting;
 
 
 public class SaveSystem : MonoBehaviour
@@ -63,6 +64,11 @@ public class SaveSystem : MonoBehaviour
             Debug.Log("PlayerData EnemiesKilled: " + data.enemiesKilled);
             Debug.Log("PlayerData RoomsMapped: " + data.roomsMappedSuccessfully);
             Debug.Log("PlayerData Deaths: " + data.cartographersLost);
+            Debug.Log("Visited Dungeons: ... ");
+            foreach (int dungeon in data.visitedDungeons)
+            {
+                Debug.Log(dungeon);
+            }
         }
 
 

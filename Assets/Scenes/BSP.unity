@@ -405,7 +405,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78a683c074be3fa46b0777e29836f879, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seed: 601347892
+  DEBUG_SeedGen: 0
+  seed: 0
   bspController: {fileID: 0}
   dangerGenerator: {fileID: 0}
   objectGenerator: {fileID: 0}
@@ -413,6 +414,14 @@ MonoBehaviour:
   floorCoverGenerator: {fileID: 0}
   portalSeeds: 
   seedsInDungeon: 
+  loadedExplorationData:
+    dungeonsFullyMapped: 0
+    roomsMappedSuccessfully: 0
+    dungeonsVisited: 0
+    cartographersLost: 0
+    enemiesKilled: 0
+    visitedDungeons: 
+  seedsInSaveData: 
 --- !u!1 &339782759
 GameObject:
   m_ObjectHideFlags: 0
