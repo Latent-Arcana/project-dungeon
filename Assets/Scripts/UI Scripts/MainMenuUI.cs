@@ -59,12 +59,16 @@ public class MainMenuUI : MonoBehaviour
     VisualElement statsOnLeft;
     VisualElement statsOnRight;
 
+    VisualElement seedGroup;
+
 
     [SerializeField]
     public PlayerStatsManager Player_Stats;
 
     [SerializeField]
     public Inventory Player_Inventory;
+
+    GameSetup gameSetup;
 
     private void Awake()
     {
@@ -91,6 +95,8 @@ public class MainMenuUI : MonoBehaviour
 
         statsOnLeft = main_document.rootVisualElement.Q("StatsOnLeft");
         statsOnRight = main_document.rootVisualElement.Q("StatsOnRight");
+
+        seedGroup = main_document.rootVisualElement.Q("SeedGroup");
 
         screenOverlay = main_document.rootVisualElement.Q("ScreenOverlay");
 
@@ -141,8 +147,8 @@ public class MainMenuUI : MonoBehaviour
 
             //player only exists in gameplay
             input = GameObject.Find("InputController").GetComponent<InputController>();
-        }
 
+        }
         // IF WE'RE AT THE MAIN MENU WE HAVE SOME THINGS TO WORK OUT
         if (SceneManager.GetActiveScene().name == "Main Menu")
         {
@@ -223,6 +229,16 @@ public class MainMenuUI : MonoBehaviour
         // Screen.SetResolution(ops.screenOptions.screenWidth, ops.screenOptions.screenHeight, ops.screenOptions.fullScreen);
 
         SaveSystem.PrintPlayerSaveData();
+
+        if (SceneManager.GetActiveScene().name == "BSP")
+        {
+            Label seedValue = seedGroup.Q("SeedValue") as Label;
+
+            gameSetup = GameObject.Find("GameSetup").GetComponent<GameSetup>();
+
+            seedValue.text = "Dungeon Seed: " + gameSetup.seed.ToString();
+        }
+
 
     }
 

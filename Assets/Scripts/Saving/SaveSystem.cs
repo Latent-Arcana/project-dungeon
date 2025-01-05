@@ -66,6 +66,10 @@ public class SaveSystem : MonoBehaviour
             Debug.Log("PlayerData Deaths: " + data.cartographersLost);
             Debug.Log("Visited " + data.visitedDungeons.Count + " Unique Dungeons");
             Debug.Log("Mapped " + data.mappedDungeons.Count + " Unique Dungeons");
+
+            for(int i = 0; i < data.visitedDungeons.Count; ++i){
+                Debug.Log(data.visitedDungeons[i]);
+            }
         }
 
 

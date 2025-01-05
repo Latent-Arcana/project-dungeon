@@ -9,6 +9,9 @@
                 <ui:Button text="Help" parse-escape-sequences="true" display-tooltip-when-elided="true" name="HelpButton" class="menu-pause-button" />
                 <ui:Button text="Quit to Desktop" parse-escape-sequences="true" display-tooltip-when-elided="true" name="QuitButton" class="menu-pause-button" />
             </ui:VisualElement>
+            <ui:VisualElement name="SeedGroup" style="flex-grow: 1; align-items: stretch; flex-direction: column; margin-bottom: 200px; height: 10%; justify-content: center; align-self: center;">
+                <ui:Label tabindex="-1" text="STAT1: 123" parse-escape-sequences="true" display-tooltip-when-elided="true" name="SeedValue" style="-unity-font: url(&quot;project://database/Assets/Font/Seraphimb1.ttf?fileID=12800000&amp;guid=3f1f980884aaaae4a87358e26cfd514b&amp;type=3#Seraphimb1&quot;); color: rgb(255, 255, 255); -unity-font-definition: initial; font-size: 24px; -unity-text-align: lower-left; white-space: nowrap; justify-content: center; align-self: center; align-items: center; text-overflow: clip;" />
+            </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="OptionsContainer" class="options-container" style="display: flex;">
             <ui:Label tabindex="-1" text="Pause" parse-escape-sequences="true" display-tooltip-when-elided="true" name="MenuTitle" class="text-title-main-menu" style="display: flex;" />

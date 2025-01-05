@@ -413,6 +413,7 @@ MonoBehaviour:
   dangerGenerator: {fileID: 0}
   objectGenerator: {fileID: 0}
   mapController: {fileID: 0}
+  mapMarker: {fileID: 0}
   floorCoverGenerator: {fileID: 0}
   portalSeeds: 
   seedsInDungeon: 
@@ -425,6 +426,7 @@ MonoBehaviour:
     visitedDungeons: 
     mappedDungeons: 
   seedsInSaveData: 
+  roomsGenerated: 0
 --- !u!1 &339782759
 GameObject:
   m_ObjectHideFlags: 0
