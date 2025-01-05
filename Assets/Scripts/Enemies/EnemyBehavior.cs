@@ -175,9 +175,50 @@ public class EnemyBehavior : MonoBehaviour
         }
     }
 
-    public virtual void AssignStats()
+    public virtual void AssignStats(int dungeonLevel)
     {
-        enemyStats = new EnemyStats(enemyType, 5, 1, 2, 1, 1);
+        EnemyStats baseStats = new EnemyStats(enemyType, 5, 1, 2, 1, 1);
+        enemyStats = ScaleEnemies(dungeonLevel, baseStats);
+    }
+
+    public EnemyStats ScaleEnemies(int dungeonLevel, EnemyStats enemyStats)
+    {
+        int randomStatChoice = UnityEngine.Random.Range(0, 5);
+
+        if (dungeonLevel % 2 == 0)
+        {
+
+            switch (randomStatChoice)
+            {
+                case 0:
+                    enemyStats.HP++;
+                    break;
+
+                case 1:
+                    enemyStats.SPD++;
+                    break;
+
+                case 2:
+                    enemyStats.AGI++;
+                    break;
+
+                case 3:
+                    enemyStats.STR++;
+                    break;
+
+                case 4:
+                    enemyStats.AP++;
+                    break;
+
+                default:
+                    break;
+
+            }
+
+        }
+
+        return enemyStats;
+
     }
 
     public virtual void Move(Vector3 currentPlayerPosition)
@@ -312,7 +353,7 @@ public class EnemyBehavior : MonoBehaviour
             playerWeaponType = playerWeapon.weaponType;
         }
 
-        if (_playerHitChance <= _playerHitThreshold)
+        if (_playerHitChance <= _playerHitThreshold && playerAttacked == true)
         {
             // PLAYER MISSED ENEMY
             playerMissed = true;
@@ -341,7 +382,7 @@ public class EnemyBehavior : MonoBehaviour
                 {
                     enemyStats.HP += _playerDamageDealt;
                     animationBehavior.HandleDamageAnimations();
-                   // StartCoroutine(IncomingDamageFlash());
+                    // StartCoroutine(IncomingDamageFlash());
                     // if the enemy was reduced to 0 HP, they die
                     if (enemyStats.HP <= 0)
                     {
@@ -381,7 +422,7 @@ public class EnemyBehavior : MonoBehaviour
 
                 if (!enemyMissed && behaviorState != BehaviorState.Dead)
                 {
-                    Player_Stats.SetHP(Player_Stats.HP + _enemyDamageDealt,  sourceObjectName: enemyStats.EnemyType.ToSafeString());
+                    Player_Stats.SetHP(Player_Stats.HP + _enemyDamageDealt, sourceObjectName: enemyStats.EnemyType.ToSafeString());
                     Dungeon_Narrator.AddEnemyAttackText(enemyStats.EnemyType, Mathf.Abs(_enemyDamageDealt));
 
                 }

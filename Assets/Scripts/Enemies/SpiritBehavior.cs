@@ -6,8 +6,10 @@ public class SpiritBehavior : EnemyBehavior
 {
    // Inheriting from the EnemyBehavior class
 
-    public override void AssignStats()
+    public override void AssignStats(int dungeonLevel)
     {
-        enemyStats = new EnemyStats(enemyType, HP: 10, SPD: 1, AGI: 4, STR: 1, AP: 0);
+        EnemyStats baseStats = new EnemyStats(enemyType, HP: 10, SPD: 1, AGI: 4, STR: 1, AP: 0);
+
+        enemyStats = ScaleEnemies(dungeonLevel, baseStats);
     }
 }

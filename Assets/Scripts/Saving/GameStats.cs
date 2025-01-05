@@ -20,6 +20,8 @@ public class GameStats : MonoBehaviour
 
     private string DeathText;
 
+    public int currentDungeonLevel = 0;
+
 
     ExplorationData currentRunData;
 
@@ -63,6 +65,7 @@ public class GameStats : MonoBehaviour
 
     public void NewGame()
     {
+        currentDungeonLevel = 1;
         SetScore(0, 0);
         SetRoomsVisited(0);
         InitializePlayer(); // TODO: Continue to extend
@@ -128,6 +131,8 @@ public class GameStats : MonoBehaviour
         SetRoomsSuccessfullyMapped(GetNumerator()); // set how many room we've visited
 
         Debug.Log("We just set the rooms succesfully mapped to: " + currentRunData.roomsMappedSuccessfully + " with numerator: " + GetNumerator());
+
+        ++currentDungeonLevel;
     }
 
 

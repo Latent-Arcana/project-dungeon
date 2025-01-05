@@ -6,8 +6,10 @@ public class BugbearBehavior : EnemyBehavior
 {
    // Inheriting from the EnemyBehavior class
 
-    public override void AssignStats()
+    public override void AssignStats(int dungeonlevel)
     {
-        enemyStats = new EnemyStats(enemyType, HP: 15, SPD: 1, AGI: 1, STR: 2, AP: 2);
+        EnemyStats baseStats = new EnemyStats(enemyType, HP: 15, SPD: 1, AGI: 1, STR: 2, AP: 2);
+
+        enemyStats = ScaleEnemies(dungeonlevel, baseStats);
     }
 }

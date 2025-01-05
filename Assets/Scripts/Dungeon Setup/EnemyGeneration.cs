@@ -14,9 +14,13 @@ public class EnemyGeneration : MonoBehaviour
 
     Tilemap tilemap;
 
+    GameStats gameStats;
+
     public void Start()
     {
         tilemap = GameObject.Find("Main Tilemap").GetComponent<Tilemap>();
+
+        gameStats = GameObject.Find("GameStats").GetComponent<GameStats>();
     }
 
 
@@ -103,6 +107,6 @@ public class EnemyGeneration : MonoBehaviour
         enemyBehavior.id = id;
         enemyBehavior.room = room.roomId;
         enemyBehavior.originPoint = (Vector2Int)position;
-        enemyBehavior.AssignStats();
+        enemyBehavior.AssignStats(gameStats.currentDungeonLevel);
     }
 }

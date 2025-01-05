@@ -57,7 +57,7 @@ public class BSPGeneration : MonoBehaviour
 
     public Partition dungeon;
 
-    public void StartBspGeneration()
+    public void StartBspGeneration(int dungeonLevel)
     {
         // Get the tilemaps
         mainTilemap = GameObject.Find("Main Tilemap").GetComponent<Tilemap>();
@@ -71,16 +71,27 @@ public class BSPGeneration : MonoBehaviour
         // Get the player so we can place them at the correct location
         player = GameObject.Find("Player");
 
+        mapWidth += (dungeonLevel - 1);
+        mapHeight += (dungeonLevel - 1);
         // let's make the entire background walls
-        for (int i = -25; i < 75; ++i)
-        {
-            for (int j = -25; j < 75; ++j)
-            {
-                mainTilemap.SetTile(new Vector3Int(i, j, 0), gameplayWallTile);
 
-                mainTilemap.SetTile(new Vector3Int(i - mapOffset, j - mapOffset, 0), mapOutsideTile);
-            }
+        // Define the bounds for gameplay wall tiles
+        BoundsInt gameplayWallBounds = new BoundsInt(-125, -125, 0, 300, 300, 1);
+        TileBase[] gameplayWallTiles = new TileBase[gameplayWallBounds.size.x * gameplayWallBounds.size.y];
+        for (int i = 0; i < gameplayWallTiles.Length; i++)
+        {
+            gameplayWallTiles[i] = gameplayWallTile;
         }
+        mainTilemap.SetTilesBlock(gameplayWallBounds, gameplayWallTiles);
+
+        // Define the bounds for map outside tiles
+        BoundsInt mapOutsideBounds = new BoundsInt(-125 - mapOffset, -125 - mapOffset, 0, 300, 300, 1);
+        TileBase[] mapOutsideTiles = new TileBase[mapOutsideBounds.size.x * mapOutsideBounds.size.y];
+        for (int i = 0; i < mapOutsideTiles.Length; i++)
+        {
+            mapOutsideTiles[i] = mapOutsideTile;
+        }
+        mainTilemap.SetTilesBlock(mapOutsideBounds, mapOutsideTiles);
 
         // Let's create the dungeon's bounds
         dungeon = new Partition(0, 0, mapWidth, mapHeight, roomMinimumHeight); // passing minimum height here because room takes "size" and we have both height and width

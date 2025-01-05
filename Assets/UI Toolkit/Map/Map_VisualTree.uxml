@@ -14,7 +14,9 @@
             <ui:VisualElement name="ButtonLore" class="map-container-button" style="flex-grow: 1;">
                 <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="MapMarkerLore" class="map-button map-button-background-lore" style="border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0);" />
             </ui:VisualElement>
-            <ui:VisualElement name="StatsContainer" style="flex-grow: 1; align-items: stretch; align-self: auto; justify-content: flex-start;" />
+            <ui:VisualElement name="StatsContainer" style="flex-grow: 1; align-items: center; align-self: auto; justify-content: center;">
+                <ui:Label tabindex="-1" text="Dungeon Level: 1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="DungeonLevel" style="-unity-font: url(&quot;project://database/Assets/Font/Seraphimb1.ttf?fileID=12800000&amp;guid=3f1f980884aaaae4a87358e26cfd514b&amp;type=3#Seraphimb1&quot;); -unity-font-definition: initial; color: rgb(255, 255, 255); font-size: 24px;" />
+            </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

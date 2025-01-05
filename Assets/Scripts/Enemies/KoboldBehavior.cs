@@ -7,8 +7,10 @@ public class KoboldBehavior : EnemyBehavior
 {
     // Inheriting from the EnemyBehavior class
     // Pyromancer is a TEST enemy. Test your overrides here!
-    public override void AssignStats()
+    public override void AssignStats(int dungeonLevel)
     {
-        enemyStats = new EnemyStats(enemyType, 3, 2, 2, 1, 0);
+        EnemyStats baseStats = new EnemyStats(enemyType, 3, 2, 2, 1, 0);
+
+        enemyStats = ScaleEnemies(dungeonLevel, baseStats);
     }
 }

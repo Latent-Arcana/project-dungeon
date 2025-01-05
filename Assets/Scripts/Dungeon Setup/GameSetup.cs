@@ -100,9 +100,11 @@ public class GameSetup : MonoBehaviour
         // The generator produces this via functions within it as a singleton
         Container_Generator.InitializeContainerGenerator(itemsDatabase, lootTable);
 
+        GameStats gameStats = GameObject.Find("GameStats").GetComponent<GameStats>();
 
+        Debug.Log("Current Dungeon Level is: " + gameStats.currentDungeonLevel);
         //bsp
-        bspController.StartBspGeneration();
+        bspController.StartBspGeneration(gameStats.currentDungeonLevel);
 
         roomsGenerated = true;
 

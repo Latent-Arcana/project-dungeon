@@ -48,7 +48,7 @@ public class ProjectileBehavior : EnemyBehavior
         }
     }
 
-    public override void AssignStats()
+    public override void AssignStats(int dungeonLevel)
     {
         //enemyStats = new EnemyStats("skeleton", 5, 1, 2, 1, 1);
     }
