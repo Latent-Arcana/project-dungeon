@@ -83,7 +83,11 @@ Material:
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _PixelSize: 1000
+<<<<<<< HEAD
     - _RandomSeed: 0.22007373
+=======
+    - _RandomSeed: 0.8901347
+>>>>>>> bea57073fcb20625c835afd31f1217387cfec0d0
     - _SeedX: 12.9898
     - _SeedY: 78.233
     - _SeedZ: 43758.547
