@@ -42,9 +42,9 @@ public class MapMenuUI : MonoBehaviour
         parentContainer.style.display = DisplayStyle.None;
 
         //set button behavior
-        ButtonMarkerSafe.clicked += ButtonClickedSafe;
-        ButtonMarkerLore.clicked += ButtonClickedLore;
-        ButtonMarkerDanger.clicked += ButtonClickedDanger;
+        ButtonMarkerSafe.clicked += () => SelectButton(ButtonMarkerSafe, "map-button-background-safe", 0);
+        ButtonMarkerLore.clicked += () => SelectButton(ButtonMarkerLore, "map-button-background-lore", 1);
+        ButtonMarkerDanger.clicked += () => SelectButton(ButtonMarkerDanger, "map-button-background-danger", 2);
     }
 
     private void OnEnable()
@@ -57,19 +57,18 @@ public class MapMenuUI : MonoBehaviour
         input.OnMapEnter -= Event_OnMapEnter;
     }
 
-    public void ButtonClickedSafe()
+    public void SelectButton(Button selectedButton, string buttonClass, int id)
     {
-        OnMarkerChange.Invoke(this, new MarkerArgs { markerId = 0 });
-    }
 
-    public void ButtonClickedLore()
-    {
-        OnMarkerChange.Invoke(this, new MarkerArgs { markerId = 1 });
-    }
+        ButtonMarkerSafe.RemoveFromClassList("selected");
+        ButtonMarkerLore.RemoveFromClassList("selected");
+        ButtonMarkerDanger.RemoveFromClassList("selected");
 
-    public void ButtonClickedDanger()
-    {
-        OnMarkerChange.Invoke(this, new MarkerArgs { markerId = 2 });
+        selectedButton.AddToClassList("selected");
+
+        OnMarkerChange.Invoke(this, new MarkerArgs { markerId = id});
+
+
     }
 
     public void Event_OnMapEnter(object sender, EventArgs e)

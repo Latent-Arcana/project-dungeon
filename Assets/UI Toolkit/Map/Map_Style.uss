@@ -4,12 +4,12 @@
 }
 
 .map-container-map-view {
-    background-image: url("project://database/Assets/UI%20Toolkit/UI%20Sprites/1920x1080/map_menu.png?fileID=21300000&guid=d52a801cd25cb2444b3f4fdaa20446e3&type=3#map_menu");
+    background-image: url("project://database/Assets/UI%20Toolkit/UI%20Sprites/1920x1080/map_menu.png?fileID=21300000&guid=383105edba707da479dca4b0e4c7c6e1&type=3#map_menu");
     width: 65%;
 }
 
 .map-container-all-buttons {
-    background-image: url("project://database/Assets/UI%20Toolkit/UI%20Sprites/1920x1080/map_sidebar.png?fileID=21300000&guid=65bf4b8beac3d6d4988d70006691e7b7&type=3#map_sidebar");
+    background-image: url("project://database/Assets/UI%20Toolkit/UI%20Sprites/1920x1080/map_sidebar.png?fileID=21300000&guid=f4fdb5cf38b24134caa46dba5c6d1c9a&type=3#map_sidebar");
     background-color: rgb(0, 0, 0);
 }
 
@@ -32,14 +32,55 @@
     background-position: left;
 }
 
+.map-button:hover {
+    border: 10px solid rgb(39, 100, 104);
+}
+
 .map-button-background-lore {
-    background-image: url("project://database/Assets/Sprites/UI%20Sprites/Map%20Icons/lore-icon.png?fileID=21300000&guid=7bd1f1d0356030445a927bee1046fefb&type=3#lore-icon");
+    width: 386px;
+    height: 96px;
+    background-image: url("project://database/Assets/Sprites/UI%20Sprites/Map%20Buttons/lore-room-button-inactive.png?fileID=21300000&guid=9ec4ef7cd3e9d8e4d834c754061f7a0f&type=3#lore-room-button-inactive");
+}
+
+.map-button-background-lore.selected {
+    background-image: url("project://database/Assets/Sprites/UI%20Sprites/Map%20Buttons/lore-room-button.png?fileID=21300000&guid=323d1a1613996e04da2ed1d8788345a7&type=3#lore-room-button");
+
+}
+
+.map-button-background-lore:hover {
+    background-image: url("project://database/Assets/Sprites/UI%20Sprites/Map%20Buttons/lore-room-button.png?fileID=21300000&guid=323d1a1613996e04da2ed1d8788345a7&type=3#lore-room-button");
+
 }
 
 .map-button-background-danger {
-    background-image: url("project://database/Assets/Sprites/UI%20Sprites/Map%20Icons/danger-icon.png?fileID=21300000&guid=1293773a189b4bc459dd76f9859abd6f&type=3#danger-icon");
+    width: 386px;
+    height: 96px;
+    background-image: url("project://database/Assets/Sprites/UI%20Sprites/Map%20Buttons/danger-room-button-inactive.png?fileID=21300000&guid=35114a4e9c9ffb34c887ee61aae9b401&type=3#danger-room-button-inactive");
+}
+
+.map-button-background-danger:hover {
+    background-image: url("project://database/Assets/Sprites/UI%20Sprites/Map%20Buttons/danger-room-button.png?fileID=21300000&guid=adf493f95764af147b2e429982a88dbf&type=3#danger-room-button");
+
+}
+
+
+.map-button-background-danger.selected {
+    background-image: url("project://database/Assets/Sprites/UI%20Sprites/Map%20Buttons/danger-room-button.png?fileID=21300000&guid=adf493f95764af147b2e429982a88dbf&type=3#danger-room-button");
+
 }
 
 .map-button-background-safe {
-    background-image: url("project://database/Assets/Sprites/UI%20Sprites/Map%20Icons/safe-icon.png?fileID=21300000&guid=4dd0ecb0b39994b418d23d7bec5ff8fe&type=3#safe-icon");
+    width: 386px;
+    height: 96px;
+    background-image: url("project://database/Assets/Sprites/UI%20Sprites/Map%20Buttons/safe-room-button-inactive.png?fileID=21300000&guid=1887df6ca16f3754296f0cd4b5cc89a0&type=3#safe-room-button-inactive");
+}
+
+.map-button-background-safe:hover {
+    background-image: url("project://database/Assets/Sprites/UI%20Sprites/Map%20Buttons/safe-room-button.png?fileID=21300000&guid=e8d36bd3f8f54e54e93b3eb7a02adafa&type=3#safe-room-button");
+
+}
+
+.map-button-background-safe.selected {
+    background-image: url("project://database/Assets/Sprites/UI%20Sprites/Map%20Buttons/safe-room-button.png?fileID=21300000&guid=e8d36bd3f8f54e54e93b3eb7a02adafa&type=3#safe-room-button");
+
 }

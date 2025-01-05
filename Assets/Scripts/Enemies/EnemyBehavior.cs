@@ -16,6 +16,9 @@ public class EnemyBehavior : MonoBehaviour
 {
     [SerializeField]
     public PlayerStatsManager Player_Stats;
+
+    [SerializeField]
+    public Enums.EnemyType enemyType;
     protected string type;
     private PlayerMovement playerMovement;
     private PlayerInventory playerInventory;
@@ -174,7 +177,7 @@ public class EnemyBehavior : MonoBehaviour
 
     public virtual void AssignStats()
     {
-        enemyStats = new EnemyStats(Enums.EnemyType.Skeleton, 5, 1, 2, 1, 1);
+        enemyStats = new EnemyStats(enemyType, 5, 1, 2, 1, 1);
     }
 
     public virtual void Move(Vector3 currentPlayerPosition)

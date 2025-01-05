@@ -23,7 +23,6 @@ public class SubTypeBedroom : RoomSubType
      {
           Enums.ObjectType.Bookshelf,
           Enums.ObjectType.Candle,
-          Enums.ObjectType.Chest,
           Enums.ObjectType.Chair,
           Enums.ObjectType.Table,
           Enums.ObjectType.Crates,
@@ -38,7 +37,6 @@ public class SubTypeBedroom : RoomSubType
      {
         {Enums.ObjectType.Bookshelf,2},
         {Enums.ObjectType.Candle,2},
-        {Enums.ObjectType.Chest,1},
         {Enums.ObjectType.Chair,1},
         {Enums.ObjectType.Table,1},
         {Enums.ObjectType.Crates,1},

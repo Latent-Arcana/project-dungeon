@@ -5,14 +5,14 @@
         <ui:VisualElement name="ButtonContainer" class="map-container-lower map-container-all-buttons" style="flex-grow: 1; flex-direction: column;">
             <ui:VisualElement name="3Buttons" style="flex-grow: 1;">
                 <ui:VisualElement name="ButtonSafe" class="map-container-button" style="flex-grow: 1;">
-                    <ui:Button text="Safe" parse-escape-sequences="true" display-tooltip-when-elided="true" name="MapMarkerSafe" class="map-button map-button-background-safe" />
+                    <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="MapMarkerSafe" class="map-button map-button-background-safe" style="border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0);" />
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="ButtonDanger" class="map-container-button" style="flex-grow: 1;">
-                <ui:Button text="Danger" parse-escape-sequences="true" display-tooltip-when-elided="true" name="MapMarkerDanger" class="map-button map-button-background-danger" />
+                <ui:Button text="&#10;" parse-escape-sequences="true" display-tooltip-when-elided="true" name="MapMarkerDanger" class="map-button map-button-background-danger" style="border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0);" />
             </ui:VisualElement>
             <ui:VisualElement name="ButtonLore" class="map-container-button" style="flex-grow: 1;">
-                <ui:Button text="Lore" parse-escape-sequences="true" display-tooltip-when-elided="true" name="MapMarkerLore" class="map-button map-button-background-lore" />
+                <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="MapMarkerLore" class="map-button map-button-background-lore" style="border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0);" />
             </ui:VisualElement>
             <ui:VisualElement name="StatsContainer" style="flex-grow: 1; align-items: stretch; align-self: auto; justify-content: flex-start;" />
         </ui:VisualElement>

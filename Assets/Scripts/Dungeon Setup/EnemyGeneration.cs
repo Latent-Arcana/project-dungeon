@@ -23,18 +23,53 @@ public class EnemyGeneration : MonoBehaviour
     public void GenerateEnemies(GameObject roomObject)
     {
 
-        Room room = roomObject.GetComponent<Room>();
-
         int randEnemyPreset = UnityEngine.Random.Range(0, enemyPrefabs.Length);
 
-        int randEnemyCount = UnityEngine.Random.Range(1, 3);
+
+        EnemyBehavior enemyBehavior = enemyPrefabs[randEnemyPreset].GetComponent<EnemyBehavior>(); // The behavior data of the enemy prefab
+
+        int randEnemyCount = 1;
+
+        switch (enemyBehavior.enemyType)
+        {
+            case Enums.EnemyType.Skeleton:
+
+                randEnemyCount = UnityEngine.Random.Range(1, 4);
+                break;
+
+            case Enums.EnemyType.Kobold:
+                randEnemyCount = UnityEngine.Random.Range(1, 5);
+                break;
+
+            case Enums.EnemyType.Goblin:
+                randEnemyCount = UnityEngine.Random.Range(1, 4);
+                break;
+
+            case Enums.EnemyType.Bugbear:
+                randEnemyCount = UnityEngine.Random.Range(1, 3);
+                break;
+
+            case Enums.EnemyType.Spirit:
+                randEnemyCount = UnityEngine.Random.Range(1, 5);
+                break;
+
+        }
+
+
+        PlaceEnemies(enemyPrefabs[randEnemyPreset], randEnemyCount, roomObject);
+
+
+    }
+
+    public void PlaceEnemies(GameObject enemyPrefab, int count, GameObject roomObject)
+    {
+        Debug.Log("placing enemies");
+        Room room = roomObject.GetComponent<Room>();
 
         Dictionary<Vector3Int, bool> enemyMap = new Dictionary<Vector3Int, bool>();
 
 
-       // Debug.Log("Placing at most " + randEnemyCount + " enemies in " + room.roomId);
-
-        for(int i = 0; i < randEnemyCount; ++i)
+        for (int i = 0; i < count; ++i)
         {
 
             Vector3Int position = new Vector3Int(UnityEngine.Random.Range(room.x + 1, room.x + room.width - 1), UnityEngine.Random.Range(room.y + 1, room.y + room.height - 1), 0);
@@ -43,12 +78,11 @@ public class EnemyGeneration : MonoBehaviour
             {
                 enemyMap.Add(position, true);
 
-                PlaceEnemy(enemyPrefabs[randEnemyPreset], position, roomObject, i);
+                PlaceEnemy(enemyPrefab, position, roomObject, i);
 
             }
+
         }
-
-
     }
 
     // Place a specific enemy
