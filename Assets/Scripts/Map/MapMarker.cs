@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Schema;
+using Unity.Collections;
 using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.UIElements;
@@ -180,7 +181,11 @@ public class MapMarker : MonoBehaviour
         else {
             prefab = mapMarkerSafe;
         }
-        GameObject placedMarker = Instantiate(prefab, new Vector3(room.originX - 500, room.originY - 500, 0f), Quaternion.identity);
+
+        int centerX = room.x + (room.width / 2);
+        int centerY = room.y + (room.height / 2);
+
+        GameObject placedMarker = Instantiate(prefab, new Vector3(centerX - 500, centerY - 500, 0f), Quaternion.identity);
 
     }
 

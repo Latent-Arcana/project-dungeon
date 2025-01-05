@@ -65,7 +65,7 @@ public class GameStats : MonoBehaviour
 
     public void NewGame()
     {
-        currentDungeonLevel = 1;
+        currentDungeonLevel = 18;
         SetScore(0, 0);
         SetRoomsVisited(0);
         InitializePlayer(); // TODO: Continue to extend

@@ -71,8 +71,12 @@ public class BSPGeneration : MonoBehaviour
         // Get the player so we can place them at the correct location
         player = GameObject.Find("Player");
 
-        mapWidth += (dungeonLevel - 1);
-        mapHeight += (dungeonLevel - 1);
+        if (dungeonLevel <= 50)
+        {
+            mapWidth += (dungeonLevel - 1);
+            mapHeight += (dungeonLevel - 1);
+        }
+
         // let's make the entire background walls
 
         // Define the bounds for gameplay wall tiles
@@ -608,7 +612,7 @@ public class BSPGeneration : MonoBehaviour
                     //Set the tile to flooring
                     mainTilemap.SetTileFlags(start, TileFlags.None);
                     mainTilemap.SetTile(start, gameplayFloorHallwayTile);
-                     Matrix4x4 matrix = Matrix4x4.TRS(Vector3.zero, Quaternion.identity, Vector3.one);
+                    Matrix4x4 matrix = Matrix4x4.TRS(Vector3.zero, Quaternion.identity, Vector3.one);
                     mainTilemap.SetTransformMatrix(start, matrix);
 
                     //and the map tiles
@@ -651,7 +655,7 @@ public class BSPGeneration : MonoBehaviour
                     //gameplay tiles
                     mainTilemap.SetTileFlags(start, TileFlags.None);
                     mainTilemap.SetTile(start, gameplayFloorHallwayTile);
-                     Matrix4x4 matrix = Matrix4x4.TRS(Vector3.zero, Quaternion.identity, Vector3.one);
+                    Matrix4x4 matrix = Matrix4x4.TRS(Vector3.zero, Quaternion.identity, Vector3.one);
                     mainTilemap.SetTransformMatrix(start, matrix);
 
                     //map tiles
