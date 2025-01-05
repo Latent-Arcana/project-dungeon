@@ -67,12 +67,13 @@ public class MapMarker : MonoBehaviour
                 {
                     bool isDiscoveredRoom = false;
                     //only place a map marker in a room or over an existing map marker
-                   
+
                     Room roomData = hit.collider.gameObject.GetComponentInParent<Room>(); // the room object is actually on the parent of the map object
                     Debug.Log("getting the parent of " + hit.collider.gameObject.name);
-                    
+
                     // We also only want to place the marker if the room has been discovered
-                    if(roomData != null){
+                    if (roomData != null)
+                    {
                         isDiscoveredRoom = roomData.discovered;
                     }
 
@@ -163,4 +164,25 @@ public class MapMarker : MonoBehaviour
 
         }
     }
+
+    public void PlacePresetMarker(Room room)
+    {
+        GameObject prefab;
+        if(room.roomType == Enums.RoomType.Safe){
+            prefab = mapMarkerSafe;
+        }
+        else if(room.roomType == Enums.RoomType.Danger){
+            prefab = mapMarkerDanger;
+        }
+        else if(room.roomType == Enums.RoomType.Lore){
+            prefab = mapMarkerLore;
+        }
+        else {
+            prefab = mapMarkerSafe;
+        }
+        GameObject placedMarker = Instantiate(prefab, new Vector3(room.originX - 500, room.originY - 500, 0f), Quaternion.identity);
+
+    }
+
+
 }

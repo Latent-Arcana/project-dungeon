@@ -165,6 +165,35 @@ public class DungeonNarrator : MonoBehaviour
         }
     }
 
+    public void AddBookshelfText(Enums.RoomType roomType, bool bookDropped)
+    {
+        if (bookDropped)
+        {
+            string bookshelfText = "You find a book. A distant room was marked ";
+
+            if (roomType == Enums.RoomType.Danger)
+            {
+                bookshelfText += " danger.";
+            }
+            else if (roomType == Enums.RoomType.Lore)
+            {
+                bookshelfText += " lore.";
+            }
+            else if (roomType == Enums.RoomType.Safe)
+            {
+                bookshelfText += " safe.";
+            }
+
+            AddDungeonNarratorText(bookshelfText);
+        }
+        else
+        {
+            string bookshelfText = "The books on this shelf are all unreadable.";
+
+            AddDungeonNarratorText(bookshelfText);
+        }
+    }
+
     /// <summary>
     /// Called to enable unique logic for combat text based on the weapons that are being used during combat
     /// </summary>
@@ -290,7 +319,7 @@ public class DungeonNarrator : MonoBehaviour
             case "Ghost":
                 deathText = $"A ghost took their soul.";
                 break;
-            
+
             case "Tesla":
                 deathText = $"They were shocked to death by an electric bolt.";
                 break;

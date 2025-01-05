@@ -118,6 +118,7 @@ GameObject:
   - component: {fileID: 2783835529191084822}
   - component: {fileID: 2609404153136306900}
   - component: {fileID: -2655952772799262610}
+  - component: {fileID: -5785078102133635054}
   m_Layer: 0
   m_Name: Bookshelf_Wall_Wide_1
   m_TagString: object
@@ -281,5 +282,19 @@ MonoBehaviour:
   PlacementType: 1
   Width: 2
   Height: 1
+  flippedSprite: {fileID: 0}
+  flipped: 0
   lookStrings:
   - NOT IMPLEMENTED
+--- !u!114 &-5785078102133635054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8614793181711624519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31be8853e149d4f419eb12f870c1f170, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

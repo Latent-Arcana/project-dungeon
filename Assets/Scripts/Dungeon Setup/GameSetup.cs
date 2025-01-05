@@ -5,6 +5,7 @@ using static ItemLoader;
 using static ContainerGeneration;
 using Unity.VisualScripting;
 using UnityEngine.SceneManagement;
+using System;
 
 public class GameSetup : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class GameSetup : MonoBehaviour
     public EnemyGeneration dangerGenerator;
     public ObjectGeneration objectGenerator;
     public MapController mapController;
+    public MapMarker mapMarker;
     public FloorCoveringGeneration floorCoverGenerator;
 
     public int[] portalSeeds;
@@ -33,9 +35,13 @@ public class GameSetup : MonoBehaviour
 
     public List<int> seedsInSaveData;
 
+    public bool roomsGenerated;
+
+
     void Awake()
     {
         mapController = GameObject.Find("MapController").GetComponent<MapController>();
+        mapMarker = GameObject.Find("MapController").GetComponent<MapMarker>();
 
         GameObject Dungeon_Generator = GameObject.Find("DungeonGenerator");
         dangerGenerator = Dungeon_Generator.GetComponent<EnemyGeneration>();
@@ -98,6 +104,8 @@ public class GameSetup : MonoBehaviour
         //bsp
         bspController.StartBspGeneration();
 
+        roomsGenerated = true;
+
         portalSeeds = new int[bspController.allRooms.Count];
 
         // for every room, except the starting room, give it a pregenerated portal seed
@@ -123,6 +131,8 @@ public class GameSetup : MonoBehaviour
 
         //map
         mapController.FogOfWar();
+
+        mapMarker.PlacePresetMarker(bspController.allRooms[0].GetComponent<Room>());
     }
 
     /// <summary>
@@ -149,6 +159,12 @@ public class GameSetup : MonoBehaviour
         }
 
         return randSeed;
+    }
+
+    public Room GetRandomRoom(){
+        int randRoomIndex = UnityEngine.Random.Range(1, bspController.allRooms.Count);
+
+        return bspController.allRooms[randRoomIndex].GetComponent<Room>();
     }
 
 

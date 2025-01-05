@@ -39,14 +39,6 @@ public class BSPGeneration : MonoBehaviour
     [SerializeField]
     private GameObject fogGameplayPrefab;
 
-    public event EventHandler<BSPArgs> OnBSPFinished;
-
-    public class BSPArgs : EventArgs
-    {
-        public List<GameObject> rooms;
-    }
-
-
 
     [Header("Other Stuff")]
     public Tilemap mainTilemap;

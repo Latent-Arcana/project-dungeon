@@ -77,7 +77,7 @@ public class MapController : MonoBehaviour
 
     }
 
-    void RemoveFog(int roomId)
+    public void RemoveFog(int roomId)
     {
         if (fogBoxes[roomId] != null)
         {
