@@ -282,3 +282,10 @@
 .gameover-container-stats {
     height: 50%;
 }
+
+.end-game-stats-text {
+    -unity-font: url("project://database/Assets/Font/Seraphimb1.ttf?fileID=12800000&guid=3f1f980884aaaae4a87358e26cfd514b&type=3#Seraphimb1");
+    color: rgb(255, 255, 255);
+    -unity-font-definition: initial;
+    font-size: 24px;
+}

@@ -7,6 +7,7 @@
                 <ui:Button text="Resume" parse-escape-sequences="true" display-tooltip-when-elided="true" name="PlayButton" class="menu-pause-button" style="-unity-background-scale-mode: scale-to-fit;" />
                 <ui:Button text="Options" parse-escape-sequences="true" display-tooltip-when-elided="true" name="OptionsButton" class="menu-pause-button" />
                 <ui:Button text="Help" parse-escape-sequences="true" display-tooltip-when-elided="true" name="HelpButton" class="menu-pause-button" />
+                <ui:Button text="CREDITS" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CreditsButton" class="menu-pause-button" />
                 <ui:Button text="Quit to Desktop" parse-escape-sequences="true" display-tooltip-when-elided="true" name="QuitButton" class="menu-pause-button" />
             </ui:VisualElement>
             <ui:VisualElement name="SeedGroup" style="flex-grow: 1; align-items: stretch; flex-direction: column; margin-bottom: 200px; height: 10%; justify-content: center; align-self: center;">
@@ -25,6 +26,11 @@
         <ui:VisualElement name="PlayingTheGame" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/UI%20Sprites/PlayingTheGame.png?fileID=2800000&amp;guid=c89b1f38fd066f845b39e331c13d34f2&amp;type=3#PlayingTheGame&quot;); -unity-background-scale-mode: scale-to-fit; display: flex;">
             <ui:VisualElement class="options-container" style="flex-grow: 1; flex-direction: column-reverse; align-items: center;">
                 <ui:Button text="BACK" parse-escape-sequences="true" display-tooltip-when-elided="true" name="BackButtonHelp" class="inventory-button" style="width: 256px; margin-bottom: 40px;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="CreditsScreen" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/UI%20Sprites/credits-with-text.png?fileID=2800000&amp;guid=81388cf71197cb945a2b6e346ff52719&amp;type=3#credits-with-text&quot;); -unity-background-scale-mode: scale-to-fit; display: flex;">
+            <ui:VisualElement class="options-container" style="flex-grow: 1; flex-direction: column-reverse; align-items: center;">
+                <ui:Button text="BACK" parse-escape-sequences="true" display-tooltip-when-elided="true" name="BackButtonCredits" class="inventory-button" style="width: 256px; margin-bottom: 40px;" />
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>

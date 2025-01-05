@@ -18,16 +18,21 @@ public class MainMenuUI : MonoBehaviour
     ////Buttons////
     private Button PlayButton;
     private Button QuitButton;
+    private Button QuitButton_EndGame;
     private Button OptionsButton;
     private Button HelpButton;
+    private Button CreditsButton;
     private Button BackButton;
     private Button BackButton_help;
+    private Button BackButton_credits;
 
     ////Containers////
     private VisualElement optionsContainer;
     private VisualElement mainContainer;
     private VisualElement parentContainer;
     private VisualElement helpContainer;
+    private VisualElement creditsContainer;
+    private VisualElement endContainer;
 
     //// Options
     private SaveOptions ops;
@@ -38,7 +43,7 @@ public class MainMenuUI : MonoBehaviour
     private Toggle fullScreenToggle;
 
     // END GAME
-    public bool gameCompleted = false;
+    public bool gameCompleted = false; //debug
 
     //Audio
     [SerializeField]
@@ -83,8 +88,10 @@ public class MainMenuUI : MonoBehaviour
         PlayButton = main_document.rootVisualElement.Q("PlayButton") as Button;
         QuitButton = main_document.rootVisualElement.Q("QuitButton") as Button;
         OptionsButton = main_document.rootVisualElement.Q("OptionsButton") as Button;
+        CreditsButton = main_document.rootVisualElement.Q("CreditsButton") as Button;
         BackButton = main_document.rootVisualElement.Q("BackButton") as Button;
         BackButton_help = main_document.rootVisualElement.Q("BackButtonHelp") as Button;
+        BackButton_credits = main_document.rootVisualElement.Q("BackButtonCredits") as Button;
         HelpButton = main_document.rootVisualElement.Q("HelpButton") as Button;
 
         //// Containers ////
@@ -92,6 +99,7 @@ public class MainMenuUI : MonoBehaviour
         mainContainer = main_document.rootVisualElement.Q("MainContainer");
         parentContainer = main_document.rootVisualElement.Q("Container");
         helpContainer = main_document.rootVisualElement.Q("PlayingTheGame");
+        creditsContainer = main_document.rootVisualElement.Q("CreditsScreen");
 
         statsOnLeft = main_document.rootVisualElement.Q("StatsOnLeft");
         statsOnRight = main_document.rootVisualElement.Q("StatsOnRight");
@@ -108,6 +116,7 @@ public class MainMenuUI : MonoBehaviour
         mainContainer.style.display = DisplayStyle.Flex;
         optionsContainer.style.display = DisplayStyle.None;
         helpContainer.style.display = DisplayStyle.None;
+        creditsContainer.style.display = DisplayStyle.None;
 
         //// Options ////
         ops = SaveSystem.LoadOptions();
@@ -125,7 +134,9 @@ public class MainMenuUI : MonoBehaviour
         OptionsButton.clicked += GoToOptions;
         BackButton.clicked += SaveSettings;
         BackButton_help.clicked += HelpMenu;
+        BackButton_credits.clicked += CreditsMenu;
         HelpButton.clicked += HelpMenu;
+        CreditsButton.clicked += CreditsMenu;
 
         //Sliders
         volMusicSlider.RegisterCallback<ChangeEvent<float>>(SetMusicVolume);
@@ -139,6 +150,7 @@ public class MainMenuUI : MonoBehaviour
         //Toggles
         fullScreenToggle.RegisterCallback<ChangeEvent<bool>>(SetFullScreen);
 
+        // PAUSE MENU STUFF
         if (SceneManager.GetActiveScene().name != "Main Menu")
         {
 
@@ -149,9 +161,15 @@ public class MainMenuUI : MonoBehaviour
             input = GameObject.Find("InputController").GetComponent<InputController>();
 
         }
+
+
         // IF WE'RE AT THE MAIN MENU WE HAVE SOME THINGS TO WORK OUT
         if (SceneManager.GetActiveScene().name == "Main Menu")
         {
+
+            //Don't show the easter egg by default
+            endContainer = main_document.rootVisualElement.Q("YouBeatTheGame");
+            endContainer.style.display = DisplayStyle.None;
 
             // LETS FADE IN THE SCREEN ON AWAKE AT THE MAIN MENU
             screenOverlay.style.opacity = 1f;
@@ -162,7 +180,6 @@ public class MainMenuUI : MonoBehaviour
             Label dungeonsMapped = statsOnLeft.Q("DungeonsMapped") as Label;
             Label roomsMapped = statsOnLeft.Q("RoomsMapped") as Label;
             Label enemiesKilled = statsOnLeft.Q("EnemiesKilled") as Label;
-
 
             Label dungeonsVisited = statsOnRight.Q("DungeonsVisited") as Label;
             Label cartographersLost = statsOnRight.Q("CartographersLost") as Label;
@@ -180,9 +197,30 @@ public class MainMenuUI : MonoBehaviour
 
                 // IF THE GAME IS OVER, WE JUST CUT TO THE END GAME SCREEN
 
-                if (expData.mappedDungeons.Count >= 10000)
+                if (expData.mappedDungeons.Count >= 10000 || gameCompleted)
                 {
-                    gameCompleted = true;
+                    //none of these exist in the pause menu
+                    QuitButton_EndGame = main_document.rootVisualElement.Q("QuitGameFromEnd") as Button;
+                    QuitButton_EndGame.clicked += QuitGame;
+
+                    //Show the end game container instead of the Main one
+                    endContainer.style.display = DisplayStyle.Flex;
+                    mainContainer.style.display = DisplayStyle.None;
+
+                    //assign stats
+                    Label dungeonsMapped_End = endContainer.Q("End_DungeonsMapped") as Label;
+                    Label roomsMapped_End = endContainer.Q("End_RoomsMapped") as Label;
+                    Label enemiesKilled_End = endContainer.Q("End_EnemiesKilled") as Label;
+                    Label dungeonsVisited_End = endContainer.Q("End_DungeonsVisited") as Label;
+                    Label cartographersLost_End = endContainer.Q("End_CartographersLost") as Label;
+                    Label completionPercentage_End = endContainer.Q("End_CompletionPercentage") as Label;
+
+                    dungeonsMapped_End.text = "Dungeons Mapped: " + expData.dungeonsFullyMapped.ToString();
+                    roomsMapped_End.text = "Rooms Mapped: " + expData.roomsMappedSuccessfully.ToString();
+                    enemiesKilled_End.text = "Enemies Killed: " + expData.enemiesKilled.ToString();
+                    dungeonsVisited_End.text = "Dungeons Visited: " + expData.dungeonsVisited.ToString();
+                    cartographersLost_End.text = "Cartographers Lost: " + expData.cartographersLost.ToString();
+                    completionPercentage_End.text = "Completion: " + ((expData.mappedDungeons.Count / 10000.0f) * 100f).ToString("0.00") + "%";
 
                 }
             }
@@ -339,6 +377,19 @@ public class MainMenuUI : MonoBehaviour
 
     }
 
+    private void CreditsMenu()
+    {
+        menuAudioController.PlayAudioClip("ButtonClose");
+        ToggleCredits();
+    }
+
+    private void ToggleCredits()
+    {
+        mainContainer.style.display = (mainContainer.style.display == DisplayStyle.Flex) ? DisplayStyle.None : DisplayStyle.Flex;
+        creditsContainer.style.display = (creditsContainer.style.display == DisplayStyle.Flex) ? DisplayStyle.None : DisplayStyle.Flex;
+
+    }
+
     private void OnScreenResolutionChanged(ChangeEvent<string> evt)
     {
         switch (evt.newValue)
@@ -401,11 +452,7 @@ public class MainMenuUI : MonoBehaviour
     //load the game (if main menu), or unpause the game (if pause menu)
     private void PlayGame()
     {
-        if (gameCompleted)
-        {
-            SceneManager.LoadScene("CompletedGame");
-        }
-        else if (SceneManager.GetActiveScene().name == "Main Menu")
+        if (SceneManager.GetActiveScene().name == "Main Menu")
         {
 
             menuAudioController.PlayAudioClip("ButtonClose");
