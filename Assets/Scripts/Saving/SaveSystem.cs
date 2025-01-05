@@ -64,11 +64,8 @@ public class SaveSystem : MonoBehaviour
             Debug.Log("PlayerData EnemiesKilled: " + data.enemiesKilled);
             Debug.Log("PlayerData RoomsMapped: " + data.roomsMappedSuccessfully);
             Debug.Log("PlayerData Deaths: " + data.cartographersLost);
-            Debug.Log("Visited Dungeons: ... ");
-            foreach (int dungeon in data.visitedDungeons)
-            {
-                Debug.Log(dungeon);
-            }
+            Debug.Log("Visited " + data.visitedDungeons.Count + " Unique Dungeons");
+            Debug.Log("Mapped " + data.mappedDungeons.Count + " Unique Dungeons");
         }
 
 

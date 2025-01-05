@@ -113,15 +113,17 @@ public class GameStats : MonoBehaviour
 
         Debug.Log("Numerator is: " + GetNumerator());
         Debug.Log("Denominator is: " + GetDenominator());
+        
         // get numerator and denominator data so we can update the current run
         if (GetNumerator() == GetDenominator()) // TODO: REVISIT
         {
             IncrementFullyMappedDungeons();
+            UpdateMappedDungeonsList();
         }
 
-        IncrementDungeonsVisited(); // we know we're going to increment this any time we swap portals (DO THIS ON DEATH TOO)
+        UpdateVisitedDungeonsInformation(); // we know we're going to increment this any time we swap portals (DO THIS ON DEATH TOO)
 
-        UpdateVisitedDungeonsList();
+       // currentRunData.DEBUG_AddDungeonsToList(50000);
 
         SetRoomsSuccessfullyMapped(GetNumerator()); // set how many room we've visited
 
@@ -173,7 +175,7 @@ public class GameStats : MonoBehaviour
         currentRunData.enemiesKilled++;
     }
 
-    public void UpdateVisitedDungeonsList(){
+    public void UpdateVisitedDungeonsInformation(){
         GameSetup gameSetup = GameObject.Find("GameSetup").GetComponent<GameSetup>();
 
         int currentSeed = gameSetup.seed;
@@ -181,7 +183,18 @@ public class GameStats : MonoBehaviour
         Debug.Log("Current seed is: " + currentSeed);
 
         if(!currentRunData.visitedDungeons.Contains(currentSeed)){
+            IncrementDungeonsVisited(); // we only increment our number of unique dungeons visited if we visit a truly unique dungeon
             currentRunData.visitedDungeons.Add(currentSeed);
+        }
+    }
+
+    public void UpdateMappedDungeonsList(){
+        GameSetup gameSetup = GameObject.Find("GameSetup").GetComponent<GameSetup>();
+
+        int currentSeed = gameSetup.seed;
+
+        if(!currentRunData.mappedDungeons.Contains(currentSeed)){
+            currentRunData.mappedDungeons.Add(currentSeed);
         }
     }
 

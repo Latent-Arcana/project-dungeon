@@ -421,6 +421,7 @@ MonoBehaviour:
     cartographersLost: 0
     enemiesKilled: 0
     visitedDungeons: 
+    mappedDungeons: 
   seedsInSaveData: 
 --- !u!1 &339782759
 GameObject:
@@ -452,6 +453,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a903d558584edb84a8fcafa417ddb1f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameCompleted: 0
   audioMixer: {fileID: 24100000, guid: f7f206a5337464844b44955228165480, type: 2}
   Player_Stats: {fileID: 11400000, guid: 49cdfbab4b8796a41af4e48e5ee7d3d5, type: 2}
   Player_Inventory: {fileID: 11400000, guid: 28215ae7375c4ab42862dc3518774c71, type: 2}

@@ -36,12 +36,18 @@ public class MainMenuUI : MonoBehaviour
     //private DropdownField screenResDropdown;
     private Toggle fullScreenToggle;
 
+    // END GAME
+    public bool gameCompleted = false;
 
     //Audio
     [SerializeField]
     private AudioMixer audioMixer;
 
     private MenuAudioController menuAudioController;
+
+    // STATS UI
+    VisualElement statsOnLeft;
+    VisualElement statsOnRight;
 
 
     [SerializeField]
@@ -73,9 +79,12 @@ public class MainMenuUI : MonoBehaviour
         parentContainer = main_document.rootVisualElement.Q("Container");
         helpContainer = main_document.rootVisualElement.Q("PlayingTheGame");
 
-       // Debug.Log($"Main Container is {mainContainer}");
+        statsOnLeft = main_document.rootVisualElement.Q("StatsOnLeft");
+        statsOnRight = main_document.rootVisualElement.Q("StatsOnRight");
 
-       // Debug.Log($"Help Container is {helpContainer}");
+        // Debug.Log($"Main Container is {mainContainer}");
+
+        // Debug.Log($"Help Container is {helpContainer}");
 
         //Make sure that we have just the main container showing
         mainContainer.style.display = DisplayStyle.Flex;
@@ -120,6 +129,48 @@ public class MainMenuUI : MonoBehaviour
 
             //player only exists in gameplay
             input = GameObject.Find("InputController").GetComponent<InputController>();
+        }
+
+
+        // IF THE GAME IS OVER, WE JUST CUT TO THE END GAME SCREEN
+        if (SceneManager.GetActiveScene().name == "Main Menu")
+        {
+            ExplorationData expData = SaveSystem.LoadPlayerSaveData();
+
+            Label dungeonsMapped = statsOnLeft.Q("DungeonsMapped") as Label;
+            Label roomsMapped = statsOnLeft.Q("RoomsMapped") as Label;
+            Label enemiesKilled = statsOnLeft.Q("EnemiesKilled") as Label;
+
+
+            Label dungeonsVisited = statsOnRight.Q("DungeonsVisited") as Label;
+            Label cartographersLost = statsOnRight.Q("CartographersLost") as Label;
+            Label completionPercentage = statsOnRight.Q("CompletionPercentage") as Label;
+
+
+            if (expData != null)
+            {
+                dungeonsMapped.text = "Dungeons Mapped: " + expData.dungeonsFullyMapped.ToString();
+                roomsMapped.text = "Rooms Mapped: " + expData.roomsMappedSuccessfully.ToString();
+                enemiesKilled.text = "Enemies Killed: " + expData.enemiesKilled.ToString();
+                dungeonsVisited.text = "Dungeons Visited: " + expData.dungeonsVisited.ToString();
+                cartographersLost.text = "Cartographers Lost: " + expData.cartographersLost.ToString();
+                completionPercentage.text = "Completion: " + ((expData.mappedDungeons.Count / 10000.0f) * 100f).ToString("0.00") + "%";
+
+                if (expData.mappedDungeons.Count >= 10000)
+                {
+                    gameCompleted = true;
+
+                }
+            }
+
+            else{
+                dungeonsMapped.text = "";
+                roomsMapped.text = "";
+                enemiesKilled.text = "";
+                dungeonsVisited.text = "";
+                cartographersLost.text = "";
+                completionPercentage.text = "";
+            }
         }
     }
 
@@ -264,7 +315,11 @@ public class MainMenuUI : MonoBehaviour
     //load the game (if main menu), or unpause the game (if pause menu)
     private void PlayGame()
     {
-        if (SceneManager.GetActiveScene().name == "Main Menu")
+        if (gameCompleted)
+        {
+            SceneManager.LoadScene("CompletedGame");
+        }
+        else if (SceneManager.GetActiveScene().name == "Main Menu")
         {
 
             menuAudioController.PlayAudioClip("ButtonClose");

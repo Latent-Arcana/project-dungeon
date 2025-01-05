@@ -4,6 +4,7 @@ using UnityEngine;
 using static ItemLoader;
 using static ContainerGeneration;
 using Unity.VisualScripting;
+using UnityEngine.SceneManagement;
 
 public class GameSetup : MonoBehaviour
 {
@@ -49,7 +50,7 @@ public class GameSetup : MonoBehaviour
         loadedExplorationData = SaveSystem.LoadPlayerSaveData();
         if (loadedExplorationData != null)
         {
-            seedsInSaveData = loadedExplorationData.visitedDungeons;
+            seedsInSaveData = loadedExplorationData.mappedDungeons;
 
         }
 
@@ -105,7 +106,7 @@ public class GameSetup : MonoBehaviour
 
             int randSeed = CreateSeed();
 
-            portalSeeds[i] = UnityEngine.Random.Range(1, 10000);
+            portalSeeds[i] = UnityEngine.Random.Range(0, 10000);
 
             seedsInDungeon.Add(randSeed);
         }
@@ -131,7 +132,7 @@ public class GameSetup : MonoBehaviour
 
     int CreateSeed()
     {
-        int randSeed = UnityEngine.Random.Range(1, 10000);
+        int randSeed = UnityEngine.Random.Range(0, 10000);
 
         if (randSeed == seed)
         {
