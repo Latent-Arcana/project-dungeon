@@ -83,7 +83,7 @@ Material:
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _PixelSize: 1000
-    - _RandomSeed: 0.6285836
+    - _RandomSeed: 0.9980091
     - _SeedX: 12.9898
     - _SeedY: 78.233
     - _SeedZ: 43758.547

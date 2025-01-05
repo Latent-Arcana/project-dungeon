@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
+using Unity.Mathematics;
 
 
 
@@ -42,6 +43,15 @@ public class MainMenuUI : MonoBehaviour
     //Audio
     [SerializeField]
     private AudioMixer audioMixer;
+
+
+    // Screen Fade
+    float fadeInDuration = 1f;
+    float fadeOutDuration = 1f;
+    VisualElement screenOverlay;
+    float screenFadeElapsedTime = 0f;
+    bool screenFadeCompleted = false;
+    bool beginTransition = false;
 
     private MenuAudioController menuAudioController;
 
@@ -81,6 +91,8 @@ public class MainMenuUI : MonoBehaviour
 
         statsOnLeft = main_document.rootVisualElement.Q("StatsOnLeft");
         statsOnRight = main_document.rootVisualElement.Q("StatsOnRight");
+
+        screenOverlay = main_document.rootVisualElement.Q("ScreenOverlay");
 
         // Debug.Log($"Main Container is {mainContainer}");
 
@@ -131,10 +143,14 @@ public class MainMenuUI : MonoBehaviour
             input = GameObject.Find("InputController").GetComponent<InputController>();
         }
 
-
-        // IF THE GAME IS OVER, WE JUST CUT TO THE END GAME SCREEN
+        // IF WE'RE AT THE MAIN MENU WE HAVE SOME THINGS TO WORK OUT
         if (SceneManager.GetActiveScene().name == "Main Menu")
         {
+
+            // LETS FADE IN THE SCREEN ON AWAKE AT THE MAIN MENU
+            screenOverlay.style.opacity = 1f;
+
+            // LETS CHECK OUR STATS TO SEE OUR PLAYER's PROGRESS
             ExplorationData expData = SaveSystem.LoadPlayerSaveData();
 
             Label dungeonsMapped = statsOnLeft.Q("DungeonsMapped") as Label;
@@ -146,7 +162,7 @@ public class MainMenuUI : MonoBehaviour
             Label cartographersLost = statsOnRight.Q("CartographersLost") as Label;
             Label completionPercentage = statsOnRight.Q("CompletionPercentage") as Label;
 
-
+            // DISPLAY STATS IF WE HAVE THEM
             if (expData != null)
             {
                 dungeonsMapped.text = "Dungeons Mapped: " + expData.dungeonsFullyMapped.ToString();
@@ -156,14 +172,17 @@ public class MainMenuUI : MonoBehaviour
                 cartographersLost.text = "Cartographers Lost: " + expData.cartographersLost.ToString();
                 completionPercentage.text = "Completion: " + ((expData.mappedDungeons.Count / 10000.0f) * 100f).ToString("0.00") + "%";
 
+                // IF THE GAME IS OVER, WE JUST CUT TO THE END GAME SCREEN
+
                 if (expData.mappedDungeons.Count >= 10000)
                 {
                     gameCompleted = true;
 
                 }
             }
-
-            else{
+            // NO STATS, WE CAN JUST DISPLAY NOTHING
+            else
+            {
                 dungeonsMapped.text = "";
                 roomsMapped.text = "";
                 enemiesKilled.text = "";
@@ -206,6 +225,57 @@ public class MainMenuUI : MonoBehaviour
         SaveSystem.PrintPlayerSaveData();
 
     }
+
+    private void Update()
+    {
+        if (SceneManager.GetActiveScene().name == "Main Menu" && !screenFadeCompleted)
+        {
+            FadeScreenOnStart();
+        }
+
+    }
+
+    private void FadeScreenOnStart()
+    {
+        screenFadeElapsedTime += Time.deltaTime;
+        float normalizedTime = Mathf.Clamp01(screenFadeElapsedTime / fadeInDuration);
+
+        // Gradually fade out the overlay
+        screenOverlay.style.opacity = Mathf.Lerp(1, 0, normalizedTime);
+
+        // Check if the fade is completed
+        if (normalizedTime >= 1f)
+        {
+            screenFadeCompleted = true;
+            screenFadeElapsedTime = 0f; // Reset for the next effect
+            screenOverlay.style.display = DisplayStyle.None;
+        }
+    }
+
+    private IEnumerator FadeScreenOnExit()
+    {
+        screenOverlay.style.display = DisplayStyle.Flex; // Ensure the overlay is visible before fading out
+        float fadeTime = 0f;
+        while (fadeTime < fadeOutDuration)
+        {
+            fadeTime += Time.deltaTime;
+            float normalizedTime = Mathf.Clamp01(fadeTime / fadeOutDuration);
+
+            // Gradually fade in the overlay
+            screenOverlay.style.opacity = Mathf.Lerp(0, 1, normalizedTime);
+
+            yield return null;
+
+        }
+
+        Player_Stats.Initialize(); // Resetting the player's stats to base stats when a new game begins
+        Player_Inventory.Reset(); // Resetting the player's inventory and equipment when a new game begins
+        SceneManager.LoadScene("BSP");
+
+
+    }
+
+
 
     //Volume Settings
     private void SetMusicVolume(ChangeEvent<float> ev)
@@ -324,9 +394,7 @@ public class MainMenuUI : MonoBehaviour
 
             menuAudioController.PlayAudioClip("ButtonClose");
 
-            Player_Stats.Initialize(); // Resetting the player's stats to base stats when a new game begins
-            Player_Inventory.Reset(); // Resetting the player's inventory and equipment when a new game begins
-            SceneManager.LoadScene("BSP");
+            StartCoroutine(FadeScreenOnExit());
         }
         else //Pause Menu Resume Button
         {
