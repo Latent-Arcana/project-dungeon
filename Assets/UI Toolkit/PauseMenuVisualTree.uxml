@@ -18,8 +18,8 @@
             <ui:Label tabindex="-1" text="Pause" parse-escape-sequences="true" display-tooltip-when-elided="true" name="MenuTitle" class="text-title-main-menu" style="display: flex;" />
             <ui:Label tabindex="-1" text="Volume" parse-escape-sequences="true" display-tooltip-when-elided="true" name="VolumeSettings" class="text-body-main-menu" />
             <ui:Slider label="Music" high-value="1" low-value="0.0001" name="VolumeMusicSlider" class="text-body-main-menu" />
-            <ui:Slider label="Effects" high-value="1" low-value="0.0001" name="VolumeSoundEffectsSlider" class="text-body-main-menu" />
-            <ui:Slider label="Interface" high-value="1" low-value="0.0001" name="VolumeAmbientSlider" class="text-body-main-menu" />
+            <ui:Slider label="Interface" high-value="1" low-value="0.0001" name="VolumeSoundEffectsSlider" class="text-body-main-menu" />
+            <ui:Slider label="Sound Effects" high-value="1" low-value="0.0001" name="VolumeAmbientSlider" class="text-body-main-menu" />
             <ui:Toggle label="Fullscreen" name="FullScreen" value="false" class="text-body-main-menu inventory-toggle" />
             <ui:Button text="Back" parse-escape-sequences="true" display-tooltip-when-elided="true" name="BackButton" class="menu-pause-button" style="align-self: center;" />
         </ui:VisualElement>
