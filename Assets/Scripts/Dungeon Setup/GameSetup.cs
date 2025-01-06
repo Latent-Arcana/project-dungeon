@@ -166,7 +166,7 @@ public class GameSetup : MonoBehaviour
         //map
         mapController.FogOfWar();
 
-        mapMarker.PlacePresetMarker(bspController.allRooms[0].GetComponent<Room>());
+        // mapMarker.PlacePresetMarker(bspController.allRooms[0].GetComponent<Room>());
     }
 
     /// <summary>
