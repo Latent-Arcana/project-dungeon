@@ -148,7 +148,7 @@ public class GameSetup : MonoBehaviour
 
             int randSeed = CreateSeed();
 
-            portalSeeds[i] = UnityEngine.Random.Range(0, 10000);
+            portalSeeds[i] = UnityEngine.Random.Range(0, int.MaxValue);
 
             seedsInDungeon.Add(randSeed);
         }
@@ -176,7 +176,7 @@ public class GameSetup : MonoBehaviour
 
     int CreateSeed()
     {
-        int randSeed = UnityEngine.Random.Range(0, 10000);
+        int randSeed = UnityEngine.Random.Range(0, int.MaxValue);
 
         if (randSeed == seed)
         {
