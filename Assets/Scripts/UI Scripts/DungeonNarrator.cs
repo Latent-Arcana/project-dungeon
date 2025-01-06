@@ -870,12 +870,12 @@ public class DungeonNarrator : MonoBehaviour
         {
             if (splitNameArticle == "The")
             {
-                AddDungeonNarratorText("You drop " + item.itemName + ".");
+                AddDungeonNarratorText("You drop " + item.itemName + ". The aether swallows it.");
             }
 
             else
             {
-                AddDungeonNarratorText("You drop the " + item.itemName + ".");
+                AddDungeonNarratorText("You drop the " + item.itemName + ". It was swallowed by the aether.");
             }
         }
 
