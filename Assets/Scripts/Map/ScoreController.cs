@@ -22,6 +22,8 @@ public class ScoreController : MonoBehaviour
 
     private int[] roomsVisited;
     private GameStats gameStats;
+    public MapMarker mapMarker;
+
     private PlayerMovement playerMovement;
 
     private Dictionary<int, GameObject> currentMarks = new();
@@ -38,10 +40,15 @@ public class ScoreController : MonoBehaviour
     {
         allRooms = GameObject.Find("DungeonGenerator").GetComponent<BSPGeneration>().allRooms;
         gameStats = GameObject.Find("GameStats").GetComponent<GameStats>();
+        mapMarker = GameObject.Find("MapController").GetComponent<MapMarker>();
+
 
         //rooms visited array
         roomsVisited = new int[allRooms.Count]; //init to 0's
-        //roomsVisited[0] = 1; //always set first room to 1 just in case
+        roomsVisited[0] = 1; //always set first room to 1 just in case
+
+        //Spawn a marker in room 0
+        mapMarker.PlacePresetMarker(allRooms[0].GetComponent<Room>());
 
     }
 
@@ -184,7 +191,8 @@ public class ScoreController : MonoBehaviour
 
                 // we have a pin but the room is unassigned
                 // We don't care what we marked the room, we're just going to give them this free point
-                else if(room1.roomType == Enums.RoomType.Unassigned){
+                else if (room1.roomType == Enums.RoomType.Unassigned)
+                {
                     Numerator++;
                     Denominator++;
                 }
@@ -234,7 +242,8 @@ public class ScoreController : MonoBehaviour
 
     }
 
-    private void Portals_OnPortalEntered(object sender, EventArgs e){
+    private void Portals_OnPortalEntered(object sender, EventArgs e)
+    {
         ScoreRound();
     }
 
@@ -247,26 +256,34 @@ public class ScoreController : MonoBehaviour
     {
         if (e.type == "enter")
         {
+            SetRoomAsEntered(e.roomId);
+        }
+    }
 
-            roomsVisited[e.roomId] = 1;
-            bool allRoomsAreVisited = true;
+    public void SetRoomAsEntered(int roomId)
+    {
+        roomsVisited[roomId] = 1;
+        CheckIfPortalShouldSpawn();
+    }
 
-            for (int i = 0; i < roomsVisited.Length; i++)
+    private void CheckIfPortalShouldSpawn()
+    {
+        bool allRoomsAreVisited = true;
+
+        for (int i = 0; i < roomsVisited.Length; i++)
+        {
+            //Debug.Log($"Room {i}: {roomsVisited[i]}");
+            if (roomsVisited[i] == 0)  //not visited yet
             {
-                //Debug.Log($"Room {i}: {roomsVisited[i]}");
-                if (roomsVisited[i] == 0)  //not visited yet
-                {
-                    allRoomsAreVisited = false;
-                    break;
-                }
-            }
-
-            if (allRoomsAreVisited && !portalsSpawned)
-            {
-                SpawnPortal();
+                allRoomsAreVisited = false;
+                break;
             }
         }
 
+        if (allRoomsAreVisited && !portalsSpawned)
+        {
+            SpawnPortal();
+        }
     }
 
     private void SpawnPortal()

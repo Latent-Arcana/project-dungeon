@@ -168,20 +168,28 @@ public class MapMarker : MonoBehaviour
     public void PlacePresetMarker(Room room)
     {
         GameObject prefab;
-        if(room.roomType == Enums.RoomType.Safe){
+        if (room.roomType == Enums.RoomType.Safe)
+        {
             prefab = mapMarkerSafe;
         }
-        else if(room.roomType == Enums.RoomType.Danger){
+        else if (room.roomType == Enums.RoomType.Danger)
+        {
             prefab = mapMarkerDanger;
         }
-        else if(room.roomType == Enums.RoomType.Lore){
+        else if (room.roomType == Enums.RoomType.Lore)
+        {
             prefab = mapMarkerLore;
         }
-        else {
+        else
+        {
             prefab = mapMarkerSafe;
         }
-        GameObject placedMarker = Instantiate(prefab, new Vector3(room.originX - 500, room.originY - 500, 0f), Quaternion.identity);
 
+        int centerX = room.x + (room.width / 2);
+        int centerY = room.y + (room.height / 2);
+
+        GameObject placedMarker = Instantiate(prefab, new Vector3(centerX - 500, centerY - 500, 0f), Quaternion.identity);
+        scoreController.SetRoomAsEntered(room.roomId);
     }
 
 
