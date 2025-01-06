@@ -30,6 +30,7 @@ public class GameSetup : MonoBehaviour
 
     public List<int> seedsInDungeon;
 
+    public Camera mapCamera;
 
     public ExplorationData loadedExplorationData;
 
@@ -40,6 +41,7 @@ public class GameSetup : MonoBehaviour
 
     void Awake()
     {
+        mapCamera = GameObject.Find("Map Camera").GetComponent<Camera>();
         mapController = GameObject.Find("MapController").GetComponent<MapController>();
         mapMarker = GameObject.Find("MapController").GetComponent<MapMarker>();
 
@@ -64,7 +66,7 @@ public class GameSetup : MonoBehaviour
         {
             seed = CreateSeed();
         }
-        
+
         else // if we want to regenerate the same seed over and over ( debug seedgen is true)
         {
             UnityEngine.Random.InitState(seed);
@@ -105,6 +107,36 @@ public class GameSetup : MonoBehaviour
         Debug.Log("Current Dungeon Level is: " + gameStats.currentDungeonLevel);
         //bsp
         bspController.StartBspGeneration(gameStats.currentDungeonLevel);
+
+        // adjust the camera position and scale based on the ratio of the map
+        if (gameStats.currentDungeonLevel >= 5)
+        {
+            // Map grows by 1 in both width and height per level
+            int mapSize = 50 + gameStats.currentDungeonLevel; // Map size starts at 50x50 and maxes out at 100x100
+
+            // Update orthographic size (this part is correct)
+            float initialOrthographicSize = 40f; // Starting orthographic size
+            float initialMapSize = 50f; // Starting map size
+            mapCamera.orthographicSize = initialOrthographicSize + ((mapSize - initialMapSize) / 2f);
+
+            // Calculate the center of the map based on the map size
+            float mapCenterX = mapSize / 2f;
+            float mapCenterY = mapSize / 2f;
+
+            // Adjust the camera's position to center on the growing map
+            // Initial camera position is -480, -500 for the initial map size (50x50)
+            float initialCameraPosX = -480f;
+            float initialCameraPosY = -500f;
+
+            // Calculate new position based on growth from initial center
+            float newCameraPosX = initialCameraPosX + mapCenterX;
+            float newCameraPosY = initialCameraPosY + mapCenterY;
+
+            // Update camera position
+            mapCamera.transform.position = new Vector3(newCameraPosX + 5f, newCameraPosY, mapCamera.transform.position.z);
+
+
+        }
 
         roomsGenerated = true;
 
@@ -156,14 +188,16 @@ public class GameSetup : MonoBehaviour
             CreateSeed();
         }
 
-        else if(seedsInSaveData != null && seedsInSaveData.Contains(randSeed)){
+        else if (seedsInSaveData != null && seedsInSaveData.Contains(randSeed))
+        {
             CreateSeed();
         }
 
         return randSeed;
     }
 
-    public Room GetRandomRoom(){
+    public Room GetRandomRoom()
+    {
         int randRoomIndex = UnityEngine.Random.Range(1, bspController.allRooms.Count);
 
         return bspController.allRooms[randRoomIndex].GetComponent<Room>();

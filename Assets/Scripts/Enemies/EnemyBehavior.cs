@@ -183,10 +183,10 @@ public class EnemyBehavior : MonoBehaviour
 
     public EnemyStats ScaleEnemies(int dungeonLevel, EnemyStats enemyStats)
     {
-        int randomStatChoice = UnityEngine.Random.Range(0, 5);
 
-        if (dungeonLevel % 2 == 0)
+        for (int i = 0; i < dungeonLevel; ++i)
         {
+            int randomStatChoice = UnityEngine.Random.Range(0, 5);
 
             switch (randomStatChoice)
             {
@@ -216,7 +216,6 @@ public class EnemyBehavior : MonoBehaviour
             }
 
         }
-
         return enemyStats;
 
     }

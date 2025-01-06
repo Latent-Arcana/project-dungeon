@@ -417,6 +417,7 @@ MonoBehaviour:
   floorCoverGenerator: {fileID: 0}
   portalSeeds: 
   seedsInDungeon: 
+  mapCamera: {fileID: 0}
   loadedExplorationData:
     dungeonsFullyMapped: 0
     roomsMappedSuccessfully: 0
@@ -2140,7 +2141,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3b272d413e8aeda4e892e65b5f03529a, type: 2}
+  - {fileID: 2100000, guid: 963062c932804fb4fbd1d0d49c3da397, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2181,8 +2182,8 @@ Transform:
   m_GameObject: {fileID: 2003318707}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 25.22, y: 24.99, z: 0}
-  m_LocalScale: {x: 100, y: 100, z: 0}
+  m_LocalPosition: {x: 50, y: 50, z: 0}
+  m_LocalScale: {x: 150, y: 150, z: 0}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -2199,7 +2200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eda108d92faae7d45aab25b91b304c5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fogMaterial: {fileID: 2100000, guid: 3b272d413e8aeda4e892e65b5f03529a, type: 2}
+  fogMaterial: {fileID: 2100000, guid: 963062c932804fb4fbd1d0d49c3da397, type: 2}
 --- !u!1 &2103679179
 GameObject:
   m_ObjectHideFlags: 0
