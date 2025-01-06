@@ -1,13 +1,13 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI%20Toolkit/MenuStyleSheet.uss?fileID=7433441132597879392&amp;guid=8622666c0c77f81419510e23e5912e27&amp;type=3#MenuStyleSheet" />
     <ui:VisualElement name="Container" style="flex-grow: 1; display: flex; transform-origin: center; width: auto; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; background-image: none; background-color: rgb(0, 0, 0);">
-        <ui:VisualElement name="MainContainer" style="flex-grow: 1; display: flex; justify-content: flex-start;">
+        <ui:VisualElement name="MainContainer" style="flex-grow: 1; display: none; justify-content: flex-start;">
             <ui:Label tabindex="-1" text="Pause" parse-escape-sequences="true" display-tooltip-when-elided="true" name="MenuTitle" class="text-title-main-menu" style="display: flex;" />
             <ui:VisualElement name="ButtonGroup" class="button-container" style="flex-grow: 1;">
                 <ui:Button text="Resume" parse-escape-sequences="true" display-tooltip-when-elided="true" name="PlayButton" class="menu-pause-button" style="-unity-background-scale-mode: scale-to-fit;" />
                 <ui:Button text="Options" parse-escape-sequences="true" display-tooltip-when-elided="true" name="OptionsButton" class="menu-pause-button" />
                 <ui:Button text="Help" parse-escape-sequences="true" display-tooltip-when-elided="true" name="HelpButton" class="menu-pause-button" />
-                <ui:Button text="CREDITS" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CreditsButton" class="menu-pause-button" />
+                <ui:Button text="Credits" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CreditsButton" class="menu-pause-button" />
                 <ui:Button text="Quit to Desktop" parse-escape-sequences="true" display-tooltip-when-elided="true" name="QuitButton" class="menu-pause-button" />
             </ui:VisualElement>
             <ui:VisualElement name="SeedGroup" style="flex-grow: 1; align-items: stretch; flex-direction: column; margin-bottom: 200px; height: 10%; justify-content: center; align-self: center;">
@@ -19,7 +19,7 @@
             <ui:Label tabindex="-1" text="Volume" parse-escape-sequences="true" display-tooltip-when-elided="true" name="VolumeSettings" class="text-body-main-menu" />
             <ui:Slider label="Music" high-value="1" low-value="0.0001" name="VolumeMusicSlider" class="text-body-main-menu" />
             <ui:Slider label="Effects" high-value="1" low-value="0.0001" name="VolumeSoundEffectsSlider" class="text-body-main-menu" />
-            <ui:Slider label="Ambient" high-value="1" low-value="0.0001" name="VolumeAmbientSlider" class="text-body-main-menu" />
+            <ui:Slider label="Interface" high-value="1" low-value="0.0001" name="VolumeAmbientSlider" class="text-body-main-menu" />
             <ui:Toggle label="Fullscreen" name="FullScreen" value="false" class="text-body-main-menu inventory-toggle" />
             <ui:Button text="Back" parse-escape-sequences="true" display-tooltip-when-elided="true" name="BackButton" class="menu-pause-button" style="align-self: center;" />
         </ui:VisualElement>
