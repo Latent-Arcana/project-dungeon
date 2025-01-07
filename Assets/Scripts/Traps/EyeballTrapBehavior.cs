@@ -112,6 +112,8 @@ public class EyeballTrapBehavior : TrapBehavior
 
             GhostProjectileBehavior ghostProjectile = projectileBehavior as GhostProjectileBehavior;
             ghostProjectile.moveCountMax = Random.Range(3, 11);
+
+            projectileBehavior.CheckSpawn(playerMovement.transform.position);
         }
 
         return;

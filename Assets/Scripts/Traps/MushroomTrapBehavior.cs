@@ -143,6 +143,7 @@ public class MushroomTrapBehavior : TrapBehavior
                 projectileBehavior.projectileId = 0;
                 projectileBehavior.isAtSpawn = true;
                 projectileBehavior.Player_Stats = Player_Stats;
+                projectileBehavior.CheckSpawn(playerMovement.transform.position);
             }
 
         }
