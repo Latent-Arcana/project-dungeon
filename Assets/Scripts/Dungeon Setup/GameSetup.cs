@@ -133,10 +133,10 @@ public class GameSetup : MonoBehaviour
         float newCameraPosX = (initialCameraPosX + mapCenterX) + (.7f * mapCenterX); //mapCenterX;
         float newCameraPosY = initialCameraPosY + mapCenterY;
 
-        Debug.Log("Current Level: " + gameStats.currentDungeonLevel);
-        Debug.Log("New Camera X: " + newCameraPosX);
-        Debug.Log("Map Size: " + mapSize);
-        Debug.Log("Map Center X: " + mapCenterX);
+        // Debug.Log("Current Level: " + gameStats.currentDungeonLevel);
+        // Debug.Log("New Camera X: " + newCameraPosX);
+        // Debug.Log("Map Size: " + mapSize);
+        // Debug.Log("Map Center X: " + mapCenterX);
 
         // Update camera position
         mapCamera.transform.localPosition = new Vector3(newCameraPosX, newCameraPosY, 0);

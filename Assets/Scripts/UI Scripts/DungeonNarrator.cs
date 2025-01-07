@@ -31,7 +31,12 @@ public class DungeonNarrator : MonoBehaviour
 
     private GameStats gameStats;
 
-    private string deathText;
+    private VisualElement screenOverlay;
+    float screenFadeElapsedTime = 0f;
+    float fadeInDuration = 1f;
+    float fadeOutDuration = 1f;
+    bool screenFadeCompleted = true;
+
 
     void Start()
     {
@@ -57,12 +62,63 @@ public class DungeonNarrator : MonoBehaviour
         text_narrator_top = narrator_doc.rootVisualElement.Q("DungeonNarratorTextTop") as TextElement;
         dungeon_narrator_container = narrator_doc.rootVisualElement.Q("DungeonNarratorContainer");
 
+        screenOverlay = narrator_doc.rootVisualElement.Q("ScreenOverlay");
+        screenOverlay.style.opacity = 1f;
+
         InitializeStatsUI();
 
 
         ClearDungeonNarratorText();
 
     }
+
+    private void Update()
+    {
+        if (!screenFadeCompleted)
+        {
+           // Debug.Log("Fading");
+            FadeScreenOnStart();
+        }
+    }
+    public void InitiateScreenFadeIn()
+    {
+        screenFadeCompleted = false;
+    }
+    public void FadeScreenOnStart()
+    {
+        screenFadeElapsedTime += Time.deltaTime;
+        float normalizedTime = Mathf.Clamp01(screenFadeElapsedTime / fadeInDuration);
+
+        // Gradually fade out the overlay
+        screenOverlay.style.opacity = Mathf.Lerp(1, 0, normalizedTime);
+
+        // Check if the fade is completed
+        if (normalizedTime >= 1f)
+        {
+            screenFadeCompleted = true;
+            screenFadeElapsedTime = 0f; // Reset for the next effect
+            screenOverlay.style.display = DisplayStyle.None;
+        }
+    }
+    public IEnumerator FadeScreenOnExit()
+    {
+        screenOverlay.style.display = DisplayStyle.Flex;
+        float fadeTime = 0f;
+        while (fadeTime < fadeOutDuration)
+        {
+            fadeTime += Time.deltaTime;
+            float normalizedTime = Mathf.Clamp01(fadeTime / fadeOutDuration);
+
+            // Gradually fade in the overlay
+            screenOverlay.style.opacity = Mathf.Lerp(0, 1, normalizedTime);
+
+            yield return null;
+        }
+
+        // SceneManager.LoadScene("Main Menu");
+
+    }
+
 
     private void InitializeStatsUI()
     {
@@ -174,7 +230,8 @@ public class DungeonNarrator : MonoBehaviour
 
             string bookshelfText = "";
 
-            if (randChoice <= .2f){
+            if (randChoice <= .2f)
+            {
                 bookshelfText = "You find a glowing tome. Somewhere, a room was marked";
             }
 
@@ -210,7 +267,8 @@ public class DungeonNarrator : MonoBehaviour
                 AddDungeonNarratorText("The books on this shelf are all unreadable.");
 
             }
-            else if (randChoice <= .8f){
+            else if (randChoice <= .8f)
+            {
                 AddDungeonNarratorText("The books here have all been destroyed.");
             }
             else

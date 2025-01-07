@@ -295,11 +295,7 @@ public class ScoreController : MonoBehaviour
             {
                 GameObject portalObject = room.transform.Find("Portal(Clone)").gameObject;
 
-                if (portalObject.transform.position != playerMovement.gameObject.transform.position)
-                {
-                    StartCoroutine(FadeInPortal(portalObject));
-
-                }
+                StartCoroutine(FadeInPortal(portalObject));
             }
         }
 

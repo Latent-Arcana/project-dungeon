@@ -72,6 +72,7 @@ public class InputController : MonoBehaviour
 
         loadingScreen = GameObject.Find("Loading");
 
+
         movementEnabled = true;
 
     }
@@ -82,6 +83,9 @@ public class InputController : MonoBehaviour
         currentInputState = InputState.Gameplay;
 
         loadingScreen.SetActive(false);
+
+        Dungeon_Narrator.InitiateScreenFadeIn();
+        
 
         movementEnabled = true;
     }
