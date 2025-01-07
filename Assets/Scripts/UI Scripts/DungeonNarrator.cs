@@ -167,9 +167,26 @@ public class DungeonNarrator : MonoBehaviour
 
     public void AddBookshelfText(Enums.RoomType roomType, bool bookDropped)
     {
+        float randChoice = UnityEngine.Random.value;
+
         if (bookDropped)
         {
-            string bookshelfText = "You find a book. A distant room was marked ";
+
+            string bookshelfText = "";
+
+            if (randChoice <= .2f){
+                bookshelfText = "You find a glowing tome. Somewhere, a room was marked ";
+            }
+
+            else if (randChoice > .2f && randChoice < .5f)
+            {
+                bookshelfText = "You find a floating book. You sense a room somewhere, you mark it with ";
+            }
+
+            else
+            {
+                bookshelfText = "Upon the shelf sits a speaking scroll... It tells you of a room. You mark it with ";
+            }
 
             if (roomType == Enums.RoomType.Danger)
             {
@@ -188,9 +205,19 @@ public class DungeonNarrator : MonoBehaviour
         }
         else
         {
-            string bookshelfText = "The books on this shelf are all unreadable.";
+            if (randChoice <= .4f)
+            {
+                AddDungeonNarratorText("The books on this shelf are all unreadable.");
 
-            AddDungeonNarratorText(bookshelfText);
+            }
+            else if (randChoice <= .8f){
+                AddDungeonNarratorText("The books here have all been destroyed.");
+            }
+            else
+            {
+                AddDungeonNarratorText("These books are all written in indecipherable languages...");
+            }
+
         }
     }
 

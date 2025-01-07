@@ -40,25 +40,31 @@ public class BookshelfBehavior : MonoBehaviour
             {
                 DungeonNarrator.Dungeon_Narrator.AddDungeonNarratorText("You've already poured over these tomes and learned of a " + bookRoom.roomType.ToString().ToLower() + " room.");
             }
-            else{
+            else
+            {
                 DungeonNarrator.Dungeon_Narrator.AddDungeonNarratorText("The books on this shelf offered no wisdom to you...");
             }
         }
-        // bookshelves have a 30% chance of dropping a book
-        float randDropChance = UnityEngine.Random.value;
-
-        if (randDropChance > .3f)
+        
+        else
         {
-            DungeonNarrator.Dungeon_Narrator.AddBookshelfText(bookRoom.roomType, false);
+            // bookshelves have a 30% chance of dropping a book
+            float randDropChance = UnityEngine.Random.value;
+
+            if (randDropChance > .3f)
+            {
+                DungeonNarrator.Dungeon_Narrator.AddBookshelfText(bookRoom.roomType, false);
+                hasBeenUsed = true;
+                return;
+            }
+
+            DungeonNarrator.Dungeon_Narrator.AddBookshelfText(bookRoom.roomType, true);
+            mapMarker.PlacePresetMarker(bookRoom);
+            mapController.RemoveFog(bookRoom.roomId);
             hasBeenUsed = true;
-            return;
+            bookWasFound = true;
         }
 
-        DungeonNarrator.Dungeon_Narrator.AddBookshelfText(bookRoom.roomType, true);
-        mapMarker.PlacePresetMarker(bookRoom);
-        mapController.RemoveFog(bookRoom.roomId);
-        hasBeenUsed = true;
-        bookWasFound = true;
 
     }
 
