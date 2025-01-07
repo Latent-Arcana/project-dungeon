@@ -113,7 +113,7 @@ public class SaveSystem : MonoBehaviour
             //File not found
 
             //Create a default settings object instead
-            ScreenOptions screenOptionsDefault = new ScreenOptions(640, 480, false);
+            ScreenOptions screenOptionsDefault = new ScreenOptions(true);
             SaveOptions data = new(.50f, .50f, .50f, screenOptionsDefault);
 
             return data;

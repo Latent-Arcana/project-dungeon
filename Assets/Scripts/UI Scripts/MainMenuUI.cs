@@ -264,7 +264,7 @@ public class MainMenuUI : MonoBehaviour
         audioMixer.SetFloat("MixerMusicVolume", ConvertVolumeToDb(ops.musicVolume));
         audioMixer.SetFloat("MixerAmbientVolume", ConvertVolumeToDb(ops.ambientVolume));
 
-        // Screen.SetResolution(ops.screenOptions.screenWidth, ops.screenOptions.screenHeight, ops.screenOptions.fullScreen);
+        Screen.fullScreen = ops.screenOptions.fullScreen;
 
       //  SaveSystem.PrintPlayerSaveData();
 
@@ -390,31 +390,10 @@ public class MainMenuUI : MonoBehaviour
 
     }
 
-    private void OnScreenResolutionChanged(ChangeEvent<string> evt)
-    {
-        switch (evt.newValue)
-        {
-            case "1920x1080":
-                ops.screenOptions = new ScreenOptions(1920, 1080, Screen.fullScreen);
-                Screen.SetResolution(1920, 1080, Screen.fullScreen);
-                break;
-
-            case "640x480":
-                ops.screenOptions = new ScreenOptions(640, 480, Screen.fullScreen);
-                Screen.SetResolution(640, 480, Screen.fullScreen);
-                break;
-
-            default:
-                ops.screenOptions = new ScreenOptions(640, 480, Screen.fullScreen);
-                Screen.SetResolution(640, 480, Screen.fullScreen);
-                break;
-        }
-    }
-
     private void SetFullScreen(ChangeEvent<bool> evt)
     {
         ops.screenOptions.fullScreen = evt.newValue;
-        Screen.SetResolution(Screen.width, Screen.height, evt.newValue);
+        Screen.fullScreen = evt.newValue;
     }
 
 
