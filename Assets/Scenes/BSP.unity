@@ -157,8 +157,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e7e77a327d47774989ce53b4ceb5671, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapWidth: 50
-  mapHeight: 50
+  mapWidth: 25
+  mapHeight: 25
   roomMinimumWidth: 7
   roomMinimumHeight: 7
   mapOffset: 500
@@ -1722,6 +1722,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d12e14825efd9e443b07881b1c58dccc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mapMarker: {fileID: 0}
 --- !u!1 &1279361755
 GameObject:
   m_ObjectHideFlags: 0

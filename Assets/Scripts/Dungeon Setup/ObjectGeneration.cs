@@ -134,7 +134,7 @@ public class ObjectGeneration : MonoBehaviour
     {
         List<int> portalRoomIndices = new List<int>();
 
-        while (portalRoomIndices.Count < (rooms.Count / 5))
+        while (portalRoomIndices.Count < (rooms.Count / 5) + 1)
         {
 
             int randomPortalRoomIndex = UnityEngine.Random.Range(1, rooms.Count);

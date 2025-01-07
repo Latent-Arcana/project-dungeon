@@ -51,8 +51,30 @@ public class GameStats : MonoBehaviour
 
     public void AddToScore(int numerator, int denominator)
     {
+
+
         Numerator += numerator;
         Denominator += denominator;
+       
+        // get numerator and denominator data so we can update the current run
+        if (numerator == denominator) // TODO: REVISIT
+        {
+            IncrementFullyMappedDungeons();
+            UpdateMappedDungeonsList();
+        }
+
+        Debug.Log("Numerator is: " + GetNumerator());
+        Debug.Log("Denominator is: " + GetDenominator());
+
+        UpdateVisitedDungeonsInformation(); // we know we're going to increment this any time we swap portals (DO THIS ON DEATH TOO)
+
+        // currentRunData.DEBUG_AddDungeonsToList(50000);
+
+        SetRoomsSuccessfullyMapped(GetNumerator()); // set how many room we've visited
+
+        Debug.Log("We just set the rooms succesfully mapped to: " + currentRunData.roomsMappedSuccessfully + " with numerator: " + GetNumerator());
+
+        ++currentDungeonLevel;
     }
 
     /// <summary>
@@ -114,25 +136,7 @@ public class GameStats : MonoBehaviour
     public void UpdateCurrentRoomAndDungeonData()
     {
 
-        Debug.Log("Numerator is: " + GetNumerator());
-        Debug.Log("Denominator is: " + GetDenominator());
-        
-        // get numerator and denominator data so we can update the current run
-        if (GetNumerator() == GetDenominator()) // TODO: REVISIT
-        {
-            IncrementFullyMappedDungeons();
-            UpdateMappedDungeonsList();
-        }
 
-        UpdateVisitedDungeonsInformation(); // we know we're going to increment this any time we swap portals (DO THIS ON DEATH TOO)
-
-       // currentRunData.DEBUG_AddDungeonsToList(50000);
-
-        SetRoomsSuccessfullyMapped(GetNumerator()); // set how many room we've visited
-
-        Debug.Log("We just set the rooms succesfully mapped to: " + currentRunData.roomsMappedSuccessfully + " with numerator: " + GetNumerator());
-
-        ++currentDungeonLevel;
     }
 
 
@@ -147,7 +151,8 @@ public class GameStats : MonoBehaviour
             SaveSystem.SaveExplorationData(loadedData);
         }
 
-        else{
+        else
+        {
             SaveSystem.SaveExplorationData(currentRunData);
         }
 
@@ -180,25 +185,29 @@ public class GameStats : MonoBehaviour
         currentRunData.enemiesKilled++;
     }
 
-    public void UpdateVisitedDungeonsInformation(){
+    public void UpdateVisitedDungeonsInformation()
+    {
         GameSetup gameSetup = GameObject.Find("GameSetup").GetComponent<GameSetup>();
 
         int currentSeed = gameSetup.seed;
 
         Debug.Log("Current seed is: " + currentSeed);
 
-        if(!currentRunData.visitedDungeons.Contains(currentSeed)){
+        if (!currentRunData.visitedDungeons.Contains(currentSeed))
+        {
             IncrementDungeonsVisited(); // we only increment our number of unique dungeons visited if we visit a truly unique dungeon
             currentRunData.visitedDungeons.Add(currentSeed);
         }
     }
 
-    public void UpdateMappedDungeonsList(){
+    public void UpdateMappedDungeonsList()
+    {
         GameSetup gameSetup = GameObject.Find("GameSetup").GetComponent<GameSetup>();
 
         int currentSeed = gameSetup.seed;
 
-        if(!currentRunData.mappedDungeons.Contains(currentSeed)){
+        if (!currentRunData.mappedDungeons.Contains(currentSeed))
+        {
             currentRunData.mappedDungeons.Add(currentSeed);
         }
     }
