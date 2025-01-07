@@ -266,7 +266,7 @@ public class MainMenuUI : MonoBehaviour
 
         // Screen.SetResolution(ops.screenOptions.screenWidth, ops.screenOptions.screenHeight, ops.screenOptions.fullScreen);
 
-        SaveSystem.PrintPlayerSaveData();
+      //  SaveSystem.PrintPlayerSaveData();
 
         if (SceneManager.GetActiveScene().name == "BSP")
         {

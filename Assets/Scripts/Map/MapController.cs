@@ -66,6 +66,8 @@ public class MapController : MonoBehaviour
 
             fogBoxes[room.roomId] = fogBox;
 
+            //RemoveFog(room.roomId);
+
         }
 
         //TODO: Player might not always spawn in first room

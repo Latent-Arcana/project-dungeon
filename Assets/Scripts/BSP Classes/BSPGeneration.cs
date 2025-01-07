@@ -71,12 +71,15 @@ public class BSPGeneration : MonoBehaviour
         // Get the player so we can place them at the correct location
         player = GameObject.Find("Player");
 
-        if (dungeonLevel <= 50)
+        if (dungeonLevel <= 60)
         {
-            mapWidth += (dungeonLevel - 1);
-            mapHeight += (dungeonLevel - 1);
+            mapWidth = 25 + dungeonLevel;
+            mapHeight = 25 + dungeonLevel;
         }
-
+        else{
+            mapWidth = 85;
+            mapHeight = 85;
+        }
         // let's make the entire background walls
 
         // Define the bounds for gameplay wall tiles

@@ -104,39 +104,43 @@ public class GameSetup : MonoBehaviour
 
         GameStats gameStats = GameObject.Find("GameStats").GetComponent<GameStats>();
 
-        Debug.Log("Current Dungeon Level is: " + gameStats.currentDungeonLevel);
+   //     Debug.Log("Current Dungeon Level is: " + gameStats.currentDungeonLevel);
         //bsp
         bspController.StartBspGeneration(gameStats.currentDungeonLevel);
 
         // adjust the camera position and scale based on the ratio of the map
-        if (gameStats.currentDungeonLevel >= 5)
-        {
-            // Map grows by 1 in both width and height per level
-            int mapSize = 50 + gameStats.currentDungeonLevel; // Map size starts at 50x50 and maxes out at 100x100
 
-            // Update orthographic size (this part is correct)
-            float initialOrthographicSize = 40f; // Starting orthographic size
-            float initialMapSize = 50f; // Starting map size
-            mapCamera.orthographicSize = initialOrthographicSize + ((mapSize - initialMapSize) / 2f);
+         //   int mapCenter = -500 + Math.Min((25 + gameStats.currentDungeonLevel) / 2, 42);
 
-            // Calculate the center of the map based on the map size
-            float mapCenterX = mapSize / 2f;
-            float mapCenterY = mapSize / 2f;
+        // Map grows by 1 in both width and height per level
+        int mapSize = 25 + gameStats.currentDungeonLevel;
 
-            // Adjust the camera's position to center on the growing map
-            // Initial camera position is -480, -500 for the initial map size (50x50)
-            float initialCameraPosX = -480f;
-            float initialCameraPosY = -500f;
+        // Update orthographic size (this part is correct)
+        float initialOrthographicSize = 25f; // Starting orthographic size
+        float initialMapSize = 25f; // Starting map size
+        mapCamera.orthographicSize = Math.Min(initialOrthographicSize + ((mapSize - initialMapSize) / 2f), initialOrthographicSize + 30);
 
-            // Calculate new position based on growth from initial center
-            float newCameraPosX = initialCameraPosX + mapCenterX;
-            float newCameraPosY = initialCameraPosY + mapCenterY;
+        // Calculate the center of the map based on the map size
+        float mapCenterX = Math.Min(mapSize  / 2, 42);
+        float mapCenterY = Math.Min(mapSize / 2, 42);
 
-            // Update camera position
-            mapCamera.transform.position = new Vector3(newCameraPosX + 5f, newCameraPosY, mapCamera.transform.position.z);
+        // Adjust the camera's position to center on the growing map
+        // Initial camera position is -480, -500 for the initial map size (50x50)
+        float initialCameraPosX = -500f;
+        float initialCameraPosY = -500f;
 
+        // Calculate new position based on growth from initial center
+        float newCameraPosX = (initialCameraPosX + mapCenterX) + (.7f * mapCenterX); //mapCenterX;
+        float newCameraPosY = initialCameraPosY + mapCenterY;
 
-        }
+        Debug.Log("Current Level: " + gameStats.currentDungeonLevel);
+        Debug.Log("New Camera X: " + newCameraPosX);
+        Debug.Log("Map Size: " + mapSize);
+        Debug.Log("Map Center X: " + mapCenterX);
+
+        // Update camera position
+        mapCamera.transform.localPosition = new Vector3(newCameraPosX, newCameraPosY, 0);
+
 
         roomsGenerated = true;
 
