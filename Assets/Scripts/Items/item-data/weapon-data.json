@@ -59,6 +59,126 @@
       "AP": 0,
       "weaponType": "HeavySlash",
       "image": "halberd"
+    },
+    {
+      "itemID": "009",
+      "itemName": "Saber +1",
+      "itemDescription": "A dull steel blade, riddled with scars of battle.",
+      "STR": 3,
+      "SPD": 0,
+      "AGI": 0,
+      "HP": 0,
+      "AP": 0,
+      "weaponType": "LightSlash",
+      "image": "sabre"
+    },
+    {
+      "itemID": "010",
+      "itemName": "Saber +2",
+      "itemDescription": "A dull steel blade, riddled with scars of battle.",
+      "STR": 3,
+      "SPD": 1,
+      "AGI": 0,
+      "HP": 0,
+      "AP": 0,
+      "weaponType": "LightSlash",
+      "image": "sabre"
+    },
+    {
+      "itemID": "011",
+      "itemName": "Battle Axe +1",
+      "itemDescription": "A one-handed weapon, rust scattered across the axe-head.",
+      "STR": 3,
+      "SPD": 0,
+      "AGI": 0,
+      "HP": 0,
+      "AP": 0,
+      "weaponType": "HeavySlash",
+      "image": "battle-axe"
+    },
+    {
+      "itemID": "012",
+      "itemName": "Battle Axe +2",
+      "itemDescription": "A one-handed weapon, rust scattered across the axe-head.",
+      "STR": 3,
+      "SPD": 1,
+      "AGI": 0,
+      "HP": 0,
+      "AP": 0,
+      "weaponType": "HeavySlash",
+      "image": "battle-axe"
+    },
+    {
+      "itemID": "013",
+      "itemName": "Falchion +1",
+      "itemDescription": "A well kept blade, curving at the end to help catch weakpoints.",
+      "STR": 2,
+      "SPD": 1,
+      "AGI": 1,
+      "HP": 0,
+      "AP": 0,
+      "weaponType": "LightSlash",
+      "image": "falchion"
+    },
+    {
+      "itemID": "014",
+      "itemName": "Falchion +2",
+      "itemDescription": "A well kept blade, curving at the end to help catch weakpoints.",
+      "STR": 2,
+      "SPD": 2,
+      "AGI": 1,
+      "HP": 0,
+      "AP": 0,
+      "weaponType": "LightSlash",
+      "image": "falchion"
+    },
+    {
+      "itemID": "015",
+      "itemName": "Heavy Mace +1",
+      "itemDescription": "A heavy ball of iron adorned with spikes, attached to a long metal rod.",
+      "STR": 4,
+      "SPD": -1,
+      "AGI": 0,
+      "HP": 0,
+      "AP": 0,
+      "weaponType": "HeavyBlunt",
+      "image": "mace"
+    },
+    {
+      "itemID": "016",
+      "itemName": "Heavy Mace +2",
+      "itemDescription": "A heavy ball of iron adorned with spikes, attached to a long metal rod.",
+      "STR": 4,
+      "SPD": 0,
+      "AGI": 0,
+      "HP": 0,
+      "AP": 0,
+      "weaponType": "HeavyBlunt",
+      "image": "mace"
+    },
+    {
+      "itemID": "017",
+      "itemName": "Halberd +1",
+      "itemDescription": "A lengthy wooden polearm, with a pointed axe attached at the end.",
+      "STR": 2,
+      "SPD": 0,
+      "AGI": 2,
+      "HP": 0,
+      "AP": 0,
+      "weaponType": "HeavySlash",
+      "image": "halberd"
+    },
+    {
+      "itemID": "018",
+      "itemName": "Halberd +2",
+      "itemDescription": "A lengthy wooden polearm, with a pointed axe attached at the end.",
+      "STR": 3,
+      "SPD": 0,
+      "AGI": 2,
+      "HP": 0,
+      "AP": 0,
+      "weaponType": "HeavySlash",
+      "image": "halberd"
     }
   ]
 }

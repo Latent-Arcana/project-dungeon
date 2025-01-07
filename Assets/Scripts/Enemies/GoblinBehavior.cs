@@ -8,7 +8,7 @@ public class GoblinBehavior : EnemyBehavior
 
     public override void AssignStats(int dungeonLevel)
     {
-        EnemyStats baseStats = new EnemyStats(enemyType, HP: 12, SPD: 1, AGI: 1, STR: 2, AP: 1);
+        EnemyStats baseStats = new EnemyStats(enemyType, HP: 7, SPD: 2, AGI: 2, STR: 1, AP: 0);
 
         enemyStats = ScaleEnemies(dungeonLevel, baseStats);
     }

@@ -3,29 +3,67 @@
         {
             "itemID": "001",
             "itemName": "Saber",
-            "DropChance": 20
+            "DropChance": 10
         },
         {
             "itemID": "002",
             "itemName": "Battle Axe",
-            "DropChance": 20
+            "DropChance": 10
         },
         {
-            "itemID": "003",          
+            "itemID": "003",
             "itemName": "Gambeson Robes",
-            "DropChance": 25
+            "DropChance": 8
         },
         {
             "itemID": "004",
             "itemName": "Elk Hide Armor",
-            "DropChance": 25
+            "DropChance": 8
         },
         {
             "itemID": "005",
             "itemName": "Elixir of Health",
             "DropChance": 10
+        },
+        {
+            "itemID": "014",
+            "itemName": "Saber +1",
+            "DropChance": 7
+        },
+        {
+            "itemID": "015",
+            "itemName": "Battle Axe +1",
+            "DropChance": 7
+        },
+        {
+            "itemID": "016",
+            "itemName": "Gambeson Robes +1",
+            "DropChance": 6
+        },
+        {
+            "itemID": "017",
+            "itemName": "Elk Hide Armor +1",
+            "DropChance": 6
+        },
+        {
+            "itemID": "018",
+            "itemName": "Saber +2",
+            "DropChance": 5
+        },
+        {
+            "itemID": "019",
+            "itemName": "Battle Axe +2",
+            "DropChance": 5
+        },
+        {
+            "itemID": "020",
+            "itemName": "Gambeson Robes +2",
+            "DropChance": 4
+        },
+        {
+            "itemID": "021",
+            "itemName": "Elk Hide Armor +2",
+            "DropChance": 4
         }
     ]
 }
-  
-  

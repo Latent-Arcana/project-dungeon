@@ -30,7 +30,7 @@ public class PlayerAnimationBehavior : MonoBehaviour
     public void Sleep()
     {
         animator.Play("sleep");
-        StartCoroutine(ResetToIdle("sleep"));
+        StartCoroutine(ResetToIdle("sleep", 1f));
     }
     public void BuffStats(Enums.ShrineType buffType)
     {
@@ -52,15 +52,15 @@ public class PlayerAnimationBehavior : MonoBehaviour
 
         animator.Play(animationName);
 
-        StartCoroutine(ResetToIdle(animationName));
+        StartCoroutine(ResetToIdle(animationName, 1.5f));
 
     }
 
 
-    private IEnumerator ResetToIdle(string animationName)
+    private IEnumerator ResetToIdle(string animationName, float speed)
     {
         // Wait for the duration of the animation
-        float animationLength = animator.runtimeAnimatorController.animationClips.First(clip => clip.name == animationName).length;
+        float animationLength = animator.runtimeAnimatorController.animationClips.First(clip => clip.name == animationName).length / speed;
         yield return new WaitForSeconds(animationLength);
 
         // Play the idle state or any default animation

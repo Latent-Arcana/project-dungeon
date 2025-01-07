@@ -3,44 +3,102 @@
         {
             "itemID": "006",
             "itemName": "Falchion",
-            "DropChance": 10
+            "DropChance": 8
         },
         {
             "itemID": "007",
             "itemName": "Heavy Mace",
-            "DropChance": 20
+            "DropChance": 8
         },
         {
             "itemID": "008",
             "itemName": "Halberd",
-            "DropChance": 5
+            "DropChance": 7
         },
         {
             "itemID": "009",
             "itemName": "Hauberk",
-            "DropChance": 20
+            "DropChance": 7
         },
         {
             "itemID": "010",
             "itemName": "Plackart",
-            "DropChance": 10
+            "DropChance": 7
         },
         {
             "itemID": "011",
             "itemName": "Laminar Plate Mail",
-            "DropChance": 5
+            "DropChance": 7
         },
         {
             "itemID": "012",
             "itemName": "Vial of Pure Adrenaline",
-            "DropChance": 15
+            "DropChance": 7
         },
         {
             "itemID": "013",
             "itemName": "Vial of Pure Stamina",
-            "DropChance": 15
+            "DropChance": 7
+        },
+        {
+            "itemID": "022",
+            "itemName": "Falchion +1",
+            "DropChance": 6
+        },
+        {
+            "itemID": "023",
+            "itemName": "Heavy Mace +1",
+            "DropChance": 6
+        },
+        {
+            "itemID": "024",
+            "itemName": "Halberd +1",
+            "DropChance": 5
+        },
+        {
+            "itemID": "025",
+            "itemName": "Hauberk +1",
+            "DropChance": 5
+        },
+        {
+            "itemID": "026",
+            "itemName": "Plackart +1",
+            "DropChance": 5
+        },
+        {
+            "itemID": "027",
+            "itemName": "Laminar Plate Mail +1",
+            "DropChance": 5
+        },
+        {
+            "itemID": "028",
+            "itemName": "Falchion +2",
+            "DropChance": 4
+        },
+        {
+            "itemID": "029",
+            "itemName": "Heavy Mace +2",
+            "DropChance": 4
+        },
+        {
+            "itemID": "030",
+            "itemName": "Halberd +2",
+            "DropChance": 3
+        },
+        {
+            "itemID": "031",
+            "itemName": "Hauberk +2",
+            "DropChance": 3
+        },
+        {
+            "itemID": "032",
+            "itemName": "Plackart +2",
+            "DropChance": 3
+        },
+        {
+            "itemID": "033",
+            "itemName": "Laminar Plate Mail +2",
+            "DropChance": 3
         }
     ]
 }
-  
-  

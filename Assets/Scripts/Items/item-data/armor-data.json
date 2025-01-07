@@ -54,6 +54,116 @@
       "HP": 5,
       "AP": 2,
       "image": "laminar-plate"
+    },
+    {
+      "itemID": "012",
+      "itemName": "Gambeson Robes +1",
+      "itemDescription": "Priestly robes, the white has been stained and the edges are frayed and bitten by rats.",
+      "STR": 0,
+      "SPD": 2,
+      "AGI": 1,
+      "HP": 0,
+      "AP": 0,
+      "image": "gambeson_robe"
+    },
+    {
+      "itemID": "013",
+      "itemName": "Gambeson Robes +2",
+      "itemDescription": "Priestly robes, the white has been stained and the edges are frayed and bitten by rats.",
+      "STR": 0,
+      "SPD": 2,
+      "AGI": 2,
+      "HP": 0,
+      "AP": 0,
+      "image": "gambeson_robe"
+    },
+    {
+      "itemID": "014",
+      "itemName": "Elk Hide Armor +1",
+      "itemDescription": "A set of tanned elk hide, held together with metal fasteners and stringy sinew.",
+      "STR": 0,
+      "SPD": 0,
+      "AGI": 2,
+      "HP": 0,
+      "AP": 1,
+      "image": "elk_hide_armor"
+    },
+    {
+      "itemID": "015",
+      "itemName": "Elk Hide Armor +2",
+      "itemDescription": "A set of tanned elk hide, held together with metal fasteners and stringy sinew.",
+      "STR": 0,
+      "SPD": 1,
+      "AGI": 2,
+      "HP": 0,
+      "AP": 1,
+      "image": "elk_hide_armor"
+    },
+    {
+      "itemID": "016",
+      "itemName": "Hauberk +1",
+      "itemDescription": "An aged chain-mail shirt, riddled with battle scars and holes that clearly killed the last owner.",
+      "STR": 0,
+      "SPD": 0,
+      "AGI": 0,
+      "HP": 3,
+      "AP": 2,
+      "image": "hauberk"
+    },
+    {
+      "itemID": "017",
+      "itemName": "Hauberk +2",
+      "itemDescription": "An aged chain-mail shirt, riddled with battle scars and holes that clearly killed the last owner.",
+      "STR": 0,
+      "SPD": 0,
+      "AGI": 0,
+      "HP": 3,
+      "AP": 3,
+      "image": "hauberk"
+    },
+    {
+      "itemID": "018",
+      "itemName": "Plackart +1",
+      "itemDescription": "A breastplate adorned with aging metallic filigree. One feels an age-lost honor restored when worn.",
+      "STR": 0,
+      "SPD": 0,
+      "AGI": 1,
+      "HP": 4,
+      "AP": 2,
+      "image": "plackart"
+    },
+    {
+      "itemID": "019",
+      "itemName": "Plackart +2",
+      "itemDescription": "A breastplate adorned with aging metallic filigree. One feels an age-lost honor restored when worn.",
+      "STR": 0,
+      "SPD": 0,
+      "AGI": 1,
+      "HP": 5,
+      "AP": 2,
+      "image": "plackart"
+    },
+    {
+      "itemID": "020",
+      "itemName": "Laminar Plate Mail +1",
+      "itemDescription": "A customized set of overlapping chain-mail and woven plates.",
+      "STR": 0,
+      "SPD": 3,
+      "AGI": 0,
+      "HP": 5,
+      "AP": 2,
+      "image": "laminar-plate"
+    },
+    {
+      "itemID": "021",
+      "itemName": "Laminar Plate Mail +2",
+      "itemDescription": "A customized set of overlapping chain-mail and woven plates.",
+      "STR": 0,
+      "SPD": 3,
+      "AGI": 1,
+      "HP": 5,
+      "AP": 2,
+      "image": "laminar-plate"
     }
   ]
 }

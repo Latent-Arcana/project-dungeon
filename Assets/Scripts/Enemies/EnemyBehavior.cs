@@ -177,7 +177,7 @@ public class EnemyBehavior : MonoBehaviour
 
     public virtual void AssignStats(int dungeonLevel)
     {
-        EnemyStats baseStats = new EnemyStats(enemyType, 5, 1, 2, 1, 1);
+        EnemyStats baseStats = new EnemyStats(enemyType, HP: 5, SPD: 1, AGI: 1, STR: 1, AP: 1);
         enemyStats = ScaleEnemies(dungeonLevel, baseStats);
     }
 
