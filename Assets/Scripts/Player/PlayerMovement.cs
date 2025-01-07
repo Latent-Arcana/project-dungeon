@@ -248,9 +248,7 @@ public class PlayerMovement : MonoBehaviour
             else if(objectBehavior.ObjectType == Enums.ObjectType.Bookshelf){
                 BookshelfBehavior bookshelfBehavior = collision.gameObject.GetComponent<BookshelfBehavior>();
 
-                if(!bookshelfBehavior.hasBeenUsed){
-                    bookshelfBehavior.RevealRoom();
-                }
+                bookshelfBehavior.RevealRoom();
             }
 
 

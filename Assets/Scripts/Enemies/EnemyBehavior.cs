@@ -339,8 +339,8 @@ public class EnemyBehavior : MonoBehaviour
         int _playerHitChance = UnityEngine.Random.Range(1, 100);
         int _enemyHitChance = UnityEngine.Random.Range(1, 100);
 
-        int _enemyHitThreshold = Player_Stats.AGI * 5;
-        int _playerHitThreshold = enemyStats.AGI * 5;
+        int _enemyHitThreshold = Math.Min(Player_Stats.AGI * 3, 90);
+        int _playerHitThreshold = Math.Min(enemyStats.AGI * 3, 90);
 
         // Set up the player weapon information so we can print the right text later
         int playerWeaponIndex = playerInventory.GetEquippedWeapon();

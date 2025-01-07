@@ -14,6 +14,7 @@ public class BookshelfBehavior : MonoBehaviour
 
     public Room bookRoom;
     public bool hasBeenUsed = false;
+    public bool bookWasFound = false;
     void Awake()
     {
         gameSetup = GameObject.Find("GameSetup").GetComponent<GameSetup>();
@@ -32,6 +33,17 @@ public class BookshelfBehavior : MonoBehaviour
 
     public void RevealRoom()
     {
+
+        if (hasBeenUsed)
+        {
+            if (bookWasFound)
+            {
+                DungeonNarrator.Dungeon_Narrator.AddDungeonNarratorText("You've already poured over these tomes and learned of a " + bookRoom.roomType.ToString().ToLower() + " room.");
+            }
+            else{
+                DungeonNarrator.Dungeon_Narrator.AddDungeonNarratorText("The books on this shelf offered no wisdom to you...");
+            }
+        }
         // bookshelves have a 30% chance of dropping a book
         float randDropChance = UnityEngine.Random.value;
 
@@ -41,10 +53,12 @@ public class BookshelfBehavior : MonoBehaviour
             hasBeenUsed = true;
             return;
         }
+
         DungeonNarrator.Dungeon_Narrator.AddBookshelfText(bookRoom.roomType, true);
         mapMarker.PlacePresetMarker(bookRoom);
         mapController.RemoveFog(bookRoom.roomId);
         hasBeenUsed = true;
+        bookWasFound = true;
 
     }
 
