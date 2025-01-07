@@ -14,6 +14,8 @@ public class PlayerAnimationBehavior : MonoBehaviour
     private ScoreController scoreController;
     private InputController input;
 
+    private SpriteRenderer sr;
+
     void Awake()
     {
         playerMovement = gameObject.GetComponent<PlayerMovement>();
@@ -21,6 +23,8 @@ public class PlayerAnimationBehavior : MonoBehaviour
 
         scoreController = GameObject.Find("ScoreController").GetComponent<ScoreController>();
         input = GameObject.Find("InputController").GetComponent<InputController>();
+
+        sr = gameObject.GetComponent<SpriteRenderer>();
     }
 
     public void Sleep()

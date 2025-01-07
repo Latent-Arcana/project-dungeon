@@ -263,7 +263,11 @@ public class PlayerMovement : MonoBehaviour
 
             PortalEntered.Invoke(this, EventArgs.Empty);
 
-            SceneManager.LoadScene("BSP");
+            PortalAnimationBehavior portalAnimationBehavior = collision.gameObject.GetComponent<PortalAnimationBehavior>();
+
+            portalAnimationBehavior.AnimatePortal();
+
+            //SceneManager.LoadScene("BSP");
         }
 
 
