@@ -46,7 +46,7 @@ public class EnemyGeneration : MonoBehaviour
                 break;
 
             case Enums.EnemyType.Goblin:
-                randEnemyCount = UnityEngine.Random.Range(1, 4);
+                randEnemyCount = UnityEngine.Random.Range(1, 3);
                 break;
 
             case Enums.EnemyType.Bugbear:
@@ -54,7 +54,7 @@ public class EnemyGeneration : MonoBehaviour
                 break;
 
             case Enums.EnemyType.Spirit:
-                randEnemyCount = UnityEngine.Random.Range(1, 5);
+                randEnemyCount = UnityEngine.Random.Range(1, 3);
                 break;
 
         }
