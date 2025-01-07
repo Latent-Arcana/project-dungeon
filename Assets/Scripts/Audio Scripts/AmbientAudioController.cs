@@ -22,6 +22,9 @@ public class AmbientAudioController : MonoBehaviour
     [SerializeField]
     AudioClip audioClip_Rest;
 
+    [SerializeField]
+    AudioClip audioClip_Bookshelf;
+
 
     [SerializeField]
     AudioClip audioClip_Bless;
@@ -46,6 +49,9 @@ public class AmbientAudioController : MonoBehaviour
                 break;
             case "Rest":
                 ambientAudioSource.clip = audioClip_Rest;
+                break;
+            case "Bookshelf":
+                ambientAudioSource.clip = audioClip_Bookshelf;
                 break;
             default:
                 return;

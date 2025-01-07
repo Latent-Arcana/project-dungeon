@@ -43,17 +43,6 @@
       "HP": 0,
       "AP": 0,
       "image": "the-wailing-fauld"
-    },
-    {
-      "itemID": "023",
-      "itemName": "The Golden Belt and Shorts",
-      "itemDescription": "A comfortable set of golden shorts, the fabric stretching just to your size. Their metallic shimmer catches the attention of any enemy trying to fight you for the Belt.",
-      "STR": 0,
-      "SPD": 3,
-      "AGI": 3,
-      "HP": 10,
-      "AP": 0,
-      "image": "temp_icon"
     }
   ]
 }

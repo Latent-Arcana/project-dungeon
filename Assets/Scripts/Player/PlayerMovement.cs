@@ -74,7 +74,8 @@ public class PlayerMovement : MonoBehaviour
         ambientAudioController = GameObject.Find("Audio").GetComponentInChildren<AmbientAudioController>();
     }
 
-    void Start(){
+    void Start()
+    {
         gameStats = GameObject.Find("GameStats").GetComponent<GameStats>();
     }
 
@@ -245,8 +246,12 @@ public class PlayerMovement : MonoBehaviour
 
             }
 
-            else if(objectBehavior.ObjectType == Enums.ObjectType.Bookshelf){
+            else if (objectBehavior.ObjectType == Enums.ObjectType.Bookshelf)
+            {
                 BookshelfBehavior bookshelfBehavior = collision.gameObject.GetComponent<BookshelfBehavior>();
+
+                ambientAudioController.PlayAudioClip("Bookshelf");
+
 
                 bookshelfBehavior.RevealRoom();
             }
@@ -301,7 +306,7 @@ public class PlayerMovement : MonoBehaviour
             if (!collisionRoom.discovered)
             {
                 collisionRoom.discovered = true;
-               
+
                 if (gameStats != null)
                 {
                     gameStats.IncrementRoomsVisited();

@@ -146,6 +146,7 @@ MonoBehaviour:
   audioClip_Portal: {fileID: 8300000, guid: f076cf1ebaaee284aa3afc500813b8c6, type: 3}
   audioClip_Chest: {fileID: 8300000, guid: 9be41fa5af0a61b4c90b8c1a4b2ee1d1, type: 3}
   audioClip_Rest: {fileID: 8300000, guid: bdb480e7f5f91a34d9fe763fbf4a6cf4, type: 3}
+  audioClip_Bookshelf: {fileID: 8300000, guid: b71674c9f1cb9cb4fb7c40c35e0128c3, type: 3}
   audioClip_Bless: {fileID: 8300000, guid: a74d74ee1d4abd648ad72f6117ada57e, type: 3}
 --- !u!1 &6669139830876356605
 GameObject:

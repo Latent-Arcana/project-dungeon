@@ -18,7 +18,7 @@
         {
             "itemID": "017",
             "itemName": "The Honour's Lament",
-            "DropChance": 5
+            "DropChance": 10
         },
         {
             "itemID": "018",
@@ -38,16 +38,11 @@
         {
             "itemID": "021",
             "itemName": "The Garon's Fur",
-            "DropChance": 5
+            "DropChance": 10
         },
         {
             "itemID": "022",
             "itemName": "The Wailing Fauld",
-            "DropChance": 10
-        },
-        {
-            "itemID": "023",
-            "itemName": "The Golden Belt and Shorts",
             "DropChance": 10
         },
         {
