@@ -193,11 +193,11 @@ public class MainMenuUI : MonoBehaviour
                 enemiesKilled.text = "Enemies Killed: " + expData.enemiesKilled.ToString();
                 dungeonsVisited.text = "Dungeons Visited: " + expData.dungeonsVisited.ToString();
                 cartographersLost.text = "Cartographers Lost: " + expData.cartographersLost.ToString();
-                completionPercentage.text = "Completion: " + ((expData.mappedDungeons.Count / 10000.0f) * 100f).ToString("0.00") + "%";
+                completionPercentage.text = "Completion: " + ((expData.mappedDungeons.Count / 1000.0f) * 100f).ToString("0.00") + "%";
 
                 // IF THE GAME IS OVER, WE JUST CUT TO THE END GAME SCREEN
 
-                if (expData.mappedDungeons.Count >= 10000 || gameCompleted)
+                if (expData.mappedDungeons.Count >= 1000 || gameCompleted)
                 {
                     //none of these exist in the pause menu
                     QuitButton_EndGame = main_document.rootVisualElement.Q("QuitGameFromEnd") as Button;
@@ -220,7 +220,7 @@ public class MainMenuUI : MonoBehaviour
                     enemiesKilled_End.text = "Enemies Killed: " + expData.enemiesKilled.ToString();
                     dungeonsVisited_End.text = "Dungeons Visited: " + expData.dungeonsVisited.ToString();
                     cartographersLost_End.text = "Cartographers Lost: " + expData.cartographersLost.ToString();
-                    completionPercentage_End.text = "Completion: " + ((expData.mappedDungeons.Count / 10000.0f) * 100f).ToString("0.00") + "%";
+                    completionPercentage_End.text = "Completion: " + ((expData.mappedDungeons.Count / 1000.0f) * 100f).ToString("0.00") + "%";
 
                 }
             }
