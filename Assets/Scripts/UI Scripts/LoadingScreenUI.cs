@@ -55,13 +55,13 @@ public class LoadingScreenUI : MonoBehaviour
         if (SceneManager.GetActiveScene().name != "BSP")
         {
             progressValue = loadingOperation.progress / 0.9f;
-            loadingText.text = "Generating the dungeon: " + progressValue * 100 + "%";
+            loadingText.text += "\nGenerating the dungeon: " + progressValue * 100 + "%";
         }
     }
 
     private void SingleRoomCompleted(float percentage){
 
-        loadingText.text = "Generating rooms: " + String.Format("{0:F0}%", percentage * 100);
+        loadingText.text += "\nGenerating rooms: " + String.Format("{0:F0}%", percentage * 100);
 
     }
 
