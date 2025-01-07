@@ -175,17 +175,17 @@ public class DungeonNarrator : MonoBehaviour
             string bookshelfText = "";
 
             if (randChoice <= .2f){
-                bookshelfText = "You find a glowing tome. Somewhere, a room was marked ";
+                bookshelfText = "You find a glowing tome. Somewhere, a room was marked";
             }
 
             else if (randChoice > .2f && randChoice < .5f)
             {
-                bookshelfText = "You find a floating book. You sense a room somewhere, you mark it with ";
+                bookshelfText = "You find a floating book. You sense a room somewhere, you mark it with";
             }
 
             else
             {
-                bookshelfText = "Upon the shelf sits a speaking scroll... It tells you of a room. You mark it with ";
+                bookshelfText = "Upon the shelf sits a speaking scroll... It tells you of a room. You mark it with";
             }
 
             if (roomType == Enums.RoomType.Danger)
