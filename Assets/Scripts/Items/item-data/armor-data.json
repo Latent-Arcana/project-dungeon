@@ -1,7 +1,7 @@
 {
   "armor": [
     {
-      "itemID": "003",
+      "itemID": "104",
       "itemName": "Crude Gambeson Robes",
       "itemDescription": "Priestly robes, the white has been stained and the edges are frayed and bitten by rats.",
       "STR": 0,
@@ -12,7 +12,7 @@
       "image": "gambeson_robe"
     },
     {
-      "itemID": "004",
+      "itemID": "101",
       "itemName": "Crude Elk Hide Armor",
       "itemDescription": "A set of tanned elk hide, held together with metal fasteners and stringy sinew.",
       "STR": 0,
@@ -23,7 +23,7 @@
       "image": "elk_hide_armor"
     },
     {
-      "itemID": "009",
+      "itemID": "107",
       "itemName": "Crude Hauberk",
       "itemDescription": "An aged chain-mail shirt, riddled with battle scars and holes that clearly killed the last owner.",
       "STR": 0,
@@ -34,7 +34,7 @@
       "image": "hauberk"
     },
     {
-      "itemID": "010",
+      "itemID": "113",
       "itemName": "Crude Plackart",
       "itemDescription": "A breastplate adorned with aging metallic filigree. One feels an age-lost honor restored when worn.",
       "STR": 0,
@@ -45,7 +45,7 @@
       "image": "plackart"
     },
     {
-      "itemID": "011",
+      "itemID": "110",
       "itemName": "Crude Laminar Plate Mail",
       "itemDescription": "A customized set of overlapping chain-mail and woven plates.",
       "STR": 0,
@@ -56,7 +56,7 @@
       "image": "laminar-plate"
     },
     {
-      "itemID": "012",
+      "itemID": "105",
       "itemName": "Fair Gambeson Robes",
       "itemDescription": "Priestly robes, the white has been stained and the edges are frayed and bitten by rats.",
       "STR": 0,
@@ -67,7 +67,7 @@
       "image": "gambeson_robe"
     },
     {
-      "itemID": "013",
+      "itemID": "106",
       "itemName": "Excellent Gambeson Robes",
       "itemDescription": "Priestly robes, the white has been stained and the edges are frayed and bitten by rats.",
       "STR": 0,
@@ -78,7 +78,7 @@
       "image": "gambeson_robe"
     },
     {
-      "itemID": "014",
+      "itemID": "102",
       "itemName": "Fair Elk Hide Armor",
       "itemDescription": "A set of tanned elk hide, held together with metal fasteners and stringy sinew.",
       "STR": 0,
@@ -89,7 +89,7 @@
       "image": "elk_hide_armor"
     },
     {
-      "itemID": "015",
+      "itemID": "103",
       "itemName": "Excellent Elk Hide Armor",
       "itemDescription": "A set of tanned elk hide, held together with metal fasteners and stringy sinew.",
       "STR": 0,
@@ -100,7 +100,7 @@
       "image": "elk_hide_armor"
     },
     {
-      "itemID": "016",
+      "itemID": "108",
       "itemName": "Fair Hauberk",
       "itemDescription": "An aged chain-mail shirt, riddled with battle scars and holes that clearly killed the last owner.",
       "STR": 0,
@@ -111,7 +111,7 @@
       "image": "hauberk"
     },
     {
-      "itemID": "017",
+      "itemID": "109",
       "itemName": "Excellent Hauberk",
       "itemDescription": "An aged chain-mail shirt, riddled with battle scars and holes that clearly killed the last owner.",
       "STR": 0,
@@ -122,7 +122,7 @@
       "image": "hauberk"
     },
     {
-      "itemID": "018",
+      "itemID": "114",
       "itemName": "Fair Plackart",
       "itemDescription": "A breastplate adorned with aging metallic filigree. One feels an age-lost honor restored when worn.",
       "STR": 0,
@@ -133,7 +133,7 @@
       "image": "plackart"
     },
     {
-      "itemID": "019",
+      "itemID": "115",
       "itemName": "Excellent Plackart",
       "itemDescription": "A breastplate adorned with aging metallic filigree. One feels an age-lost honor restored when worn.",
       "STR": 0,
@@ -144,7 +144,7 @@
       "image": "plackart"
     },
     {
-      "itemID": "020",
+      "itemID": "111",
       "itemName": "Fair Laminar Plate Mail",
       "itemDescription": "A customized set of overlapping chain-mail and woven plates.",
       "STR": 0,
@@ -155,7 +155,7 @@
       "image": "laminar-plate"
     },
     {
-      "itemID": "021",
+      "itemID": "112",
       "itemName": "Excellent Laminar Plate Mail",
       "itemDescription": "A customized set of overlapping chain-mail and woven plates.",
       "STR": 0,

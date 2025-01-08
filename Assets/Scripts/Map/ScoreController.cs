@@ -104,7 +104,7 @@ public class ScoreController : MonoBehaviour
             currentMarks.Remove(RoomId);
         }
 
-        Debug.Log("SetRoomMark: Adding mark for room" + RoomId);
+        //Debug.Log("SetRoomMark: Adding mark for room" + RoomId);
 
         //add new mark to the dictionary(x2)
         currentMarks.Add(RoomId, marker);

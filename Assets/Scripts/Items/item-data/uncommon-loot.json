@@ -1,104 +1,104 @@
 {
     "loot": [
         {
-            "itemID": "006",
+            "itemID": "307",
             "itemName": "Crude Falchion",
             "DropChance": 8
         },
         {
-            "itemID": "007",
+            "itemID": "313",
             "itemName": "Crude Heavy Mace",
             "DropChance": 8
         },
         {
-            "itemID": "008",
+            "itemID": "310",
             "itemName": "Crude Halberd",
             "DropChance": 7
         },
         {
-            "itemID": "009",
+            "itemID": "107",
             "itemName": "Crude Hauberk",
             "DropChance": 7
         },
         {
-            "itemID": "010",
+            "itemID": "113",
             "itemName": "Crude Plackart",
             "DropChance": 7
         },
         {
-            "itemID": "011",
+            "itemID": "110",
             "itemName": "Crude Laminar Plate Mail",
             "DropChance": 7
         },
         {
-            "itemID": "012",
+            "itemID": "502",
             "itemName": "Vial of Pure Adrenaline",
             "DropChance": 7
         },
         {
-            "itemID": "013",
+            "itemID": "503",
             "itemName": "Vial of Pure Stamina",
             "DropChance": 7
         },
         {
-            "itemID": "022",
+            "itemID": "308",
             "itemName": "Fair Falchion",
             "DropChance": 6
         },
         {
-            "itemID": "023",
+            "itemID": "315",
             "itemName": "Fair Heavy Mace",
             "DropChance": 6
         },
         {
-            "itemID": "024",
+            "itemID": "311",
             "itemName": "Fair Halberd",
-            "DropChance": 5
+            "DropChance": 4
         },
         {
-            "itemID": "025",
+            "itemID": "108",
             "itemName": "Fair Hauberk",
-            "DropChance": 5
+            "DropChance": 4
         },
         {
-            "itemID": "026",
+            "itemID": "114",
             "itemName": "Fair Plackart",
-            "DropChance": 5
+            "DropChance": 4
         },
         {
-            "itemID": "027",
+            "itemID": "111",
             "itemName": "Fair Laminar Plate Mail",
-            "DropChance": 5
+            "DropChance": 4
         },
         {
-            "itemID": "028",
+            "itemID": "309",
             "itemName": "Excellent Falchion",
-            "DropChance": 4
+            "DropChance": 3
         },
         {
-            "itemID": "029",
+            "itemID": "314",
             "itemName": "Excellent Heavy Mace",
-            "DropChance": 4
+            "DropChance": 3
         },
         {
-            "itemID": "030",
+            "itemID": "312",
             "itemName": "Excellent Halberd",
-            "DropChance": 3
+            "DropChance": 2
         },
         {
-            "itemID": "031",
+            "itemID": "109",
             "itemName": "Excellent Hauberk",
-            "DropChance": 3
+            "DropChance": 2
         },
         {
-            "itemID": "032",
+            "itemID": "115",
             "itemName": "Excellent Plackart",
-            "DropChance": 3
+            "DropChance": 2
         },
         {
-            "itemID": "033",
+            "itemID": "112",
             "itemName": "Excellent Laminar Plate Mail",
-            "DropChance": 3
+            "DropChance": 2
         }
     ]
 }

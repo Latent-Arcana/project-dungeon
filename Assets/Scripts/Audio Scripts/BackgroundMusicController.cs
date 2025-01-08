@@ -60,7 +60,7 @@ public class BackgroundMusicController : MonoBehaviour
     private void SwapAudioOnBSPLoad()
     {
         StopCoroutine(fadeOutProcess);
-        Debug.Log("Stopped coroutine. Volume set to: " + volumeOriginalSetting);
+        //Debug.Log("Stopped coroutine. Volume set to: " + volumeOriginalSetting);
         backgroundAudio.volume = volumeOriginalSetting;
         ChangeSongForScene("BSP");
 
@@ -99,7 +99,7 @@ public class BackgroundMusicController : MonoBehaviour
     {
         if (percentage >= .80f && beginFadeOutAudio == false)
         {
-            Debug.Log("setting volume OG to: " + backgroundAudio.volume);
+            //Debug.Log("setting volume OG to: " + backgroundAudio.volume);
             beginFadeOutAudio = true;
             volumeOriginalSetting = backgroundAudio.volume;
             fadeOutProcess = StartCoroutine(FadeOutAudio());

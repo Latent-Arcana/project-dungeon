@@ -1,69 +1,69 @@
 {
     "loot": [
         {
-            "itemID": "001",
-            "itemName": "Saber",
+            "itemID": "304",
+            "itemName": "Crude Saber",
             "DropChance": 10
         },
         {
-            "itemID": "002",
-            "itemName": "Battle Axe",
+            "itemID": "301",
+            "itemName": "Crude Battle Axe",
             "DropChance": 10
         },
         {
-            "itemID": "003",
-            "itemName": "Gambeson Robes",
-            "DropChance": 8
+            "itemID": "104",
+            "itemName": "Crude Gambeson Robes",
+            "DropChance": 9
         },
         {
-            "itemID": "004",
-            "itemName": "Elk Hide Armor",
-            "DropChance": 8
+            "itemID": "101",
+            "itemName": "Crude Elk Hide Armor",
+            "DropChance": 9
         },
         {
-            "itemID": "005",
+            "itemID": "501",
             "itemName": "Elixir of Health",
             "DropChance": 10
         },
         {
-            "itemID": "014",
-            "itemName": "Saber +1",
+            "itemID": "305",
+            "itemName": "Fair Saber",
+            "DropChance": 8
+        },
+        {
+            "itemID": "302",
+            "itemName": "Fair Battle Axe",
+            "DropChance": 8
+        },
+        {
+            "itemID": "105",
+            "itemName": "Fair Gambeson Robes",
             "DropChance": 7
         },
         {
-            "itemID": "015",
-            "itemName": "Battle Axe +1",
+            "itemID": "102",
+            "itemName": "Fair Elk Hide Armor",
             "DropChance": 7
         },
         {
-            "itemID": "016",
-            "itemName": "Gambeson Robes +1",
+            "itemID": "306",
+            "itemName": "Excellent Saber",
             "DropChance": 6
         },
         {
-            "itemID": "017",
-            "itemName": "Elk Hide Armor +1",
+            "itemID": "303",
+            "itemName": "Excellent Battle Axe",
             "DropChance": 6
         },
         {
-            "itemID": "018",
-            "itemName": "Saber +2",
+            "itemID": "106",
+            "itemName": "Excellent Gambeson Robes",
             "DropChance": 5
         },
         {
-            "itemID": "019",
-            "itemName": "Battle Axe +2",
+            "itemID": "103",
+            "itemName": "Excellent Elk Hide Armor",
             "DropChance": 5
-        },
-        {
-            "itemID": "020",
-            "itemName": "Gambeson Robes +2",
-            "DropChance": 4
-        },
-        {
-            "itemID": "021",
-            "itemName": "Elk Hide Armor +2",
-            "DropChance": 4
         }
     ]
 }

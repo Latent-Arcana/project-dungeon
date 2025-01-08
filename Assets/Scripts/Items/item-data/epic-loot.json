@@ -1,57 +1,57 @@
 {
     "loot": [
         {
-            "itemID": "014",
+            "itemID": "404",
             "itemName": "The Slayer of Dragons",
             "DropChance": 10
         },
         {
-            "itemID": "015",
+            "itemID": "401",
             "itemName": "The Almighty Doctrina",
             "DropChance": 5
         },
         {
-            "itemID": "016",
+            "itemID": "405",
             "itemName": "The Teeth that Bite Back",
             "DropChance": 10
         },
         {
-            "itemID": "017",
+            "itemID": "402",
             "itemName": "The Honour's Lament",
             "DropChance": 10
         },
         {
-            "itemID": "018",
+            "itemID": "403",
             "itemName": "The Left Hook, Right Hook",
             "DropChance": 10
         },
         {
-            "itemID": "019",
+            "itemID": "201",
             "itemName": "The Berserk's Armor",
             "DropChance": 10
         },
         {
-            "itemID": "020",
+            "itemID": "203",
             "itemName": "The Mark XIV Phebos",
             "DropChance": 5
         },
         {
-            "itemID": "021",
+            "itemID": "202",
             "itemName": "The Garon's Fur",
             "DropChance": 10
         },
         {
-            "itemID": "022",
+            "itemID": "204",
             "itemName": "The Wailing Fauld",
             "DropChance": 10
         },
         {
-            "itemID": "024",
+            "itemID": "505",
             "itemName": "Vial of Pure Strength",
             "DropChance": 10
         },
         {
-            "itemID": "025",
+            "itemID": "504",
             "itemName": "Vial of Pure Speed",
             "DropChance": 10
         }

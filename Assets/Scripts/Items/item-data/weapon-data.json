@@ -1,7 +1,7 @@
 {
   "weapons": [
     {
-      "itemID": "001",
+      "itemID": "304",
       "itemName": "Crude Saber",
       "itemDescription": "A dull steel blade, riddled with scars of battle.",
       "STR": 1,
@@ -13,7 +13,7 @@
       "image": "sabre"
     },
     {
-      "itemID": "002",
+      "itemID": "301",
       "itemName": "Crude Battle Axe",
       "itemDescription": "A one-handed weapon, rust scattered across the axe-head.",
       "STR": 2,
@@ -25,7 +25,7 @@
       "image": "battle-axe"
     },
     {
-      "itemID": "006",
+      "itemID": "307",
       "itemName": "Crude Falchion",
       "itemDescription": "A well kept blade, curving at the end to help catch weakpoints.",
       "STR": 1,
@@ -37,7 +37,7 @@
       "image": "falchion"
     },
     {
-      "itemID": "007",
+      "itemID": "313",
       "itemName": "Crude Heavy Mace",
       "itemDescription": "A heavy ball of iron adorned with spikes, attached to a long metal rod.",
       "STR": 3,
@@ -49,7 +49,7 @@
       "image": "mace"
     },
     {
-      "itemID": "008",
+      "itemID": "310",
       "itemName": "Crude Halberd",
       "itemDescription": "A lengthy wooden polearm, with a pointed axe attached at the end.",
       "STR": 2,
@@ -61,7 +61,7 @@
       "image": "halberd"
     },
     {
-      "itemID": "009",
+      "itemID": "305",
       "itemName": "Fair Saber",
       "itemDescription": "A dull steel blade, riddled with scars of battle.",
       "STR": 1,
@@ -73,7 +73,7 @@
       "image": "sabre"
     },
     {
-      "itemID": "010",
+      "itemID": "306",
       "itemName": "Excellent Saber",
       "itemDescription": "A dull steel blade, riddled with scars of battle.",
       "STR": 2,
@@ -85,7 +85,7 @@
       "image": "sabre"
     },
     {
-      "itemID": "011",
+      "itemID": "302",
       "itemName": "Fair Battle Axe",
       "itemDescription": "A one-handed weapon, rust scattered across the axe-head.",
       "STR": 3,
@@ -97,7 +97,7 @@
       "image": "battle-axe"
     },
     {
-      "itemID": "012",
+      "itemID": "303",
       "itemName": "Excellent Battle Axe",
       "itemDescription": "A one-handed weapon, rust scattered across the axe-head.",
       "STR": 3,
@@ -109,7 +109,7 @@
       "image": "battle-axe"
     },
     {
-      "itemID": "013",
+      "itemID": "308",
       "itemName": "Fair Falchion",
       "itemDescription": "A well kept blade, curving at the end to help catch weakpoints.",
       "STR": 2,
@@ -121,7 +121,7 @@
       "image": "falchion"
     },
     {
-      "itemID": "014",
+      "itemID": "309",
       "itemName": "Excellent Falchion",
       "itemDescription": "A well kept blade, curving at the end to help catch weakpoints.",
       "STR": 2,
@@ -133,7 +133,7 @@
       "image": "falchion"
     },
     {
-      "itemID": "015",
+      "itemID": "315",
       "itemName": "Fair Heavy Mace",
       "itemDescription": "A heavy ball of iron adorned with spikes, attached to a long metal rod.",
       "STR": 4,
@@ -145,7 +145,7 @@
       "image": "mace"
     },
     {
-      "itemID": "016",
+      "itemID": "314",
       "itemName": "Excellent Heavy Mace",
       "itemDescription": "A heavy ball of iron adorned with spikes, attached to a long metal rod.",
       "STR": 4,
@@ -157,7 +157,7 @@
       "image": "mace"
     },
     {
-      "itemID": "017",
+      "itemID": "311",
       "itemName": "Fair Halberd",
       "itemDescription": "A lengthy wooden polearm, with a pointed axe attached at the end.",
       "STR": 2,
@@ -169,7 +169,7 @@
       "image": "halberd"
     },
     {
-      "itemID": "018",
+      "itemID": "312",
       "itemName": "Excellent Halberd",
       "itemDescription": "A lengthy wooden polearm, with a pointed axe attached at the end.",
       "STR": 3,

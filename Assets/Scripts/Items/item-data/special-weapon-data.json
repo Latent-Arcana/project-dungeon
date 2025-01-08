@@ -1,7 +1,7 @@
 {
   "weapons": [
     {
-      "itemID": "014",
+      "itemID": "404",
       "itemName": "The Slayer of Dragons",
       "itemDescription": "Too big to be called a sword. Massive, thick, heavy, and far too rough. Indeed, it was a heap of raw iron. The weight of this sword would require the strength of several men to swing properly.",
       "STR": 10,
@@ -13,7 +13,7 @@
       "image": "the-slayer-of-dragons"
     },
     {
-      "itemID": "015",
+      "itemID": "401",
       "itemName": "The Almighty Doctrina",
       "itemDescription": "A beautiful spear wrought in gold and silver filigree. Several strands of religious scriptures, attached on the shaft, flutter through the air with each strike. Some say angels sing songs of protection upon the bearer of this weapon.",
       "STR": 4,
@@ -25,7 +25,7 @@
       "image": "the-almighty-doctrina"
     },
     {
-      "itemID": "016",
+      "itemID": "405",
       "itemName": "The Teeth that Bite Back",
       "itemDescription": "A pair of bleeding daggers, two large monstrous teeth act as their blades. Blood runs down the jagged edge eternally, as if it is still alive.",
       "STR": 3,
@@ -37,7 +37,7 @@
       "image": "the-teeth-that-bite-back"
     },
     {
-      "itemID": "017",
+      "itemID": "402",
       "itemName": "The Honour's Lament",
       "itemDescription": "A well kept rapier, adorned with unintelligible script at the handle. Those that wield this blade feel an everlasting melancholy and longing.",
       "STR": 3,
@@ -49,7 +49,7 @@
       "image": "the-honours-lament"
     },
     {
-      "itemID": "018",
+      "itemID": "403",
       "itemName": "The Left Hook, Right Hook",
       "itemDescription": "A pair of boxing gloves, provided with red hand wraps. When worn, the wielder hears a booming voice; Everyone has a plan 'till they get punched in the mouth.",
       "STR": 2,
