@@ -18,6 +18,9 @@ public class MainMenuUI : MonoBehaviour
     ////Buttons////
     private Button PlayButton;
     private Button QuitButton;
+    private Button QuitButton_pauseOnMainMenu;
+    private Button QuitButton_pauseToDesktop;
+    private Button QuitButton_pauseToMainMenu;
     private Button QuitButton_EndGame;
     private Button OptionsButton;
     private Button HelpButton;
@@ -25,6 +28,7 @@ public class MainMenuUI : MonoBehaviour
     private Button BackButton;
     private Button BackButton_help;
     private Button BackButton_credits;
+    private Button BackButton_pause;
 
     ////Containers////
     private VisualElement optionsContainer;
@@ -33,6 +37,7 @@ public class MainMenuUI : MonoBehaviour
     private VisualElement helpContainer;
     private VisualElement creditsContainer;
     private VisualElement endContainer;
+    private VisualElement quitContainer;
 
     //// Options
     private SaveOptions ops;
@@ -48,6 +53,9 @@ public class MainMenuUI : MonoBehaviour
     //Audio
     [SerializeField]
     private AudioMixer audioMixer;
+    private MenuAudioController menuAudioController;
+    private BackgroundMusicController backgroundMusicController;
+
 
 
     // Screen Fade
@@ -58,13 +66,19 @@ public class MainMenuUI : MonoBehaviour
     bool screenFadeCompleted = false;
     bool beginTransition = false;
 
-    private MenuAudioController menuAudioController;
+
 
     // STATS UI
     VisualElement statsOnLeft;
     VisualElement statsOnRight;
 
     VisualElement seedGroup;
+
+    // SAVE AND QUIT
+    private ScoreController scoreController;
+    private GameStats gameStats;
+
+
 
 
     [SerializeField]
@@ -82,11 +96,12 @@ public class MainMenuUI : MonoBehaviour
 
         //Audio
         menuAudioController = GameObject.Find("MenuAudio").GetComponent<MenuAudioController>();
+        backgroundMusicController = GameObject.Find("BackgroundAudio").GetComponent<BackgroundMusicController>();
+
 
         ////Buttons////  
         //similar to getting an HTML element by #ID
         PlayButton = main_document.rootVisualElement.Q("PlayButton") as Button;
-        QuitButton = main_document.rootVisualElement.Q("QuitButton") as Button;
         OptionsButton = main_document.rootVisualElement.Q("OptionsButton") as Button;
         CreditsButton = main_document.rootVisualElement.Q("CreditsButton") as Button;
         BackButton = main_document.rootVisualElement.Q("BackButton") as Button;
@@ -108,10 +123,6 @@ public class MainMenuUI : MonoBehaviour
 
         screenOverlay = main_document.rootVisualElement.Q("ScreenOverlay");
 
-        // Debug.Log($"Main Container is {mainContainer}");
-
-        // Debug.Log($"Help Container is {helpContainer}");
-
         //Make sure that we have just the main container showing
         mainContainer.style.display = DisplayStyle.Flex;
         optionsContainer.style.display = DisplayStyle.None;
@@ -130,7 +141,6 @@ public class MainMenuUI : MonoBehaviour
 
         //Buttons
         PlayButton.clicked += PlayGame;
-        QuitButton.clicked += QuitGame;
         OptionsButton.clicked += GoToOptions;
         BackButton.clicked += SaveSettings;
         BackButton_help.clicked += HelpMenu;
@@ -154,8 +164,27 @@ public class MainMenuUI : MonoBehaviour
         if (SceneManager.GetActiveScene().name != "Main Menu")
         {
 
+            //special window for quitting to desktop or menu
+            quitContainer = main_document.rootVisualElement.Q("QuitScreen");
+            quitContainer.style.display = DisplayStyle.None;
+
+            QuitButton_pauseOnMainMenu = main_document.rootVisualElement.Q("QuitButton") as Button; //button on the Pause menu, that says "Quit"
+            QuitButton_pauseToDesktop = quitContainer.Q("ButtonExitToDesktop") as Button; //Quit Screen - Quit to Desktop
+            QuitButton_pauseToMainMenu = quitContainer.Q("ButtonExitToMenu") as Button; //Quit Screen - Quit to Main Menu
+            BackButton_pause = quitContainer.Q("BackButtonQuit") as Button; // Quit Screen - return to Pause menu
+
+
+            //Assign buttons to their actions
+            QuitButton_pauseOnMainMenu.clicked += QuitMenu;
+            QuitButton_pauseToDesktop.clicked += SaveAndQuitToDesktop;
+            QuitButton_pauseToMainMenu.clicked += SaveAndQuitToMain;
+            BackButton_pause.clicked += QuitMenu;
+
+
             //Pause Menu not displayed by default on gameplay
             parentContainer.style.display = DisplayStyle.None;
+
+
 
             //player only exists in gameplay
             input = GameObject.Find("InputController").GetComponent<InputController>();
@@ -166,6 +195,11 @@ public class MainMenuUI : MonoBehaviour
         // IF WE'RE AT THE MAIN MENU WE HAVE SOME THINGS TO WORK OUT
         if (SceneManager.GetActiveScene().name == "Main Menu")
         {
+
+            // Quit button acts different on the Main Menu
+            QuitButton = main_document.rootVisualElement.Q("QuitButton") as Button;
+            QuitButton.clicked += QuitGame;
+
 
             //Don't show the easter egg by default
             endContainer = main_document.rootVisualElement.Q("YouBeatTheGame");
@@ -266,7 +300,7 @@ public class MainMenuUI : MonoBehaviour
 
         // Screen.SetResolution(ops.screenOptions.screenWidth, ops.screenOptions.screenHeight, ops.screenOptions.fullScreen);
 
-      //  SaveSystem.PrintPlayerSaveData();
+        //  SaveSystem.PrintPlayerSaveData();
 
         if (SceneManager.GetActiveScene().name == "BSP")
         {
@@ -275,6 +309,12 @@ public class MainMenuUI : MonoBehaviour
             gameSetup = GameObject.Find("GameSetup").GetComponent<GameSetup>();
 
             seedValue.text = "Dungeon Seed: " + gameSetup.seed.ToString();
+
+            // SAVE AND QUIT
+            scoreController = GameObject.Find("ScoreController").GetComponent<ScoreController>();
+            gameStats = GameObject.Find("GameStats").GetComponent<GameStats>();
+            scoreController = GameObject.Find("ScoreController").GetComponent<ScoreController>();
+            gameStats = GameObject.Find("GameStats").GetComponent<GameStats>();
         }
 
 
@@ -389,6 +429,47 @@ public class MainMenuUI : MonoBehaviour
         creditsContainer.style.display = (creditsContainer.style.display == DisplayStyle.Flex) ? DisplayStyle.None : DisplayStyle.Flex;
 
     }
+
+
+    private void QuitMenu()
+    {
+        menuAudioController.PlayAudioClip("ButtonClose");
+        ToggleQuitMenu();
+    }
+
+    private void ToggleQuitMenu()
+    {
+        mainContainer.style.display = (mainContainer.style.display == DisplayStyle.Flex) ? DisplayStyle.None : DisplayStyle.Flex;
+        quitContainer.style.display = (quitContainer.style.display == DisplayStyle.Flex) ? DisplayStyle.None : DisplayStyle.Flex;
+
+    }
+
+    private void SaveAndQuitToMain()
+    {
+        menuAudioController.PlayAudioClip("ButtonClose");
+
+        //save
+        scoreController.ScoreRound();
+        gameStats.IncrementCartographersLost();
+        gameStats.SaveStats();
+
+        //Load scene to main menu
+        backgroundMusicController.ChangeSongForScene("Main Menu");
+        gameStats.NewGame();
+        SceneManager.LoadScene("Main Menu");
+    }
+
+    private void SaveAndQuitToDesktop()
+    {
+        //save
+
+        scoreController.ScoreRound();
+        gameStats.IncrementCartographersLost();
+        gameStats.SaveStats();
+
+        QuitGame();
+    }
+
 
     private void OnScreenResolutionChanged(ChangeEvent<string> evt)
     {

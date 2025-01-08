@@ -8,13 +8,13 @@
                 <ui:Button text="Options" parse-escape-sequences="true" display-tooltip-when-elided="true" name="OptionsButton" class="menu-pause-button" />
                 <ui:Button text="Help" parse-escape-sequences="true" display-tooltip-when-elided="true" name="HelpButton" class="menu-pause-button" />
                 <ui:Button text="Credits" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CreditsButton" class="menu-pause-button" />
-                <ui:Button text="Quit to Desktop" parse-escape-sequences="true" display-tooltip-when-elided="true" name="QuitButton" class="menu-pause-button" />
+                <ui:Button text="Quit" parse-escape-sequences="true" display-tooltip-when-elided="true" name="QuitButton" class="menu-pause-button" />
             </ui:VisualElement>
             <ui:VisualElement name="SeedGroup" style="flex-grow: 1; align-items: stretch; flex-direction: column; margin-bottom: 200px; height: 10%; justify-content: center; align-self: center;">
                 <ui:Label tabindex="-1" text="STAT1: 123" parse-escape-sequences="true" display-tooltip-when-elided="true" name="SeedValue" style="-unity-font: url(&quot;project://database/Assets/Font/Seraphimb1.ttf?fileID=12800000&amp;guid=3f1f980884aaaae4a87358e26cfd514b&amp;type=3#Seraphimb1&quot;); color: rgb(255, 255, 255); -unity-font-definition: initial; font-size: 24px; -unity-text-align: lower-left; white-space: nowrap; justify-content: center; align-self: center; align-items: center; text-overflow: clip;" />
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:VisualElement name="OptionsContainer" class="options-container" style="display: flex;">
+        <ui:VisualElement name="OptionsContainer" class="options-container" style="display: none;">
             <ui:Label tabindex="-1" text="Pause" parse-escape-sequences="true" display-tooltip-when-elided="true" name="MenuTitle" class="text-title-main-menu" style="display: flex;" />
             <ui:Label tabindex="-1" text="Volume" parse-escape-sequences="true" display-tooltip-when-elided="true" name="VolumeSettings" class="text-body-main-menu" />
             <ui:Slider label="Music" high-value="1" low-value="0.0001" name="VolumeMusicSlider" class="text-body-main-menu" />
@@ -23,15 +23,24 @@
             <ui:Toggle label="Fullscreen" name="FullScreen" value="false" class="text-body-main-menu inventory-toggle" />
             <ui:Button text="Back" parse-escape-sequences="true" display-tooltip-when-elided="true" name="BackButton" class="menu-pause-button" style="align-self: center;" />
         </ui:VisualElement>
-        <ui:VisualElement name="PlayingTheGame" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/UI%20Sprites/PlayingTheGame.png?fileID=2800000&amp;guid=c89b1f38fd066f845b39e331c13d34f2&amp;type=3#PlayingTheGame&quot;); -unity-background-scale-mode: scale-to-fit; display: flex;">
+        <ui:VisualElement name="PlayingTheGame" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/UI%20Sprites/PlayingTheGame.png?fileID=2800000&amp;guid=c89b1f38fd066f845b39e331c13d34f2&amp;type=3#PlayingTheGame&quot;); -unity-background-scale-mode: scale-to-fit; display: none;">
             <ui:VisualElement class="options-container" style="flex-grow: 1; flex-direction: column-reverse; align-items: center;">
-                <ui:Button text="BACK" parse-escape-sequences="true" display-tooltip-when-elided="true" name="BackButtonHelp" class="inventory-button" style="width: 256px; margin-bottom: 40px;" />
+                <ui:Button text="Back" parse-escape-sequences="true" display-tooltip-when-elided="true" name="BackButtonHelp" class="inventory-button" style="width: 256px; margin-bottom: 40px;" />
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:VisualElement name="CreditsScreen" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/UI%20Sprites/credits-with-text.png?fileID=2800000&amp;guid=81388cf71197cb945a2b6e346ff52719&amp;type=3#credits-with-text&quot;); -unity-background-scale-mode: scale-to-fit; display: flex;">
+        <ui:VisualElement name="CreditsScreen" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/UI%20Sprites/credits-with-text.png?fileID=2800000&amp;guid=81388cf71197cb945a2b6e346ff52719&amp;type=3#credits-with-text&quot;); -unity-background-scale-mode: scale-to-fit; display: none;">
             <ui:VisualElement class="options-container" style="flex-grow: 1; flex-direction: column-reverse; align-items: center;">
-                <ui:Button text="BACK" parse-escape-sequences="true" display-tooltip-when-elided="true" name="BackButtonCredits" class="inventory-button" style="width: 256px; margin-bottom: 40px;" />
+                <ui:Button text="Back" parse-escape-sequences="true" display-tooltip-when-elided="true" name="BackButtonCredits" class="inventory-button" style="width: 256px; margin-bottom: 40px;" />
             </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="QuitScreen" style="flex-grow: 1; background-image: none; -unity-background-scale-mode: scale-to-fit; display: flex;">
+            <ui:Label tabindex="-1" text="Are You Certain?" parse-escape-sequences="true" display-tooltip-when-elided="true" name="MenuTitle" class="text-title-main-menu" style="display: flex;" />
+            <ui:Label tabindex="-1" text="Quitting now will end your run here. This cartographer will be lost..." parse-escape-sequences="true" display-tooltip-when-elided="true" class="text-body-gameover" style="-unity-text-align: upper-center; padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px;" />
+            <ui:VisualElement name="Buttons" style="flex-grow: 1; flex-direction: row; justify-content: center; align-self: auto;">
+                <ui:Button text="Main Menu" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ButtonExitToMenu" class="inventory-button" style="width: 256px; margin-bottom: 40px;" />
+                <ui:Button text="Desktop" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ButtonExitToDesktop" class="inventory-button" style="width: 256px; margin-bottom: 40px;" />
+            </ui:VisualElement>
+            <ui:Button text="Back" parse-escape-sequences="true" display-tooltip-when-elided="true" name="BackButtonQuit" class="inventory-button" style="width: 256px; margin-bottom: 40px; align-self: center;" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
