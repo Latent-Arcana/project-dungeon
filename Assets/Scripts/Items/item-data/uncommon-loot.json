@@ -2,32 +2,32 @@
     "loot": [
         {
             "itemID": "006",
-            "itemName": "Falchion",
+            "itemName": "Crude Falchion",
             "DropChance": 8
         },
         {
             "itemID": "007",
-            "itemName": "Heavy Mace",
+            "itemName": "Crude Heavy Mace",
             "DropChance": 8
         },
         {
             "itemID": "008",
-            "itemName": "Halberd",
+            "itemName": "Crude Halberd",
             "DropChance": 7
         },
         {
             "itemID": "009",
-            "itemName": "Hauberk",
+            "itemName": "Crude Hauberk",
             "DropChance": 7
         },
         {
             "itemID": "010",
-            "itemName": "Plackart",
+            "itemName": "Crude Plackart",
             "DropChance": 7
         },
         {
             "itemID": "011",
-            "itemName": "Laminar Plate Mail",
+            "itemName": "Crude Laminar Plate Mail",
             "DropChance": 7
         },
         {
@@ -42,62 +42,62 @@
         },
         {
             "itemID": "022",
-            "itemName": "Falchion +1",
+            "itemName": "Fair Falchion",
             "DropChance": 6
         },
         {
             "itemID": "023",
-            "itemName": "Heavy Mace +1",
+            "itemName": "Fair Heavy Mace",
             "DropChance": 6
         },
         {
             "itemID": "024",
-            "itemName": "Halberd +1",
+            "itemName": "Fair Halberd",
             "DropChance": 5
         },
         {
             "itemID": "025",
-            "itemName": "Hauberk +1",
+            "itemName": "Fair Hauberk",
             "DropChance": 5
         },
         {
             "itemID": "026",
-            "itemName": "Plackart +1",
+            "itemName": "Fair Plackart",
             "DropChance": 5
         },
         {
             "itemID": "027",
-            "itemName": "Laminar Plate Mail +1",
+            "itemName": "Fair Laminar Plate Mail",
             "DropChance": 5
         },
         {
             "itemID": "028",
-            "itemName": "Falchion +2",
+            "itemName": "Excellent Falchion",
             "DropChance": 4
         },
         {
             "itemID": "029",
-            "itemName": "Heavy Mace +2",
+            "itemName": "Excellent Heavy Mace",
             "DropChance": 4
         },
         {
             "itemID": "030",
-            "itemName": "Halberd +2",
+            "itemName": "Excellent Halberd",
             "DropChance": 3
         },
         {
             "itemID": "031",
-            "itemName": "Hauberk +2",
+            "itemName": "Excellent Hauberk",
             "DropChance": 3
         },
         {
             "itemID": "032",
-            "itemName": "Plackart +2",
+            "itemName": "Excellent Plackart",
             "DropChance": 3
         },
         {
             "itemID": "033",
-            "itemName": "Laminar Plate Mail +2",
+            "itemName": "Excellent Laminar Plate Mail",
             "DropChance": 3
         }
     ]

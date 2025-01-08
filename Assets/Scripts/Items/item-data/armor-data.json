@@ -2,7 +2,7 @@
   "armor": [
     {
       "itemID": "003",
-      "itemName": "Gambeson Robes",
+      "itemName": "Crude Gambeson Robes",
       "itemDescription": "Priestly robes, the white has been stained and the edges are frayed and bitten by rats.",
       "STR": 0,
       "SPD": 1,
@@ -13,7 +13,7 @@
     },
     {
       "itemID": "004",
-      "itemName": "Elk Hide Armor",
+      "itemName": "Crude Elk Hide Armor",
       "itemDescription": "A set of tanned elk hide, held together with metal fasteners and stringy sinew.",
       "STR": 0,
       "SPD": 0,
@@ -24,7 +24,7 @@
     },
     {
       "itemID": "009",
-      "itemName": "Hauberk",
+      "itemName": "Crude Hauberk",
       "itemDescription": "An aged chain-mail shirt, riddled with battle scars and holes that clearly killed the last owner.",
       "STR": 0,
       "SPD": 0,
@@ -35,7 +35,7 @@
     },
     {
       "itemID": "010",
-      "itemName": "Plackart",
+      "itemName": "Crude Plackart",
       "itemDescription": "A breastplate adorned with aging metallic filigree. One feels an age-lost honor restored when worn.",
       "STR": 0,
       "SPD": 0,
@@ -46,7 +46,7 @@
     },
     {
       "itemID": "011",
-      "itemName": "Laminar Plate Mail",
+      "itemName": "Crude Laminar Plate Mail",
       "itemDescription": "A customized set of overlapping chain-mail and woven plates.",
       "STR": 0,
       "SPD": 2,
@@ -57,7 +57,7 @@
     },
     {
       "itemID": "012",
-      "itemName": "Gambeson Robes +1",
+      "itemName": "Fair Gambeson Robes",
       "itemDescription": "Priestly robes, the white has been stained and the edges are frayed and bitten by rats.",
       "STR": 0,
       "SPD": 2,
@@ -68,7 +68,7 @@
     },
     {
       "itemID": "013",
-      "itemName": "Gambeson Robes +2",
+      "itemName": "Excellent Gambeson Robes",
       "itemDescription": "Priestly robes, the white has been stained and the edges are frayed and bitten by rats.",
       "STR": 0,
       "SPD": 2,
@@ -79,7 +79,7 @@
     },
     {
       "itemID": "014",
-      "itemName": "Elk Hide Armor +1",
+      "itemName": "Fair Elk Hide Armor",
       "itemDescription": "A set of tanned elk hide, held together with metal fasteners and stringy sinew.",
       "STR": 0,
       "SPD": 0,
@@ -90,7 +90,7 @@
     },
     {
       "itemID": "015",
-      "itemName": "Elk Hide Armor +2",
+      "itemName": "Excellent Elk Hide Armor",
       "itemDescription": "A set of tanned elk hide, held together with metal fasteners and stringy sinew.",
       "STR": 0,
       "SPD": 1,
@@ -101,7 +101,7 @@
     },
     {
       "itemID": "016",
-      "itemName": "Hauberk +1",
+      "itemName": "Fair Hauberk",
       "itemDescription": "An aged chain-mail shirt, riddled with battle scars and holes that clearly killed the last owner.",
       "STR": 0,
       "SPD": 0,
@@ -112,7 +112,7 @@
     },
     {
       "itemID": "017",
-      "itemName": "Hauberk +2",
+      "itemName": "Excellent Hauberk",
       "itemDescription": "An aged chain-mail shirt, riddled with battle scars and holes that clearly killed the last owner.",
       "STR": 0,
       "SPD": 0,
@@ -123,7 +123,7 @@
     },
     {
       "itemID": "018",
-      "itemName": "Plackart +1",
+      "itemName": "Fair Plackart",
       "itemDescription": "A breastplate adorned with aging metallic filigree. One feels an age-lost honor restored when worn.",
       "STR": 0,
       "SPD": 0,
@@ -134,7 +134,7 @@
     },
     {
       "itemID": "019",
-      "itemName": "Plackart +2",
+      "itemName": "Excellent Plackart",
       "itemDescription": "A breastplate adorned with aging metallic filigree. One feels an age-lost honor restored when worn.",
       "STR": 0,
       "SPD": 0,
@@ -145,7 +145,7 @@
     },
     {
       "itemID": "020",
-      "itemName": "Laminar Plate Mail +1",
+      "itemName": "Fair Laminar Plate Mail",
       "itemDescription": "A customized set of overlapping chain-mail and woven plates.",
       "STR": 0,
       "SPD": 3,
@@ -156,7 +156,7 @@
     },
     {
       "itemID": "021",
-      "itemName": "Laminar Plate Mail +2",
+      "itemName": "Excellent Laminar Plate Mail",
       "itemDescription": "A customized set of overlapping chain-mail and woven plates.",
       "STR": 0,
       "SPD": 3,

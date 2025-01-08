@@ -5,10 +5,10 @@ public class ScreenOptions
     public int screenHeight;
     public bool fullScreen;
 
-    public ScreenOptions(int width, int height, bool full_screen)
+    public ScreenOptions(bool full_screen)
     {
-        screenWidth = width;
-        screenHeight = height;
+        // screenWidth = width;
+        // screenHeight = height;
         fullScreen = full_screen;
     }
 }

@@ -14,6 +14,7 @@ public class PortalAnimationBehavior : MonoBehaviour
 
     public void AnimatePortal()
     {
+        StartCoroutine(DungeonNarrator.Dungeon_Narrator.FadeScreenOnExit());
         StartCoroutine(EnterPortal());
     }
 
@@ -23,7 +24,7 @@ public class PortalAnimationBehavior : MonoBehaviour
 
         portalAnimator.Play(portalAnimationName);
         // Wait for the duration of the animation
-        float animationLength = portalAnimator.runtimeAnimatorController.animationClips.First(clip => clip.name == portalAnimationName).length;
+        float animationLength = portalAnimator.runtimeAnimatorController.animationClips.First(clip => clip.name == portalAnimationName).length / 1.75f;
         yield return new WaitForSeconds(animationLength);
 
         SceneManager.LoadScene("BSP");

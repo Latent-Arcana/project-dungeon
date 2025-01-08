@@ -298,7 +298,7 @@ public class MainMenuUI : MonoBehaviour
         audioMixer.SetFloat("MixerMusicVolume", ConvertVolumeToDb(ops.musicVolume));
         audioMixer.SetFloat("MixerAmbientVolume", ConvertVolumeToDb(ops.ambientVolume));
 
-        // Screen.SetResolution(ops.screenOptions.screenWidth, ops.screenOptions.screenHeight, ops.screenOptions.fullScreen);
+        Screen.fullScreen = ops.screenOptions.fullScreen;
 
         //  SaveSystem.PrintPlayerSaveData();
 
@@ -495,7 +495,7 @@ public class MainMenuUI : MonoBehaviour
     private void SetFullScreen(ChangeEvent<bool> evt)
     {
         ops.screenOptions.fullScreen = evt.newValue;
-        Screen.SetResolution(Screen.width, Screen.height, evt.newValue);
+        Screen.fullScreen = evt.newValue;
     }
 
 
