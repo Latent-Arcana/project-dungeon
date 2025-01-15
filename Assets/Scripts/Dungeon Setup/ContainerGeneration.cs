@@ -16,16 +16,14 @@ public class ContainerGeneration : MonoBehaviour
     void Awake()
     {
         // SINGLETON CHECK
-        if (Container_Generator == null)
-        {
-            Container_Generator = this;
-        }
-        else if (Container_Generator != this)
+        if (Container_Generator != null && Container_Generator != this)
         {
             Destroy(this);
         }
-
-        DontDestroyOnLoad(Container_Generator);
+        else
+        {
+            Container_Generator = this;
+        }
     }
 
     /// <summary>

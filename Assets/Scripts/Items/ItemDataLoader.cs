@@ -163,6 +163,7 @@ public class ItemLoader : MonoBehaviour
         uncommonLootTable = CreateLootTable(uncommonLootData);
         epicLootTable = CreateLootTable(epicLootData);
 
+        hasLoadedLootTablesSuccessfully = true;
     }
 
 

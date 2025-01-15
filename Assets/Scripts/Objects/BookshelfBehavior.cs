@@ -38,7 +38,7 @@ public class BookshelfBehavior : MonoBehaviour
         {
             if (bookWasFound)
             {
-                DungeonNarrator.Dungeon_Narrator.AddDungeonNarratorText("You've already poured over these tomes and learned of a " + bookRoom.roomType.ToString().ToLower() + " room.");
+                DungeonNarrator.Dungeon_Narrator.AddDungeonNarratorText("You've already pored over these tomes and learned of a " + bookRoom.roomType.ToString().ToLower() + " room.");
             }
             else
             {

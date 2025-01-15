@@ -156,7 +156,7 @@ public class InputController : MonoBehaviour
 
         }
 
-        else if (Input.GetKeyUp(KeyCode.I))
+        else if (Input.GetKeyUp(KeyCode.I) || Input.GetKeyUp(KeyCode.Tab))
         {
             //return to gameplay from Inv
             if (currentInputState == InputState.InventoryMenu)
@@ -181,7 +181,7 @@ public class InputController : MonoBehaviour
             }
         }
 
-        else if (Input.GetKeyUp(KeyCode.M))
+        else if (Input.GetKeyUp(KeyCode.M) || Input.GetKeyUp(KeyCode.X))
         {
             //return to gameplay from Map
             if (currentInputState == InputState.MapMenu)

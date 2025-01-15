@@ -37,7 +37,7 @@ public class SafeObjectBehavior : MonoBehaviour
 
         else
         {
-            DungeonNarrator.Dungeon_Narrator.AddDungeonNarratorText($"You feel restless. The bed is cold.");
+            DungeonNarrator.Dungeon_Narrator.AddDungeonNarratorText($"You've already rested here...");
 
             return currentHP;
         }

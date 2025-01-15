@@ -82,3 +82,4 @@ $RECYCLE.BIN/
 # Unity3D generated file on crash reports
 sysinfo.txt
 [Aa]ssets/[Ss]haders/FogEffect.mat
+Assets/Shaders/FogEffect.mat
