@@ -28,6 +28,7 @@ public class Inventory : ScriptableObject
     public void Reset()
     {
         items.Clear();
+        currentDurability.Clear();
 
         equippedArmor = -1;
         equippedWeapon = -1;

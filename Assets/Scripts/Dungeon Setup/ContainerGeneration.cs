@@ -153,11 +153,11 @@ public class ContainerGeneration : MonoBehaviour
         {
             case ObjectType.Chest:
 
-                if (rarityCheck < .70f)
+                if (rarityCheck < .60f)
                 {
                     return lootTable.commonLoot;
                 }
-                else if (rarityCheck >= .70f && rarityCheck < .90f)
+                else if (rarityCheck >= .60f && rarityCheck < .80f)
                 {
                     return new List<LootItem>();
                 }

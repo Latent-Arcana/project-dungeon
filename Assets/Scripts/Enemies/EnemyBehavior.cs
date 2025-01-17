@@ -332,8 +332,8 @@ public class EnemyBehavior : MonoBehaviour
         bool enemyMissed = false;
 
         // FACTOR IN STRENGTH/DAMAGE/AP, AND A SMALL AMOUNT OF RANDOM VARIABILITY
-        int _enemyDamageDealt = (-1 * (enemyStats.STR + UnityEngine.Random.Range(1, 3))) + Player_Stats.AP;
-        int _playerDamageDealt = (-1 * (Player_Stats.STR + UnityEngine.Random.Range(1, 3))) + enemyStats.AP;
+        int _enemyDamageDealt = (-1 * (Math.Max(enemyStats.STR, 0) + UnityEngine.Random.Range(1, 3))) + Player_Stats.AP;
+        int _playerDamageDealt = (-1 * (Math.Max(Player_Stats.STR, 0) + UnityEngine.Random.Range(1, 3))) + enemyStats.AP;
 
         // FACTOR IN AGI/DODGE
         int _playerHitChance = UnityEngine.Random.Range(1, 100);

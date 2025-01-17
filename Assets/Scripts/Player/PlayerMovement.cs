@@ -123,6 +123,11 @@ public class PlayerMovement : MonoBehaviour
 
     public void MovePlayer(Vector2 direction)
     {
+        int tick = 0;
+        foreach(int durability in playerInventory.inventory.currentDurability){
+            Debug.Log("current durability at " + tick + " = " + durability);
+            ++tick;
+        }
 
         Vector2 checkPosition = (Vector2)player.transform.position + new Vector2(0.5f, 0.5f) + new Vector2(direction.x, direction.y);
 
@@ -169,6 +174,22 @@ public class PlayerMovement : MonoBehaviour
                         {
                             playerInventory.inventory.items.Add(item);
                             itemsToRemove.Add(item);
+
+                            Weapon weapon = item as Weapon;
+                            Armor armor = item as Armor;
+
+                            if(weapon != null){
+                                playerInventory.inventory.currentDurability.Add(weapon.DUR);
+                            }
+
+                            else if(armor != null){
+                                playerInventory.inventory.currentDurability.Add(armor.DUR);
+                            }
+
+                            else{
+                                playerInventory.inventory.currentDurability.Add(-1); // we need a dummy here
+                            }
+
                             Dungeon_Narrator.AddDungeonNarratorText("You picked up the " + item.itemName + ".");
                         }
 
