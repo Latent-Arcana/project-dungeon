@@ -5,6 +5,7 @@ using UnityEngine;
 public class Inventory : ScriptableObject
 {
     public List<Item> items;
+    public List<int> currentDurability;
     public int equippedArmor;
     public int equippedWeapon;
 

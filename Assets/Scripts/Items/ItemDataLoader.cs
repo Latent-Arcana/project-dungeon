@@ -222,6 +222,7 @@ public class ItemLoader : MonoBehaviour
             armor.STR = data.STR;
             armor.AP = data.AP;
             armor.HP = data.HP;
+            armor.DUR = data.DUR;
             armor.type = Enums.ItemType.Armor;
             armor.image = data.image;
             armor.statsText = FormatStatsText(data.AGI, data.STR, data.SPD, data.AP, data.HP);
@@ -260,6 +261,7 @@ public class ItemLoader : MonoBehaviour
             };
 
             weapon.HP = data.HP;
+            weapon.DUR = data.DUR;
             weapon.AP = data.AP;
             weapon.type = Enums.ItemType.Weapon;
             weapon.image = data.image;

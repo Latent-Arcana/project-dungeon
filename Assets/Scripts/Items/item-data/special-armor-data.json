@@ -9,6 +9,7 @@
       "AGI": -5,
       "HP": 0,
       "AP": 2,
+      "DUR": 10,
       "image": "the-berserkers-armor_opt-1"
     },
     {
@@ -20,6 +21,7 @@
       "AGI": 4,
       "HP": 0,
       "AP": 2,
+      "DUR": 10,
       "image": "The-mark-xiv-phebos"
     },
     {
@@ -31,6 +33,7 @@
       "AGI": 0,
       "HP": 5,
       "AP": 2,
+      "DUR": 10,
       "image": "the-garons-fur"
     },
     {
@@ -42,6 +45,7 @@
       "AGI": 5,
       "HP": 0,
       "AP": 0,
+      "DUR": 10,
       "image": "the-wailing-fauld"
     }
   ]

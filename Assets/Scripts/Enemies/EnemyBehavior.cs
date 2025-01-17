@@ -339,8 +339,8 @@ public class EnemyBehavior : MonoBehaviour
         int _playerHitChance = UnityEngine.Random.Range(1, 100);
         int _enemyHitChance = UnityEngine.Random.Range(1, 100);
 
-        int _enemyHitThreshold = Math.Min(Player_Stats.AGI * 3, 90);
-        int _playerHitThreshold = Math.Min(enemyStats.AGI * 3, 90);
+        int _enemyHitThreshold = Math.Min(Player_Stats.AGI * 3, 60);
+        int _playerHitThreshold = Math.Min(enemyStats.AGI * 3, 60);
 
         // Set up the player weapon information so we can print the right text later
         int playerWeaponIndex = playerInventory.GetEquippedWeapon();
@@ -394,6 +394,8 @@ public class EnemyBehavior : MonoBehaviour
                         Dungeon_Narrator.AddPlayerAttackText(playerWeaponType, enemyStats.EnemyType, Mathf.Abs(_playerDamageDealt));
 
                     }
+
+                    // update the weapon to be damaged
                 }
 
             }

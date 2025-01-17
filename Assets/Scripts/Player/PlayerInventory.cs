@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using static ContainerGeneration;
 // TODO: Use inheritance so that our PlayerInventory and ContainerBehavior don't have so much code dupe between them
@@ -110,7 +109,8 @@ public class PlayerInventory : MonoBehaviour
 
     }
 
-    public void HandleDropItemNarration(int index){
+    public void HandleDropItemNarration(int index)
+    {
 
         Item droppedItem = inventory.items[index];
 
@@ -212,6 +212,73 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 
+    public void ReduceDurability(int index){
+
+        inventory.currentDurability[index]--;
+    }
+
+    public void SetDurability(int index, int value){
+        inventory.currentDurability[index] = value;
+    }
+    public int GetDurability(int index)
+    {
+        Item inventoryItem = inventory.items[index];
+
+        Weapon weapon = inventoryItem as Weapon;
+        Armor armor = inventoryItem as Armor;
+
+        if (weapon != null)
+        {
+            int itemDurability = weapon.DUR;
+            int currentDurability = inventory.currentDurability[index];
+
+            float durabilityPercentage = currentDurability / itemDurability;
+
+            return DurabilityCalculator(durabilityPercentage);
+        }
+
+        else if (armor != null)
+        {
+            int itemDurability = armor.DUR;
+            int currentDurability = inventory.currentDurability[index];
+
+            float durabilityPercentage = currentDurability / itemDurability;
+
+            return DurabilityCalculator(durabilityPercentage);
+        }
+
+        else {
+            return 0;
+        }
+    }
+
+    private int DurabilityCalculator(float durabilityPercentage)
+    {
+        int result;
+
+        if (durabilityPercentage <= .20f)
+        {
+            result = 1;
+        }
+        else if (durabilityPercentage <= .40f)
+        {
+            result = 2;
+        }
+        else if (durabilityPercentage <= .60f)
+        {
+            result = 3;
+        }
+        else if (durabilityPercentage <= .80f)
+        {
+            result = 4;
+        }
+        else
+        {
+            result = 5;
+        }
+
+        return result;
+    }
     // DEBUG
     public void InventoryDebugPrint()
     {

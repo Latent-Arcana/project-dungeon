@@ -7,6 +7,7 @@ public class Weapon : Item
 {
     [Header("Weapon Properties")]
     public int AP;
+    public int DUR;
     public WeaponType weaponType;
 }
 
@@ -23,5 +24,6 @@ public class WeaponData
     public int AGI;
     public int HP;
     public int AP;
+    public int DUR;
     public string weaponType;
 }

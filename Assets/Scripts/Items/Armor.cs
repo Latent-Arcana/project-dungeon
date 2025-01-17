@@ -8,6 +8,7 @@ public class Armor : Item
     [Header("Armor Stats")]
     // Armor-specific functionality can go here
     public int AP;
+    public int DUR;
 }
 
 
@@ -24,4 +25,5 @@ public class ArmorData
     public int AGI;
     public int HP;
     public int AP;
+    public int DUR;
 }
