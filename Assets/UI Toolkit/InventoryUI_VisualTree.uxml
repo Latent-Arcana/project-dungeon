@@ -1,6 +1,6 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI%20Toolkit/MenuStyleSheet.uss?fileID=7433441132597879392&amp;guid=8622666c0c77f81419510e23e5912e27&amp;type=3#MenuStyleSheet" />
-    <ui:VisualElement name="Container" style="background-image: url(&quot;project://database/Assets/UI%20Toolkit/UI%20Sprites/1920x1080/main.png?fileID=2800000&amp;guid=d036c145d324b5c4c9a0865ee7aac015&amp;type=3#main&quot;); margin-top: 0; margin-bottom: 0; margin-right: 0; margin-left: 0; padding-top: 42px; padding-bottom: 42px; display: none; width: 75%; height: 90%; background-color: rgb(0, 0, 0); -unity-background-image-tint-color: rgb(255, 255, 255); padding-right: 42px; padding-left: 42px;">
+    <ui:VisualElement name="Container" style="background-image: url(&quot;project://database/Assets/UI%20Toolkit/UI%20Sprites/1920x1080/main.png?fileID=2800000&amp;guid=d036c145d324b5c4c9a0865ee7aac015&amp;type=3#main&quot;); margin-top: 0; margin-bottom: 0; margin-right: 0; margin-left: 0; padding-top: 42px; padding-bottom: 42px; display: flex; width: 75%; height: 90%; background-color: rgb(0, 0, 0); -unity-background-image-tint-color: rgb(255, 255, 255); padding-right: 42px; padding-left: 42px;">
         <ui:VisualElement name="Header" style="height: 43px; flex-direction: row;">
             <ui:VisualElement name="item-name-header" class="inventory-text-header inventory-item-name-col" style="flex-grow: 1; align-self: center; background-image: none; margin-left: 141px;">
                 <ui:Label tabindex="-1" text="Item" parse-escape-sequences="true" display-tooltip-when-elided="true" />
@@ -17,9 +17,11 @@
         </ui:VisualElement>
         <ui:VisualElement name="Table" style="flex-grow: 1; height: auto;">
             <ui:VisualElement name="Row0" class="inventory-row" style="flex-grow: 1; flex-direction: row;">
-                <ui:VisualElement name="Icon" class="inventory-icon-col" style="flex-grow: 1; align-items: auto; flex-direction: row;">
+                <ui:VisualElement name="Icon_Col" class="inventory-icon-col" style="flex-grow: 1; align-items: auto; flex-direction: row;">
                     <ui:VisualElement name="Icon_Bckgrnd" class="inventory-icon-background" style="flex-grow: 1;">
-                        <ui:VisualElement name="Icon_0_Img" class="inventory-icon" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/Icons/rapid-sketch-9-export.png?fileID=2800000&amp;guid=3f96a5c2bebac4a45941aabe9b6a383a&amp;type=3#rapid-sketch-9-export&quot;);" />
+                        <ui:VisualElement name="Durability" class="inventory-icon-durability" style="flex-grow: 1;">
+                            <ui:VisualElement name="Icon" class="inventory-icon" style="flex-grow: 1; background-image: resource(&apos;battle-axe&apos;); margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;" />
+                        </ui:VisualElement>
                     </ui:VisualElement>
                 </ui:VisualElement>
                 <ui:VisualElement name="Name" class="inventory-item-name-col" style="flex-grow: 1;">
@@ -36,9 +38,11 @@
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="Row1" class="inventory-row" style="flex-grow: 1; flex-direction: row;">
-                <ui:VisualElement name="Icon" class="inventory-icon-col" style="flex-grow: 1;">
+                <ui:VisualElement name="Icon_Col" class="inventory-icon-col" style="flex-grow: 1;">
                     <ui:VisualElement name="Icon_Bckgrnd" class="inventory-icon-background" style="flex-grow: 1;">
-                        <ui:VisualElement name="Icon_1_Img" class="inventory-icon" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/Icons/rapid-sketch-9-export.png?fileID=2800000&amp;guid=3f96a5c2bebac4a45941aabe9b6a383a&amp;type=3#rapid-sketch-9-export&quot;);" />
+                        <ui:VisualElement name="Durability" class="inventory-icon-durability" style="flex-grow: 1;">
+                            <ui:VisualElement name="Icon" class="inventory-icon" style="flex-grow: 1; background-image: resource(&apos;battle-axe&apos;); margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;" />
+                        </ui:VisualElement>
                     </ui:VisualElement>
                 </ui:VisualElement>
                 <ui:VisualElement name="Name" class="inventory-item-name-col" style="flex-grow: 1;">
@@ -55,9 +59,11 @@
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="Row2" class="inventory-row" style="flex-grow: 1; flex-direction: row;">
-                <ui:VisualElement name="Icon" class="inventory-icon-col" style="flex-grow: 1;">
+                <ui:VisualElement name="Icon_Col" class="inventory-icon-col" style="flex-grow: 1;">
                     <ui:VisualElement name="Icon_Bckgrnd" class="inventory-icon-background" style="flex-grow: 1;">
-                        <ui:VisualElement name="Icon_2_Img" class="inventory-icon" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/Icons/rapid-sketch-9-export.png?fileID=2800000&amp;guid=3f96a5c2bebac4a45941aabe9b6a383a&amp;type=3#rapid-sketch-9-export&quot;);" />
+                        <ui:VisualElement name="Durability" class="inventory-icon-durability" style="flex-grow: 1;">
+                            <ui:VisualElement name="Icon" class="inventory-icon" style="flex-grow: 1; background-image: resource(&apos;battle-axe&apos;); margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;" />
+                        </ui:VisualElement>
                     </ui:VisualElement>
                 </ui:VisualElement>
                 <ui:VisualElement name="Name" class="inventory-item-name-col" style="flex-grow: 1;">
@@ -74,9 +80,11 @@
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="Row3" class="inventory-row" style="flex-grow: 1; flex-direction: row; visibility: visible;">
-                <ui:VisualElement name="Icon" class="inventory-icon-col" style="flex-grow: 1;">
+                <ui:VisualElement name="Icon_Col" class="inventory-icon-col" style="flex-grow: 1;">
                     <ui:VisualElement name="Icon_Bckgrnd" class="inventory-icon-background" style="flex-grow: 1;">
-                        <ui:VisualElement name="Icon_1_Img" class="inventory-icon" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/Icons/rapid-sketch-9-export.png?fileID=2800000&amp;guid=3f96a5c2bebac4a45941aabe9b6a383a&amp;type=3#rapid-sketch-9-export&quot;);" />
+                        <ui:VisualElement name="Durability" class="inventory-icon-durability" style="flex-grow: 1;">
+                            <ui:VisualElement name="Icon" class="inventory-icon" style="flex-grow: 1; background-image: resource(&apos;battle-axe&apos;); margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;" />
+                        </ui:VisualElement>
                     </ui:VisualElement>
                 </ui:VisualElement>
                 <ui:VisualElement name="Name" class="inventory-item-name-col" style="flex-grow: 1;">
@@ -93,9 +101,11 @@
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="Row4" class="inventory-row" style="flex-grow: 1; flex-direction: row;">
-                <ui:VisualElement name="Icon" class="inventory-icon-col" style="flex-grow: 1;">
+                <ui:VisualElement name="Icon_Col" class="inventory-icon-col" style="flex-grow: 1;">
                     <ui:VisualElement name="Icon_Bckgrnd" class="inventory-icon-background" style="flex-grow: 1;">
-                        <ui:VisualElement name="Icon_1_Img" class="inventory-icon" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/Icons/rapid-sketch-9-export.png?fileID=2800000&amp;guid=3f96a5c2bebac4a45941aabe9b6a383a&amp;type=3#rapid-sketch-9-export&quot;);" />
+                        <ui:VisualElement name="Durability" class="inventory-icon-durability" style="flex-grow: 1;">
+                            <ui:VisualElement name="Icon" class="inventory-icon" style="flex-grow: 1; background-image: resource(&apos;battle-axe&apos;); margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;" />
+                        </ui:VisualElement>
                     </ui:VisualElement>
                 </ui:VisualElement>
                 <ui:VisualElement name="Name" class="inventory-item-name-col" style="flex-grow: 1;">
@@ -112,9 +122,11 @@
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="Row5" class="inventory-row" style="flex-grow: 1; flex-direction: row;">
-                <ui:VisualElement name="Icon" class="inventory-icon-col" style="flex-grow: 1;">
+                <ui:VisualElement name="Icon_Col" class="inventory-icon-col" style="flex-grow: 1;">
                     <ui:VisualElement name="Icon_Bckgrnd" class="inventory-icon-background" style="flex-grow: 1;">
-                        <ui:VisualElement name="Icon_1_Img" class="inventory-icon" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/Icons/rapid-sketch-9-export.png?fileID=2800000&amp;guid=3f96a5c2bebac4a45941aabe9b6a383a&amp;type=3#rapid-sketch-9-export&quot;);" />
+                        <ui:VisualElement name="Durability" class="inventory-icon-durability" style="flex-grow: 1;">
+                            <ui:VisualElement name="Icon" class="inventory-icon" style="flex-grow: 1; background-image: resource(&apos;battle-axe&apos;); margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;" />
+                        </ui:VisualElement>
                     </ui:VisualElement>
                 </ui:VisualElement>
                 <ui:VisualElement name="Name" class="inventory-item-name-col" style="flex-grow: 1;">
@@ -131,9 +143,11 @@
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="Row6" class="inventory-row" style="flex-grow: 1; flex-direction: row;">
-                <ui:VisualElement name="Icon" class="inventory-icon-col" style="flex-grow: 1;">
+                <ui:VisualElement name="Icon_Col" class="inventory-icon-col" style="flex-grow: 1;">
                     <ui:VisualElement name="Icon_Bckgrnd" class="inventory-icon-background" style="flex-grow: 1;">
-                        <ui:VisualElement name="Icon_1_Img" class="inventory-icon" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/Icons/rapid-sketch-9-export.png?fileID=2800000&amp;guid=3f96a5c2bebac4a45941aabe9b6a383a&amp;type=3#rapid-sketch-9-export&quot;);" />
+                        <ui:VisualElement name="Durability" class="inventory-icon-durability" style="flex-grow: 1;">
+                            <ui:VisualElement name="Icon" class="inventory-icon" style="flex-grow: 1; background-image: resource(&apos;battle-axe&apos;); margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;" />
+                        </ui:VisualElement>
                     </ui:VisualElement>
                 </ui:VisualElement>
                 <ui:VisualElement name="Name" class="inventory-item-name-col" style="flex-grow: 1;">
@@ -150,9 +164,11 @@
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="Row7" class="inventory-row" style="flex-grow: 1; flex-direction: row;">
-                <ui:VisualElement name="Icon" class="inventory-icon-col" style="flex-grow: 1;">
+                <ui:VisualElement name="Icon_Col" class="inventory-icon-col" style="flex-grow: 1;">
                     <ui:VisualElement name="Icon_Bckgrnd" class="inventory-icon-background" style="flex-grow: 1;">
-                        <ui:VisualElement name="Icon_1_Img" class="inventory-icon" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/Icons/rapid-sketch-9-export.png?fileID=2800000&amp;guid=3f96a5c2bebac4a45941aabe9b6a383a&amp;type=3#rapid-sketch-9-export&quot;);" />
+                        <ui:VisualElement name="Durability" class="inventory-icon-durability" style="flex-grow: 1;">
+                            <ui:VisualElement name="Icon" class="inventory-icon" style="flex-grow: 1; background-image: resource(&apos;battle-axe&apos;); margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;" />
+                        </ui:VisualElement>
                     </ui:VisualElement>
                 </ui:VisualElement>
                 <ui:VisualElement name="Name" class="inventory-item-name-col" style="flex-grow: 1;">
@@ -169,9 +185,11 @@
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="Row8" class="inventory-row" style="flex-grow: 1; flex-direction: row;">
-                <ui:VisualElement name="Icon" class="inventory-icon-col" style="flex-grow: 1;">
+                <ui:VisualElement name="Icon_Col" class="inventory-icon-col" style="flex-grow: 1;">
                     <ui:VisualElement name="Icon_Bckgrnd" class="inventory-icon-background" style="flex-grow: 1;">
-                        <ui:VisualElement name="Icon_1_Img" class="inventory-icon" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/Icons/rapid-sketch-9-export.png?fileID=2800000&amp;guid=3f96a5c2bebac4a45941aabe9b6a383a&amp;type=3#rapid-sketch-9-export&quot;);" />
+                        <ui:VisualElement name="Durability" class="inventory-icon-durability" style="flex-grow: 1;">
+                            <ui:VisualElement name="Icon" class="inventory-icon" style="flex-grow: 1; background-image: resource(&apos;battle-axe&apos;); margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;" />
+                        </ui:VisualElement>
                     </ui:VisualElement>
                 </ui:VisualElement>
                 <ui:VisualElement name="Name" class="inventory-item-name-col" style="flex-grow: 1;">
@@ -188,9 +206,11 @@
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="Row9" class="inventory-row" style="flex-grow: 1; flex-direction: row;">
-                <ui:VisualElement name="Icon" class="inventory-icon-col" style="flex-grow: 1;">
+                <ui:VisualElement name="Icon_Col" class="inventory-icon-col" style="flex-grow: 1;">
                     <ui:VisualElement name="Icon_Bckgrnd" class="inventory-icon-background" style="flex-grow: 1;">
-                        <ui:VisualElement name="Icon_1_Img" class="inventory-icon" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/Icons/rapid-sketch-9-export.png?fileID=2800000&amp;guid=3f96a5c2bebac4a45941aabe9b6a383a&amp;type=3#rapid-sketch-9-export&quot;);" />
+                        <ui:VisualElement name="Durability" class="inventory-icon-durability" style="flex-grow: 1;">
+                            <ui:VisualElement name="Icon" class="inventory-icon" style="flex-grow: 1; background-image: resource(&apos;battle-axe&apos;); margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;" />
+                        </ui:VisualElement>
                     </ui:VisualElement>
                 </ui:VisualElement>
                 <ui:VisualElement name="Name" class="inventory-item-name-col" style="flex-grow: 1;">

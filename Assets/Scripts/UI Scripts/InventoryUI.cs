@@ -29,6 +29,18 @@ public class InventoryUI : MonoBehaviour
     public Inventory player_inventory;
     private List<Item> inventory;
 
+    // Durability Sprites //
+    [SerializeField]
+    Sprite dur5;
+    [SerializeField]
+    Sprite dur4;
+    [SerializeField]
+    Sprite dur3;
+    [SerializeField]
+    Sprite dur2;
+    [SerializeField]
+    Sprite dur1;
+
 
     ///// Audio ////
     private MenuAudioController menuAudioController;
@@ -54,7 +66,8 @@ public class InventoryUI : MonoBehaviour
         //audio
         menuAudioController = GameObject.Find("MenuAudio").GetComponent<MenuAudioController>();
 
-
+        //by default, don't show the inventory (even if Artisan forgets to toggle the visibility off after she makes changes)
+        parentContainer.style.display = DisplayStyle.None;
 
         //assign button/toggle callbacks
         int tempCounter = 0;
@@ -122,9 +135,47 @@ public class InventoryUI : MonoBehaviour
 
                 rows[i].style.visibility = Visibility.Visible;
 
-                //assign img
+                // Heirarchy of the html:
+                //Icon_Col
+                    //Icon_Bckgrnd
+                        //Durability
+                            //Icon
+
+                //assign img for item
                 Sprite sprt = Resources.Load<Sprite>(inventory[i].image);
-                rows[i].Q("Icon").Children().First().Children().First().style.backgroundImage = new StyleBackground(sprt);
+                rows[i].Q("Icon").style.backgroundImage = new StyleBackground(sprt);
+
+                //assign img for durability frame
+
+                //get durability
+                //int durability = playerInventoryBehavior.GetDurability(i); //TODO: USE THIS LINE WHEN ITS IMPLEMENTED
+                int durability = 2;
+                Sprite dur;
+
+                //case 0-5
+                switch (durability)
+                {
+                    case 5:
+                        dur = dur5;
+                        break;
+                    case 4:
+                        dur = dur4;
+                        break;
+                    case 3:
+                        dur = dur3;
+                        break;
+                    case 2:
+                        dur = dur2;
+                        break;
+                    case 1:
+                        dur = dur1;
+                        break;
+                    default:
+                        dur = null;
+                        break;
+                }
+
+                rows[i].Q("Durability").style.backgroundImage = new StyleBackground(dur);
 
                 //assign name
                 TextElement nameText = rows[i].Q("Name").Children().First() as TextElement;
@@ -152,7 +203,7 @@ public class InventoryUI : MonoBehaviour
             {
                 rows[i].style.visibility = Visibility.Hidden;
 
-                rows[i].Q("Icon").Children().First().Children().First().style.backgroundImage = null;
+                //rows[i].Q("").Children().First().style.backgroundImage = null;
 
                 TextElement nameText = rows[i].Q("Name").Children().First() as TextElement;
                 nameText.text = "";
@@ -254,7 +305,7 @@ public class InventoryUI : MonoBehaviour
         // if the item was equipped, let's unequip it to update the screen
         if (equipmentToggles[index].value == true)
         {
-            
+
             equipmentToggles[index].SetValueWithoutNotify(false);
 
             playerInventoryBehavior.UnequipStatsChange(inventory[index]);

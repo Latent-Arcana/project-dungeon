@@ -906,6 +906,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerInventoryBehavior: {fileID: 1311237463}
   player_inventory: {fileID: 11400000, guid: 28215ae7375c4ab42862dc3518774c71, type: 2}
+  dur5: {fileID: 21300000, guid: 0bb28b6bee2958b4fba52036c97fe961, type: 3}
+  dur4: {fileID: 21300000, guid: b32188cc78387d446950bc76da4ce80f, type: 3}
+  dur3: {fileID: 21300000, guid: 10c9ab05bc696344bb0991ed6af59cd7, type: 3}
+  dur2: {fileID: 21300000, guid: 003c0a728bf9bbd4fbb1b82dc0397265, type: 3}
+  dur1: {fileID: 21300000, guid: 8e4680feb962ae84aad34954cf122719, type: 3}
 --- !u!1 &893277003
 GameObject:
   m_ObjectHideFlags: 0
