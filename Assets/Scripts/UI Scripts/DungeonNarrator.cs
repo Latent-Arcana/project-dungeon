@@ -83,7 +83,15 @@ public class DungeonNarrator : MonoBehaviour
 
 
     public void UpdateEquipmentIcons(){
-        
+        // int armorIndex = player_inventory.equippedArmor;
+        // int weaponIndex = player_inventory.equippedWeapon;
+
+        // Item armor = player_inventory.items[armorIndex];
+        // Item weapon = player_inventory.items[weaponIndex];
+
+        // playerInventoryBehavior.GetDurability(armorIndex);
+        // playerInventoryBehavior.GetDurability(weaponIndex);
+
     }
 
     public void InitiateScreenFadeIn()
