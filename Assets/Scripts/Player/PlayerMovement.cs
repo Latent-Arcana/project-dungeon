@@ -123,13 +123,13 @@ public class PlayerMovement : MonoBehaviour
 
     public void MovePlayer(Vector2 direction)
     {
-        Debug.Log(playerInventory.inventory.currentDurability.Count);
-        int tick = 0;
-        foreach (int durability in playerInventory.inventory.currentDurability)
-        {
-            Debug.Log("current durability at " + tick + " = " + durability);
-            ++tick;
-        }
+        // Debug.Log(playerInventory.inventory.currentDurability.Count);
+        // int tick = 0;
+        // foreach (int durability in playerInventory.inventory.currentDurability)
+        // {
+        //     Debug.Log("current durability at " + tick + " = " + durability);
+        //     ++tick;
+        // }
 
         Vector2 checkPosition = (Vector2)player.transform.position + new Vector2(0.5f, 0.5f) + new Vector2(direction.x, direction.y);
 

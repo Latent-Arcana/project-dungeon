@@ -297,7 +297,7 @@ public class PlayerInventory : MonoBehaviour
             result = 5;
         }
 
-        Debug.Log(result);
+        //Debug.Log(result);
 
         return result;
     }
