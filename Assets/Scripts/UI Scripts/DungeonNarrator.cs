@@ -80,6 +80,12 @@ public class DungeonNarrator : MonoBehaviour
             FadeScreenOnStart();
         }
     }
+
+
+    public void UpdateEquipmentIcons(){
+        
+    }
+
     public void InitiateScreenFadeIn()
     {
         screenFadeCompleted = false;
