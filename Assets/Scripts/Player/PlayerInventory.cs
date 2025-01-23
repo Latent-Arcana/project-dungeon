@@ -39,6 +39,7 @@ public class PlayerInventory : MonoBehaviour
         if (inventory.items.Count > index)
         {
             inventory.items.RemoveAt(index);
+            inventory.currentDurability.RemoveAt(index);
 
             if (inventory.equippedArmor == index)
             {
@@ -116,6 +117,11 @@ public class PlayerInventory : MonoBehaviour
 
         DungeonNarrator.Dungeon_Narrator.AddItemDropText(droppedItem);
 
+    }
+
+    public void HandleBrokenItemNarration(Item item){ // TODO: IMPROVE
+
+        DungeonNarrator.Dungeon_Narrator.AddDungeonNarratorText($"{item.itemName} has broken.");
     }
 
     public void HandleUnequip(int index)
@@ -212,13 +218,26 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 
-    public void ReduceDurability(int index){
+    public void ReduceDurability(int index)
+    {
+        if (index >= 0 && index <= inventory.currentDurability.Count)
+        {
+            inventory.currentDurability[index]--;
 
-        inventory.currentDurability[index]--;
+            if(inventory.currentDurability[index] <= 0){
+
+                HandleBrokenItemNarration(inventory.items[index]);
+                RemoveItem(index);
+            }
+        }
     }
 
-    public void SetDurability(int index, int value){
-        inventory.currentDurability[index] = value;
+    public void SetDurability(int index, int value)
+    {
+        if (index >= 0 && index <= inventory.currentDurability.Count)
+        {
+            inventory.currentDurability[index] = value;
+        }
     }
     public int GetDurability(int index)
     {
@@ -232,7 +251,7 @@ public class PlayerInventory : MonoBehaviour
             int itemDurability = weapon.DUR;
             int currentDurability = inventory.currentDurability[index];
 
-            float durabilityPercentage = currentDurability / itemDurability;
+            float durabilityPercentage = (float)currentDurability / itemDurability;
 
             return DurabilityCalculator(durabilityPercentage);
         }
@@ -242,12 +261,13 @@ public class PlayerInventory : MonoBehaviour
             int itemDurability = armor.DUR;
             int currentDurability = inventory.currentDurability[index];
 
-            float durabilityPercentage = currentDurability / itemDurability;
+            float durabilityPercentage = (float)currentDurability / itemDurability;
 
             return DurabilityCalculator(durabilityPercentage);
         }
 
-        else {
+        else
+        {
             return 0;
         }
     }
@@ -276,6 +296,8 @@ public class PlayerInventory : MonoBehaviour
         {
             result = 5;
         }
+
+        Debug.Log(result);
 
         return result;
     }

@@ -123,8 +123,10 @@ public class PlayerMovement : MonoBehaviour
 
     public void MovePlayer(Vector2 direction)
     {
+        Debug.Log(playerInventory.inventory.currentDurability.Count);
         int tick = 0;
-        foreach(int durability in playerInventory.inventory.currentDurability){
+        foreach (int durability in playerInventory.inventory.currentDurability)
+        {
             Debug.Log("current durability at " + tick + " = " + durability);
             ++tick;
         }
@@ -178,15 +180,18 @@ public class PlayerMovement : MonoBehaviour
                             Weapon weapon = item as Weapon;
                             Armor armor = item as Armor;
 
-                            if(weapon != null){
+                            if (weapon != null)
+                            {
                                 playerInventory.inventory.currentDurability.Add(weapon.DUR);
                             }
 
-                            else if(armor != null){
+                            else if (armor != null)
+                            {
                                 playerInventory.inventory.currentDurability.Add(armor.DUR);
                             }
 
-                            else{
+                            else
+                            {
                                 playerInventory.inventory.currentDurability.Add(-1); // we need a dummy here
                             }
 
@@ -381,6 +386,26 @@ public class PlayerMovement : MonoBehaviour
                         {
                             playerInventory.inventory.items.Add(item);
                             itemsToRemove.Add(item);
+
+                            Weapon weapon = item as Weapon;
+                            Armor armor = item as Armor;
+
+                            if (weapon != null)
+                            {
+                                playerInventory.inventory.currentDurability.Add(weapon.DUR);
+                            }
+
+                            else if (armor != null)
+                            {
+                                playerInventory.inventory.currentDurability.Add(armor.DUR);
+                            }
+
+                            else
+                            {
+                                playerInventory.inventory.currentDurability.Add(-1); // we need a dummy here
+                            }
+
+
                             Dungeon_Narrator.AddDungeonNarratorText("You picked up the " + item.itemName);
                         }
 

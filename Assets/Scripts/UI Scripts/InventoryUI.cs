@@ -148,8 +148,8 @@ public class InventoryUI : MonoBehaviour
                 //assign img for durability frame
 
                 //get durability
-                //int durability = playerInventoryBehavior.GetDurability(i); //TODO: USE THIS LINE WHEN ITS IMPLEMENTED
-                int durability = 2;
+                int durability = playerInventoryBehavior.GetDurability(i); //TODO: USE THIS LINE WHEN ITS IMPLEMENTED
+               //int durability = 2;
                 Sprite dur;
 
                 //case 0-5

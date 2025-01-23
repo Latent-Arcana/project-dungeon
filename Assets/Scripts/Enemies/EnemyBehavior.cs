@@ -344,6 +344,7 @@ public class EnemyBehavior : MonoBehaviour
 
         // Set up the player weapon information so we can print the right text later
         int playerWeaponIndex = playerInventory.GetEquippedWeapon();
+        int playerArmorIndex = playerInventory.GetEquippedArmor();
         Enums.WeaponType playerWeaponType = Enums.WeaponType.Default;
 
         if (playerWeaponIndex >= 0)
@@ -375,6 +376,8 @@ public class EnemyBehavior : MonoBehaviour
                 if (!enemyMissed)
                 {
                     Player_Stats.SetHP(Player_Stats.HP + _enemyDamageDealt, sourceObjectName: enemyStats.EnemyType.ToSafeString());
+                    //update armor to be damaged
+                    playerInventory.ReduceDurability(playerArmorIndex);
                 }
 
                 if (!playerMissed)
@@ -396,6 +399,7 @@ public class EnemyBehavior : MonoBehaviour
                     }
 
                     // update the weapon to be damaged
+                    playerInventory.ReduceDurability(playerWeaponIndex);
                 }
 
             }
@@ -419,12 +423,18 @@ public class EnemyBehavior : MonoBehaviour
                     {
                         Dungeon_Narrator.AddPlayerAttackText(playerWeaponType, enemyStats.EnemyType, Mathf.Abs(_playerDamageDealt));
                     }
+
+                    // update the weapon to be damaged
+                    playerInventory.ReduceDurability(playerWeaponIndex);
                 }
 
                 if (!enemyMissed && behaviorState != BehaviorState.Dead)
                 {
                     Player_Stats.SetHP(Player_Stats.HP + _enemyDamageDealt, sourceObjectName: enemyStats.EnemyType.ToSafeString());
                     Dungeon_Narrator.AddEnemyAttackText(enemyStats.EnemyType, Mathf.Abs(_enemyDamageDealt));
+
+                    //update armor to be damaged
+                    playerInventory.ReduceDurability(playerArmorIndex);
 
                 }
             }
@@ -437,6 +447,9 @@ public class EnemyBehavior : MonoBehaviour
             {
                 Dungeon_Narrator.AddEnemyAttackText(enemyStats.EnemyType, Mathf.Abs(_enemyDamageDealt));
                 Player_Stats.SetHP(Player_Stats.HP + _enemyDamageDealt, sourceObjectName: enemyStats.EnemyType.ToSafeString());
+
+                //update armor to be damaged
+                playerInventory.ReduceDurability(playerArmorIndex);
             }
 
         }
