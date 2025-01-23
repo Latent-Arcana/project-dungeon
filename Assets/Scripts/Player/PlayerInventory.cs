@@ -229,6 +229,8 @@ public class PlayerInventory : MonoBehaviour
                 HandleBrokenItemNarration(inventory.items[index]);
                 RemoveItem(index);
             }
+            
+            // UpdateEquipmentIcons()
         }
     }
 
