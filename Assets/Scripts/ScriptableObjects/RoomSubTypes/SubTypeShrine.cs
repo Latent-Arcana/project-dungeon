@@ -12,8 +12,7 @@ public class SubTypeShrine : RoomSubType
     /// </summary>
     public override List<Enums.ObjectType> RequiredObjects => new()
     {
-        Enums.ObjectType.Shrine,
-        Enums.ObjectType.Chest
+        Enums.ObjectType.Shrine
     };
 
     /// <summary>
@@ -24,7 +23,8 @@ public class SubTypeShrine : RoomSubType
      {
           Enums.ObjectType.Candle,
           Enums.ObjectType.Bookshelf,
-          Enums.ObjectType.Debris
+          Enums.ObjectType.Debris,
+          Enums.ObjectType.Chest
      };
 
     /// <summary>

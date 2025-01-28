@@ -1,8 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
@@ -14,6 +12,7 @@ public class DungeonNarrator : MonoBehaviour
     public static DungeonNarrator Dungeon_Narrator { get; private set; }
 
     public PlayerStatsManager Player_Stats;
+    private PlayerInventory playerInventory;
 
 
     private UIDocument narrator_doc;
@@ -37,6 +36,24 @@ public class DungeonNarrator : MonoBehaviour
     float fadeOutDuration = 1f;
     bool screenFadeCompleted = true;
 
+    //Durability
+    private VisualElement EquippedArmorDurability;
+    private VisualElement EquippedArmor;
+    private VisualElement EquippedWeaponDurability;
+    private VisualElement EquippedWeapon;
+
+    // Durability Sprites //
+    [SerializeField]
+    Sprite dur5;
+    [SerializeField]
+    Sprite dur4;
+    [SerializeField]
+    Sprite dur3;
+    [SerializeField]
+    Sprite dur2;
+    [SerializeField]
+    Sprite dur1;
+
 
     void Start()
     {
@@ -54,8 +71,7 @@ public class DungeonNarrator : MonoBehaviour
         {
             Dungeon_Narrator = this;
         }
-
-
+        playerInventory = GameObject.Find("Player").GetComponent<PlayerInventory>();
 
         narrator_doc = this.GetComponent<UIDocument>();
         text_narrator = narrator_doc.rootVisualElement.Q("DungeonNarratorText") as TextElement;
@@ -65,8 +81,14 @@ public class DungeonNarrator : MonoBehaviour
         screenOverlay = narrator_doc.rootVisualElement.Q("ScreenOverlay");
         screenOverlay.style.opacity = 1f;
 
-        InitializeStatsUI();
 
+        //Initialize Durability in stats bar
+        EquippedArmorDurability = narrator_doc.rootVisualElement.Q("EquippedArmorDurability");
+        EquippedArmor = narrator_doc.rootVisualElement.Q("EquippedArmor");
+        EquippedWeaponDurability = narrator_doc.rootVisualElement.Q("EquippedWeaponDurability");
+        EquippedWeapon = narrator_doc.rootVisualElement.Q("EquippedWeapon");
+
+        InitializeStatsUI();
 
         ClearDungeonNarratorText();
 
@@ -76,22 +98,83 @@ public class DungeonNarrator : MonoBehaviour
     {
         if (!screenFadeCompleted)
         {
-           // Debug.Log("Fading");
+            // Debug.Log("Fading");
             FadeScreenOnStart();
         }
+
+        //TODO DEBUG REMOVE THIS 
+        UpdateEquipmentIcons();
     }
 
 
-    public void UpdateEquipmentIcons(){
-        // int armorIndex = player_inventory.equippedArmor;
-        // int weaponIndex = player_inventory.equippedWeapon;
+    public void UpdateEquipmentIcons()
+    {
+        //Check/Assign Equipped Item
+        //Armor
+        int armorindex = playerInventory.GetEquippedArmor(); //int of index 
 
-        // Item armor = player_inventory.items[armorIndex];
-        // Item weapon = player_inventory.items[weaponIndex];
+        if (armorindex >= 0)
+        {
+            Sprite sprt = Resources.Load<Sprite>(playerInventory.inventory.items[armorindex].image);
+            EquippedArmor.style.backgroundImage = new StyleBackground(sprt);
 
-        // playerInventoryBehavior.GetDurability(armorIndex);
-        // playerInventoryBehavior.GetDurability(weaponIndex);
+            Sprite s = SwapDurabilitySprite(playerInventory.GetDurability(armorindex));
+            EquippedArmorDurability.style.backgroundImage = new StyleBackground(s);
 
+        }
+        else //nothing equipped
+        {
+            EquippedArmor.style.backgroundImage = null;
+            EquippedArmorDurability.style.backgroundImage = new StyleBackground(dur5);
+        }
+
+        //Weapon
+        int weaponIndex = playerInventory.GetEquippedWeapon(); //int of index 
+
+        if (weaponIndex >= 0)
+        {
+            Sprite sprt = Resources.Load<Sprite>(playerInventory.inventory.items[weaponIndex].image);
+            EquippedWeapon.style.backgroundImage = new StyleBackground(sprt);
+
+            Sprite s = SwapDurabilitySprite(playerInventory.GetDurability(weaponIndex));
+            EquippedWeaponDurability.style.backgroundImage = new StyleBackground(s);
+        }
+        else //nothing equipped
+        {
+            EquippedWeapon.style.backgroundImage = null;
+            EquippedWeaponDurability.style.backgroundImage = new StyleBackground(dur5);
+
+        }
+    }
+
+    Sprite SwapDurabilitySprite(int durabilityLevel)
+    {
+        Sprite dur;
+
+        //case 0-5
+        switch (durabilityLevel)
+        {
+            case 5:
+                dur = dur5;
+                break;
+            case 4:
+                dur = dur4;
+                break;
+            case 3:
+                dur = dur3;
+                break;
+            case 2:
+                dur = dur2;
+                break;
+            case 1:
+                dur = dur1;
+                break;
+            default:
+                dur = null;
+                break;
+        }
+
+        return dur;
     }
 
     public void InitiateScreenFadeIn()

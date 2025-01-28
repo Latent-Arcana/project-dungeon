@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -24,9 +23,9 @@ public class InventoryUI : MonoBehaviour
 
 
     //// Inventory /////
-    public PlayerInventory playerInventoryBehavior;
+    public PlayerInventory playerInventory;
     [SerializeField]
-    public Inventory player_inventory;
+    public Inventory inventory_class;
     private List<Item> inventory;
 
     // Durability Sprites //
@@ -60,8 +59,8 @@ public class InventoryUI : MonoBehaviour
         rows = table.Children().ToList();
 
         //inventory
-        playerInventoryBehavior = GameObject.Find("Player").GetComponent<PlayerInventory>();
-        inventory = playerInventoryBehavior.inventory.items;
+        playerInventory = GameObject.Find("Player").GetComponent<PlayerInventory>();
+        inventory = playerInventory.inventory.items;
 
         //audio
         menuAudioController = GameObject.Find("MenuAudio").GetComponent<MenuAudioController>();
@@ -124,7 +123,7 @@ public class InventoryUI : MonoBehaviour
 
         int i = 0;
 
-        inventory = playerInventoryBehavior.inventory.items;
+        inventory = playerInventory.inventory.items;
 
         //loop through items table
         for (i = 0; i < 10; i++)
@@ -148,7 +147,7 @@ public class InventoryUI : MonoBehaviour
                 //assign img for durability frame
 
                 //get durability
-                int durability = playerInventoryBehavior.GetDurability(i); //TODO: USE THIS LINE WHEN ITS IMPLEMENTED
+                int durability = playerInventory.GetDurability(i);
                //int durability = 2;
                 Sprite dur;
 
@@ -184,9 +183,9 @@ public class InventoryUI : MonoBehaviour
                 TextElement statsText = rows[i].Q("Stats").Children().First() as TextElement;
                 statsText.text = inventory[i].statsText.ToString();
 
-                //Debug.Log($"Comparing i ({i}) to armor ({player_inventory.equippedArmor}) and weapon ({player_inventory.equippedArmor})");
+                //Debug.Log($"Comparing i ({i}) to armor ({inventory_class.equippedArmor}) and weapon ({inventory_class.equippedArmor})");
 
-                if (i == player_inventory.equippedArmor || i == player_inventory.equippedWeapon)
+                if (i == inventory_class.equippedArmor || i == inventory_class.equippedWeapon)
                 {
                     //Debug.Log($"Equipped item in slot {i}");
                     equipmentToggles[i].SetValueWithoutNotify(true);
@@ -229,8 +228,8 @@ public class InventoryUI : MonoBehaviour
         Item equippedItem = inventory[index];
 
 
-        int currentArmor = playerInventoryBehavior.GetEquippedArmor();
-        int currentWeapon = playerInventoryBehavior.GetEquippedWeapon();
+        int currentArmor = playerInventory.GetEquippedArmor();
+        int currentWeapon = playerInventory.GetEquippedWeapon();
 
         if (equipped == true)
         {
@@ -284,7 +283,7 @@ public class InventoryUI : MonoBehaviour
 
     private void Consume(int index)
     {
-        playerInventoryBehavior.Consume(index);
+        playerInventory.Consume(index);
 
         // if the item was equipped, let's unequip it to update the screen
         if (equipmentToggles[index].value == true)
@@ -293,14 +292,14 @@ public class InventoryUI : MonoBehaviour
 
         }
 
-        playerInventoryBehavior.RemoveItem(index);
+        playerInventory.RemoveItem(index);
     }
     private void DropItem(int index)
     {
 
         menuAudioController.PlayAudioClip("ButtonClose");
 
-        playerInventoryBehavior.HandleDropItemNarration(index);
+        playerInventory.HandleDropItemNarration(index);
 
         // if the item was equipped, let's unequip it to update the screen
         if (equipmentToggles[index].value == true)
@@ -308,20 +307,20 @@ public class InventoryUI : MonoBehaviour
 
             equipmentToggles[index].SetValueWithoutNotify(false);
 
-            playerInventoryBehavior.UnequipStatsChange(inventory[index]);
+            playerInventory.UnequipStatsChange(inventory[index]);
         }
 
-        playerInventoryBehavior.RemoveItem(index);
+        playerInventory.RemoveItem(index);
     }
 
     private void Equip(int index)
     {
-        playerInventoryBehavior.EquipItem(index);
+        playerInventory.EquipItem(index);
     }
 
     private void Unequip(int index)
     {
-        playerInventoryBehavior.HandleUnequip(index);
+        playerInventory.HandleUnequip(index);
     }
 
     public void Event_OnInventoryEnter(object sender, EventArgs e)

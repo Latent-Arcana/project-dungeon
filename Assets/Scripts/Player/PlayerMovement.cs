@@ -45,6 +45,8 @@ public class PlayerMovement : MonoBehaviour
     private Sprite leftFacingSprite;
     public bool isRightFacing = true;
 
+    private bool enteredPortal = false;
+
     private SpriteRenderer spriteRenderer;
 
     private PlayerAnimationBehavior playerAnimationBehavior;
@@ -287,6 +289,8 @@ public class PlayerMovement : MonoBehaviour
 
         else if (collision.tag == "portal")
         {
+            enteredPortal = true;
+
             backgroundMusicController.StopAudio();
             ambientAudioController.PlayAudioClip("Portal");
 
@@ -438,11 +442,15 @@ public class PlayerMovement : MonoBehaviour
         // so we check to make sure it is still existing before invoking the event to prevent error
         if (collision.gameObject.tag == "room" && collision.gameObject.GetComponentInParent<Room>() != null && player.gameObject != null)
         {
-            OnRoomEnter.Invoke(this, new InputArgs
+            //if (!enteredPortal) //we think that this event was firing after portal was entered when the scene is changing, which caused errors
             {
-                type = "exit",
-                roomId = collision.gameObject.GetComponentInParent<Room>().roomId
-            });
+                OnRoomEnter.Invoke(this, new InputArgs
+                {
+                    type = "exit",
+                    roomId = collision.gameObject.GetComponentInParent<Room>().roomId
+                });
+            }
+
         }
 
         else if (collision.gameObject.tag == "hallway")

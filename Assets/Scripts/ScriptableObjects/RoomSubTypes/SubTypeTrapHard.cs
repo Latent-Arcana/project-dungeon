@@ -25,7 +25,6 @@ public class SubTypeTrapHard : RoomSubType
         Enums.ObjectType.Debris,
         Enums.ObjectType.Crates,
         Enums.ObjectType.Mushroom,
-        Enums.ObjectType.Chest,
         Enums.ObjectType.Spikes,
      };
 
@@ -39,7 +38,6 @@ public class SubTypeTrapHard : RoomSubType
         {Enums.ObjectType.Debris,2},
         {Enums.ObjectType.Crates,2},
         {Enums.ObjectType.Mushroom,2},
-        {Enums.ObjectType.Chest,1},
         {Enums.ObjectType.Spikes,2}
     };
 

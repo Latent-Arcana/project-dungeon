@@ -267,17 +267,17 @@ MonoBehaviour:
   - {fileID: 8614793181711624519, guid: 00744939916565c41aa0cf10b5f33d8d, type: 3}
   - {fileID: 8614793181711624519, guid: 6d79b0b9df6b6fe4f957d2d7dd3c4ed5, type: 3}
   - {fileID: 8614793181711624519, guid: dc8380e97e7d7244594e250f8abdc68b, type: 3}
-  roomSubType_Bedroom: {fileID: 11400000, guid: dfabc53f13983894db78db9224012230, type: 2}
-  roomSubType_Library: {fileID: 11400000, guid: bae9291ed53d58b4ea6a59fa93e6a1d3, type: 2}
-  roomSubType_Dining: {fileID: 11400000, guid: c93183e6fa93d2441ab381525a4c6b43, type: 2}
-  roomSubType_Armory: {fileID: 11400000, guid: 90637d01949a89242a2931f710606718, type: 2}
-  roomSubType_Treasure: {fileID: 11400000, guid: 9cd9bb067c10e3f4a974c70598646088, type: 2}
-  roomSubType_TrapEasy: {fileID: 11400000, guid: b58f1893413f5ca4d8f508628adf660e, type: 2}
-  roomSubType_TrapHard: {fileID: 11400000, guid: 8d8246f7f275f5a41bbefb412cbc5d31, type: 2}
-  roomSubType_EnemyEasy: {fileID: 11400000, guid: ee33862cd0666274bb3cee26179b9da6, type: 2}
-  roomSubType_EnemyHard: {fileID: 11400000, guid: 35f19c19db3199043846e545ec5d3e8b, type: 2}
-  roomSubType_Hospital: {fileID: 11400000, guid: 3f7b8921b40dcc141bb788b06c17bdd4, type: 2}
-  roomSubType_Shrine: {fileID: 11400000, guid: 2f575c71907b9e94c9fe8309393245e8, type: 2}
+  roomSubType_Bedroom: {fileID: 11400000, guid: 02c8b61fa9d47e140a37d1f3d3f6b6a5, type: 2}
+  roomSubType_Library: {fileID: 11400000, guid: 4505a90c5b3230a42b008fb189e37ffb, type: 2}
+  roomSubType_Dining: {fileID: 11400000, guid: 89b141b0cd110934488b7e29762887fb, type: 2}
+  roomSubType_Armory: {fileID: 11400000, guid: bf1fe2f74e6ac6d448862a006103fb79, type: 2}
+  roomSubType_Treasure: {fileID: 11400000, guid: 7c28463650467554d99e675f9cf7feb7, type: 2}
+  roomSubType_TrapEasy: {fileID: 11400000, guid: 54ec234c1b8bbc74093b9bdf753d4cb3, type: 2}
+  roomSubType_TrapHard: {fileID: 11400000, guid: 851a3eec8a9b51d4c909fa3a5e8e3e98, type: 2}
+  roomSubType_EnemyEasy: {fileID: 11400000, guid: 9ab007ac966d08d44a4f11ff855fe0bd, type: 2}
+  roomSubType_EnemyHard: {fileID: 11400000, guid: a01ac8293e5126948b0694f238cb1d5d, type: 2}
+  roomSubType_Hospital: {fileID: 11400000, guid: e664b373ea0638046b3640d649ec7317, type: 2}
+  roomSubType_Shrine: {fileID: 11400000, guid: 48f92a78df1035c45af6338811d06012, type: 2}
   portalPrefab: {fileID: 8384392175852888170, guid: 8a7448e4d1d6e944fa6044bfea670f0d, type: 3}
   objectCountManager: {fileID: 11400000, guid: 646bc53469675104ca92cb146572aa8e, type: 2}
 --- !u!114 &32644323
@@ -904,8 +904,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff45a6194a5ddd642b65642c374b329d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerInventoryBehavior: {fileID: 1311237463}
-  player_inventory: {fileID: 11400000, guid: 28215ae7375c4ab42862dc3518774c71, type: 2}
+  playerInventory: {fileID: 0}
+  inventory_class: {fileID: 11400000, guid: 28215ae7375c4ab42862dc3518774c71, type: 2}
   dur5: {fileID: 21300000, guid: 0bb28b6bee2958b4fba52036c97fe961, type: 3}
   dur4: {fileID: 21300000, guid: b32188cc78387d446950bc76da4ce80f, type: 3}
   dur3: {fileID: 21300000, guid: 10c9ab05bc696344bb0991ed6af59cd7, type: 3}
@@ -1790,6 +1790,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player_Stats: {fileID: 11400000, guid: 49cdfbab4b8796a41af4e48e5ee7d3d5, type: 2}
+  dur5: {fileID: 21300000, guid: 0bb28b6bee2958b4fba52036c97fe961, type: 3}
+  dur4: {fileID: 21300000, guid: b32188cc78387d446950bc76da4ce80f, type: 3}
+  dur3: {fileID: 21300000, guid: 10c9ab05bc696344bb0991ed6af59cd7, type: 3}
+  dur2: {fileID: 21300000, guid: 003c0a728bf9bbd4fbb1b82dc0397265, type: 3}
+  dur1: {fileID: 21300000, guid: 8e4680feb962ae84aad34954cf122719, type: 3}
 --- !u!1 &1311237456 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 772700091933905504, guid: d757ba61582e1f945a3be705c12a51e8, type: 3}

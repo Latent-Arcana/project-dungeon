@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88e200253b7fc7e409ef31356a6bbcc4, type: 3}
-  m_Name: Sub Type Enemy Easy
+  m_Script: {fileID: 11500000, guid: cc98017c0a1af4e4ea7d8e8bde71bcb3, type: 3}
+  m_Name: New Sub Type Library
   m_EditorClassIdentifier: 
