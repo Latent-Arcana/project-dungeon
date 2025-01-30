@@ -121,7 +121,20 @@ public class PlayerInventory : MonoBehaviour
 
     public void HandleBrokenItemNarration(Item item){ // TODO: IMPROVE
 
-        DungeonNarrator.Dungeon_Narrator.AddDungeonNarratorText($"{item.itemName} has broken.");
+        string splitNameArticle = item.itemName.Split(" ")[0];
+
+        if (splitNameArticle != null)
+        {
+            if (splitNameArticle == "The")
+            {
+                DungeonNarrator.Dungeon_Narrator.AddDungeonNarratorText($"{item.itemName} has broken.");
+            }
+
+            else
+            {
+                DungeonNarrator.Dungeon_Narrator.AddDungeonNarratorText($"Your {item.itemName} has broken.");
+            }
+        }
     }
 
     public void HandleUnequip(int index)

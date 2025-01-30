@@ -3,57 +3,72 @@
         {
             "itemID": "404",
             "itemName": "The Slayer of Dragons",
-            "DropChance": 10
+            "DropChance": 9
         },
         {
             "itemID": "401",
             "itemName": "The Almighty Doctrina",
-            "DropChance": 5
+            "DropChance": 9
         },
         {
             "itemID": "405",
             "itemName": "The Teeth that Bite Back",
-            "DropChance": 10
+            "DropChance": 9
         },
         {
             "itemID": "402",
             "itemName": "The Honour's Lament",
-            "DropChance": 10
+            "DropChance": 9
         },
         {
             "itemID": "403",
             "itemName": "The Left Hook, Right Hook",
-            "DropChance": 10
+            "DropChance": 9
         },
         {
             "itemID": "201",
             "itemName": "The Berserk's Armor",
-            "DropChance": 10
+            "DropChance": 9
         },
         {
             "itemID": "203",
             "itemName": "The Mark XIV Phebos",
-            "DropChance": 5
+            "DropChance": 9
         },
         {
             "itemID": "202",
             "itemName": "The Garon's Fur",
-            "DropChance": 10
+            "DropChance": 9
         },
         {
             "itemID": "204",
             "itemName": "The Wailing Fauld",
-            "DropChance": 10
+            "DropChance": 9
+        },
+        {
+            "itemID": "501",
+            "itemName": "Elixir of Health",
+            "DropChance": 5
         },
         {
             "itemID": "505",
             "itemName": "Vial of Pure Strength",
-            "DropChance": 10
+            "DropChance": 3
         },
         {
             "itemID": "504",
             "itemName": "Vial of Pure Speed",
-            "DropChance": 10
+            "DropChance": 3
+        },
+        {
+            "itemID": "502",
+            "itemName": "Vial of Pure Adrenaline",
+            "DropChance": 3
+        },
+        {
+            "itemID": "503",
+            "itemName": "Vial of Pure Stamina",
+            "DropChance": 5
         }
     ]
 }

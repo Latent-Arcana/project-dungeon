@@ -13,9 +13,9 @@ public class PlayerStatsManager : ScriptableObject
     [Header("BASE STATS")]
     // PLAYER BASE STATS
     public int BASE_MAX_HP = 50;
-    public int BASE_AGI = 1;
+    public int BASE_AGI = 2;
     public int BASE_SPD = 2;
-    public int BASE_STR = 1;
+    public int BASE_STR = 2;
     public int BASE_AP = 0;
 
     [SerializeField]
@@ -30,8 +30,8 @@ public class PlayerStatsManager : ScriptableObject
     public int _MAX_HP = 50;
     public int _HP = 50;
     public int _SPD = 2;
-    public int _AGI = 1; 
-    public int _STR = 1;
+    public int _AGI = 2; 
+    public int _STR = 2;
     public int _AP = 0;
 
     public int MAX_HP

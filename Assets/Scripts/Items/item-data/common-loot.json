@@ -3,67 +3,127 @@
         {
             "itemID": "304",
             "itemName": "Crude Saber",
-            "DropChance": 10
+            "DropChance": 6
         },
         {
             "itemID": "301",
             "itemName": "Crude Battle Axe",
-            "DropChance": 10
+            "DropChance": 6
+        },
+        {
+            "itemID": "307",
+            "itemName": "Crude Falchion",
+            "DropChance": 6
+        },
+        {
+            "itemID": "313",
+            "itemName": "Crude Heavy Mace",
+            "DropChance": 6
+        },
+        {
+            "itemID": "310",
+            "itemName": "Crude Halberd",
+            "DropChance": 6
         },
         {
             "itemID": "104",
             "itemName": "Crude Gambeson Robes",
-            "DropChance": 9
+            "DropChance": 6
         },
         {
             "itemID": "101",
             "itemName": "Crude Elk Hide Armor",
-            "DropChance": 9
+            "DropChance": 6
         },
         {
-            "itemID": "501",
-            "itemName": "Elixir of Health",
-            "DropChance": 10
+            "itemID": "107",
+            "itemName": "Crude Hauberk",
+            "DropChance": 6
+        },
+        {
+            "itemID": "113",
+            "itemName": "Crude Plackart",
+            "DropChance": 6
+        },
+        {
+            "itemID": "110",
+            "itemName": "Crude Laminar Plate Mail",
+            "DropChance": 6
         },
         {
             "itemID": "305",
             "itemName": "Fair Saber",
-            "DropChance": 8
+            "DropChance": 3
         },
         {
             "itemID": "302",
             "itemName": "Fair Battle Axe",
-            "DropChance": 8
+            "DropChance": 3
+        },
+        {
+            "itemID": "308",
+            "itemName": "Fair Falchion",
+            "DropChance": 3
+        },
+        {
+            "itemID": "315",
+            "itemName": "Fair Heavy Mace",
+            "DropChance": 3
+        },
+        {
+            "itemID": "311",
+            "itemName": "Fair Halberd",
+            "DropChance": 3
         },
         {
             "itemID": "105",
             "itemName": "Fair Gambeson Robes",
-            "DropChance": 7
+            "DropChance": 3
         },
         {
             "itemID": "102",
             "itemName": "Fair Elk Hide Armor",
-            "DropChance": 7
+            "DropChance": 3
         },
         {
-            "itemID": "306",
-            "itemName": "Excellent Saber",
-            "DropChance": 6
+            "itemID": "108",
+            "itemName": "Fair Hauberk",
+            "DropChance": 3
         },
         {
-            "itemID": "303",
-            "itemName": "Excellent Battle Axe",
-            "DropChance": 6
+            "itemID": "114",
+            "itemName": "Fair Plackart",
+            "DropChance": 3
         },
         {
-            "itemID": "106",
-            "itemName": "Excellent Gambeson Robes",
-            "DropChance": 5
+            "itemID": "111",
+            "itemName": "Fair Laminar Plate Mail",
+            "DropChance": 3
         },
         {
-            "itemID": "103",
-            "itemName": "Excellent Elk Hide Armor",
-            "DropChance": 5
+            "itemID": "501",
+            "itemName": "Elixir of Health",
+            "DropChance": 4
+        },
+        {
+            "itemID": "505",
+            "itemName": "Vial of Pure Strength",
+            "DropChance": 1
+        },
+        {
+            "itemID": "504",
+            "itemName": "Vial of Pure Speed",
+            "DropChance": 1
+        },
+        {
+            "itemID": "502",
+            "itemName": "Vial of Pure Adrenaline",
+            "DropChance": 1
+        },
+        {
+            "itemID": "503",
+            "itemName": "Vial of Pure Stamina",
+            "DropChance": 3
         }
     ]
 }

@@ -33,7 +33,7 @@ public class DungeonNarrator : MonoBehaviour
     private VisualElement screenOverlay;
     float screenFadeElapsedTime = 0f;
     float fadeInDuration = 1f;
-    float fadeOutDuration = 1f;
+    float fadeOutDuration = .65f;
     bool screenFadeCompleted = true;
 
     //Durability
@@ -1057,7 +1057,7 @@ public class DungeonNarrator : MonoBehaviour
 
             else
             {
-                AddDungeonNarratorText("You drop the " + item.itemName + ". It was swallowed by the aether.");
+                AddDungeonNarratorText("You drop the " + item.itemName + ". It is swallowed by the aether.");
             }
         }
 

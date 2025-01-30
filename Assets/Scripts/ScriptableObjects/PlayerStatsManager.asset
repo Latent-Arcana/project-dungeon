@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: PlayerStatsManager
   m_EditorClassIdentifier: 
   BASE_MAX_HP: 50
-  BASE_AGI: 1
+  BASE_AGI: 2
   BASE_SPD: 2
-  BASE_STR: 1
+  BASE_STR: 2
   BASE_AP: 0
   DEBUG_RESET: 1
   _MAX_HP: 50
-  _HP: 48
+  _HP: 50
   _SPD: 2
   _AGI: 1
   _STR: 1

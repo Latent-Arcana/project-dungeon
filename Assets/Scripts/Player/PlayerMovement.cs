@@ -222,6 +222,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 player.transform.position += (Vector3)direction;
                 Player_Stats.SetHP(Player_Stats.HP - 1, sourceObjectName: "Spikes");
+                playerInventory.ReduceDurability(playerInventory.GetEquippedArmor());
                 Dungeon_Narrator.AddDungeonNarratorText($"You take 1 damage from stepping on the spikes.");
             }
 

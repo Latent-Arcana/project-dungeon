@@ -377,7 +377,7 @@ public class EnemyBehavior : MonoBehaviour
                 {
                     Player_Stats.SetHP(Player_Stats.HP + _enemyDamageDealt, sourceObjectName: enemyStats.EnemyType.ToSafeString());
                     //update armor to be damaged
-                    playerInventory.ReduceDurability(playerArmorIndex);
+                    HandleArmorDurability();
                 }
 
                 if (!playerMissed)
@@ -399,7 +399,8 @@ public class EnemyBehavior : MonoBehaviour
                     }
 
                     // update the weapon to be damaged
-                    playerInventory.ReduceDurability(playerWeaponIndex);
+                    //playerInventory.ReduceDurability(playerWeaponIndex);
+                    HandleWeaponDurability();
                 }
 
             }
@@ -425,7 +426,7 @@ public class EnemyBehavior : MonoBehaviour
                     }
 
                     // update the weapon to be damaged
-                    playerInventory.ReduceDurability(playerWeaponIndex);
+                    HandleWeaponDurability();
                 }
 
                 if (!enemyMissed && behaviorState != BehaviorState.Dead)
@@ -434,7 +435,7 @@ public class EnemyBehavior : MonoBehaviour
                     Dungeon_Narrator.AddEnemyAttackText(enemyStats.EnemyType, Mathf.Abs(_enemyDamageDealt));
 
                     //update armor to be damaged
-                    playerInventory.ReduceDurability(playerArmorIndex);
+                    HandleArmorDurability();
 
                 }
             }
@@ -449,11 +450,21 @@ public class EnemyBehavior : MonoBehaviour
                 Player_Stats.SetHP(Player_Stats.HP + _enemyDamageDealt, sourceObjectName: enemyStats.EnemyType.ToSafeString());
 
                 //update armor to be damaged
-                playerInventory.ReduceDurability(playerArmorIndex);
+                HandleArmorDurability();
             }
 
         }
 
+    }
+
+    public void HandleWeaponDurability(){
+        int index = playerInventory.GetEquippedWeapon();
+        playerInventory.ReduceDurability(index);
+    }
+
+    public void HandleArmorDurability(){
+        int index = playerInventory.GetEquippedArmor();
+        playerInventory.ReduceDurability(index);
     }
 
     public virtual void Die(Enums.WeaponType killedByWeapon)
@@ -467,6 +478,7 @@ public class EnemyBehavior : MonoBehaviour
 
 
         gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        gameObject.GetComponent<BoxCollider2D>().enabled = false;
 
         GameObject corpse = gameObject.transform.GetChild(2).gameObject; // the Enemy Corpse object
 
@@ -474,8 +486,6 @@ public class EnemyBehavior : MonoBehaviour
         // check to see if we're standing on a corpse. If not, it's easy
         if (!standingOnCorpse)
         {
-
-            gameObject.GetComponent<BoxCollider2D>().enabled = false;
             corpse.SetActive(true);
 
         }
@@ -488,8 +498,6 @@ public class EnemyBehavior : MonoBehaviour
                 if (CheckPosition(borderPosition) == null)
                 {
                     corpse.transform.position = borderPosition;
-
-                    gameObject.GetComponent<BoxCollider2D>().enabled = false;
 
                     corpse.SetActive(true);
                 }

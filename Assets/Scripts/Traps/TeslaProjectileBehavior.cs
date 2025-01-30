@@ -10,6 +10,7 @@ public class TeslaProjectileBehavior : ProjectileBehavior
     public override void Attack(bool playerAttacked)
     {
         Player_Stats.SetHP(Player_Stats.HP - 2, sourceObjectName: "Tesla");
+        HandleArmorDurability();
         Dungeon_Narrator.AddDungeonNarratorText($"The electric bolt shocks you for 2 damage.");
     }
 
