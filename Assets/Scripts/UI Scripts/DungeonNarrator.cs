@@ -751,12 +751,12 @@ public class DungeonNarrator : MonoBehaviour
 
                 if (weaponType == Enums.WeaponType.HeavySlash || weaponType == Enums.WeaponType.HeavySpecial)
                 {
-                    missClause = " skids across ";
+                    missClause = " skids across";
                     enemyDescriptor = "'s ribs";
                 }
                 else if (weaponType == Enums.WeaponType.HeavyBlunt || weaponType == Enums.WeaponType.MiscSpecial)
                 {
-                    missClause = " swings past ";
+                    missClause = " swings past";
                     enemyDescriptor = "'s skull";
                 }
                 else if (weaponType == Enums.WeaponType.LightSlash || weaponType == Enums.WeaponType.LightSpecial)
@@ -775,12 +775,12 @@ public class DungeonNarrator : MonoBehaviour
 
                 if (weaponType == Enums.WeaponType.HeavySlash || weaponType == Enums.WeaponType.HeavySpecial)
                 {
-                    missClause = " skids across ";
+                    missClause = " skids across";
                     enemyDescriptor = "'s scales";
                 }
                 else if (weaponType == Enums.WeaponType.HeavyBlunt || weaponType == Enums.WeaponType.MiscSpecial)
                 {
-                    missClause = " swings past ";
+                    missClause = " swings past";
                     enemyDescriptor = "'s small frame";
                 }
                 else if (weaponType == Enums.WeaponType.LightSlash || weaponType == Enums.WeaponType.LightSpecial)
@@ -799,12 +799,12 @@ public class DungeonNarrator : MonoBehaviour
 
                 if (weaponType == Enums.WeaponType.HeavySlash || weaponType == Enums.WeaponType.HeavySpecial)
                 {
-                    missClause = " skids across ";
+                    missClause = " skids across";
                     enemyDescriptor = "'s tattered armor";
                 }
                 else if (weaponType == Enums.WeaponType.HeavyBlunt || weaponType == Enums.WeaponType.MiscSpecial)
                 {
-                    missClause = " swings past ";
+                    missClause = " swings past";
                     enemyDescriptor = "'s head";
                 }
                 else if (weaponType == Enums.WeaponType.LightSlash || weaponType == Enums.WeaponType.LightSpecial)
@@ -821,12 +821,12 @@ public class DungeonNarrator : MonoBehaviour
             case Enums.EnemyType.Bugbear:
                 if (weaponType == Enums.WeaponType.HeavySlash || weaponType == Enums.WeaponType.HeavySpecial)
                 {
-                    missClause = " skids across ";
+                    missClause = " skids across";
                     enemyDescriptor = "'s furry hide";
                 }
                 else if (weaponType == Enums.WeaponType.HeavyBlunt || weaponType == Enums.WeaponType.MiscSpecial)
                 {
-                    missClause = " swings past ";
+                    missClause = " swings past";
                     enemyDescriptor = "'s legs";
                 }
                 else if (weaponType == Enums.WeaponType.LightSlash || weaponType == Enums.WeaponType.LightSpecial)
@@ -845,12 +845,12 @@ public class DungeonNarrator : MonoBehaviour
 
                 if (weaponType == Enums.WeaponType.HeavySlash || weaponType == Enums.WeaponType.HeavySpecial)
                 {
-                    missClause = " slides through ";
+                    missClause = " slides through";
                     enemyDescriptor = "'s ethereal figure";
                 }
                 else if (weaponType == Enums.WeaponType.HeavyBlunt || weaponType == Enums.WeaponType.MiscSpecial)
                 {
-                    missClause = " swings past ";
+                    missClause = " swings past";
                     enemyDescriptor = "'s glowing shape";
                 }
                 else if (weaponType == Enums.WeaponType.LightSlash || weaponType == Enums.WeaponType.LightSpecial)
