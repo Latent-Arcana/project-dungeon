@@ -30,6 +30,15 @@ public class MenuAudioController : MonoBehaviour
     [SerializeField]
     private AudioClip audioClip_ScrollClose;
 
+    [SerializeField]
+    private AudioClip audioClip_EquipWeapon;
+
+    [SerializeField]
+    private AudioClip audioClip_EquipArmor;
+
+        [SerializeField]
+    private AudioClip audioClip_Unquip;
+
     void Awake()
     {
         menuAudioSource = GetComponent<AudioSource>();
@@ -50,7 +59,7 @@ public class MenuAudioController : MonoBehaviour
             case "MapOpen":
                 menuAudioSource.clip = audioClip_ScrollOpen;
                 break;
-            
+
             case "MapClose":
                 menuAudioSource.clip = audioClip_ScrollClose;
                 break;
@@ -66,6 +75,18 @@ public class MenuAudioController : MonoBehaviour
 
             case "Portal":
                 menuAudioSource.clip = audioClip_PlayGame;
+                break;
+
+            case "WeaponEquip":
+                menuAudioSource.clip = audioClip_EquipWeapon;
+                break;
+
+            case "Unquip":
+                menuAudioSource.clip = audioClip_Unquip;
+                break;
+
+            case "ArmorEquip":
+                menuAudioSource.clip = audioClip_EquipArmor;
                 break;
 
             default:

@@ -136,9 +136,9 @@ public class InventoryUI : MonoBehaviour
 
                 // Heirarchy of the html:
                 //Icon_Col
-                    //Icon_Bckgrnd
-                        //Durability
-                            //Icon
+                //Icon_Bckgrnd
+                //Durability
+                //Icon
 
                 //assign img for item
                 Sprite sprt = Resources.Load<Sprite>(inventory[i].image);
@@ -148,7 +148,7 @@ public class InventoryUI : MonoBehaviour
 
                 //get durability
                 int durability = playerInventory.GetDurability(i);
-               //int durability = 2;
+                //int durability = 2;
                 Sprite dur;
 
                 //case 0-5
@@ -235,6 +235,9 @@ public class InventoryUI : MonoBehaviour
         {
             if (equippedItem.type == Enums.ItemType.Armor)
             {
+
+                menuAudioController.PlayAudioClip("ArmorEquip");
+
                 // we can just straight up equip this
                 if (currentArmor == -1)
                 {
@@ -252,6 +255,9 @@ public class InventoryUI : MonoBehaviour
             }
             else if (equippedItem.type == Enums.ItemType.Weapon)
             {
+
+                menuAudioController.PlayAudioClip("WeaponEquip");
+
                 // we can just straight up equip this
                 if (currentWeapon == -1)
                 {
@@ -276,6 +282,9 @@ public class InventoryUI : MonoBehaviour
 
         else
         {
+
+            menuAudioController.PlayAudioClip("Unquip");
+
             Unequip(index);
         }
 

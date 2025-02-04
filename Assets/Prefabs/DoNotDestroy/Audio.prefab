@@ -444,6 +444,9 @@ MonoBehaviour:
   audioClip_PlayGame: {fileID: 8300000, guid: f076cf1ebaaee284aa3afc500813b8c6, type: 3}
   audioClip_ScrollOpen: {fileID: 8300000, guid: b71674c9f1cb9cb4fb7c40c35e0128c3, type: 3}
   audioClip_ScrollClose: {fileID: 8300000, guid: 8103140a7d84b8147948c2c0647d4aab, type: 3}
+  audioClip_EquipWeapon: {fileID: 8300000, guid: c4cf02011bc13b341a39817176bef13e, type: 3}
+  audioClip_EquipArmor: {fileID: 8300000, guid: 964e1fd0ddee72749a504a20462cc598, type: 3}
+  audioClip_Unquip: {fileID: 8300000, guid: d28f381b585510845825f8e9a434ee54, type: 3}
 --- !u!1 &8428759403118509146
 GameObject:
   m_ObjectHideFlags: 0
