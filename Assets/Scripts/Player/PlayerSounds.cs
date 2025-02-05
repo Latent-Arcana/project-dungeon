@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerSounds : MonoBehaviour
@@ -12,6 +13,9 @@ public class PlayerSounds : MonoBehaviour
     AudioClip ouch;
     [SerializeField]
     AudioClip punch;
+    [SerializeField]
+    AudioClip damage;
+
     [SerializeField]
     AudioClip ohhhhNoooooIDiiiiiied;
 
@@ -52,6 +56,11 @@ public class PlayerSounds : MonoBehaviour
 
     public void PlayDiedSound(){
         PlayerAudioSource.clip = ohhhhNoooooIDiiiiiied;
+        PlayerAudioSource.Play();
+    }
+
+    public void PlayDamageSound(){
+        PlayerAudioSource.clip = damage;
         PlayerAudioSource.Play();
     }
 }

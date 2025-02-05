@@ -67,6 +67,7 @@ public class EnemyBehavior : MonoBehaviour
 
     public Vector3[] borderPositions = new Vector3[4];
 
+    public AmbientAudioController ambientAudioController;
     public virtual void Awake()
     {
 
@@ -86,6 +87,8 @@ public class EnemyBehavior : MonoBehaviour
         animationBehavior = gameObject.GetComponent<EnemyAnimationBehavior>();
 
         gameStats = GameObject.Find("GameStats").GetComponent<GameStats>();
+
+        ambientAudioController = GameObject.Find("Audio").GetComponentInChildren<AmbientAudioController>();
 
     }
 
@@ -375,6 +378,7 @@ public class EnemyBehavior : MonoBehaviour
             {
                 if (!enemyMissed)
                 {
+                    ambientAudioController.PlayDamageAudio("Damage");
                     Player_Stats.SetHP(Player_Stats.HP + _enemyDamageDealt, sourceObjectName: enemyStats.EnemyType.ToSafeString());
                     //update armor to be damaged
                     HandleArmorDurability();
@@ -401,6 +405,7 @@ public class EnemyBehavior : MonoBehaviour
                     // update the weapon to be damaged
                     //playerInventory.ReduceDurability(playerWeaponIndex);
                     HandleWeaponDurability();
+                    ambientAudioController.PlayDamageAudio("Damage");
                 }
 
             }
@@ -427,6 +432,7 @@ public class EnemyBehavior : MonoBehaviour
 
                     // update the weapon to be damaged
                     HandleWeaponDurability();
+                    ambientAudioController.PlayDamageAudio("Damage");
                 }
 
                 if (!enemyMissed && behaviorState != BehaviorState.Dead)
@@ -436,6 +442,7 @@ public class EnemyBehavior : MonoBehaviour
 
                     //update armor to be damaged
                     HandleArmorDurability();
+                    ambientAudioController.PlayDamageAudio("Damage");
 
                 }
             }
@@ -451,6 +458,7 @@ public class EnemyBehavior : MonoBehaviour
 
                 //update armor to be damaged
                 HandleArmorDurability();
+                ambientAudioController.PlayDamageAudio("Damage");
             }
 
         }

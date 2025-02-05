@@ -101,6 +101,7 @@ public class GhostProjectileBehavior : ProjectileBehavior
         {
             Player_Stats.SetHP(Player_Stats.HP - 3, sourceObjectName: "Ghost");
             HandleArmorDurability();
+            ambientAudioController.PlayDamageAudio("Damage");
             Dungeon_Narrator.AddDungeonNarratorText($"Your stamina is drained by the spirit's ice-cold spectral claws.");
         }
 

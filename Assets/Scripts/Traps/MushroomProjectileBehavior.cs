@@ -11,6 +11,7 @@ public class MushroomProjectileBehavior : ProjectileBehavior
     {
         Player_Stats.SetHP(Player_Stats.HP - 3, sourceObjectName: "Gas");
         HandleArmorDurability();
+        ambientAudioController.PlayDamageAudio("Damage");
         Dungeon_Narrator.AddDungeonNarratorText($"The mushroom's toxic gas chokes you for 3 damage.");
     }
 

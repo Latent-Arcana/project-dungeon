@@ -31,6 +31,8 @@ public class ScoreController : MonoBehaviour
 
     bool portalsSpawned = false;
 
+    private AmbientAudioController ambientAudioController;
+
     void Awake()
     {
         playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
@@ -49,6 +51,8 @@ public class ScoreController : MonoBehaviour
 
         //Spawn a marker in room 0
         mapMarker.PlacePresetMarker(allRooms[0].GetComponent<Room>());
+
+        ambientAudioController = GameObject.Find("Audio").GetComponentInChildren<AmbientAudioController>();
 
     }
 
@@ -288,6 +292,7 @@ public class ScoreController : MonoBehaviour
 
     private void SpawnPortal()
     {
+        ambientAudioController.PlayAudioClip("PortalSpawn");
         foreach (GameObject room in allRooms)
         {
             //not every room will have a portal spawn

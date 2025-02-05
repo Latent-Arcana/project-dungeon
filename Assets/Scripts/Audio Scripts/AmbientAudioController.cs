@@ -27,6 +27,13 @@ public class AmbientAudioController : MonoBehaviour
 
 
     [SerializeField]
+    AudioClip audioClip_Damage;
+
+
+    [SerializeField]
+    AudioClip audioClip_PortalSpawn;
+
+    [SerializeField]
     AudioClip audioClip_Bless;
     void Awake()
     {
@@ -52,6 +59,23 @@ public class AmbientAudioController : MonoBehaviour
                 break;
             case "Bookshelf":
                 ambientAudioSource.clip = audioClip_Bookshelf;
+                break;
+            case "PortalSpawn":
+                ambientAudioSource.clip = audioClip_PortalSpawn;
+                break;
+            default:
+                return;
+        }
+
+        ambientAudioSource.Play();
+    }
+
+    public void PlayDamageAudio(string clipName)
+    {
+        switch (clipName)
+        {
+            case "Damage":
+                ambientAudioSource.clip = audioClip_Damage;
                 break;
             default:
                 return;
