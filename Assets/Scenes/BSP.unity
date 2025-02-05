@@ -267,6 +267,8 @@ MonoBehaviour:
   - {fileID: 8614793181711624519, guid: 00744939916565c41aa0cf10b5f33d8d, type: 3}
   - {fileID: 8614793181711624519, guid: 6d79b0b9df6b6fe4f957d2d7dd3c4ed5, type: 3}
   - {fileID: 8614793181711624519, guid: dc8380e97e7d7244594e250f8abdc68b, type: 3}
+  - {fileID: 7557685827397718423, guid: 9c96705c6eb725b43a30c186f9756313, type: 3}
+  - {fileID: 7557685827397718423, guid: 36ae990037c3dd547a3c8c48864cafdc, type: 3}
   roomSubType_Bedroom: {fileID: 11400000, guid: 02c8b61fa9d47e140a37d1f3d3f6b6a5, type: 2}
   roomSubType_Library: {fileID: 11400000, guid: 4505a90c5b3230a42b008fb189e37ffb, type: 2}
   roomSubType_Dining: {fileID: 11400000, guid: 89b141b0cd110934488b7e29762887fb, type: 2}

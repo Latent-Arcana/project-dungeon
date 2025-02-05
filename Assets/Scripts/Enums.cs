@@ -91,7 +91,9 @@ public static class Enums
     {
         Strength = 1,
         Speed = 2,
-        Agility = 3
+        Agility = 3,
+        Armor = 4,
+        Weapon = 5
     }
 
     public enum WeaponType{

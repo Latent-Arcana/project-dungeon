@@ -11,7 +11,7 @@ public class ShrineBehavior : MonoBehaviour
     public bool hasTriggered = false;
 
 
-    public void Bless(PlayerStatsManager Player_Stats)
+    public void Bless(PlayerStatsManager Player_Stats, PlayerInventory playerInventory = null)
     {
 
         if (hasTriggered)
@@ -39,6 +39,26 @@ public class ShrineBehavior : MonoBehaviour
                 Player_Stats.SetAGI(Player_Stats.AGI + 1);
                 DungeonNarrator.Dungeon_Narrator.AddDungeonNarratorText("Al'qunaq grants you agility.");
 
+                break;
+
+            case Enums.ShrineType.Armor:
+                if (playerInventory != null)
+                {
+                    int equippedArmor = playerInventory.GetEquippedArmor();
+                    Armor armorData = playerInventory.inventory.items[equippedArmor] as Armor;
+                    playerInventory.SetDurability(equippedArmor, armorData.DUR);
+                    DungeonNarrator.Dungeon_Narrator.AddDungeonNarratorText("You repair your armor.");
+                }
+                break;
+
+            case Enums.ShrineType.Weapon:
+                if (playerInventory != null)
+                {
+                    int equippedWeapon = playerInventory.GetEquippedWeapon();
+                    Weapon weaponData = playerInventory.inventory.items[equippedWeapon] as Weapon;
+                    playerInventory.SetDurability(equippedWeapon, weaponData.DUR);
+                    DungeonNarrator.Dungeon_Narrator.AddDungeonNarratorText("You repair your weapon.");
+                }
                 break;
         }
 
