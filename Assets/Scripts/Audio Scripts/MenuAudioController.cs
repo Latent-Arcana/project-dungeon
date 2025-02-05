@@ -36,8 +36,11 @@ public class MenuAudioController : MonoBehaviour
     [SerializeField]
     private AudioClip audioClip_EquipArmor;
 
-        [SerializeField]
+    [SerializeField]
     private AudioClip audioClip_Unquip;
+
+    [SerializeField]
+    private AudioClip audioClip_Consume;
 
     void Awake()
     {
@@ -87,6 +90,10 @@ public class MenuAudioController : MonoBehaviour
 
             case "ArmorEquip":
                 menuAudioSource.clip = audioClip_EquipArmor;
+                break;
+
+            case "Consume":
+                menuAudioSource.clip = audioClip_Consume;
                 break;
 
             default:

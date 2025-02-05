@@ -447,6 +447,7 @@ MonoBehaviour:
   audioClip_EquipWeapon: {fileID: 8300000, guid: c4cf02011bc13b341a39817176bef13e, type: 3}
   audioClip_EquipArmor: {fileID: 8300000, guid: 964e1fd0ddee72749a504a20462cc598, type: 3}
   audioClip_Unquip: {fileID: 8300000, guid: d28f381b585510845825f8e9a434ee54, type: 3}
+  audioClip_Consume: {fileID: 8300000, guid: 5ef6171a359a749419e5494e279b3d80, type: 3}
 --- !u!1 &8428759403118509146
 GameObject:
   m_ObjectHideFlags: 0

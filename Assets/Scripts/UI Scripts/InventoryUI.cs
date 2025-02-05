@@ -224,6 +224,7 @@ public class InventoryUI : MonoBehaviour
         {
             return;
         }
+
         // first let's just figure out what we're even trying to check
         Item equippedItem = inventory[index];
 
@@ -276,15 +277,22 @@ public class InventoryUI : MonoBehaviour
 
             else if (equippedItem.type == Enums.ItemType.Consumable)
             {
+                menuAudioController.PlayAudioClip("Consume");
                 Consume(index);
             }
         }
 
-        else
+        else //unequip
         {
+            //only play the unequip button if you actually clicked it
+            //don't play the audio if the unequip is coming from equipping a different item
+            if (equippedItem.type == Enums.ItemType.Armor && currentArmor == index ||
+            equippedItem.type == Enums.ItemType.Weapon && currentWeapon == index)
+            {
+                menuAudioController.PlayAudioClip("Unquip");
+            }
 
-            menuAudioController.PlayAudioClip("Unquip");
-
+            //actually unequip the thing
             Unequip(index);
         }
 
@@ -306,7 +314,7 @@ public class InventoryUI : MonoBehaviour
     private void DropItem(int index)
     {
 
-        menuAudioController.PlayAudioClip("ButtonClose");
+        menuAudioController.PlayAudioClip("Unquip");
 
         playerInventory.HandleDropItemNarration(index);
 
