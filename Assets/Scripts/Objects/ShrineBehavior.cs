@@ -47,6 +47,7 @@ public class ShrineBehavior : MonoBehaviour
                     int equippedArmor = playerInventory.GetEquippedArmor();
                     Armor armorData = playerInventory.inventory.items[equippedArmor] as Armor;
                     playerInventory.SetDurability(equippedArmor, armorData.DUR);
+                    Debug.Log($"equipped armor is : " + armorData.itemName);
                     DungeonNarrator.Dungeon_Narrator.AddDungeonNarratorText("You repair your armor.");
                 }
                 break;
@@ -57,6 +58,7 @@ public class ShrineBehavior : MonoBehaviour
                     int equippedWeapon = playerInventory.GetEquippedWeapon();
                     Weapon weaponData = playerInventory.inventory.items[equippedWeapon] as Weapon;
                     playerInventory.SetDurability(equippedWeapon, weaponData.DUR);
+                    Debug.Log($"equipped weapon is : " + weaponData.itemName);
                     DungeonNarrator.Dungeon_Narrator.AddDungeonNarratorText("You repair your weapon.");
                 }
                 break;

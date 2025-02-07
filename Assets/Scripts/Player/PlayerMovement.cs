@@ -271,7 +271,7 @@ public class PlayerMovement : MonoBehaviour
                 {
                     ambientAudioController.PlayAudioClip("Bless");
                     playerAnimationBehavior.BuffStats(shrineBehavior.shrineType);
-                    shrineBehavior.Bless(Player_Stats);
+                    shrineBehavior.Bless(Player_Stats, playerInventory);
                 }
 
             }

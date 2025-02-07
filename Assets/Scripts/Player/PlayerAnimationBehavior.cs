@@ -50,6 +50,11 @@ public class PlayerAnimationBehavior : MonoBehaviour
             animationName = "strength-buff";
         }
 
+        else if (buffType == Enums.ShrineType.Armor || buffType == Enums.ShrineType.Weapon)
+        {
+            return;
+        }
+
         animator.Play(animationName);
 
         StartCoroutine(ResetToIdle(animationName, 1.5f));
