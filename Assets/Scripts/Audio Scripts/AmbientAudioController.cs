@@ -14,6 +14,9 @@ public class AmbientAudioController : MonoBehaviour
     AudioSource ambientAudioSource;
 
     [SerializeField]
+    AudioSource damageAudioSource;
+
+    [SerializeField]
     AudioClip audioClip_Portal;
 
     [SerializeField]
@@ -37,7 +40,9 @@ public class AmbientAudioController : MonoBehaviour
     AudioClip audioClip_Bless;
     void Awake()
     {
-        ambientAudioSource = GetComponent<AudioSource>();
+
+        ambientAudioSource = GameObject.Find("AmbientAudio").GetComponent<AudioSource>();
+        damageAudioSource = GameObject.Find("DamageAudio").GetComponent<AudioSource>();
     }
 
 
@@ -75,13 +80,13 @@ public class AmbientAudioController : MonoBehaviour
         switch (clipName)
         {
             case "Damage":
-                ambientAudioSource.clip = audioClip_Damage;
+                damageAudioSource.clip = audioClip_Damage;
                 break;
             default:
                 return;
         }
 
-        ambientAudioSource.Play();
+        damageAudioSource.Play();
     }
 
 }
