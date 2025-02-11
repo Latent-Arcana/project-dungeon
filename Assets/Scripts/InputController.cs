@@ -24,7 +24,7 @@ public class InputController : MonoBehaviour
     public event EventHandler<InputArgs> OnInput;
     public event EventHandler OnMapEnter;
     public event EventHandler OnInventoryEnter;
-    public event EventHandler OnMenuEnter;
+    public event EventHandler<MenuArgs> OnMenuEnter;
 
     public InputState currentInputState = InputState.Loading;
 
@@ -36,6 +36,11 @@ public class InputController : MonoBehaviour
         public Vector2 direction;
     }
 
+    public class MenuArgs : EventArgs
+    {
+        public InputState inputState;
+    }
+
     //TODO: implement this in the M and I key if statements, and move enum to the enums file
     public enum InputState
     {
@@ -43,7 +48,8 @@ public class InputController : MonoBehaviour
         Gameplay,
         MapMenu,
         PauseMenu,
-        InventoryMenu
+        InventoryMenu,
+        PauseMenu_Sub,
     }
 
     private void OnEnable()
@@ -85,7 +91,7 @@ public class InputController : MonoBehaviour
         loadingScreen.SetActive(false);
 
         Dungeon_Narrator.InitiateScreenFadeIn();
-        
+
 
         movementEnabled = true;
     }
@@ -154,6 +160,13 @@ public class InputController : MonoBehaviour
                 CloseMap();
             }
 
+            //Exit a sub menu of the Pause Menu, go back to the Pause menu
+            else if (currentInputState == InputState.PauseMenu_Sub)
+            {
+                menuAudioController.PlayAudioClip("ButtonClose");
+                OnMenuEnter.Invoke(this, new MenuArgs { inputState = InputState.PauseMenu_Sub }); //throw event to InventoryUI to toggle UI element
+            }
+
         }
 
         else if (Input.GetKeyUp(KeyCode.I) || Input.GetKeyUp(KeyCode.Tab))
@@ -209,6 +222,7 @@ public class InputController : MonoBehaviour
 
 
     //Functions to toggle game state, UI elements, and movement
+    
     public void ReturnToGameplay()
     {
         menuAudioController.PlayAudioClip("ButtonClose");
@@ -219,7 +233,7 @@ public class InputController : MonoBehaviour
     public void PauseGame()
     {
         menuAudioController.PlayAudioClip("ButtonOpen");
-        OnMenuEnter.Invoke(this, EventArgs.Empty); //throw event to InventoryUI to toggle UI element
+        OnMenuEnter.Invoke(this, new MenuArgs { inputState = InputState.Gameplay }); //throw event to InventoryUI to toggle UI element
         currentInputState = InputState.PauseMenu;
         movementEnabled = false;
     }
@@ -227,7 +241,7 @@ public class InputController : MonoBehaviour
     public void ClosePauseMenu()
     {
         menuAudioController.PlayAudioClip("ButtonClose");
-        OnMenuEnter.Invoke(this, EventArgs.Empty); //throw event to InventoryUI to toggle UI element
+        OnMenuEnter.Invoke(this, new MenuArgs { inputState = InputState.PauseMenu }); //throw event to InventoryUI to toggle UI element
         ReturnToGameplay();
     }
 
@@ -274,7 +288,8 @@ public class InputController : MonoBehaviour
         movementEnabled = !movementEnabled;
     }
 
-    public void PlayerInputDeath(){
+    public void PlayerInputDeath()
+    {
         movementEnabled = false;
     }
 

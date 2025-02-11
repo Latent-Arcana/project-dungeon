@@ -1,7 +1,7 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI%20Toolkit/MenuStyleSheet.uss?fileID=7433441132597879392&amp;guid=8622666c0c77f81419510e23e5912e27&amp;type=3#MenuStyleSheet" />
     <ui:VisualElement name="Container" class="menu-container-main" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/Rooms/Walls_Testing/dungeon-floor.png?fileID=21300000&amp;guid=fbeb65c950ade98478953810c4543e94&amp;type=3#dungeon-floor&quot;); display: flex; justify-content: center; -unity-background-image-tint-color: rgb(0, 0, 0);">
-        <ui:VisualElement name="MainContainer" style="flex-grow: 1; display: none;">
+        <ui:VisualElement name="MainContainer" style="flex-grow: 1; display: flex;">
             <ui:Label tabindex="-1" text="CARTOGRAPHER.EXE" parse-escape-sequences="true" display-tooltip-when-elided="true" name="MainMenuTitle" class="text-title-main-menu" style="display: flex;" />
             <ui:VisualElement name="ButtonGroup" class="button-container" style="flex-grow: 1;">
                 <ui:Button text="Start" parse-escape-sequences="true" display-tooltip-when-elided="true" name="PlayButton" class="menu-button" style="padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0;" />
@@ -23,7 +23,7 @@
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:VisualElement name="OptionsContainer" class="options-container" style="flex-grow: 1; display: flex;">
+        <ui:VisualElement name="OptionsContainer" class="options-container" style="flex-grow: 1; display: none;">
             <ui:Label tabindex="-1" text="CARTOGRAPHER.EXE" parse-escape-sequences="true" display-tooltip-when-elided="true" name="MainMenuTitle" class="text-title-main-menu" style="display: flex;" />
             <ui:Label tabindex="-1" text="Volume" parse-escape-sequences="true" display-tooltip-when-elided="true" name="VolumeLabel" class="text-body-main-menu" />
             <ui:Slider label="Music" high-value="1" low-value="0.0001" name="VolumeMusicSlider" class="text-body-main-menu" />
@@ -31,7 +31,7 @@
             <ui:Slider label="Sound Effects" high-value="1" low-value="0.0001" name="VolumeAmbientSlider" class="text-body-main-menu" />
             <ui:Toggle label="Fullscreen" name="FullScreen" value="false" class="text-body-main-menu inventory-toggle" />
             <ui:VisualElement name="ButtonGroup" class="button-container" style="flex-grow: 1;">
-                <ui:Button text="Back" parse-escape-sequences="true" display-tooltip-when-elided="true" name="BackButton" class="menu-button" />
+                <ui:Button text="Back" parse-escape-sequences="true" display-tooltip-when-elided="true" name="BackButtonOptions" class="menu-button" />
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="PlayingTheGame" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/UI%20Sprites/PlayingTheGame.png?fileID=2800000&amp;guid=c89b1f38fd066f845b39e331c13d34f2&amp;type=3#PlayingTheGame&quot;); -unity-background-scale-mode: scale-to-fit; display: none;">

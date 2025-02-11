@@ -440,7 +440,8 @@ GameObject:
   m_Component:
   - component: {fileID: 339782762}
   - component: {fileID: 339782761}
-  - component: {fileID: 339782760}
+  - component: {fileID: 339782763}
+  - component: {fileID: 339782764}
   m_Layer: 5
   m_Name: PauseMenuUIDocument
   m_TagString: Untagged
@@ -448,22 +449,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &339782760
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 339782759}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a903d558584edb84a8fcafa417ddb1f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameCompleted: 0
-  audioMixer: {fileID: 24100000, guid: f7f206a5337464844b44955228165480, type: 2}
-  Player_Stats: {fileID: 11400000, guid: 49cdfbab4b8796a41af4e48e5ee7d3d5, type: 2}
-  Player_Inventory: {fileID: 11400000, guid: 28215ae7375c4ab42862dc3518774c71, type: 2}
 --- !u!114 &339782761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -495,6 +480,31 @@ Transform:
   m_Children: []
   m_Father: {fileID: 613920990}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &339782763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 339782759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48d2b31c6ff9fce47b8e769fc42ede0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioMixer: {fileID: 24100000, guid: f7f206a5337464844b44955228165480, type: 2}
+--- !u!114 &339782764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 339782759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a53404c63a5bb74fabf394c983fd212, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &366639579
 GameObject:
   m_ObjectHideFlags: 0
