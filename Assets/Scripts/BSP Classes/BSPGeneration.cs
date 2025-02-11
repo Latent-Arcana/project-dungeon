@@ -910,7 +910,21 @@ public class BSPGeneration : MonoBehaviour
 
         else if (roomType == Enums.RoomType.Lore)
         {
-            rand = UnityEngine.Random.Range(100, 104);
+            float spawnRate = UnityEngine.Random.value;
+
+            if(spawnRate < .10f){
+                rand = 100; // Treasure
+            }
+            else if(spawnRate < .5f){
+                rand = 101; // Library
+            }
+            else if(spawnRate < .8f){
+                rand = 102; // Armory
+            }
+            else{
+                rand = 103; // Dining
+            }
+            //rand = UnityEngine.Random.Range(100, 104);
         }
 
         Enums.RoomSubType subType = (Enums.RoomSubType)rand;

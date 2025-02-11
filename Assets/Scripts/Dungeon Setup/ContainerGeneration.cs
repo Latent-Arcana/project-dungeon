@@ -98,47 +98,6 @@ public class ContainerGeneration : MonoBehaviour
 
     }
 
-
-    /// <summary>
-    /// This is where we define what kind of objects can have what kinds of items in them
-    /// </summary>
-    /// <param name="objectType"></param>
-    /// <returns></returns>
-    private List<Item> GetPossibleItems(ObjectType objectType)
-    {
-
-        List<Item> possibleItems = new List<Item>();
-
-        // A chest can have anything that isn't a book or a special item
-        if (objectType == ObjectType.Chest)
-        {
-
-            possibleItems = itemsDatabase.Where(x => x.type != ItemType.Book && x.type != ItemType.Special).ToList();
-
-        }
-
-        // A bookshelf can only have books
-        else if (objectType == ObjectType.Bookshelf)
-        {
-
-            possibleItems = itemsDatabase.Where(x => x.type != ItemType.Book && x.type != ItemType.Special).ToList();
-
-        }
-
-        else if (objectType == ObjectType.Corpse)
-        {
-            possibleItems = itemsDatabase;
-        }
-
-        else
-        {
-            possibleItems = null;
-        }
-
-        return possibleItems;
-
-    }
-
     /// <summary>
     /// This function returns a list of items that correspond to the rarity level relevant to the container being opened
     /// </summary>
@@ -153,13 +112,9 @@ public class ContainerGeneration : MonoBehaviour
         {
             case ObjectType.Chest:
 
-                if (rarityCheck < .60f)
+                if (rarityCheck < .70f)
                 {
                     return lootTable.commonLoot;
-                }
-                else if (rarityCheck >= .60f && rarityCheck < .80f)
-                {
-                    return new List<LootItem>();
                 }
 
                 else
