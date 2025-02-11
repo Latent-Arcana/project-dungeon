@@ -71,20 +71,6 @@ public class ScoreController : MonoBehaviour
         playerMovement.PortalEntered -= Portals_OnPortalEntered;
     }
 
-    void Update()
-    {
-        //TODO: Delete all this, it's DEBUG
-
-        if (Input.GetKeyUp(KeyCode.Delete))
-        {
-            GameObject.Find("Player").GetComponentInChildren<PlayerStats>().DEBUG_DIE();
-        }
-        else if (Input.GetKeyUp(KeyCode.P))
-        {
-            SpawnPortal();
-        }
-    }
-
     /// <summary>
     /// Add a room marker to the list of markers. If one already exists for a room, delete the game object
     /// </summary>

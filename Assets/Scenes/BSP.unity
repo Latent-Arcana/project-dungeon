@@ -269,6 +269,10 @@ MonoBehaviour:
   - {fileID: 8614793181711624519, guid: dc8380e97e7d7244594e250f8abdc68b, type: 3}
   - {fileID: 7557685827397718423, guid: 9c96705c6eb725b43a30c186f9756313, type: 3}
   - {fileID: 7557685827397718423, guid: 36ae990037c3dd547a3c8c48864cafdc, type: 3}
+  - {fileID: 7557685827397718423, guid: 2bc777d91ca8519418f2bed5997de114, type: 3}
+  - {fileID: 7557685827397718423, guid: d14efc4c68dc84540a19a47a2c7d2046, type: 3}
+  - {fileID: 7557685827397718423, guid: d2889c09b2085a44f908cb0fd1aba05a, type: 3}
+  - {fileID: 7557685827397718423, guid: f0989cd93707f154199eab0a38399182, type: 3}
   roomSubType_Bedroom: {fileID: 11400000, guid: 02c8b61fa9d47e140a37d1f3d3f6b6a5, type: 2}
   roomSubType_Library: {fileID: 11400000, guid: 4505a90c5b3230a42b008fb189e37ffb, type: 2}
   roomSubType_Dining: {fileID: 11400000, guid: 89b141b0cd110934488b7e29762887fb, type: 2}
@@ -411,6 +415,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DEBUG_SeedGen: 0
   seed: 0
+  dungeonLevel: 1
   bspController: {fileID: 0}
   dangerGenerator: {fileID: 0}
   objectGenerator: {fileID: 0}
@@ -430,6 +435,7 @@ MonoBehaviour:
     mappedDungeons: 
   seedsInSaveData: 
   roomsGenerated: 0
+  gameStats: {fileID: 0}
 --- !u!1 &339782759
 GameObject:
   m_ObjectHideFlags: 0

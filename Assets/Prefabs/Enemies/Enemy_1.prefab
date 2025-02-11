@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: bb525ac3aedf4b04bacfc3c72ea69eca, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.6}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -171,7 +171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a83678c7c75932a4cae0cf654975e5c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxItemCount: 2
+  maxItemCount: 1
   items: []
 --- !u!1 &3495844657707522258
 GameObject:
@@ -583,6 +583,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player_Stats: {fileID: 11400000, guid: 49cdfbab4b8796a41af4e48e5ee7d3d5, type: 2}
+  enemyType: 0
   room: 0
   currentRoom: 0
   id: 0
@@ -596,6 +597,7 @@ MonoBehaviour:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}
+  ambientAudioController: {fileID: 0}
 --- !u!114 &3475753157248501835
 MonoBehaviour:
   m_ObjectHideFlags: 0
