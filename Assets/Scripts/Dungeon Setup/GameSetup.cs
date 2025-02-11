@@ -17,6 +17,9 @@ public class GameSetup : MonoBehaviour
     [SerializeField]
     [Tooltip("If you want to use the same seed over and over (DEBUG_SeedGen), remember to set the seed value here")]
     public int seed = 0;
+    [SerializeField]
+    [Tooltip("Keep in mind, dungeon level is 1-indexed")]
+    public int dungeonLevel = 1;
 
     [Header("GAMEPLAY")]
     public BSPGeneration bspController;
@@ -38,6 +41,8 @@ public class GameSetup : MonoBehaviour
 
     public bool roomsGenerated;
 
+    public GameStats gameStats;
+
 
     void Awake()
     {
@@ -56,6 +61,7 @@ public class GameSetup : MonoBehaviour
         // (Seed generation based on what you enter in the editor)
 
         loadedExplorationData = SaveSystem.LoadPlayerSaveData();
+
         if (loadedExplorationData != null)
         {
             seedsInSaveData = loadedExplorationData.mappedDungeons;
@@ -65,6 +71,7 @@ public class GameSetup : MonoBehaviour
         if (!DEBUG_SeedGen)
         {
             seed = CreateSeed();
+            UnityEngine.Random.InitState(seed);
         }
 
         else // if we want to regenerate the same seed over and over ( debug seedgen is true)
@@ -73,8 +80,6 @@ public class GameSetup : MonoBehaviour
         }
 
         seedsInDungeon = new() { seed };
-
-
 
     }
 
@@ -102,15 +107,21 @@ public class GameSetup : MonoBehaviour
         // The generator produces this via functions within it as a singleton
         Container_Generator.InitializeContainerGenerator(itemsDatabase, lootTable);
 
-        GameStats gameStats = GameObject.Find("GameStats").GetComponent<GameStats>();
+        gameStats = GameObject.Find("GameStats").GetComponent<GameStats>();
 
-   //     Debug.Log("Current Dungeon Level is: " + gameStats.currentDungeonLevel);
-        //bsp
-        bspController.StartBspGeneration(gameStats.currentDungeonLevel);
+        if (!DEBUG_SeedGen)
+        {
+            //bsp
+            bspController.StartBspGeneration(gameStats.currentDungeonLevel);
+        }
+        else{
+            bspController.StartBspGeneration(dungeonLevel);
+        }
+
 
         // adjust the camera position and scale based on the ratio of the map
 
-         //   int mapCenter = -500 + Math.Min((25 + gameStats.currentDungeonLevel) / 2, 42);
+        //   int mapCenter = -500 + Math.Min((25 + gameStats.currentDungeonLevel) / 2, 42);
 
         // Map grows by 1 in both width and height per level
         int mapSize = 25 + gameStats.currentDungeonLevel;
@@ -121,7 +132,7 @@ public class GameSetup : MonoBehaviour
         mapCamera.orthographicSize = Math.Min(initialOrthographicSize + ((mapSize - initialMapSize) / 2f), initialOrthographicSize + 30);
 
         // Calculate the center of the map based on the map size
-        float mapCenterX = Math.Min(mapSize  / 2, 42);
+        float mapCenterX = Math.Min(mapSize / 2, 42);
         float mapCenterY = Math.Min(mapSize / 2, 42);
 
         // Adjust the camera's position to center on the growing map
@@ -207,12 +218,9 @@ public class GameSetup : MonoBehaviour
         return bspController.allRooms[randRoomIndex].GetComponent<Room>();
     }
 
-
-
-    //TODO: maybe catch events here, if we don't want to wait for the whole funtion to return
-
-
-
-    //TODO: Throw events over to the Loading screen UI
+    public string GetFormattedSeedData()
+    {
+        return seed + "-" + gameStats.currentDungeonLevel;
+    }
 
 }
