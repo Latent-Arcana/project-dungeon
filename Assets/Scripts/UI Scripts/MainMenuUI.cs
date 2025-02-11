@@ -199,7 +199,7 @@ public class MainMenuUI : MonoBehaviour
 
     private void Update()
     {
-        if (SceneManager.GetActiveScene().name == "Main Menu" && !screenFadeCompleted)
+        if (!screenFadeCompleted)
         {
             FadeScreenOnStart();
         }

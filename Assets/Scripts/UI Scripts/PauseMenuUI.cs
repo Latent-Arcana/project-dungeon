@@ -122,7 +122,7 @@ public class PauseMenuUI : MonoBehaviour
         //Dungeon Seed and Level display
         Label seedValue = seedGroup.Q("SeedValue") as Label;
         gameSetup = GameObject.Find("GameSetup").GetComponent<GameSetup>();
-        seedValue.text = "Dungeon Seed: " + gameSetup.seed.ToString();
+        seedValue.text = "Dungeon Seed: " + gameSetup.GetFormattedSeedData();
 
         // SAVE AND QUIT
         scoreController = GameObject.Find("ScoreController").GetComponent<ScoreController>();
