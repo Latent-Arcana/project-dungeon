@@ -414,16 +414,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DEBUG_SeedGen: 1
-  seed: 961533078
-  dungeonLevel: 3
+  seed: 1716954205
+  DEBUG_dungeonLevel: 50
   bspController: {fileID: 0}
   dangerGenerator: {fileID: 0}
   objectGenerator: {fileID: 0}
   mapController: {fileID: 0}
   mapMarker: {fileID: 0}
   floorCoverGenerator: {fileID: 0}
-  portalSeeds: 
-  seedsInDungeon: 
   mapCamera: {fileID: 0}
   loadedExplorationData:
     dungeonsFullyMapped: 0

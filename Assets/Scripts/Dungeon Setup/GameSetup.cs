@@ -19,7 +19,7 @@ public class GameSetup : MonoBehaviour
     public int seed = 0;
     [SerializeField]
     [Tooltip("Keep in mind, dungeon level is 1-indexed")]
-    public int dungeonLevel = 1;
+    public int DEBUG_dungeonLevel = 1;
 
     [Header("GAMEPLAY")]
     public BSPGeneration bspController;
@@ -28,10 +28,6 @@ public class GameSetup : MonoBehaviour
     public MapController mapController;
     public MapMarker mapMarker;
     public FloorCoveringGeneration floorCoverGenerator;
-
-    public int[] portalSeeds;
-
-    public List<int> seedsInDungeon;
 
     public Camera mapCamera;
 
@@ -79,7 +75,6 @@ public class GameSetup : MonoBehaviour
             UnityEngine.Random.InitState(seed);
         }
 
-        seedsInDungeon = new() { seed };
 
     }
 
@@ -95,7 +90,6 @@ public class GameSetup : MonoBehaviour
         {
             Item_Loader.LoadItemsFromJson();
             Item_Loader.LoadLootTablesFromJson();
-            //Debug.Log("First time loading Item Data");
         }
 
         List<Item> itemsDatabase = Item_Loader.GetItemsDatabase();
@@ -108,20 +102,20 @@ public class GameSetup : MonoBehaviour
         Container_Generator.InitializeContainerGenerator(itemsDatabase, lootTable);
 
         gameStats = GameObject.Find("GameStats").GetComponent<GameStats>();
-
-        if (!DEBUG_SeedGen)
+        
+        if (DEBUG_SeedGen)
         {
-            //bsp
-            bspController.StartBspGeneration(gameStats.currentDungeonLevel);
+            gameStats.currentDungeonLevel = DEBUG_dungeonLevel;
         }
         else{
-            bspController.StartBspGeneration(dungeonLevel);
+            DEBUG_dungeonLevel = gameStats.currentDungeonLevel;
         }
+
+
+        bspController.StartBspGeneration(gameStats.currentDungeonLevel);
 
 
         // adjust the camera position and scale based on the ratio of the map
-
-        //   int mapCenter = -500 + Math.Min((25 + gameStats.currentDungeonLevel) / 2, 42);
 
         // Map grows by 1 in both width and height per level
         int mapSize = 25 + gameStats.currentDungeonLevel;
@@ -144,30 +138,12 @@ public class GameSetup : MonoBehaviour
         float newCameraPosX = (initialCameraPosX + mapCenterX) + (.7f * mapCenterX); //mapCenterX;
         float newCameraPosY = initialCameraPosY + mapCenterY;
 
-        // Debug.Log("Current Level: " + gameStats.currentDungeonLevel);
-        // Debug.Log("New Camera X: " + newCameraPosX);
-        // Debug.Log("Map Size: " + mapSize);
-        // Debug.Log("Map Center X: " + mapCenterX);
 
         // Update camera position
         mapCamera.transform.localPosition = new Vector3(newCameraPosX, newCameraPosY, 0);
 
 
         roomsGenerated = true;
-
-        portalSeeds = new int[bspController.allRooms.Count];
-
-        // for every room, except the starting room, give it a pregenerated portal seed
-        for (int i = 1; i < portalSeeds.Length; ++i)
-        {
-
-            int randSeed = CreateSeed();
-
-            portalSeeds[i] = UnityEngine.Random.Range(0, int.MaxValue);
-
-            seedsInDungeon.Add(randSeed);
-        }
-
         //enemy
 
 
@@ -181,7 +157,6 @@ public class GameSetup : MonoBehaviour
         //map
         mapController.FogOfWar();
 
-        // mapMarker.PlacePresetMarker(bspController.allRooms[0].GetComponent<Room>());
     }
 
     /// <summary>
@@ -198,10 +173,10 @@ public class GameSetup : MonoBehaviour
             CreateSeed();
         }
 
-        else if (seedsInDungeon != null && seedsInDungeon.Contains(randSeed))
-        {
-            CreateSeed();
-        }
+        // else if (seedsInDungeon != null && seedsInDungeon.Contains(randSeed))
+        // {
+        //     CreateSeed();
+        // }
 
         else if (seedsInSaveData != null && seedsInSaveData.Contains(randSeed))
         {
