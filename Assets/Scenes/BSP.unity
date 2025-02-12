@@ -413,7 +413,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78a683c074be3fa46b0777e29836f879, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DEBUG_SeedGen: 1
+  DEBUG_SeedGen: 0
   seed: 1716954205
   DEBUG_dungeonLevel: 50
   bspController: {fileID: 0}
