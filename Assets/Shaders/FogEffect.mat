@@ -31,7 +31,7 @@ Material:
     - _FogOpacity: 0
     - _NoiseScale: 1
     - _PixelSize: 1000
-    - _RandomSeed: 0.5512541
+    - _RandomSeed: 0.96049094
     - _SlowTimeFactor: 0.003
     - _Speed: 0.001
     m_Colors: []
