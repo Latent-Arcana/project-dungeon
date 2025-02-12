@@ -413,9 +413,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78a683c074be3fa46b0777e29836f879, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DEBUG_SeedGen: 0
-  seed: 1716954205
-  DEBUG_dungeonLevel: 50
+  DEBUG_SeedGen: 1
+  seed: 1255277567
+  DEBUG_dungeonLevel: 4
   bspController: {fileID: 0}
   dangerGenerator: {fileID: 0}
   objectGenerator: {fileID: 0}
@@ -923,11 +923,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerInventory: {fileID: 0}
   inventory_class: {fileID: 11400000, guid: 28215ae7375c4ab42862dc3518774c71, type: 2}
-  dur5: {fileID: 21300000, guid: 0bb28b6bee2958b4fba52036c97fe961, type: 3}
-  dur4: {fileID: 21300000, guid: b32188cc78387d446950bc76da4ce80f, type: 3}
-  dur3: {fileID: 21300000, guid: 10c9ab05bc696344bb0991ed6af59cd7, type: 3}
-  dur2: {fileID: 21300000, guid: 003c0a728bf9bbd4fbb1b82dc0397265, type: 3}
-  dur1: {fileID: 21300000, guid: 8e4680feb962ae84aad34954cf122719, type: 3}
+  dur5: {fileID: 21300000, guid: 7fbee3120ef05bf4081ae9da7f8bb7ca, type: 3}
+  dur4: {fileID: 21300000, guid: 1d4be8ee65ac1d14c801e010a37cfc63, type: 3}
+  dur3: {fileID: 21300000, guid: 3ad98989134ea784ea57a6440bb80bf3, type: 3}
+  dur2: {fileID: 21300000, guid: 1c7d58d93a62fc04e84bb80f0fe8bf20, type: 3}
+  dur1: {fileID: 21300000, guid: 8482152b31b8c9d4aa574466c971babd, type: 3}
 --- !u!1 &893277003
 GameObject:
   m_ObjectHideFlags: 0
@@ -1807,11 +1807,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player_Stats: {fileID: 11400000, guid: 49cdfbab4b8796a41af4e48e5ee7d3d5, type: 2}
-  dur5: {fileID: 21300000, guid: 0bb28b6bee2958b4fba52036c97fe961, type: 3}
-  dur4: {fileID: 21300000, guid: b32188cc78387d446950bc76da4ce80f, type: 3}
-  dur3: {fileID: 21300000, guid: 10c9ab05bc696344bb0991ed6af59cd7, type: 3}
-  dur2: {fileID: 21300000, guid: 003c0a728bf9bbd4fbb1b82dc0397265, type: 3}
-  dur1: {fileID: 21300000, guid: 8e4680feb962ae84aad34954cf122719, type: 3}
+  dur5: {fileID: 21300000, guid: 7fbee3120ef05bf4081ae9da7f8bb7ca, type: 3}
+  dur4: {fileID: 21300000, guid: 1d4be8ee65ac1d14c801e010a37cfc63, type: 3}
+  dur3: {fileID: 21300000, guid: 3ad98989134ea784ea57a6440bb80bf3, type: 3}
+  dur2: {fileID: 21300000, guid: 1c7d58d93a62fc04e84bb80f0fe8bf20, type: 3}
+  dur1: {fileID: 21300000, guid: 8482152b31b8c9d4aa574466c971babd, type: 3}
 --- !u!1 &1311237456 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 772700091933905504, guid: d757ba61582e1f945a3be705c12a51e8, type: 3}
