@@ -13,13 +13,16 @@ public class LoadingScreenUI : MonoBehaviour
 
     //// Container ////
     private VisualElement loadingContainer;
-    
+
     //// Text ////
     private TextElement loadingText;
     float progressValue = 0f;
 
     // Scene Stuff
     private AsyncOperation loadingOperation;
+
+
+    int progressPrintCount = 0;
 
     void Awake()
     {
@@ -33,11 +36,13 @@ public class LoadingScreenUI : MonoBehaviour
 
     }
 
-    void OnEnable(){
+    void OnEnable()
+    {
         ObjectGeneration.RoomComplete += SingleRoomCompleted;
     }
 
-    void OnDisable(){
+    void OnDisable()
+    {
         ObjectGeneration.RoomComplete -= SingleRoomCompleted;
     }
 
@@ -59,10 +64,13 @@ public class LoadingScreenUI : MonoBehaviour
         }
     }
 
-    private void SingleRoomCompleted(float percentage){
-
-        loadingText.text += "\nGenerating rooms: " + String.Format("{0:F0}%", percentage * 100);
-
+    private void SingleRoomCompleted(float percentage)
+    {
+        if (progressPrintCount <= 25 || progressPrintCount % 3 == 0)
+        {
+            loadingText.text += "\nGenerating rooms: " + String.Format("{0:F0}%", percentage * 100);
+        }
+        ++progressPrintCount;
     }
 
 
