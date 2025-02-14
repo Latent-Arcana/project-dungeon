@@ -8,7 +8,8 @@ _You are a cartographer. Many have come before you. Many shall come after. Your 
 
 _You must map out your crossing. Fail, and you shall be added to the Velvet Record, to be forgotten in a sea of remembrance, doomed to travel within the aether forever. But, should you succeed, you may ensure the safety of the next travelers who find their way in._
 
-![image](//Assets/Sprites/UI%20Sprites/LAG-cartographer-label-logo-but-fixed.png)
+![start-screen-final-export](https://github.com/user-attachments/assets/eaced089-3ae9-4a51-b382-77e3f2779d03)
+
 
 ## Information
 
