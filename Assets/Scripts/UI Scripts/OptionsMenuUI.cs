@@ -123,6 +123,12 @@ public class OptionsMenuUI : MonoBehaviour
     {
         ops.screenOptions.fullScreen = evt.newValue;
         Screen.fullScreen = evt.newValue;
+
+         // Ensure the fullscreen mode is properly set
+        if (evt.newValue)
+        {
+            Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen; // Or Windowed
+        }
     }
 
     //Options
