@@ -31,8 +31,7 @@
             <ui:Label tabindex="-1" text="Are You Certain?" parse-escape-sequences="true" display-tooltip-when-elided="true" name="MenuTitle" class="text-title-main-menu" style="display: flex;" />
             <ui:Label tabindex="-1" text="Quitting now will end your run here. This cartographer will be lost..." parse-escape-sequences="true" display-tooltip-when-elided="true" class="text-body-gameover" style="-unity-text-align: upper-center; padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px;" />
             <ui:VisualElement name="Buttons" style="flex-grow: 1; flex-direction: row; justify-content: center; align-self: auto;">
-                <ui:Button text="Main Menu" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ButtonExitToMenu" class="inventory-button" style="width: 256px; margin-bottom: 40px;" />
-                <ui:Button text="Desktop" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ButtonExitToDesktop" class="inventory-button" style="width: 256px; margin-bottom: 40px;" />
+                <ui:Button text="Return to Main Menu" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ButtonExitToMenu" class="inventory-button" style="width: 256px; margin-bottom: 40px;" />
             </ui:VisualElement>
             <ui:Button text="Back" parse-escape-sequences="true" display-tooltip-when-elided="true" name="BackButtonQuit" class="inventory-button" style="width: 256px; margin-bottom: 40px; align-self: center;" />
         </ui:VisualElement>

@@ -8,7 +8,6 @@
                 <ui:Button text="Options" parse-escape-sequences="true" display-tooltip-when-elided="true" name="OptionsButton" class="menu-button" />
                 <ui:Button text="Help" parse-escape-sequences="true" display-tooltip-when-elided="true" name="HelpButton" class="menu-button" />
                 <ui:Button text="Credits" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CreditsButton" class="menu-button" />
-                <ui:Button text="Quit" parse-escape-sequences="true" display-tooltip-when-elided="true" name="QuitButton" class="menu-button" />
             </ui:VisualElement>
             <ui:VisualElement name="PlayerStatsGroup" style="flex-grow: 1; align-items: center; flex-direction: row; margin-bottom: 200px;">
                 <ui:VisualElement name="StatsOnLeft" style="flex-grow: 1; align-items: flex-start; margin-left: 15%;">

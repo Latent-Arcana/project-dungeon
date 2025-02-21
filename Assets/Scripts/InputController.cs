@@ -134,7 +134,7 @@ public class InputController : MonoBehaviour
 
         //Menu and UI controls
 
-        if (Input.GetKeyUp(KeyCode.Escape))
+        if (Input.GetKeyUp(KeyCode.P)) // swapped to P only for WebGL
         {
             //Enter Pause Menu
             if (currentInputState == InputState.Gameplay)

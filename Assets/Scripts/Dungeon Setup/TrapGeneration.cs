@@ -30,7 +30,6 @@ public class TrapGeneration : MonoBehaviour
         do
         {
             position = new Vector3Int(UnityEngine.Random.Range(room.x + 1, room.x + room.width - 1), UnityEngine.Random.Range(room.y + 1, room.y + room.height - 1), 0);
-            Debug.Log("Position for this trap was set to: " + position);
         }
         
         while (position.x == room.originX && position.y == room.originY);

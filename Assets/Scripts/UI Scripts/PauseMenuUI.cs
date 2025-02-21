@@ -89,7 +89,9 @@ public class PauseMenuUI : MonoBehaviour
         BackButton_help = main_document.rootVisualElement.Q("BackButtonHelp") as Button;
 
         //Quit Container Buttons
-        QuitButton_ToDesktop = quitContainer.Q("ButtonExitToDesktop") as Button; //Quit Screen - Quit to Desktop
+       
+        // Disabled for WebGL build
+        // QuitButton_ToDesktop = quitContainer.Q("ButtonExitToDesktop") as Button; //Quit Screen - Quit to Desktop
         QuitButton_ToMainMenu = quitContainer.Q("ButtonExitToMenu") as Button; //Quit Screen - Quit to Main Menu
         BackButton_quit = quitContainer.Q("BackButtonQuit") as Button; // Quit Screen - return to Pause menu
 
@@ -100,7 +102,9 @@ public class PauseMenuUI : MonoBehaviour
         HelpButton.clicked += Open_HelpMenu; //Pause -> Help
         QuitButton.clicked += Open_QuitMenu; //Pause -> Quit
         BackButton_help.clicked += Close_HelpMenu; //Help -> Pause
-        QuitButton_ToDesktop.clicked += SaveAndQuitToDesktop; //Quit -> Desktop
+        
+        // Disabled for WebGL Build
+        //QuitButton_ToDesktop.clicked += SaveAndQuitToDesktop; //Quit -> Desktop
         QuitButton_ToMainMenu.clicked += SaveAndQuitToMain; //Quit -> Main Menu (scene change)
         BackButton_quit.clicked += Close_QuitMenu; //Quit -> Pause
         // Options -> Pause is controlled by a separate script

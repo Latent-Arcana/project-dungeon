@@ -131,8 +131,10 @@ public class MainMenuUI : MonoBehaviour
         BackButton_credits.clicked += CreditsMenu;
         HelpButton.clicked += HelpMenu;
         CreditsButton.clicked += CreditsMenu;
-        QuitButton.clicked += QuitGame;
-        QuitButton_EndGame.clicked += QuitGame;
+
+        // Disabled for WebGL
+        //QuitButton.clicked += QuitGame;
+        //QuitButton_EndGame.clicked += QuitGame;
 
 
         // LETS FADE IN THE SCREEN ON AWAKE AT THE MAIN MENU
@@ -150,51 +152,52 @@ public class MainMenuUI : MonoBehaviour
         Label cartographersLost = statsOnRight.Q("CartographersLost") as Label;
         Label completionPercentage = statsOnRight.Q("CompletionPercentage") as Label;
 
+        // Disabled for WebGL
         // DISPLAY STATS IF WE HAVE THEM
-        if (expData != null)
-        {
-            dungeonsMapped.text = "Dungeons Mapped: " + expData.dungeonsFullyMapped.ToString();
-            roomsMapped.text = "Rooms Mapped: " + expData.roomsMappedSuccessfully.ToString();
-            enemiesKilled.text = "Enemies Killed: " + expData.enemiesKilled.ToString();
-            dungeonsVisited.text = "Dungeons Visited: " + expData.dungeonsVisited.ToString();
-            cartographersLost.text = "Cartographers Lost: " + expData.cartographersLost.ToString();
-            completionPercentage.text = "Completion: " + ((expData.mappedDungeons.Count / 1000.0f) * 100f).ToString("0.00") + "%";
+        // if (expData != null)
+        // {
+        //     dungeonsMapped.text = "Dungeons Mapped: " + expData.dungeonsFullyMapped.ToString();
+        //     roomsMapped.text = "Rooms Mapped: " + expData.roomsMappedSuccessfully.ToString();
+        //     enemiesKilled.text = "Enemies Killed: " + expData.enemiesKilled.ToString();
+        //     dungeonsVisited.text = "Dungeons Visited: " + expData.dungeonsVisited.ToString();
+        //     cartographersLost.text = "Cartographers Lost: " + expData.cartographersLost.ToString();
+        //     completionPercentage.text = "Completion: " + ((expData.mappedDungeons.Count / 1000.0f) * 100f).ToString("0.00") + "%";
 
-            // IF THE GAME IS OVER, WE JUST CUT TO THE END GAME SCREEN
+        //     // IF THE GAME IS OVER, WE JUST CUT TO THE END GAME SCREEN
 
-            if (expData.mappedDungeons.Count >= 1000 || gameCompleted)
-            {
-                //Show the end game container instead of the Main one
-                endContainer.style.display = DisplayStyle.Flex;
-                mainContainer.style.display = DisplayStyle.None;
+        //     if (expData.mappedDungeons.Count >= 1000 || gameCompleted)
+        //     {
+        //         //Show the end game container instead of the Main one
+        //         endContainer.style.display = DisplayStyle.Flex;
+        //         mainContainer.style.display = DisplayStyle.None;
 
-                //assign stats
-                Label dungeonsMapped_End = endContainer.Q("End_DungeonsMapped") as Label;
-                Label roomsMapped_End = endContainer.Q("End_RoomsMapped") as Label;
-                Label enemiesKilled_End = endContainer.Q("End_EnemiesKilled") as Label;
-                Label dungeonsVisited_End = endContainer.Q("End_DungeonsVisited") as Label;
-                Label cartographersLost_End = endContainer.Q("End_CartographersLost") as Label;
-                Label completionPercentage_End = endContainer.Q("End_CompletionPercentage") as Label;
+        //         //assign stats
+        //         Label dungeonsMapped_End = endContainer.Q("End_DungeonsMapped") as Label;
+        //         Label roomsMapped_End = endContainer.Q("End_RoomsMapped") as Label;
+        //         Label enemiesKilled_End = endContainer.Q("End_EnemiesKilled") as Label;
+        //         Label dungeonsVisited_End = endContainer.Q("End_DungeonsVisited") as Label;
+        //         Label cartographersLost_End = endContainer.Q("End_CartographersLost") as Label;
+        //         Label completionPercentage_End = endContainer.Q("End_CompletionPercentage") as Label;
 
-                dungeonsMapped_End.text = "Dungeons Mapped: " + expData.dungeonsFullyMapped.ToString();
-                roomsMapped_End.text = "Rooms Mapped: " + expData.roomsMappedSuccessfully.ToString();
-                enemiesKilled_End.text = "Enemies Killed: " + expData.enemiesKilled.ToString();
-                dungeonsVisited_End.text = "Dungeons Visited: " + expData.dungeonsVisited.ToString();
-                cartographersLost_End.text = "Cartographers Lost: " + expData.cartographersLost.ToString();
-                completionPercentage_End.text = "Completion: " + ((expData.mappedDungeons.Count / 1000.0f) * 100f).ToString("0.00") + "%";
+        //         dungeonsMapped_End.text = "Dungeons Mapped: " + expData.dungeonsFullyMapped.ToString();
+        //         roomsMapped_End.text = "Rooms Mapped: " + expData.roomsMappedSuccessfully.ToString();
+        //         enemiesKilled_End.text = "Enemies Killed: " + expData.enemiesKilled.ToString();
+        //         dungeonsVisited_End.text = "Dungeons Visited: " + expData.dungeonsVisited.ToString();
+        //         cartographersLost_End.text = "Cartographers Lost: " + expData.cartographersLost.ToString();
+        //         completionPercentage_End.text = "Completion: " + ((expData.mappedDungeons.Count / 1000.0f) * 100f).ToString("0.00") + "%";
 
-            }
-        }
+        //     }
+        // }
         // NO STATS, WE CAN JUST DISPLAY NOTHING
-        else
-        {
+        // else
+        // {
             dungeonsMapped.text = "";
             roomsMapped.text = "";
             enemiesKilled.text = "";
             dungeonsVisited.text = "";
             cartographersLost.text = "";
             completionPercentage.text = "";
-        }
+        // }
     }
 
     private void Update()
