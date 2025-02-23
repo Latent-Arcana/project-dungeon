@@ -101,7 +101,7 @@ public class BSPGeneration : MonoBehaviour
         mainTilemap.SetTilesBlock(mapOutsideBounds, mapOutsideTiles);
 
         // Let's create the dungeon's bounds
-        dungeon = new Partition(0, 0, mapWidth, mapHeight, roomMinimumHeight); // passing minimum height here because room takes "size" and we have both height and width
+        dungeon = new Partition(0, 0, mapWidth, mapHeight); // passing minimum height here because room takes "size" and we have both height and width
 
         BSP(dungeon);
 
@@ -260,8 +260,8 @@ public class BSPGeneration : MonoBehaviour
         {
             int rngOffset = partition.height / 2;
 
-            Partition bottom = new Partition(partition.x, partition.y, partition.width, rngOffset, roomMinimumHeight);
-            Partition top = new Partition(partition.x, partition.y + rngOffset, partition.width, partition.height - rngOffset, roomMinimumHeight);
+            Partition bottom = new Partition(partition.x, partition.y, partition.width, rngOffset);
+            Partition top = new Partition(partition.x, partition.y + rngOffset, partition.width, partition.height - rngOffset);
 
             // Debug.Log($"Force a Top/Bottom split at ({partition.x},{partition.y}) with new parts at ({top.x},{top.y}) adn ({bottom.x},{bottom.y})");
 
@@ -274,8 +274,8 @@ public class BSPGeneration : MonoBehaviour
         {
             int rngOffset = partition.width / 2;
 
-            Partition left = new Partition(partition.x, partition.y, rngOffset, partition.height, roomMinimumHeight);
-            Partition right = new Partition(partition.x + rngOffset, partition.y, partition.width - rngOffset, partition.height, roomMinimumHeight);
+            Partition left = new Partition(partition.x, partition.y, rngOffset, partition.height);
+            Partition right = new Partition(partition.x + rngOffset, partition.y, partition.width - rngOffset, partition.height);
 
             //  Debug.Log($"Force a Left/Right split {partition.x},{partition.y} with new parts at ({left.x},{left.y}) adn ({right.x},{right.y})");
 
@@ -295,8 +295,8 @@ public class BSPGeneration : MonoBehaviour
                 // randomly decide location on horizontal plane
                 int rngOffset = UnityEngine.Random.Range(roomMinimumHeight + 2, partition.height - roomMinimumHeight);
 
-                Partition bottom = new Partition(partition.x, partition.y, partition.width, rngOffset, roomMinimumHeight);
-                Partition top = new Partition(partition.x, partition.y + rngOffset, partition.width, partition.height - rngOffset, roomMinimumHeight);
+                Partition bottom = new Partition(partition.x, partition.y, partition.width, rngOffset);
+                Partition top = new Partition(partition.x, partition.y + rngOffset, partition.width, partition.height - rngOffset);
 
                 //   Debug.Log($"Random split {partition.x},{partition.y}");
 
@@ -311,8 +311,8 @@ public class BSPGeneration : MonoBehaviour
                 // randomly decide location on vertical plane
                 int rngOffset = UnityEngine.Random.Range(roomMinimumWidth + 2, partition.width - roomMinimumWidth);
 
-                Partition left = new Partition(partition.x, partition.y, rngOffset, partition.height, roomMinimumHeight);
-                Partition right = new Partition(partition.x + rngOffset, partition.y, partition.width - rngOffset, partition.height, roomMinimumHeight);
+                Partition left = new Partition(partition.x, partition.y, rngOffset, partition.height);
+                Partition right = new Partition(partition.x + rngOffset, partition.y, partition.width - rngOffset, partition.height);
 
                 //   Debug.Log($"Random split {partition.x},{partition.y}");
 
@@ -491,27 +491,6 @@ public class BSPGeneration : MonoBehaviour
 
         DrawCooridorX(ref start, ref end, out Vector2Int horizontalStart, out Vector2Int horizontalEnd);
         DrawCooridorY(ref start, ref end, out Vector2Int verticalStart, out Vector2Int verticalEnd);
-
-
-        // //Check if the hallway will touch existing hallways
-        // bool isOverlapping = false;
-        // GameObject parent = null;
-
-        // //horizontal check
-        // if (horizontalStart != Vector2Int.zero)
-        // {
-        //     //Vector2 h = horizontalStart;
-        //     Collider2D col = Physics2D.OverlapArea(horizontalStart, horizontalEnd+Vector2.one ,LayerMask.GetMask("RoomFog"));
-        //     //Debug.DrawLine(horizontalStart, horizontalEnd + UnityEngine.Vector2.one, UnityEngine.Color.white);
-
-        // }
-
-        // //vertical check
-
-        // if (verticalStart != Vector2Int.zero)
-        // {
-
-        // }
 
 
         //Game Object Stuff
@@ -996,7 +975,7 @@ public class BSPGeneration : MonoBehaviour
         }
 
 
-        public Partition(int x, int y, int width, int height, int minimumRoomSize)
+        public Partition(int x, int y, int width, int height)
         {
             _x = x;
             _y = y;
@@ -1008,6 +987,11 @@ public class BSPGeneration : MonoBehaviour
             leftChild = null;
             rightChild = null;
 
+        }
+
+        public static implicit operator Partition(BSP_Demo.Partition v)
+        {
+            return new Partition(v.x, v.y, v.width, v.height);
         }
     }
 

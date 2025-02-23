@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -88,7 +89,7 @@ public class Room : MonoBehaviour
         set { _discovered = value; }
     }
 
-    public void SetupRoom(int x, int y, int width, int height, int originX, int originY, int roomId, ref Partition partitionIn, bool discoveredIn = false)
+    public void SetupRoom(int x, int y, int width, int height, int originX, int originY, int roomId, ref BSPGeneration.Partition partitionIn, bool discoveredIn = false)
     {
         _x = x;
         _y = y;
@@ -109,4 +110,24 @@ public class Room : MonoBehaviour
         _discovered = discoveredIn;
     }
 
+    internal void SetupRoom(int x, int y, int width, int height, int originX, int originY, int roomId, ref BSP_Demo.Partition partitionIn, bool discoveredIn = false)
+    {
+         _x = x;
+        _y = y;
+        _width = width;
+        _height = height;
+        _originX = originX;
+        _originY = originY;
+        _roomId = roomId;
+
+        partition = partitionIn;
+
+        //GameObject roomObj = new GameObject("Room_" +  roomId);
+
+        //_roomObject = roomObj;
+
+        _roomType = Enums.RoomType.Unassigned;
+        _roomSubType = Enums.RoomSubType.Unassigned;
+        _discovered = discoveredIn;
+    }
 }
