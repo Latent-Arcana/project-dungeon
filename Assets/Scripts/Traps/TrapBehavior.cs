@@ -49,7 +49,6 @@ public class TrapBehavior : MonoBehaviour
 
         if (spawnChance <= 0.85f && playerInRoom)
         {
-            //Debug.Log("spawn chance is " + spawnChance + " and it needed to be lower than 0.85f");
             SpawnProjectile(projectilePrefabs[prefabChoice]);
         }
 
@@ -62,13 +61,11 @@ public class TrapBehavior : MonoBehaviour
         {
             if (e.type == "enter")
             {
-                //Debug.Log("player is in the same room as trap: " + gameObject.name);
                 playerInRoom = true;
             }
 
             else
             {
-                //Debug.Log("player left the room that trap: " + gameObject.name + " is in");
                 playerInRoom = false;
             }
 
@@ -92,8 +89,6 @@ public class TrapBehavior : MonoBehaviour
                 3 X 4
                 5 6 7
         */
-
-        //Debug.Log("Spawn choice is: " + randomSpawnChoice);
 
         switch (randomSpawnChoice)
         {
@@ -159,9 +154,6 @@ public class TrapBehavior : MonoBehaviour
             projectileBehavior.Player_Stats = Player_Stats;
             projectileBehavior.CheckSpawn(playerMovement.transform.position);
         }
-        // else{
-        //     Debug.Log("did not spawn at " + spawnPosition + " because we ran into " + collision.gameObject.name);
-        // }
 
         return;
     }

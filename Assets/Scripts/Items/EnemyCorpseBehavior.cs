@@ -17,7 +17,6 @@ public class EnemyCorpseBehavior : MonoBehaviour
         items = Container_Generator.GetItems(Enums.ObjectType.Corpse, maxItemCount); // we just start this out as a corpse since we know it's not a chest or anything else
     }
 
-    // TODO: INVENTORY INTERACTION
     public List<Item> Open(){
         return items;
     }

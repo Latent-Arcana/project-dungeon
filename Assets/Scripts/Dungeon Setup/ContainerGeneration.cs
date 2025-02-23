@@ -70,7 +70,7 @@ public class ContainerGeneration : MonoBehaviour
                 foreach (LootItem lootItem in loot)
                 {
 
-                    // Debug.Log(lootItem.itemName + " has range (" + lootItem.minValue + "," + lootItem.maxValue + ") and loot roll is " + lootRoll);
+                    //Debug.Log(lootItem.itemName + " has range (" + lootItem.minValue + "," + lootItem.maxValue + ") and loot roll is " + lootRoll);
 
                     if (lootItem.minValue <= lootRoll && lootItem.maxValue >= lootRoll)
                     {

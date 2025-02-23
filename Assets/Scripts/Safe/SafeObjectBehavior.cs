@@ -26,8 +26,6 @@ public class SafeObjectBehavior : MonoBehaviour
             SpriteRenderer sr = gameObject.GetComponent<SpriteRenderer>();
             ObjectBehavior objectBehavior = gameObject.GetComponent<ObjectBehavior>();
             
-        //    Debug.Log(objectBehavior.flipped);
-
             sr.sprite = objectBehavior.flipped ? mirroredUsedSprite : usedSprite;
             sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 0.45f);
 
@@ -56,8 +54,6 @@ public class SafeObjectBehavior : MonoBehaviour
             SpriteRenderer sr = gameObject.GetComponent<SpriteRenderer>();
             ObjectBehavior objectBehavior = gameObject.GetComponent<ObjectBehavior>();
             
-         //   Debug.Log(objectBehavior.flipped);
-
             sr.sprite = objectBehavior.flipped ? mirroredUsedSprite : usedSprite;
             sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 0.45f);
 

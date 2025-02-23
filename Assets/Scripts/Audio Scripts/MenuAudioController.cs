@@ -47,7 +47,7 @@ public class MenuAudioController : MonoBehaviour
         menuAudioSource = GetComponent<AudioSource>();
     }
 
-    public void PlayAudioClip(string audioClip) //TODO: make this an enum
+    public void PlayAudioClip(string audioClip)
     {
         switch (audioClip)
         {

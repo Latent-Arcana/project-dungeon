@@ -67,8 +67,9 @@ public class EnemyGeneration : MonoBehaviour
 
     public void PlaceEnemies(GameObject enemyPrefab, int count, GameObject roomObject)
     {
-        Debug.Log("placing enemies");
         Room room = roomObject.GetComponent<Room>();
+
+        Debug.Log("EnemyGeneration placing enemies in room " + room.roomId);
 
         Dictionary<Vector3Int, bool> enemyMap = new Dictionary<Vector3Int, bool>();
 
@@ -87,6 +88,8 @@ public class EnemyGeneration : MonoBehaviour
             }
 
         }
+
+        Debug.Log("EnemyGeneration done placing enemies in room " + room.roomId);
     }
 
     // Place a specific enemy

@@ -271,7 +271,6 @@ public class ItemLoader : MonoBehaviour
             {
                 itemsDatabase.Add(weapon);
 
-                //Debug.Log("Loaded weapon " + weapon.itemName + " and added to the dictionary.");
             }
         }
 
@@ -301,7 +300,6 @@ public class ItemLoader : MonoBehaviour
             {
                 itemsDatabase.Add(consumable);
 
-                //Debug.Log("Loaded consumable item " + consumable.itemName + " and added to the dictionary.");
             }
         }
 

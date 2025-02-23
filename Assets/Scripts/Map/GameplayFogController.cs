@@ -196,10 +196,10 @@ public class GameplayFogController : MonoBehaviour
         // }
 
         //Method to draw the ray in scene for debug purpose
-        Debug.DrawRay(posPlayerCenter, Vector2.right * hitRight.distance, UnityEngine.Color.red);
-        Debug.DrawRay(posPlayerCenter, Vector2.down * hitDown.distance, UnityEngine.Color.blue);
-        Debug.DrawRay(posPlayerCenter, Vector2.up * hitUp.distance, UnityEngine.Color.green);
-        Debug.DrawRay(posPlayerCenter, Vector2.left * hitLeft.distance, UnityEngine.Color.yellow);
+        // Debug.DrawRay(posPlayerCenter, Vector2.right * hitRight.distance, UnityEngine.Color.red);
+        // Debug.DrawRay(posPlayerCenter, Vector2.down * hitDown.distance, UnityEngine.Color.blue);
+        // Debug.DrawRay(posPlayerCenter, Vector2.up * hitUp.distance, UnityEngine.Color.green);
+        // Debug.DrawRay(posPlayerCenter, Vector2.left * hitLeft.distance, UnityEngine.Color.yellow);
 
         //Debug.DrawLine(posRight, hitRight.point, Color.white);
         //Debug.DrawLine(posDown, hitDown.point, Color.white);

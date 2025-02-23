@@ -130,9 +130,6 @@ public class EnemyBehavior : MonoBehaviour
                 behaviorState = BehaviorState.Idle;
             }
 
-            //Debug.Log($"{gameObject.name} is in the {behaviorState} state");
-
-
             CheckAndAttack(e.prevPosition, e.position, e.intendedDirection);
 
 
@@ -588,10 +585,6 @@ public class EnemyBehavior : MonoBehaviour
             }
 
         }
-
-
-        // else if (collision.tag == "room") { Debug.Log("hitting a room"); }
-
     }
 
     public virtual void OnTriggerEnter2D(Collider2D collision)

@@ -78,8 +78,6 @@ public class GameSetup : MonoBehaviour
 
     }
 
-    //TODO: potential optimization: turn some of these into coroutines in their respective scripts, 
-    // so you aren't running them in series
     void Start()
     {
         // kick off the first step here and run in order
@@ -88,8 +86,10 @@ public class GameSetup : MonoBehaviour
 
         if (!Item_Loader.hasLoadedItemsSuccessfully && !Item_Loader.hasLoadedLootTablesSuccessfully)
         {
+            Debug.Log("GameSetup, loading ItemData for the first time.");
             Item_Loader.LoadItemsFromJson();
             Item_Loader.LoadLootTablesFromJson();
+            Debug.Log("GameSetup, done loading ItemData.");
         }
 
         List<Item> itemsDatabase = Item_Loader.GetItemsDatabase();
@@ -103,6 +103,7 @@ public class GameSetup : MonoBehaviour
 
         gameStats = GameObject.Find("GameStats").GetComponent<GameStats>();
         
+        Debug.Log("GameSetup, generating seed.");
         if (DEBUG_SeedGen)
         {
             gameStats.currentDungeonLevel = DEBUG_dungeonLevel;
@@ -111,8 +112,9 @@ public class GameSetup : MonoBehaviour
             DEBUG_dungeonLevel = gameStats.currentDungeonLevel;
         }
 
-
+        Debug.Log("GameSetup, beginning BSP Generation.");
         bspController.StartBspGeneration(gameStats.currentDungeonLevel);
+        Debug.Log("GameSetup, completed BSP Generation. Hallway merging may still be happening.");
 
 
         // adjust the camera position and scale based on the ratio of the map
@@ -146,7 +148,7 @@ public class GameSetup : MonoBehaviour
         roomsGenerated = true;
         //enemy
 
-
+        Debug.Log("GameSetup, beginning object generation.");
         //objects
         objectGenerator.GenerateObjectPlacements(bspController.allRooms);
 

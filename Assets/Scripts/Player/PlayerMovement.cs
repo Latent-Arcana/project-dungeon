@@ -125,13 +125,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void MovePlayer(Vector2 direction)
     {
-        // Debug.Log(playerInventory.inventory.currentDurability.Count);
-        // int tick = 0;
-        // foreach (int durability in playerInventory.inventory.currentDurability)
-        // {
-        //     Debug.Log("current durability at " + tick + " = " + durability);
-        //     ++tick;
-        // }
 
         Vector2 checkPosition = (Vector2)player.transform.position + new Vector2(0.5f, 0.5f) + new Vector2(direction.x, direction.y);
 
@@ -291,6 +284,7 @@ public class PlayerMovement : MonoBehaviour
 
         else if (collision.tag == "portal")
         {
+            Debug.Log("PlayerMovement, player entering portal.");
             enteredPortal = true;
 
             backgroundMusicController.StopAudio();
@@ -348,19 +342,6 @@ public class PlayerMovement : MonoBehaviour
 
         else if (collision.gameObject.tag == "hallway")
         {
-
-            // Vector2 checkPosition = (Vector2)player.transform.position + new Vector2(0.5f, 0.5f);
-            // Collider2D[] collision2 = Physics2D.OverlapCircleAll(checkPosition, 0.1f);
-
-            // OnRoomEnter.Invoke(this, new InputArgs
-            // {
-            //     type = "hallway",
-            //     room1Id = collision.gameObject.GetComponent<Hallway>().room1Id,
-            //     room2Id = collision.gameObject.GetComponent<Hallway>().room2Id
-            // });
-
-
-            //Debug.Log("Player entered " + collision.gameObject.name);
 
             SpriteRenderer[] ar = collision.gameObject.GetComponentsInChildren<SpriteRenderer>();
             foreach (SpriteRenderer r in ar)
@@ -435,9 +416,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-
-        //Debug.Log("Player entered " + collision.gameObject.name);
-
 
         // if the player quits the game (or maybe changes scene) when they are colliding with a room,
         // it triggers onTriggerExit, but the Room component will get get deleted before it finishes

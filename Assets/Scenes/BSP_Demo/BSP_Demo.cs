@@ -171,7 +171,7 @@ public class BSP_Demo : MonoBehaviour
             Partition bottom = new Partition(partition.x, partition.y, partition.width, rngOffset);
             Partition top = new Partition(partition.x, partition.y + rngOffset, partition.width, partition.height - rngOffset);
 
-            // Debug.Log($"Force a Top/Bottom split at ({partition.x},{partition.y}) with new parts at ({top.x},{top.y}) adn ({bottom.x},{bottom.y})");
+            Debug.Log($"Force a Top/Bottom split at ({partition.x},{partition.y}) with new parts at ({top.x},{top.y}) adn ({bottom.x},{bottom.y})");
 
             Tuple<Partition, Partition> splitRooms = Tuple.Create(top, bottom);
 
@@ -185,7 +185,7 @@ public class BSP_Demo : MonoBehaviour
             Partition left = new Partition(partition.x, partition.y, rngOffset, partition.height);
             Partition right = new Partition(partition.x + rngOffset, partition.y, partition.width - rngOffset, partition.height);
 
-            //  Debug.Log($"Force a Left/Right split {partition.x},{partition.y} with new parts at ({left.x},{left.y}) adn ({right.x},{right.y})");
+            Debug.Log($"Force a Left/Right split {partition.x},{partition.y} with new parts at ({left.x},{left.y}) adn ({right.x},{right.y})");
 
             Tuple<Partition, Partition> splitRooms = Tuple.Create(left, right);
 
@@ -206,7 +206,7 @@ public class BSP_Demo : MonoBehaviour
                 Partition bottom = new Partition(partition.x, partition.y, partition.width, rngOffset);
                 Partition top = new Partition(partition.x, partition.y + rngOffset, partition.width, partition.height - rngOffset);
 
-                //   Debug.Log($"Random split {partition.x},{partition.y}");
+                Debug.Log($"Random split {partition.x},{partition.y}");
 
                 Tuple<Partition, Partition> splitRooms = Tuple.Create(top, bottom);
 
@@ -222,7 +222,7 @@ public class BSP_Demo : MonoBehaviour
                 Partition left = new Partition(partition.x, partition.y, rngOffset, partition.height);
                 Partition right = new Partition(partition.x + rngOffset, partition.y, partition.width - rngOffset, partition.height);
 
-                //   Debug.Log($"Random split {partition.x},{partition.y}");
+                Debug.Log($"Random split {partition.x},{partition.y}");
 
 
                 Tuple<Partition, Partition> splitRooms = Tuple.Create(left, right);
@@ -614,7 +614,7 @@ public class BSP_Demo : MonoBehaviour
             }
         }
 
-        //Debug.Log($"Hallway from ({hallStart.x},{hallStart.y}) to ({hallEnd.x},{hallEnd.y})");
+        Debug.Log($"Hallway from ({hallStart.x},{hallStart.y}) to ({hallEnd.x},{hallEnd.y})");
 
         return;
     }
@@ -679,7 +679,7 @@ public class BSP_Demo : MonoBehaviour
             }
         }
 
-        //Debug.Log($"Hallway from ({hallStart.x},{hallStart.y}) to ({hallEnd.x},{hallEnd.y})");
+        Debug.Log($"Hallway from ({hallStart.x},{hallStart.y}) to ({hallEnd.x},{hallEnd.y})");
 
         return;
     }
@@ -707,16 +707,8 @@ public class BSP_Demo : MonoBehaviour
 
                         if (child.gameObject.GetComponent<BoxCollider2D>().IsTouching(child2.gameObject.GetComponent<BoxCollider2D>()))
                         {
-                            //Debug.Log($"Merge {child.name} and {child2.name}");
+                            Debug.Log($"Merge {child.name} and {child2.name}");
                             mergeHallways = true;
-                            // Transform parent1 = child.gameObject.transform.parent;
-                            // Transform parent2 = child2.gameObject.transform.parent;
-
-                            // //if we havent already added the child to move
-                            // if (!childrenToMove.ContainsKey(child2))
-                            // {
-                            //     childrenToMove.Add(child2, parent1);
-                            // }
                         }
                     }
                 }
@@ -725,22 +717,16 @@ public class BSP_Demo : MonoBehaviour
                 {
 
                     Transform parent1 = allHallways[i].transform;
-                    //Debug.Log($"Merge into {parent1.gameObject.name}");
+                    Debug.Log($"Merge into {parent1.gameObject.name}");
 
                     while (allHallways[j].transform.childCount > 0)
                     {
-                        //Debug.Log($"There are {allHallways[j].transform.childCount} children to merge");
+                        Debug.Log($"There are {allHallways[j].transform.childCount} children to merge");
                         allHallways[j].transform.GetChild(0).SetParent(parent1);
                     }
                 }
 
             }
-
-            // //merge hallways outside the list of children so we dont accidentally skip any
-            // foreach (KeyValuePair<Transform, Transform> c in childrenToMove)
-            // {
-            //     c.Key.SetParent(c.Value);
-            // }
         }
 
     }

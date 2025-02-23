@@ -591,7 +591,9 @@ MonoBehaviour:
   mapHeight: 100
   roomMinimumWidth: 10
   roomMinimumHeight: 10
+  drawPartitions: 1
   drawRooms: 1
+  drawCorridors: 1
   gameplayFloorTile: {fileID: 11400000, guid: c4fc9a8cd2ada214f95d3a5e171f680e, type: 2}
   gameplayWallTile: {fileID: 11400000, guid: c9b446417343b9a418e0a701167420fc, type: 2}
   gameplayFloorHallwayTile: {fileID: 11400000, guid: b6be972f8acc98b44bd171f04f887e46, type: 2}

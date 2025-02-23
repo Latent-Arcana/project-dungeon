@@ -24,7 +24,6 @@ public class MapMark : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        //Debug.Log("collision between map marker and object");
 
         if (collision.gameObject.tag == "room")
         {
@@ -32,7 +31,7 @@ public class MapMark : MonoBehaviour
         }
 
         else{
-            Debug.Log("What am I doing out here?");
+            Debug.Log("MapMark, WARNING: Collision with map marker outside of map.");
         }
     }
 

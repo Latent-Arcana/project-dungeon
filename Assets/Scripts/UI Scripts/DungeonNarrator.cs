@@ -98,11 +98,9 @@ public class DungeonNarrator : MonoBehaviour
     {
         if (!screenFadeCompleted)
         {
-            // Debug.Log("Fading");
             FadeScreenOnStart();
         }
 
-        //TODO DEBUG REMOVE THIS 
         UpdateEquipmentIcons();
     }
 

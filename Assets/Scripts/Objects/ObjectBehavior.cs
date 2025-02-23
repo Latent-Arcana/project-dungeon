@@ -21,7 +21,6 @@ public class ObjectBehavior : MonoBehaviour, ILookable
 
     public string Look()
     {
-        //TODO: make random
         return lookStrings[0];
     }
 

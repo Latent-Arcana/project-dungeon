@@ -82,7 +82,7 @@ public class ScoreController : MonoBehaviour
         if (currentMarks.ContainsKey(RoomId))
         {
 
-            Debug.Log("SetRoomMark: Removing existing mark for room" + RoomId);
+            Debug.Log("ScoreController, SetRoomMark() Removing existing mark for room " + RoomId);
 
             //remove from dictionary (inverse)
             currentMarksInverse.Remove(marker);
@@ -94,7 +94,7 @@ public class ScoreController : MonoBehaviour
             currentMarks.Remove(RoomId);
         }
 
-        //Debug.Log("SetRoomMark: Adding mark for room" + RoomId);
+        Debug.Log("ScoreController, SetRoomMark() adding mark for room " + RoomId);
 
         //add new mark to the dictionary(x2)
         currentMarks.Add(RoomId, marker);
@@ -146,13 +146,13 @@ public class ScoreController : MonoBehaviour
         currentMarks.Remove(removeFromRoom);
         currentMarksInverse.Remove(marker);
 
-        Debug.Log("RemoveRoomMark: Removing existing mark for room" + removeFromRoom);
+        Debug.Log("RemoveRoomMark() removing existing mark for room " + removeFromRoom);
 
         // Wait for the duration of the animation
         float animationLength = animator.runtimeAnimatorController.animationClips.First(clip => clip.name == animationName).length / 3;
         yield return new WaitForSeconds(animationLength);
 
-        Debug.Log("waiting for animation");
+        Debug.Log("RemoveRoomMark() waiting for animation.");
 
         //marker.SetActive(false);
 
@@ -207,7 +207,7 @@ public class ScoreController : MonoBehaviour
             }
         }
 
-        Debug.Log($"Current Score: {Numerator}/{Denominator}");
+        Debug.Log($"ScoreController, Current Score: {Numerator}/{Denominator}");
 
         //pass the stats to the object that won't be destroyed
         gameStats.AddToScore(Numerator, Denominator);
@@ -262,7 +262,6 @@ public class ScoreController : MonoBehaviour
 
         for (int i = 0; i < roomsVisited.Length; i++)
         {
-            //Debug.Log($"Room {i}: {roomsVisited[i]}");
             if (roomsVisited[i] == 0)  //not visited yet
             {
                 allRoomsAreVisited = false;

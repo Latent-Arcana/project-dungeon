@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static ContainerGeneration;
-// TODO: Use inheritance so that our PlayerInventory and ContainerBehavior don't have so much code dupe between them
 public class PlayerInventory : MonoBehaviour
 {
 
@@ -15,7 +14,6 @@ public class PlayerInventory : MonoBehaviour
 
     public Inventory inventory;
 
-    // TODO: INVENTORY INTERACTION
     public List<Item> Open()
     {
         return inventory.items;
@@ -119,7 +117,7 @@ public class PlayerInventory : MonoBehaviour
 
     }
 
-    public void HandleBrokenItemNarration(Item item){ // TODO: IMPROVE
+    public void HandleBrokenItemNarration(Item item){
 
         string splitNameArticle = item.itemName.Split(" ")[0];
 
@@ -215,8 +213,6 @@ public class PlayerInventory : MonoBehaviour
 
     public void Update()
     {
-        // Debug.Log("Armor: " + equippedArmor);
-        // Debug.Log("Weapon: " + equippedWeapon);
 
         if (Input.GetKeyDown(KeyCode.Keypad1))
         {
@@ -311,8 +307,6 @@ public class PlayerInventory : MonoBehaviour
         {
             result = 5;
         }
-
-        //Debug.Log(result);
 
         return result;
     }

@@ -110,17 +110,18 @@ public class ObjectGeneration : MonoBehaviour
                 case Enums.RoomSubType.Shrine:
                     currentSubType = roomSubType_Shrine;
                     break;
-
+                
+                case Enums.RoomSubType.Unassigned:
+                    break;
+                    
                 default:
+                    Debug.Log("ObjectGeneration, WARNING: RoomSubType not found: " + room.roomSubType);
                     break;
             }
 
 
             if (currentSubType != null)
             {
-
-                //Debug.Log(currentSubType.name + " in room " + roomObj.gameObject.name);
-
                 StartCoroutine(PopulateRoom(room, currentSubType));
 
             }
@@ -157,7 +158,7 @@ public class ObjectGeneration : MonoBehaviour
 
             portal.transform.SetParent(room.gameObject.transform);
 
-            //Debug.Log("Placed portal in room: " + index);
+            Debug.Log("ObjectGeneration, placed portal in room: " + index);
         }
 
     }
@@ -227,9 +228,6 @@ public class ObjectGeneration : MonoBehaviour
         // if the placedObjects list contains the key, but its value for this object type is less than the max allowed
         if ((placedObjects.ContainsKey(objectType) && placedObjects[objectType] < currentRoomSubType.MaxAllowed[objectType]) || !placedObjects.ContainsKey(objectType))
         {
-
-            //Debug.Log($"Entering while loop to attempt to place {roomObjectBehavior.gameObject.name}");
-
             while (attempt < 100)
             {
 

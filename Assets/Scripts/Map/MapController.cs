@@ -70,10 +70,6 @@ public class MapController : MonoBehaviour
 
         }
 
-        //TODO: Player might not always spawn in first room
-        // change to figure out where player spawned
-        // But - be aware of timing, as this script might run after the player spawns in
-
 
         RemoveFog(0);
 
@@ -90,7 +86,6 @@ public class MapController : MonoBehaviour
 
     private void Event_OnRoomEnter(object sender, PlayerMovement.InputArgs e)
     {
-        //Debug.Log("Entered room" + e.roomId);
         RemoveFog(e.roomId);
     }
 

@@ -24,26 +24,6 @@ public class PlayerSounds : MonoBehaviour
     {
         PlayerAudioSource = GetComponent<AudioSource>();
     }
-
-    void Update()
-    {
-        // //TODO: This is only for testing, put this somewhere else where the action is happening
-        // if (Input.GetKeyUp(KeyCode.UpArrow))
-        // {
-        //     PlayOuchSound();
-        // }
-        // else if (Input.GetKeyUp(KeyCode.DownArrow)){
-        //     PlayPunchSound();
-        // }
-        // else if(Input.GetKeyUp(KeyCode.D)){
-        //     PlayDiedSound();
-        // }
-    }
-
-    //TODO: These will cut off whatever audio is already playing
-    // So we might want to add a buffer
-
-
     public void PlayOuchSound(){
         PlayerAudioSource.clip = ouch;
         PlayerAudioSource.Play();

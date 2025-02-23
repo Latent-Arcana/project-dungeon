@@ -70,7 +70,6 @@ public class MapMarker : MonoBehaviour
                     //only place a map marker in a room or over an existing map marker
 
                     Room roomData = hit.collider.gameObject.GetComponentInParent<Room>(); // the room object is actually on the parent of the map object
-                    //Debug.Log("getting the parent of " + hit.collider.gameObject.name);
 
                     // We also only want to place the marker if the room has been discovered
                     if (roomData != null)

@@ -833,14 +833,6 @@ public class BSPGeneration : MonoBehaviour
                         {
                             //Debug.Log($"Merge {child.name} and {child2.name}");
                             mergeHallways = true;
-                            // Transform parent1 = child.gameObject.transform.parent;
-                            // Transform parent2 = child2.gameObject.transform.parent;
-
-                            // //if we havent already added the child to move
-                            // if (!childrenToMove.ContainsKey(child2))
-                            // {
-                            //     childrenToMove.Add(child2, parent1);
-                            // }
                         }
                     }
                 }

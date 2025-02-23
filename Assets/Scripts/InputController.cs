@@ -41,7 +41,6 @@ public class InputController : MonoBehaviour
         public InputState inputState;
     }
 
-    //TODO: implement this in the M and I key if statements, and move enum to the enums file
     public enum InputState
     {
         Loading,
@@ -85,7 +84,7 @@ public class InputController : MonoBehaviour
 
     void CompletedObjectPlacement()
     {
-        Debug.Log("completed all rooms");
+        Debug.Log("Completed object placement in all rooms.");
         currentInputState = InputState.Gameplay;
 
         loadingScreen.SetActive(false);

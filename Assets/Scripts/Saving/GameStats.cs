@@ -57,22 +57,17 @@ public class GameStats : MonoBehaviour
         Denominator += denominator;
        
         // get numerator and denominator data so we can update the current run
-        if (numerator == denominator) // TODO: REVISIT
+        if (numerator == denominator)
         {
             IncrementFullyMappedDungeons();
             UpdateMappedDungeonsList();
         }
 
-      //  Debug.Log("Numerator is: " + GetNumerator());
-       // Debug.Log("Denominator is: " + GetDenominator());
 
         UpdateVisitedDungeonsInformation(); // we know we're going to increment this any time we swap portals (DO THIS ON DEATH TOO)
 
-        // currentRunData.DEBUG_AddDungeonsToList(50000);
 
         SetRoomsSuccessfullyMapped(GetNumerator()); // set how many room we've visited
-
-    //    Debug.Log("We just set the rooms succesfully mapped to: " + currentRunData.roomsMappedSuccessfully + " with numerator: " + GetNumerator());
 
         ++currentDungeonLevel;
     }
@@ -90,7 +85,7 @@ public class GameStats : MonoBehaviour
         currentDungeonLevel = 1;
         SetScore(0, 0);
         SetRoomsVisited(0);
-        InitializePlayer(); // TODO: Continue to extend
+        InitializePlayer();
         InitializeCurrentRunData();
     }
 
@@ -191,7 +186,6 @@ public class GameStats : MonoBehaviour
 
         int currentSeed = gameSetup.seed;
 
-   //     Debug.Log("Current seed is: " + currentSeed);
 
         if (!currentRunData.visitedDungeons.Contains(currentSeed))
         {

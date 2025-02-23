@@ -183,11 +183,8 @@ public class InventoryUI : MonoBehaviour
                 TextElement statsText = rows[i].Q("Stats").Children().First() as TextElement;
                 statsText.text = inventory[i].statsText.ToString();
 
-                //Debug.Log($"Comparing i ({i}) to armor ({inventory_class.equippedArmor}) and weapon ({inventory_class.equippedArmor})");
-
                 if (i == inventory_class.equippedArmor || i == inventory_class.equippedWeapon)
                 {
-                    //Debug.Log($"Equipped item in slot {i}");
                     equipmentToggles[i].SetValueWithoutNotify(true);
                 }
 
