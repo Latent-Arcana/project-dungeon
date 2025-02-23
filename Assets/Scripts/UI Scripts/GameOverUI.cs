@@ -41,12 +41,12 @@ public class GameOverUI : MonoBehaviour
         ////Buttons////  
         //similar to getting an HTML element by #ID
         MainMenuButton = main_document.rootVisualElement.Q("MainMenuButton") as Button;
-        QuitButton = main_document.rootVisualElement.Q("QuitButton") as Button;
+        //QuitButton = main_document.rootVisualElement.Q("QuitButton") as Button;
         NewGameButton = main_document.rootVisualElement.Q("NewGameButton") as Button;
 
         // Button Events //
         MainMenuButton.clicked += ReturnToMenu;
-        QuitButton.clicked += QuitGame;
+      // QuitButton.clicked += QuitGame;
         NewGameButton.clicked += StartNewGame;
 
         // Audio
