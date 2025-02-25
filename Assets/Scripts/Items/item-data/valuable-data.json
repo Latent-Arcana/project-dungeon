@@ -1,0 +1,224 @@
+{
+  "valuables": [
+    {
+      "itemID": "700",
+      "itemName": "Ancient Vase",
+      "itemDescription": "",
+      "STR": 0,
+      "SPD": 0,
+      "AGI": 0,
+      "HP": 0,
+      "image": "temp_icon",
+      "value": 15
+    },
+    {
+      "itemID": "701",
+      "itemName": "Jeweled Scarab",
+      "itemDescription": "",
+      "STR": 0,
+      "SPD": 0,
+      "AGI": 0,
+      "HP": 0,
+      "image": "temp_icon",
+      "value": 30
+    },
+    {
+      "itemID": "702",
+      "itemName": "Golden Chalice",
+      "itemDescription": "",
+      "STR": 0,
+      "SPD": 0,
+      "AGI": 0,
+      "HP": 0,
+      "image": "temp_icon",
+      "value": 25
+    },
+    {
+      "itemID": "703",
+      "itemName": "Tarnished Crown",
+      "itemDescription": "",
+      "STR": 0,
+      "SPD": 0,
+      "AGI": 0,
+      "HP": 0,
+      "image": "temp_icon",
+      "value": 40
+    },
+    {
+      "itemID": "704",
+      "itemName": "Mutated Skull",
+      "itemDescription": "",
+      "STR": 0,
+      "SPD": 0,
+      "AGI": 0,
+      "HP": 0,
+      "image": "temp_icon",
+      "value": 5
+    },
+    {
+      "itemID": "705",
+      "itemName": "Rusty Gear",
+      "itemDescription": "",
+      "STR": 0,
+      "SPD": 0,
+      "AGI": 0,
+      "HP": 0,
+      "image": "temp_icon",
+      "value": 5
+    },
+    {
+      "itemID": "706",
+      "itemName": "Ornate Mirror",
+      "itemDescription": "",
+      "STR": 0,
+      "SPD": 0,
+      "AGI": 0,
+      "HP": 0,
+      "image": "temp_icon",
+      "value": 35
+    },
+    {
+      "itemID": "707",
+      "itemName": "Mummified Hand",
+      "itemDescription": "",
+      "STR": 0,
+      "SPD": 0,
+      "AGI": 0,
+      "HP": 0,
+      "image": "temp_icon",
+      "value": 13
+    },
+    {
+      "itemID": "708",
+      "itemName": "Obsidian Staff",
+      "itemDescription": "",
+      "STR": 0,
+      "SPD": 0,
+      "AGI": 0,
+      "HP": 0,
+      "image": "temp_icon",
+      "value": 22
+    },
+    {
+      "itemID": "709",
+      "itemName": "Engraved Locket",
+      "itemDescription": "",
+      "STR": 0,
+      "SPD": 0,
+      "AGI": 0,
+      "HP": 0,
+      "image": "temp_icon",
+      "value": 20
+    },
+    {
+      "itemID": "710",
+      "itemName": "Clockwork Mechanism",
+      "itemDescription": "",
+      "STR": 0,
+      "SPD": 0,
+      "AGI": 0,
+      "HP": 0,
+      "image": "temp_icon",
+      "value": 37
+    },
+    {
+      "itemID": "711",
+      "itemName": "Arcane Parchment",
+      "itemDescription": "",
+      "STR": 0,
+      "SPD": 0,
+      "AGI": 0,
+      "HP": 0,
+      "image": "temp_icon",
+      "value": 35
+    },
+    {
+      "itemID": "712",
+      "itemName": "Mysterious Fossil",
+      "itemDescription": "",
+      "STR": 0,
+      "SPD": 0,
+      "AGI": 0,
+      "HP": 0,
+      "image": "temp_icon",
+      "value": 10
+    },
+    {
+      "itemID": "713",
+      "itemName": "Carved Bone Totem",
+      "itemDescription": "",
+      "STR": 0,
+      "SPD": 0,
+      "AGI": 0,
+      "HP": 0,
+      "image": "temp_icon",
+      "value": 19
+    },
+    {
+      "itemID": "714",
+      "itemName": "Silver Music Box",
+      "itemDescription": "",
+      "STR": 0,
+      "SPD": 0,
+      "AGI": 0,
+      "HP": 0,
+      "image": "temp_icon",
+      "value": 37
+    },
+    {
+      "itemID": "715",
+      "itemName": "Petrified Rat",
+      "itemDescription": "",
+      "STR": 0,
+      "SPD": 0,
+      "AGI": 0,
+      "HP": 0,
+      "image": "temp_icon",
+      "value": 4
+    },
+    {
+      "itemID": "716",
+      "itemName": "Shrunken Head",
+      "itemDescription": "",
+      "STR": 0,
+      "SPD": 0,
+      "AGI": 0,
+      "HP": 0,
+      "image": "temp_icon",
+      "value": 28
+    },
+    {
+      "itemID": "717",
+      "itemName": "Bloodstained Cloth",
+      "itemDescription": "",
+      "STR": 0,
+      "SPD": 0,
+      "AGI": 0,
+      "HP": 0,
+      "image": "temp_icon",
+      "value": 2
+    },
+    {
+      "itemID": "718",
+      "itemName": "Porcelain Doll",
+      "itemDescription": "",
+      "STR": 0,
+      "SPD": 0,
+      "AGI": 0,
+      "HP": 0,
+      "image": "temp_icon",
+      "value": 9
+    },
+    {
+      "itemID": "719",
+      "itemName": "Sealed Urn",
+      "itemDescription": "",
+      "STR": 0,
+      "SPD": 0,
+      "AGI": 0,
+      "HP": 0,
+      "image": "temp_icon",
+      "value": 32
+    }
+  ]  
+}

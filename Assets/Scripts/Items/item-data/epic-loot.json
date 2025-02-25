@@ -3,52 +3,52 @@
         {
             "itemID": "404",
             "itemName": "The Slayer of Dragons",
-            "DropChance": 9
+            "DropChance": 8
         },
         {
             "itemID": "401",
             "itemName": "The Almighty Doctrina",
-            "DropChance": 9
+            "DropChance": 8
         },
         {
             "itemID": "405",
             "itemName": "The Teeth that Bite Back",
-            "DropChance": 9
+            "DropChance": 8
         },
         {
             "itemID": "402",
             "itemName": "The Honour's Lament",
-            "DropChance": 9
+            "DropChance": 8
         },
         {
             "itemID": "403",
             "itemName": "The Left Hook, Right Hook",
-            "DropChance": 9
+            "DropChance": 8
         },
         {
             "itemID": "201",
             "itemName": "The Berserk's Armor",
-            "DropChance": 9
+            "DropChance": 7
         },
         {
             "itemID": "203",
             "itemName": "The Mark XIV Phebos",
-            "DropChance": 9
+            "DropChance": 8
         },
         {
             "itemID": "202",
             "itemName": "The Garon's Fur",
-            "DropChance": 9
+            "DropChance": 8
         },
         {
             "itemID": "204",
             "itemName": "The Wailing Fauld",
-            "DropChance": 9
+            "DropChance": 8
         },
         {
             "itemID": "501",
             "itemName": "Elixir of Health",
-            "DropChance": 5
+            "DropChance": 4
         },
         {
             "itemID": "505",
@@ -68,7 +68,37 @@
         {
             "itemID": "503",
             "itemName": "Vial of Pure Stamina",
-            "DropChance": 5
+            "DropChance": 4
+        },
+        {
+            "itemID": "701",
+            "itemName": "Jeweled Scarab",
+            "DropChance": 2
+        },
+        {
+            "itemID": "703",
+            "itemName": "Tarnished Crown",
+            "DropChance": 2
+        },
+        {
+            "itemID": "706",
+            "itemName": "Ornate Mirror",
+            "DropChance": 2
+        },
+        {
+            "itemID": "710",
+            "itemName": "Clockwork Mechanism",
+            "DropChance": 2
+        },
+        {
+            "itemID": "711",
+            "itemName": "Arcane Parchment",
+            "DropChance": 2
+        },
+        {
+            "itemID": "719",
+            "itemName": "Sealed Urn",
+            "DropChance": 2
         }
     ]
 }

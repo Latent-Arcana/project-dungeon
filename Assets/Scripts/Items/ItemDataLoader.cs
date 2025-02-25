@@ -20,6 +20,7 @@ public class ItemLoader : MonoBehaviour
     public TextAsset armorFile;
     public TextAsset specialWeaponFile;
     public TextAsset specialArmorFile;
+    public TextAsset valuablesFile;
 
     public TextAsset commonLootFile;
     public TextAsset uncommonLootFile;
@@ -101,12 +102,17 @@ public class ItemLoader : MonoBehaviour
             return;
         }
 
+        if(valuablesFile == null){
+            Debug.LogError("JSON file for valuables was not assigned.");
+        }
+
         // All files are valid, proceed with processing
         string consumablesJsonString = consumablesFile.text;
         string weaponsJsonString = weaponsFile.text;
         string armorJsonString = armorFile.text;
         string specialArmorJsonString = specialArmorFile.text;
         string specialWeaponJsonString = specialWeaponFile.text;
+        string valuablesJsonString = valuablesFile.text;
 
         ConsumableData[] consumablesData = JsonUtility.FromJson<ConsumablesDataArray>(consumablesJsonString).consumables;
         WeaponData[] weaponsData = JsonUtility.FromJson<WeaponsDataArray>(weaponsJsonString).weapons;
@@ -115,6 +121,7 @@ public class ItemLoader : MonoBehaviour
         ArmorData[] armorData = JsonUtility.FromJson<ArmorDataArray>(armorJsonString).armor;
         ArmorData[] specialArmorData = JsonUtility.FromJson<ArmorDataArray>(specialArmorJsonString).armor;
 
+        ValuableData[] valuableData = JsonUtility.FromJson<ValuableDataArray>(valuablesJsonString).valuables;
 
 
 
@@ -125,6 +132,8 @@ public class ItemLoader : MonoBehaviour
 
         CreateWeapons(weaponsData);
         CreateWeapons(specialWeaponsData);
+
+        CreateValuables(valuableData);
 
         hasLoadedItemsSuccessfully = true;
     }
@@ -164,6 +173,18 @@ public class ItemLoader : MonoBehaviour
         epicLootTable = CreateLootTable(epicLootData);
 
         hasLoadedLootTablesSuccessfully = true;
+
+        foreach(LootItem item in commonLootTable){
+            Debug.Log(item.itemID + " " + item.itemName + " DropChance: " + item.minValue + "-" + item.maxValue);
+        }
+
+        foreach(LootItem item in uncommonLootTable){
+            Debug.Log(item.itemID + " " + item.itemName + " DropChance: " + item.minValue + "-" + item.maxValue);
+        }
+
+        foreach(LootItem item in epicLootTable){
+            Debug.Log(item.itemID + " " + item.itemName + " DropChance: " + item.minValue + "-" + item.maxValue);
+        }
     }
 
 
@@ -305,6 +326,27 @@ public class ItemLoader : MonoBehaviour
 
     }
 
+    private void CreateValuables(ValuableData[] dataArray){
+        
+        foreach(ValuableData data in dataArray){
+            Valuable valuable = ScriptableObject.CreateInstance<Valuable>();
+            valuable.itemID = data.itemID;
+            valuable.itemName = data.itemName;
+            valuable.itemDescription = data.itemDescription;
+            valuable.AGI = data.AGI;
+            valuable.SPD = data.SPD;
+            valuable.STR = data.STR;
+            valuable.HP = data.HP;
+            valuable.image = data.image;
+            valuable.type = Enums.ItemType.Valuable;
+            valuable.statsText = data.value.ToString() + " cartos";
+
+            if(valuable != null){
+                itemsDatabase.Add(valuable);
+            }
+        }
+    }
+
     private string FormatStatsText(int AGI, int STR, int SPD, int AP, int HP)
     {
         string statsText = "";
@@ -379,6 +421,11 @@ public class WeaponsDataArray
 public class ArmorDataArray
 {
     public ArmorData[] armor;
+}
+
+[Serializable]
+public class ValuableDataArray{
+    public ValuableData[] valuables;
 }
 
 [Serializable]

@@ -3,52 +3,52 @@
         {
             "itemID": "305",
             "itemName": "Fair Saber",
-            "DropChance": 6
+            "DropChance": 5
         },
         {
             "itemID": "302",
             "itemName": "Fair Battle Axe",
-            "DropChance": 6
+            "DropChance": 5
         },
         {
             "itemID": "308",
             "itemName": "Fair Falchion",
-            "DropChance": 6
+            "DropChance": 5
         },
         {
             "itemID": "315",
             "itemName": "Fair Heavy Mace",
-            "DropChance": 6
+            "DropChance": 5
         },
         {
             "itemID": "311",
             "itemName": "Fair Halberd",
-            "DropChance": 6
+            "DropChance": 5
         },
         {
             "itemID": "105",
             "itemName": "Fair Gambeson Robes",
-            "DropChance": 6
+            "DropChance": 5
         },
         {
             "itemID": "102",
             "itemName": "Fair Elk Hide Armor",
-            "DropChance": 6
+            "DropChance": 5
         },
         {
             "itemID": "108",
             "itemName": "Fair Hauberk",
-            "DropChance": 6
+            "DropChance": 5
         },
         {
             "itemID": "114",
             "itemName": "Fair Plackart",
-            "DropChance": 6
+            "DropChance": 5
         },
         {
             "itemID": "111",
             "itemName": "Fair Laminar Plate Mail",
-            "DropChance": 6
+            "DropChance": 5
         },     
         {
             "itemID": "306",
@@ -124,6 +124,32 @@
             "itemID": "503",
             "itemName": "Vial of Pure Stamina",
             "DropChance": 3
+        },
+        {
+            "itemID": "700",
+            "itemName": "Ancient Vase",
+            "DropChance": 2
+        },
+        {
+            "itemID": "702",
+            "itemName": "Golden Chalice",
+            "DropChance": 2
+        },        {
+            "itemID": "708",
+            "itemName": "Obsidian Staff",
+            "DropChance": 1
+        },        {
+            "itemID": "709",
+            "itemName": "Engraved Locket",
+            "DropChance": 2
+        },        {
+            "itemID": "713",
+            "itemName": "Carved Bone Totem",
+            "DropChance": 2
+        },        {
+            "itemID": "716",
+            "itemName": "Shrunken Head",
+            "DropChance": 1
         }
     ]
 }

@@ -49,7 +49,12 @@ MonoBehaviour:
   armorFile: {fileID: 4900000, guid: 6bcfb7f5e4b4a144aa4df96bdde53e7d, type: 3}
   specialWeaponFile: {fileID: 4900000, guid: 9d20770a59b8a054dae6118167d6b07c, type: 3}
   specialArmorFile: {fileID: 4900000, guid: afbd3f0113093134d80f2814b4977629, type: 3}
+  valuablesFile: {fileID: 4900000, guid: 4668e9e00fa480a4d814eb69ccb06088, type: 3}
   commonLootFile: {fileID: 4900000, guid: 32f638cfdc9c92c429ba90c516487d10, type: 3}
   uncommonLootFile: {fileID: 4900000, guid: 0e5b890ec442f4d438ef0eafa278966b, type: 3}
   epicLootFile: {fileID: 4900000, guid: 2a8c3919f53d3d146bba540b1d6d0eef, type: 3}
-  hasLoadedSuccessfully: 0
+  hasLoadedItemsSuccessfully: 0
+  hasLoadedLootTablesSuccessfully: 0
+  commonLootTable: []
+  uncommonLootTable: []
+  epicLootTable: []

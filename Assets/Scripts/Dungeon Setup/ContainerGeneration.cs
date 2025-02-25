@@ -74,6 +74,7 @@ public class ContainerGeneration : MonoBehaviour
 
                     if (lootItem.minValue <= lootRoll && lootItem.maxValue >= lootRoll)
                     {
+                        Debug.Log("Rolled a " + lootRoll + " and checking for that item now");
                         Item item = itemsDatabase.Where(x => x.itemID == lootItem.itemID).First();
 
                        // Should remove duplicates so we don't have a bunch of the same thing every time 

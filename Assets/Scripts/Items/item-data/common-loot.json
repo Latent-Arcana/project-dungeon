@@ -3,27 +3,27 @@
         {
             "itemID": "304",
             "itemName": "Crude Saber",
-            "DropChance": 6
+            "DropChance": 5
         },
         {
             "itemID": "301",
             "itemName": "Crude Battle Axe",
-            "DropChance": 6
+            "DropChance": 5
         },
         {
             "itemID": "307",
             "itemName": "Crude Falchion",
-            "DropChance": 6
+            "DropChance": 5
         },
         {
             "itemID": "313",
             "itemName": "Crude Heavy Mace",
-            "DropChance": 6
+            "DropChance": 5
         },
         {
             "itemID": "310",
             "itemName": "Crude Halberd",
-            "DropChance": 6
+            "DropChance": 5
         },
         {
             "itemID": "104",
@@ -33,12 +33,12 @@
         {
             "itemID": "101",
             "itemName": "Crude Elk Hide Armor",
-            "DropChance": 6
+            "DropChance": 5
         },
         {
             "itemID": "107",
             "itemName": "Crude Hauberk",
-            "DropChance": 6
+            "DropChance": 5
         },
         {
             "itemID": "113",
@@ -48,7 +48,7 @@
         {
             "itemID": "110",
             "itemName": "Crude Laminar Plate Mail",
-            "DropChance": 6
+            "DropChance": 5
         },
         {
             "itemID": "305",
@@ -63,7 +63,7 @@
         {
             "itemID": "308",
             "itemName": "Fair Falchion",
-            "DropChance": 3
+            "DropChance": 2
         },
         {
             "itemID": "315",
@@ -88,12 +88,12 @@
         {
             "itemID": "108",
             "itemName": "Fair Hauberk",
-            "DropChance": 3
+            "DropChance": 2
         },
         {
             "itemID": "114",
             "itemName": "Fair Plackart",
-            "DropChance": 3
+            "DropChance": 2
         },
         {
             "itemID": "111",
@@ -124,6 +124,41 @@
             "itemID": "503",
             "itemName": "Vial of Pure Stamina",
             "DropChance": 3
+        },
+        {
+            "itemID": "704",
+            "itemName": "Mutated Skull",
+            "DropChance": 1
+        },
+        {
+            "itemID": "705",
+            "itemName": "Rusty Gear",
+            "DropChance": 2
+        },
+        {
+            "itemID": "707",
+            "itemName": "Mummified Hand",
+            "DropChance": 1
+        },
+        {
+            "itemID": "712",
+            "itemName": "Mysterious Fossil",
+            "DropChance": 1
+        },
+        {
+            "itemID": "715",
+            "itemName": "Petrified Rat",
+            "DropChance": 2
+        },
+        {
+            "itemID": "717",
+            "itemName": "Bloodstained Cloth",
+            "DropChance": 2
+        },
+        {
+            "itemID": "718",
+            "itemName": "Porcelain Doll",
+            "DropChance": 2
         }
     ]
 }

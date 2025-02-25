@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -193,11 +194,18 @@ public class InventoryUI : MonoBehaviour
                     equipmentToggles[i].SetValueWithoutNotify(false);
                 }
 
+                if(inventory[i].type == Enums.ItemType.Valuable){
+                    equipmentToggles[i].style.visibility = Visibility.Hidden;
+                }
+                else{
+                    equipmentToggles[i].style.visibility = Visibility.Visible;
+                }
             }
 
             else //no inventory item to show in the row, so hide it
             {
                 rows[i].style.visibility = Visibility.Hidden;
+                equipmentToggles[i].style.visibility = Visibility.Hidden;
 
                 //rows[i].Q("").Children().First().style.backgroundImage = null;
 

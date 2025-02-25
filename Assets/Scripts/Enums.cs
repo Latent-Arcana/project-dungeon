@@ -79,12 +79,10 @@ public static class Enums
 
     public enum ItemType
     {
-        General,
         Armor,
         Weapon,
         Consumable,
-        Special,
-        Book
+        Valuable
     }
 
     public enum ShrineType
