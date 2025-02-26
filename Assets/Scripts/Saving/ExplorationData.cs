@@ -13,7 +13,8 @@ public class ExplorationData
     public int enemiesKilled;
     public List<int> visitedDungeons;
     public List<int> mappedDungeons;
-    public ExplorationData(int _dungeonsFullyMapped, int _roomsMappedSuccessfully, int _dungeonsVisited, int _cartographersLost, int _enemiesKilled, List<int> _visitedDungeons, List<int> _mappedDungeons)
+    public int cartosEarned;
+    public ExplorationData(int _dungeonsFullyMapped, int _roomsMappedSuccessfully, int _dungeonsVisited, int _cartographersLost, int _enemiesKilled, List<int> _visitedDungeons, List<int> _mappedDungeons, int _cartosEarned)
     {
         dungeonsFullyMapped = _dungeonsFullyMapped;
         roomsMappedSuccessfully = _roomsMappedSuccessfully;
@@ -22,6 +23,7 @@ public class ExplorationData
         enemiesKilled = _enemiesKilled;
         visitedDungeons = _visitedDungeons;
         mappedDungeons = _mappedDungeons;
+        cartosEarned = _cartosEarned;
     }
 
     public ExplorationData()
@@ -31,6 +33,7 @@ public class ExplorationData
         dungeonsVisited = 0;
         cartographersLost = 0;
         enemiesKilled = 0;
+        cartosEarned = 0;
         visitedDungeons = new List<int>();
         mappedDungeons = new List<int>();
     }
@@ -42,6 +45,7 @@ public class ExplorationData
         dungeonsVisited += currentRun.dungeonsVisited;
         cartographersLost += currentRun.cartographersLost;
         enemiesKilled += currentRun.enemiesKilled;
+        cartosEarned += currentRun.cartosEarned;
 
         foreach (int dungeon in currentRun.visitedDungeons)
         {

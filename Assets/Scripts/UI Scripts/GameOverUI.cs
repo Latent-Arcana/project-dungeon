@@ -19,6 +19,7 @@ public class GameOverUI : MonoBehaviour
     private TextElement statsText1;
     private TextElement statsText2;
     private TextElement killedByText;
+    private TextElement cartosEarnedText;
     private GameStats gameStats;
 
     //// Music ////
@@ -36,6 +37,7 @@ public class GameOverUI : MonoBehaviour
         statsText2 = main_document.rootVisualElement.Q("StatsText_2") as TextElement;
 
         killedByText = main_document.rootVisualElement.Q("KilledByText") as TextElement;
+        cartosEarnedText = main_document.rootVisualElement.Q("CartosEarned") as TextElement;
         gameStats = GameObject.Find("GameStats").GetComponent<GameStats>();
 
         ////Buttons////  
@@ -67,6 +69,8 @@ public class GameOverUI : MonoBehaviour
         int roomsVisited = gameStats.GetRoomsVisited(); //currently not being incremented anywhere
 
         killedByText.text = gameStats.GetDeathText();
+        cartosEarnedText.text = "Cartos Earned: " + gameStats.GetCartosEarned();
+
 
         statsText1.text = @$"Total rooms marked correctly: {num}/{denom}";
         statsText2.text = @$"Total rooms visited: {roomsVisited}";

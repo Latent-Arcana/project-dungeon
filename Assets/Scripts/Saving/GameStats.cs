@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -68,6 +69,8 @@ public class GameStats : MonoBehaviour
 
 
         SetRoomsSuccessfullyMapped(GetNumerator()); // set how many room we've visited
+
+        SetCartosEarned(currentDungeonLevel, Numerator, Player_Inventory);
 
         ++currentDungeonLevel;
     }
@@ -178,6 +181,31 @@ public class GameStats : MonoBehaviour
     public void IncrementEnemiesKilled()
     {
         currentRunData.enemiesKilled++;
+    }
+
+    public void SetCartosEarned(int dungeonLevel, int numerator, Inventory inventory){
+
+        int baseCartos = 0;
+
+        // add up valuables
+        foreach(Item item in inventory.items){
+            if(item.type == Enums.ItemType.Valuable){
+                Valuable v = item as Valuable;
+                baseCartos += v.value;
+            }
+        }
+
+        int mappingBonus = (dungeonLevel + numerator) * 5;
+
+        baseCartos += mappingBonus;
+        Debug.Log("Current cartos value is: " + baseCartos + " which was calculated with dungeonLevel: " + dungeonLevel + " and numerator: " + numerator);
+
+        currentRunData.cartosEarned = baseCartos;
+
+    }
+
+    public int GetCartosEarned(){
+        return currentRunData.cartosEarned;
     }
 
     public void UpdateVisitedDungeonsInformation()

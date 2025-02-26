@@ -7,6 +7,7 @@
                 <ui:Label tabindex="-1" text="Some Stats" parse-escape-sequences="true" display-tooltip-when-elided="true" name="StatsText" class="text-body-gameover" style="width: 50%; -unity-text-align: lower-right; padding-right: 10px; padding-top: 0; padding-bottom: 0; padding-left: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;" />
                 <ui:Label tabindex="-1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="StatsText_2" text="More Stats" class="text-body-gameover" style="width: 50%; -unity-text-align: lower-left; padding-left: 10px; padding-top: 0; padding-right: 0; padding-bottom: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;" />
             </ui:VisualElement>
+            <ui:Label tabindex="-1" text="Cartos Earned: " parse-escape-sequences="true" display-tooltip-when-elided="true" enable-rich-text="true" name="CartosEarned" style="align-self: center; -unity-font: url(&quot;project://database/Assets/Font/Seraphimb1.ttf?fileID=12800000&amp;guid=3f1f980884aaaae4a87358e26cfd514b&amp;type=3#Seraphimb1&quot;); -unity-font-definition: initial; color: rgb(112, 112, 112); font-size: 20px;" />
         </ui:VisualElement>
         <ui:VisualElement name="ContainerGameOver" class="menu-container-gameover button-container" style="flex-grow: 1;">
             <ui:Button text="New Game" parse-escape-sequences="true" display-tooltip-when-elided="true" name="NewGameButton" class="menu-button" />
