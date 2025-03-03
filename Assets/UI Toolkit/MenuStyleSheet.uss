@@ -307,3 +307,16 @@
     -unity-font-definition: initial;
     font-size: 24px;
 }
+
+.disabled-button {
+    pointer-events: none;
+    background-image: url("project://database/Assets/Sprites/UI%20Sprites/button-inactive-1150x63.png?fileID=2800000&guid=94d5c3186afbe9a43be5fd263353e823&type=3#button-inactive-1150x63") !important;
+    color: rgb(255, 255, 255);
+}
+
+.disabled-button:hover,
+.disabled-button:active {
+    background-image: url("project://database/Assets/Sprites/UI%20Sprites/button-inactive-1150x63.png?fileID=2800000&guid=94d5c3186afbe9a43be5fd263353e823&type=3#button-inactive-1150x63") !important;
+    cursor: default;
+    color: rgb(255, 255, 255);
+}

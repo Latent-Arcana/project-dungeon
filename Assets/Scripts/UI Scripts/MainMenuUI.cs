@@ -14,6 +14,7 @@ public class MainMenuUI : MonoBehaviour
     ////Objects////
     private UIDocument main_document;
     private OptionsMenuUI optionsMenuUI;
+    private BuyScreenMenuUI buyScreenMenuUI;
 
     ////Buttons////
     // Main Container Buttons
@@ -35,6 +36,7 @@ public class MainMenuUI : MonoBehaviour
 
     ////Containers////
     private VisualElement optionsContainer;
+    private VisualElement buyScreenContainer;
     private VisualElement mainContainer;
     private VisualElement parentContainer;
     private VisualElement helpContainer;
@@ -84,6 +86,9 @@ public class MainMenuUI : MonoBehaviour
         //Options menu class script
         optionsMenuUI = this.GetComponent<OptionsMenuUI>();
 
+        //Buy screen class script
+        buyScreenMenuUI = this.GetComponent<BuyScreenMenuUI>();
+
         ////Buttons////  
 
         // Main Container Buttons
@@ -104,6 +109,7 @@ public class MainMenuUI : MonoBehaviour
 
         //// Containers ////
         optionsContainer = main_document.rootVisualElement.Q("OptionsContainer");
+        buyScreenContainer = main_document.rootVisualElement.Q("BuyScreenContainer");
         mainContainer = main_document.rootVisualElement.Q("MainContainer");
         parentContainer = main_document.rootVisualElement.Q("Container");
         helpContainer = main_document.rootVisualElement.Q("PlayingTheGame");
@@ -222,7 +228,7 @@ public class MainMenuUI : MonoBehaviour
         }
     }
 
-    private IEnumerator FadeScreenOnExit()
+    public IEnumerator FadeScreenOnExit()
     {
         screenOverlay.style.display = DisplayStyle.Flex; // Ensure the overlay is visible before fading out
         float fadeTime = 0f;
@@ -267,11 +273,18 @@ public class MainMenuUI : MonoBehaviour
         creditsContainer.style.display = (creditsContainer.style.display == DisplayStyle.Flex) ? DisplayStyle.None : DisplayStyle.Flex;
     }
 
+    private void ToggleBuyScreen(){
+        mainContainer.style.display = (mainContainer.style.display == DisplayStyle.Flex) ? DisplayStyle.None : DisplayStyle.Flex;
+        buyScreenContainer.style.display = (buyScreenContainer.style.display == DisplayStyle.Flex) ? DisplayStyle.None : DisplayStyle.Flex;
+    }
+
     //load the game (if main menu), or unpause the game (if pause menu)
     private void PlayGame()
     {
         menuAudioController.PlayAudioClip("ButtonClose");
-        StartCoroutine(FadeScreenOnExit());
+        
+        ToggleBuyScreen();
+        // StartCoroutine(FadeScreenOnExit());
     }
 
     public void QuitGame()
