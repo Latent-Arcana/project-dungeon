@@ -162,6 +162,8 @@ public class ContainerGeneration : MonoBehaviour
     {
         List<Item> packItems = new List<Item>();
 
+        int randIndex = 0;
+
         if (selected_pack != "")
         {
 
@@ -174,11 +176,21 @@ public class ContainerGeneration : MonoBehaviour
                     break;
 
                 case "BasicWeaponPack":
-                    packItems.Add(itemsDatabase.Where(x => x.itemID == "313").First());
+                    List<Item> basicWeapons = itemsDatabase.Where(x => x.itemName.Contains("Fair") && (x as Weapon != null)).ToList();
+
+                    randIndex = UnityEngine.Random.Range(0, basicWeapons.Count);
+
+                    packItems.Add(basicWeapons[randIndex]);
+
                     break;
 
                 case "BasicArmorPack":
-                    packItems.Add(itemsDatabase.Where(x => x.itemID == "108").First());
+                    List<Item> basicArmor = itemsDatabase.Where(x => x.itemName.Contains("Fair") && (x as Armor != null)).ToList();
+
+                    randIndex = UnityEngine.Random.Range(0, basicArmor.Count);
+
+                    packItems.Add(basicArmor[randIndex]);
+
                     break;
 
                 case "AdvancedWeaponPack":

@@ -318,6 +318,10 @@ public class PlayerMovement : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
+        if(player == null || collision == null){
+            return;
+        }
+
         if (collision.gameObject.tag == "room")
         {
             OnRoomEnter.Invoke(this, new InputArgs
@@ -416,11 +420,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        if(player == null || collision == null){
+            return;
+        }
 
         // if the player quits the game (or maybe changes scene) when they are colliding with a room,
         // it triggers onTriggerExit, but the Room component will get get deleted before it finishes
         // so we check to make sure it is still existing before invoking the event to prevent error
-        if (collision.gameObject.tag == "room" && collision.gameObject.GetComponentInParent<Room>() != null && player.gameObject != null)
+        if (collision.gameObject.tag == "room" && collision.gameObject.GetComponentInParent<Room>() != null)
         {
             //if (!enteredPortal) //we think that this event was firing after portal was entered when the scene is changing, which caused errors
             {
