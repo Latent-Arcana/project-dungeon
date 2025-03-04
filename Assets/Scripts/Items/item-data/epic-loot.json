@@ -88,7 +88,12 @@
         {
             "itemID": "710",
             "itemName": "Clockwork Mechanism",
-            "DropChance": 2
+            "DropChance": 1
+        },
+        {
+            "itemID": "714",
+            "itemName": "Silver Music Box",
+            "DropChance": 1
         },
         {
             "itemID": "711",
