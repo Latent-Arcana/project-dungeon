@@ -9,6 +9,8 @@ public class Inventory : ScriptableObject
     public int equippedArmor;
     public int equippedWeapon;
 
+    public string selected_pack;
+
 
     [SerializeField]
     [Header("DEBUG")]
@@ -32,5 +34,9 @@ public class Inventory : ScriptableObject
 
         equippedArmor = -1;
         equippedWeapon = -1;
+    }
+
+    public void SetPack(string packName){
+        selected_pack = packName;
     }
 }

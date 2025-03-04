@@ -246,6 +246,7 @@ public class MainMenuUI : MonoBehaviour
 
         Player_Stats.Initialize(); // Resetting the player's stats to base stats when a new game begins
         Player_Inventory.Reset(); // Resetting the player's inventory and equipment when a new game begins
+        Player_Inventory.SetPack(buyScreenMenuUI.selected_pack);
         SceneManager.LoadScene("BSP");
     }
 

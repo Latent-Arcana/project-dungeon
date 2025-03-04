@@ -26,7 +26,7 @@ public class BuyScreenMenuUI : MonoBehaviour
 
     void Awake()
     {
-        //UI Document
+        //// UI Document ////
         main_document = this.GetComponent<UIDocument>();
 
         mainMenuUI = this.GetComponent<MainMenuUI>();
@@ -47,8 +47,6 @@ public class BuyScreenMenuUI : MonoBehaviour
         {
             cartosText.text = "Cartos: 0";
         }
-
-
 
         noPack = buyScreenContainer.Q("NoPack") as Button;
         basicWeaponPack = buyScreenContainer.Q("BasicWeaponPack") as Button;
@@ -104,8 +102,9 @@ public class BuyScreenMenuUI : MonoBehaviour
             Debug.Log($"BuyScreenMenuUI, a Pack Button was accessed that does not exist.");
         }
 
+        selected_pack = packButton.name;
+        
         Debug.Log($"Selected Pack: {selected_pack}. Cost is: {cost}");
-
 
         storeData.cartosEarned -= cost;
 

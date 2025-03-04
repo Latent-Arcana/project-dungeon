@@ -173,18 +173,6 @@ public class ItemLoader : MonoBehaviour
         epicLootTable = CreateLootTable(epicLootData);
 
         hasLoadedLootTablesSuccessfully = true;
-
-        foreach(LootItem item in commonLootTable){
-            Debug.Log(item.itemID + " " + item.itemName + " DropChance: " + item.minValue + "-" + item.maxValue);
-        }
-
-        foreach(LootItem item in uncommonLootTable){
-            Debug.Log(item.itemID + " " + item.itemName + " DropChance: " + item.minValue + "-" + item.maxValue);
-        }
-
-        foreach(LootItem item in epicLootTable){
-            Debug.Log(item.itemID + " " + item.itemName + " DropChance: " + item.minValue + "-" + item.maxValue);
-        }
     }
 
 

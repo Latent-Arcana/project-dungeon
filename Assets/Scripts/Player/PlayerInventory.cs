@@ -1,6 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection.Emit;
+using Unity.VisualScripting;
 using UnityEngine;
 using static ContainerGeneration;
 public class PlayerInventory : MonoBehaviour
@@ -68,7 +71,26 @@ public class PlayerInventory : MonoBehaviour
 
     void AddItem(Item item)
     {
-        inventory.items.Add(item);
+        if (inventory.items.Count < 10)
+        {
+            inventory.items.Add(item);
+            
+            Weapon weapon = item as Weapon;
+            Armor armor = item as Armor;
+
+            if(weapon != null){
+                inventory.currentDurability.Add(weapon.DUR);
+            }
+
+            else if(armor != null){
+                inventory.currentDurability.Add(armor.DUR);
+            }
+            else{
+                inventory.currentDurability.Add(-1);
+            }
+
+        }
+
     }
 
     public void Consume(int index)
@@ -117,7 +139,8 @@ public class PlayerInventory : MonoBehaviour
 
     }
 
-    public void HandleBrokenItemNarration(Item item){
+    public void HandleBrokenItemNarration(Item item)
+    {
 
         string splitNameArticle = item.itemName.Split(" ")[0];
 
@@ -211,6 +234,18 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 
+    public void GetSelectedPack()
+    {
+        List<Item> packItems = Container_Generator.AssignPackItems(inventory.selected_pack);
+
+        foreach (Item packItem in packItems) // add to the end of the list (the only reason this is safe is because it's happening at the beginning of the game)
+        {
+            Debug.Log(packItem.itemName);
+            AddItem(packItem);
+        }
+
+        return;
+    }
     public void Update()
     {
 
@@ -233,12 +268,13 @@ public class PlayerInventory : MonoBehaviour
         {
             inventory.currentDurability[index]--;
 
-            if(inventory.currentDurability[index] <= 0){
+            if (inventory.currentDurability[index] <= 0)
+            {
 
                 HandleBrokenItemNarration(inventory.items[index]);
                 RemoveItem(index);
             }
-            
+
             // UpdateEquipmentIcons()
         }
     }

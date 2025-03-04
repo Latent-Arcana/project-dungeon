@@ -77,11 +77,11 @@ public class ContainerGeneration : MonoBehaviour
                         Debug.Log("Rolled a " + lootRoll + " and checking for that item now");
                         Item item = itemsDatabase.Where(x => x.itemID == lootItem.itemID).First();
 
-                       // Should remove duplicates so we don't have a bunch of the same thing every time 
+                        // Should remove duplicates so we don't have a bunch of the same thing every time 
 
                         if (!resultItems.Contains(item))
                         {
-                            resultItems.Add(item); 
+                            resultItems.Add(item);
                         }
 
                         currentCount++;
@@ -157,4 +157,67 @@ public class ContainerGeneration : MonoBehaviour
 
         return itemsDatabase[randomIndex];
     }
+
+    public List<Item> AssignPackItems(string selected_pack)
+    {
+        List<Item> packItems = new List<Item>();
+
+        if (selected_pack != "")
+        {
+
+            // do things to load inventory data
+            Debug.Log($"The player selected: {selected_pack}");
+
+            switch (selected_pack)
+            {
+                case "NoPack":
+                    break;
+
+                case "BasicWeaponPack":
+                    packItems.Add(itemsDatabase.Where(x => x.itemID == "313").First());
+                    break;
+
+                case "BasicArmorPack":
+                    packItems.Add(itemsDatabase.Where(x => x.itemID == "108").First());
+                    break;
+
+                case "AdvancedWeaponPack":
+                    packItems.Add(itemsDatabase.Where(x => x.itemID == "306").First());
+                    break;
+
+                case "AdvancedArmorPack":
+                    packItems.Add(itemsDatabase.Where(x => x.itemID == "106").First());
+                    break;
+
+                case "AlchemistPack":
+                    packItems.Add(itemsDatabase.Where(x => x.itemID == "502").First());
+                    break;
+
+                case "HealerPack":
+                    packItems.Add(itemsDatabase.Where(x => x.itemID == "501").First());
+                    break;
+
+                default:
+                    break;
+            }
+
+
+            selected_pack = "";
+        }
+        return packItems;
+    }
 }
+
+
+/*
+    Basic / Advanced Pack 
+        Random Item of either Fair or Excellent type (weapon or armor based on name)
+    
+    Alchemist / Healer Pack
+        Random potion or random heal potion (heal or stamina)
+
+    "Build" Pack
+        Random Item of a specific build type
+            Determined by list of item IDs?
+            Determined by info we get on the fly? (item name like "EXCELLENT" etc.)
+*/

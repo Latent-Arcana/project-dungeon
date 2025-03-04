@@ -39,6 +39,7 @@ public class GameSetup : MonoBehaviour
 
     public GameStats gameStats;
 
+    public PlayerInventory playerInventory;
 
     void Awake()
     {
@@ -52,6 +53,7 @@ public class GameSetup : MonoBehaviour
         bspController = Dungeon_Generator.GetComponent<BSPGeneration>();
         floorCoverGenerator = Dungeon_Generator.GetComponent<FloorCoveringGeneration>();
 
+        playerInventory = GameObject.Find("Player").GetComponent<PlayerInventory>();
 
         // EVEN NOW THE EVIL SEED OF WHAT YOU'VE DONE, GERMINATES WITHIN YOU!!!!1
         // (Seed generation based on what you enter in the editor)
@@ -100,6 +102,9 @@ public class GameSetup : MonoBehaviour
         // At this point, ContainerBehavior.cs on each individual openable object is what handles grabbing container data for itself
         // The generator produces this via functions within it as a singleton
         Container_Generator.InitializeContainerGenerator(itemsDatabase, lootTable);
+
+        // Now we set up the player inventory with the pack that they selected in the beginning of the game
+        playerInventory.GetSelectedPack();
 
         gameStats = GameObject.Find("GameStats").GetComponent<GameStats>();
         
