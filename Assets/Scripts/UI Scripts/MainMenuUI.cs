@@ -125,6 +125,7 @@ public class MainMenuUI : MonoBehaviour
         optionsContainer.style.display = DisplayStyle.None;
         helpContainer.style.display = DisplayStyle.None;
         creditsContainer.style.display = DisplayStyle.None;
+        buyScreenContainer.style.display = DisplayStyle.None;
 
         //Don't show the easter egg by default
         endContainer = main_document.rootVisualElement.Q("YouBeatTheGame");

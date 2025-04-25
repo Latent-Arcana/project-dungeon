@@ -158,24 +158,26 @@ public class ContainerGeneration : MonoBehaviour
         return itemsDatabase[randomIndex];
     }
 
-    public List<Item> AssignPackItems(string selected_pack)
+    public List<Item> AssignPackItems(int selected_pack)
     {
         List<Item> packItems = new List<Item>();
 
         int randIndex = 0;
 
-        if (selected_pack != "")
+        if (selected_pack > 0)
         {
 
             // do things to load inventory data
             Debug.Log($"The player selected: {selected_pack}");
 
+
+            //The selected_pack int is the Dictionary Key/packId in StorePacks.cs
             switch (selected_pack)
             {
-                case "NoPack":
+                case 0: // No Pack
                     break;
 
-                case "BasicWeaponPack":
+                case 1: // Basic Weapon Pack
                     List<Item> basicWeapons = itemsDatabase.Where(x => x.itemName.Contains("Fair") && (x as Weapon != null)).ToList();
 
                     randIndex = UnityEngine.Random.Range(0, basicWeapons.Count);
@@ -184,7 +186,7 @@ public class ContainerGeneration : MonoBehaviour
 
                     break;
 
-                case "BasicArmorPack":
+                case 2: // Basic Armor Pack
                     List<Item> basicArmor = itemsDatabase.Where(x => x.itemName.Contains("Fair") && (x as Armor != null)).ToList();
 
                     randIndex = UnityEngine.Random.Range(0, basicArmor.Count);
@@ -193,28 +195,35 @@ public class ContainerGeneration : MonoBehaviour
 
                     break;
 
-                case "AdvancedWeaponPack":
+                case 3: // Advanced Weapon Pack
                     packItems.Add(itemsDatabase.Where(x => x.itemID == "306").First());
                     break;
 
-                case "AdvancedArmorPack":
+                case 4: // Advanced Armor Pack
                     packItems.Add(itemsDatabase.Where(x => x.itemID == "106").First());
-                    break;
+                    break; 
 
-                case "AlchemistPack":
+                case 10: // Basic Alchemist Pack
                     packItems.Add(itemsDatabase.Where(x => x.itemID == "502").First());
                     break;
 
-                case "HealerPack":
+                case 11: // Basic Healer Pack
+                    packItems.Add(itemsDatabase.Where(x => x.itemID == "501").First()); //Health Potion
+                    break;
+
+                case 21: // Advanced Healer Pack
+                    packItems.Add(itemsDatabase.Where(x => x.itemID == "501").First()); //Health Potion x 3
+                    packItems.Add(itemsDatabase.Where(x => x.itemID == "501").First());
                     packItems.Add(itemsDatabase.Where(x => x.itemID == "501").First());
                     break;
 
                 default:
+                    Debug.Log($"Encountered Unhandled Store Pack {selected_pack} in ContainerGeneration");
                     break;
             }
 
 
-            selected_pack = "";
+            selected_pack = 0;
         }
         return packItems;
     }

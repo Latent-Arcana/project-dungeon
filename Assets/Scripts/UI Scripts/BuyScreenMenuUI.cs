@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static StorePack;
 
 public class BuyScreenMenuUI : MonoBehaviour
 {
@@ -12,44 +13,22 @@ public class BuyScreenMenuUI : MonoBehaviour
     private MainMenuUI mainMenuUI;
     private VisualElement buyScreenContainer, Row1, Row2, Row3;
 
-    //private Button noPack, basicWeaponPack, basicArmorPack, advancedWeaponPack, advancedArmorPack, alchemistPack, healerPack;
-
     private Label cartosText;
 
-    public string selected_pack;
+    public int selected_pack = 0;
 
     public ExplorationData storeData;
 
     [SerializeField]
     public VisualTreeAsset template;
 
+    private List<Pack> selectedPacks;
+
 
     ///// Audio ////
     private MenuAudioController menuAudioController;
 
 
-    public enum Packs
-    {
-        noPack,
-        basicWeaponPack,
-        basicArmorPack,
-        advancedWeaponPack,
-        advancedArmorPack,
-        alchemistPack,
-        healerPack,
-
-        //I didn't implement these yet:
-        strengthPack,
-        AgilityPack,
-        SpeedPack,
-        hpPack,
-        apPack
-
-
-    }
-
-    // Dictionary for pack costs
-    private Dictionary<Packs, int> packCosts;
 
     void Awake()
     {
@@ -65,30 +44,6 @@ public class BuyScreenMenuUI : MonoBehaviour
         Row2 = main_document.rootVisualElement.Q("Row2");
         Row3 = main_document.rootVisualElement.Q("Row3");
 
-
-        // Initialize pack costs
-        packCosts = new Dictionary<Packs, int>
-        {
-            { Packs.noPack, 0},
-            { Packs.basicWeaponPack, 20 },
-            { Packs.basicArmorPack, 30 },
-            { Packs.advancedWeaponPack, 40 },
-            { Packs.advancedArmorPack, 50 },
-            { Packs.alchemistPack, 60 },
-            { Packs.healerPack, 70 }
-        };
-
-        Dictionary<Packs, string> packNames = new Dictionary<Packs, string>
-        {
-            { Packs.noPack, "No Pack"},
-            { Packs.basicWeaponPack, "Basic Weapon Pack" },
-            { Packs.basicArmorPack, "Basic Armor Pack" },
-            { Packs.advancedWeaponPack, "Advanced Weapon Pack" },
-            { Packs.advancedArmorPack, "Advanced Armor Pack" },
-            { Packs.alchemistPack, "Alchemist Pack" },
-            { Packs.healerPack, "Healer Pack" }
-        };
-
         storeData = SaveSystem.LoadPlayerSaveData();
 
         if (storeData != null)
@@ -100,39 +55,45 @@ public class BuyScreenMenuUI : MonoBehaviour
             cartosText.text = "Cartos: 0";
         }
 
+
         //generate a list of 9 packs to be displayed.
-        List<Packs> selectedPacks = new List<Packs>{
-
-            //row 1
-            Packs.noPack,
-            Packs.basicWeaponPack,
-            Packs.basicArmorPack,
-
-            //row 2
-            Packs.alchemistPack,
-            Packs.advancedWeaponPack,
-            Packs.advancedArmorPack,
-
-            //row 3 (maybe do some random selection here instead of hard coding them)
-            Packs.healerPack,
-            Packs.healerPack,
-            Packs.healerPack
+        //Start with 5 default packs
+        selectedPacks = new()
+        {
+            Store_Pack.GetNoPack(),
+            Store_Pack.GetBasicWeaponPack(),
+            Store_Pack.GetBasicArmorPack(),
+            Store_Pack.GetAdvnacedWeaponPack(),
+            Store_Pack.GetAdvancedArmorPack(),
         };
 
+        //then add 4 random packs
+        List<Pack> randomSelectedPacks = Store_Pack.GetRandomPacks();
+        selectedPacks.AddRange(randomSelectedPacks);
 
 
+        //TODO: maybe sort packs grid by price?
+
+
+        //Create the pack objects from the template UI element
         for (int i = 0; i < 9; i++)
         {
             var tempElement = template.Instantiate().Children().FirstOrDefault();
 
-            //TODO the assignment stuff here
+            //Name Text
             TextElement tempText = tempElement.Q("PackName") as TextElement;
-            tempText.text = packNames[selectedPacks[i]].ToString();
+            tempText.text = selectedPacks[i].name;
 
+            //Price Text
             tempText = tempElement.Q("CartoAmount") as TextElement;
-            tempText.text = packCosts[selectedPacks[i]].ToString() + " Cartos";
+            tempText.text = selectedPacks[i].price + " Cartos";
 
+            //Assign click event
+            Button tempButton = tempElement.Q("StoreButton") as Button;
+            int tempIndex = i; //you have to create a new int or scope gets weird
+            tempButton.clicked += () => HandlePack(tempIndex);
 
+            //Add element to grid in correct row
             if (i >= 6)
             {
                 Row3.Add(tempElement);
@@ -148,16 +109,6 @@ public class BuyScreenMenuUI : MonoBehaviour
 
         }
 
-        // noPack = buyScreenContainer.Q("NoPack") as Button;
-        // basicWeaponPack = buyScreenContainer.Q("BasicWeaponPack") as Button;
-        // basicArmorPack = buyScreenContainer.Q("BasicArmorPack") as Button;
-        // advancedWeaponPack = buyScreenContainer.Q("AdvancedWeaponPack") as Button;
-        // advancedArmorPack = buyScreenContainer.Q("AdvancedArmorPack") as Button;
-        // alchemistPack = buyScreenContainer.Q("AlchemistPack") as Button;
-        // healerPack = buyScreenContainer.Q("HealerPack") as Button;
-
-
-
 
         // // Disable buttons if not enough Cartos
         // foreach (var pack in packCosts)
@@ -169,49 +120,33 @@ public class BuyScreenMenuUI : MonoBehaviour
         // }
 
 
-        // // Assign click events
-        // foreach (var pack in packCosts)
-        // {
-        //     pack.Key.clicked += () => HandlePack(pack.Key);
-        // }
-
     }
 
-    public void HandlePack(Packs packButton)
+    public void HandlePack(int selectedPacksIndex)
     {
 
-        int cost;
+        //Get the info on the Pack you picked
+        int cost = selectedPacks[selectedPacksIndex].price;
+        selected_pack = selectedPacks[selectedPacksIndex].packId;
 
-        if (packCosts.ContainsKey(packButton))
-        {
-            cost = packCosts[packButton];
-        }
-        else
-        {
-            cost = 0;
-            Debug.Log($"BuyScreenMenuUI, a Pack Button was accessed that does not exist.");
-        }
+        //Debug.Log($"Selected Pack: {selected_pack}. Cost is: {cost}");
 
-        selected_pack = packButton.ToString();
-
-        Debug.Log($"Selected Pack: {selected_pack}. Cost is: {cost}");
-
+        //Spend your cartos
         storeData.cartosEarned -= cost;
-
         cartosText.text = "Cartos: " + storeData.cartosEarned;
-
         SaveSystem.SaveExplorationData(storeData);
 
+        //Play the Game
         StartCoroutine(mainMenuUI.FadeScreenOnExit());
 
     }
 
-    public void DisableButton(Button button)
-    {
-        button.SetEnabled(false); // Disables button interactions
-        button.style.opacity = 0.25f; // Makes button appear greyed out
-        button.AddToClassList("disabled-button");
-        button.RemoveFromClassList("menu-pause-button:hover"); // Try forcing removal
-    }
+    // public void DisableButton(Button button)
+    // {
+    //     button.SetEnabled(false); // Disables button interactions
+    //     button.style.opacity = 0.25f; // Makes button appear greyed out
+    //     button.AddToClassList("disabled-button");
+    //     button.RemoveFromClassList("menu-pause-button:hover"); // Try forcing removal
+    // }
 
 }
